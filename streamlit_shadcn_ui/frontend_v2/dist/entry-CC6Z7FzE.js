@@ -22438,7 +22438,7 @@ function nb({ envelope: e, setStateValue: t }) {
 				/* @__PURE__ */ (0, Y.jsx)(Cu, {
 					"aria-controls": n,
 					"aria-label": `Decrease ${a}`,
-					className: "size-11 touch-manipulation",
+					className: "touch-manipulation",
 					disabled: u || h === m,
 					onClick: () => _(h),
 					onPointerDown: (e) => {
@@ -22454,7 +22454,7 @@ function nb({ envelope: e, setStateValue: t }) {
 					"aria-valuemin": o ?? void 0,
 					"aria-valuenow": p ?? r.value,
 					autoComplete: "off",
-					className: "h-11 text-center tabular-nums",
+					className: "text-center tabular-nums",
 					disabled: u,
 					id: n,
 					inputMode: l ? "numeric" : "decimal",
@@ -22488,7 +22488,7 @@ function nb({ envelope: e, setStateValue: t }) {
 				/* @__PURE__ */ (0, Y.jsx)(Cu, {
 					"aria-controls": n,
 					"aria-label": `Increase ${a}`,
-					className: "size-11 touch-manipulation",
+					className: "touch-manipulation",
 					disabled: u || g === m,
 					onClick: () => _(g),
 					onPointerDown: (e) => {

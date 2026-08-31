@@ -55,7 +55,7 @@ export function NumberInputView({ envelope, setStateValue }: NumberInputViewProp
         <Button
           aria-controls={inputId}
           aria-label={`Decrease ${label}`}
-          className="size-11 touch-manipulation"
+          className="touch-manipulation"
           disabled={disabled || decreased === current}
           onClick={() => commitValue(decreased)}
           onPointerDown={(event) => {
@@ -74,7 +74,7 @@ export function NumberInputView({ envelope, setStateValue }: NumberInputViewProp
           aria-valuemin={min ?? undefined}
           aria-valuenow={parsedDraft ?? state.value}
           autoComplete="off"
-          className="h-11 text-center tabular-nums"
+          className="text-center tabular-nums"
           disabled={disabled}
           id={inputId}
           inputMode={integer ? "numeric" : "decimal"}
@@ -121,7 +121,7 @@ export function NumberInputView({ envelope, setStateValue }: NumberInputViewProp
         <Button
           aria-controls={inputId}
           aria-label={`Increase ${label}`}
-          className="size-11 touch-manipulation"
+          className="touch-manipulation"
           disabled={disabled || increased === current}
           onClick={() => commitValue(increased)}
           onPointerDown={(event) => {

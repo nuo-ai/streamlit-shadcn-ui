@@ -86,7 +86,7 @@ See the [Elements documentation](docs/components/elements.md), the
 Version 1.2.0 adds [Number Input](docs/components/number_input.md) with
 increment/decrement controls, integer and float values, and an Elements node.
 Release changes are recorded in the [changelog](CHANGELOG.md) and the
-[1.2.0 release notes](docs/releases/1.2.0.md).
+[1.2.1 release notes](docs/releases/1.2.1.md).
 
 The documentation app uses [Home.py](Home.py) as its explicit router. Its
 [product homepage](site_pages/Homepage.py), interactive

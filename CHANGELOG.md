@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.2.1 - 2026-08-31
+
+### Fixed
+
+- Number Input now inherits the default sizing of the checked-in shadcn Input
+  and icon Button. Removed the adapter's 44 px overrides so the control matches
+  the library's existing 32 px controls.
+- Standalone and Elements inputs share this correction. Numeric behavior,
+  public API signatures, and runtime dependencies are unchanged.
+
+Full details: [Number Input sizing fix](docs/releases/1.2.1.md).
+
 ## 1.2.0 - 2026-08-31
 
 ### Added
