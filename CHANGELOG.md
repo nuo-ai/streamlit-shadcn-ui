@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.2.2 - 2026-08-31
+
+### Fixed
+
+- Number Input no longer passes extra styling classes to shadcn Input or
+  Button. Removed the remaining text alignment, numeric typography, and
+  touch-action overrides. The default 32 px dimensions restored in 1.2.1
+  remain unchanged.
+
+### Documentation
+
+- Added `AGENTS.md` rules requiring explicit user permission before modifying
+  or overriding shadcn defaults, including changes in adapters and docs CSS.
+- Updated component guidance and documentation release badges for 1.2.2.
+
+Full details: [Default styles and contributor policy](docs/releases/1.2.2.md).
+
 ## 1.2.1 - 2026-08-31
 
 ### Fixed

@@ -86,7 +86,7 @@ See the [Elements documentation](docs/components/elements.md), the
 Version 1.2.0 adds [Number Input](docs/components/number_input.md) with
 increment/decrement controls, integer and float values, and an Elements node.
 Release changes are recorded in the [changelog](CHANGELOG.md) and the
-[1.2.1 release notes](docs/releases/1.2.1.md).
+[1.2.2 release notes](docs/releases/1.2.2.md).
 
 The documentation app uses [Home.py](Home.py) as its explicit router. Its
 [product homepage](site_pages/Homepage.py), interactive
@@ -141,6 +141,9 @@ The full mapping is in the
 [compatibility matrix](docs/v2-compatibility-matrix.md).
 
 ## Development
+
+Follow the repository's `AGENTS.md`. Changes to shadcn default styles, including
+overrides in adapters or documentation CSS, require explicit user permission.
 
 Use Node 22.20.0 and the pnpm version pinned in the frontend manifest.
 
