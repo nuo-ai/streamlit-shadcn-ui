@@ -73,6 +73,7 @@ class ElementsBuilderTests(unittest.TestCase):
                 "image",
                 "input",
                 "link_button",
+                "number_input",
                 "progress",
                 "radio_group",
                 "select",

@@ -14,6 +14,7 @@ import { BadgeView } from "@/components/streamlit/badge"
 import { ButtonView } from "@/components/streamlit/button"
 import { CheckboxView } from "@/components/streamlit/checkbox"
 import { InputView } from "@/components/streamlit/input"
+import { NumberInputView } from "@/components/streamlit/number-input"
 import { LinkButtonView } from "@/components/streamlit/link-button"
 import { ProgressView } from "@/components/streamlit/progress"
 import { RadioGroupView } from "@/components/streamlit/radio-group"
@@ -149,6 +150,13 @@ function renderLeaf(
     case "input":
       return (
         <InputView
+          envelope={node.envelope}
+          setStateValue={setStateValue}
+        />
+      )
+    case "number_input":
+      return (
+        <NumberInputView
           envelope={node.envelope}
           setStateValue={setStateValue}
         />

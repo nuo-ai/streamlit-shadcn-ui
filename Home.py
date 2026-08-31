@@ -56,6 +56,7 @@ component_pages = [
     st.Page("pages/InputOTP.py", title="Input OTP"),
     st.Page("pages/LinkButton.py", title="Link Button"),
     st.Page("pages/MetricCard.py", title="Metric Card"),
+    st.Page("pages/NumberInput.py", title="Number Input"),
     st.Page("pages/Pagination.py", title="Pagination"),
     st.Page("pages/Popover.py", title="Popover"),
     st.Page("pages/Progress.py", title="Progress"),

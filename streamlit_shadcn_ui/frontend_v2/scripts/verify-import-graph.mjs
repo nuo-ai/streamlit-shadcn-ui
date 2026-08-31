@@ -28,6 +28,7 @@ const expectedEdges = {
   "input-otp.tsx": '@/components/ui/input-otp',
   "input.tsx": '@/components/ui/input',
   "link-button.tsx": '@/components/ui/button',
+  "number-input.tsx": ['@/components/ui/input', '@/components/ui/button'],
   "pagination.tsx": '@/components/ui/pagination',
   "progress.tsx": '@/components/ui/progress',
   "radio-group.tsx": '@/components/ui/radio-group',
@@ -48,13 +49,15 @@ const adapterFiles = (await readdir(adaptersDir))
   .filter((file) => file.endsWith(".tsx"))
   .sort()
 
-for (const [file, shadcnImport] of Object.entries(expectedEdges)) {
+for (const [file, shadcnImports] of Object.entries(expectedEdges)) {
   if (!adapterFiles.includes(file)) {
     throw new Error(`Missing Streamlit adapter: ${file}.`)
   }
   const source = await readFile(path.join(adaptersDir, file), "utf8")
-  if (!source.includes(shadcnImport)) {
-    throw new Error(`${file} bypasses its checked-in shadcn component.`)
+  for (const shadcnImport of [shadcnImports].flat()) {
+    if (!source.includes(shadcnImport)) {
+      throw new Error(`${file} bypasses its checked-in shadcn component.`)
+    }
   }
   if (source.includes("@base-ui/react")) {
     throw new Error(`${file} imports Base UI directly.`)

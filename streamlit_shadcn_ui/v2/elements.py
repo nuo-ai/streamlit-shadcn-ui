@@ -42,6 +42,7 @@ from .widgets._common import (
     token_for_value,
     utf16_length,
 )
+from .widgets.number_input import _number_input_config
 
 
 T = TypeVar("T")
@@ -507,6 +508,32 @@ class ElementsBuilder:
                 "disabled": boolean(disabled, "disabled"),
                 "maxLength": max_length,
             },
+            on_change,
+        )
+
+    def number_input(
+        self,
+        label: str,
+        value: Number = 0,
+        *,
+        key: str,
+        min_value: Optional[Number] = None,
+        max_value: Optional[Number] = None,
+        step: Optional[Number] = None,
+        disabled: bool = False,
+        on_change: Optional[ElementCallback] = None,
+    ) -> ElementHandle[Number]:
+        """Add a numeric input using the same contract as ui.number_input."""
+        config = _number_input_config(
+            label, value, min_value, max_value, step, disabled
+        )
+        return self._stateful_leaf(
+            "number_input",
+            key,
+            config.value,
+            config.valid,
+            config.decode,
+            config.props,
             on_change,
         )
 

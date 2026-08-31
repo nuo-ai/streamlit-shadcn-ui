@@ -53,7 +53,7 @@ browser task are delivered as one ordered batch.
 Available composition primitives are `stack`, `grid`, `card`, `card_header`,
 `card_content`, and `card_footer`. Content nodes include `heading`, `text`,
 `code`, `badge`, `separator`, `progress`, `image`, and `link_button`.
-Interactive nodes include `input`, `textarea`, `checkbox`, `switch`, `slider`,
+Interactive nodes include `input`, `number_input`, `textarea`, `checkbox`, `switch`, `slider`,
 `radio_group`, `select`, and `button`.
 
 An Elements tree can contain library-owned React components only. Native

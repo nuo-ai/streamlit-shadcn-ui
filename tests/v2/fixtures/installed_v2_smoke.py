@@ -57,7 +57,7 @@ ui.card(
 )
 ui.metric_card(
     "Installed Metric",
-    "35",
+    "36",
     description="component kinds",
     key="installed_metric_card",
 )
@@ -103,6 +103,9 @@ input_value = ui.input(
     "Installed Input",
     value="Installed input",
     key="installed_input",
+)
+number_value = ui.number_input(
+    "Installed Number Input", value=2, min_value=0, max_value=10, key="installed_number_input"
 )
 textarea_value = ui.textarea(
     "Installed Textarea",
@@ -203,6 +206,9 @@ with ui.elements(key="installed_elements") as elements:
                 value="Ready",
                 key="input",
             )
+            elements_number = elements.number_input(
+                "Installed Elements Number Input", value=0.2, step=0.1, key="number"
+            )
         with elements.card_footer():
             elements.button("Installed Elements Action", key="action")
 
@@ -219,6 +225,8 @@ st.write(
         "crumb": crumb,
         "date_picker": date_picker_value,
         "input": input_value,
+        "number_input": number_value,
+        "elements_number_input": elements_number.value,
         "otp": otp_value,
         "pagination": pagination_value,
         "radio": radio_value,

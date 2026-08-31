@@ -15986,7 +15986,16 @@ var Hd = /*#__PURE__*/ function(e) {
 		y2: "20",
 		key: "uljnxc"
 	}]
-]), uf = $d("underline", [["path", {
+]), uf = $d("minus", [["path", {
+	d: "M5 12h14",
+	key: "1ays0h"
+}]]), df = $d("plus", [["path", {
+	d: "M5 12h14",
+	key: "1ays0h"
+}], ["path", {
+	d: "M12 5v14",
+	key: "s699le"
+}]]), ff = $d("underline", [["path", {
 	d: "M6 4v6a6 6 0 0 0 12 0V4",
 	key: "9kb039"
 }], ["line", {
@@ -15998,21 +16007,21 @@ var Hd = /*#__PURE__*/ function(e) {
 }]]);
 //#endregion
 //#region src/components/ui/accordion.tsx
-function df({ className: e, ...t }) {
+function pf({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)(gd, {
 		"data-slot": "accordion",
 		className: J("flex w-full flex-col", e),
 		...t
 	});
 }
-function ff({ className: e, ...t }) {
+function mf({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)(Md, {
 		"data-slot": "accordion-item",
 		className: J("not-last:border-b", e),
 		...t
 	});
 }
-function pf({ className: e, children: t, ...n }) {
+function hf({ className: e, children: t, ...n }) {
 	return /* @__PURE__ */ (0, Y.jsx)(Nd, {
 		className: "flex",
 		children: /* @__PURE__ */ (0, Y.jsxs)(Pd, {
@@ -16027,7 +16036,7 @@ function pf({ className: e, children: t, ...n }) {
 		})
 	});
 }
-function mf({ className: e, children: t, ...n }) {
+function gf({ className: e, children: t, ...n }) {
 	return /* @__PURE__ */ (0, Y.jsx)(Ud, {
 		"data-slot": "accordion-content",
 		className: "overflow-hidden text-sm data-open:animate-accordion-down data-closed:animate-accordion-up",
@@ -16040,7 +16049,7 @@ function mf({ className: e, children: t, ...n }) {
 }
 //#endregion
 //#region src/protocol/reconciliation.ts
-function hf(e, t) {
+function _f(e, t) {
 	if (e.kind !== t.kind) throw Error("SSUI_V2_STATE_KIND_MISMATCH");
 	return t.serverRevision > e.serverRevision ? {
 		acknowledgeServerReset: !0,
@@ -16053,13 +16062,13 @@ function hf(e, t) {
 		state: t
 	};
 }
-function gf(e, t) {
+function vf(e, t) {
 	return Object.is(e, t) ? !0 : Array.isArray(e) && Array.isArray(t) ? e.length === t.length && e.every((e, n) => Object.is(e, t[n])) : !1;
 }
-function _f(e, t) {
+function yf(e, t) {
 	let [n, r] = (0, C.useState)(e), i = (0, C.useRef)(n), a = (0, C.useRef)(e.serverRevision);
 	return (0, C.useEffect)(() => {
-		let n = hf(i.current, e);
+		let n = _f(i.current, e);
 		i.current = n.state, r(n.state), n.acknowledgeServerReset && e.serverRevision > a.current && (a.current = e.serverRevision, t("state", e));
 	}, [
 		e.clientRevision,
@@ -16069,7 +16078,7 @@ function _f(e, t) {
 		t
 	]), {
 		commit: (0, C.useCallback)((e) => {
-			if (gf(i.current.value, e)) return;
+			if (vf(i.current.value, e)) return;
 			let n = {
 				...i.current,
 				value: e,
@@ -16080,8 +16089,8 @@ function _f(e, t) {
 		state: n
 	};
 }
-function vf(e, t) {
-	let { commit: n, state: r } = _f(e, t), [i, a] = (0, C.useState)(r.value);
+function bf(e, t) {
+	let { commit: n, state: r } = yf(e, t), [i, a] = (0, C.useState)(r.value);
 	return (0, C.useEffect)(() => {
 		a(r.value);
 	}, [r.value]), {
@@ -16096,9 +16105,9 @@ function vf(e, t) {
 }
 //#endregion
 //#region src/components/streamlit/accordion.tsx
-function yf({ envelope: e, setStateValue: t }) {
-	let { commit: n, state: r } = _f(e.state, t);
-	return /* @__PURE__ */ (0, Y.jsx)(df, {
+function xf({ envelope: e, setStateValue: t }) {
+	let { commit: n, state: r } = yf(e.state, t);
+	return /* @__PURE__ */ (0, Y.jsx)(pf, {
 		"aria-label": e.props.label,
 		className: "rounded-lg border px-3",
 		"data-ssui-component": "accordion",
@@ -16107,16 +16116,16 @@ function yf({ envelope: e, setStateValue: t }) {
 		multiple: e.props.multiple,
 		onValueChange: n,
 		value: r.value,
-		children: e.props.items.map((e) => /* @__PURE__ */ (0, Y.jsxs)(ff, {
+		children: e.props.items.map((e) => /* @__PURE__ */ (0, Y.jsxs)(mf, {
 			disabled: e.disabled,
 			value: e.value,
-			children: [/* @__PURE__ */ (0, Y.jsx)(pf, { children: e.label }), /* @__PURE__ */ (0, Y.jsx)(mf, { children: e.content })]
+			children: [/* @__PURE__ */ (0, Y.jsx)(hf, { children: e.label }), /* @__PURE__ */ (0, Y.jsx)(gf, { children: e.content })]
 		}, e.value))
 	});
 }
 //#endregion
 //#region src/components/ui/aspect-ratio.tsx
-function bf({ ratio: e, className: t, ...n }) {
+function Sf({ ratio: e, className: t, ...n }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		"data-slot": "aspect-ratio",
 		style: { "--ratio": e },
@@ -16126,8 +16135,8 @@ function bf({ ratio: e, className: t, ...n }) {
 }
 //#endregion
 //#region src/components/streamlit/aspect-ratio.tsx
-function xf({ envelope: e }) {
-	return /* @__PURE__ */ (0, Y.jsx)(bf, {
+function Cf({ envelope: e }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Sf, {
 		className: "overflow-hidden rounded-lg bg-muted",
 		"data-ssui-component": "aspect_ratio",
 		"data-testid": "ssui-v2-aspect-ratio",
@@ -16142,15 +16151,15 @@ function xf({ envelope: e }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/avatar/root/AvatarRootContext.mjs
-var Sf = /*#__PURE__*/ C.createContext(void 0);
-function Cf() {
-	let e = C.useContext(Sf);
+var wf = /*#__PURE__*/ C.createContext(void 0);
+function Tf() {
+	let e = C.useContext(wf);
 	if (e === void 0) throw Error(la(13));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/avatar/root/stateAttributesMapping.mjs
-var wf = { imageLoadingStatus: () => null }, Tf = /*#__PURE__*/ C.forwardRef(function(e, t) {
+var Ef = { imageLoadingStatus: () => null }, Df = /*#__PURE__*/ C.forwardRef(function(e, t) {
 	let { className: n, render: r, style: i, ...a } = e, [o, s] = C.useState("idle"), c = { imageLoadingStatus: o }, l = C.useMemo(() => ({
 		imageLoadingStatus: o,
 		setImageLoadingStatus: s
@@ -16158,16 +16167,16 @@ var wf = { imageLoadingStatus: () => null }, Tf = /*#__PURE__*/ C.forwardRef(fun
 		state: c,
 		ref: t,
 		props: a,
-		stateAttributesMapping: wf
+		stateAttributesMapping: Ef
 	});
-	return /*#__PURE__*/ (0, Y.jsx)(Sf.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(wf.Provider, {
 		value: l,
 		children: u
 	});
 });
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/avatar/image/useImageLoadingStatus.mjs
-function Ef(e, { referrerPolicy: t, crossOrigin: n, sizes: r, srcSet: i }) {
+function Of(e, { referrerPolicy: t, crossOrigin: n, sizes: r, srcSet: i }) {
 	let [a, o] = C.useState("idle");
 	return X(() => {
 		if (!e && !i) return o("error"), un;
@@ -16187,11 +16196,11 @@ function Ef(e, { referrerPolicy: t, crossOrigin: n, sizes: r, srcSet: i }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/avatar/image/AvatarImage.mjs
-var Df = {
-	...wf,
+var kf = {
+	...Ef,
 	...uc
-}, Of = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { className: n, render: r, onLoadingStatusChange: i, style: a, ...o } = e, { setImageLoadingStatus: s } = Cf(), c = Ef(o.src, o), l = c === "loaded", { mounted: u, transitionStatus: d, setMounted: f } = oc(l), p = C.useRef(null), m = Z((e) => {
+}, Af = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { className: n, render: r, onLoadingStatusChange: i, style: a, ...o } = e, { setImageLoadingStatus: s } = Tf(), c = Of(o.src, o), l = c === "loaded", { mounted: u, transitionStatus: d, setMounted: f } = oc(l), p = C.useRef(null), m = Z((e) => {
 		i?.(e), s(e);
 	});
 	X(() => {
@@ -16210,39 +16219,39 @@ var Df = {
 		},
 		ref: [t, p],
 		props: o,
-		stateAttributesMapping: Df,
+		stateAttributesMapping: kf,
 		enabled: u
 	});
 	return u ? h : null;
-}), kf = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { className: n, render: r, delay: i, style: a, ...o } = e, { imageLoadingStatus: s } = Cf(), [c, l] = C.useState(i === void 0), u = an();
+}), jf = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { className: n, render: r, delay: i, style: a, ...o } = e, { imageLoadingStatus: s } = Tf(), [c, l] = C.useState(i === void 0), u = an();
 	return C.useEffect(() => (i === void 0 ? l(!0) : u.start(i, () => l(!0)), u.clear), [u, i]), Q("span", e, {
 		state: { imageLoadingStatus: s },
 		ref: t,
 		props: o,
-		stateAttributesMapping: wf,
+		stateAttributesMapping: Ef,
 		enabled: s !== "loaded" && (i === void 0 || c)
 	});
 });
 //#endregion
 //#region src/components/ui/avatar.tsx
-function Af({ className: e, size: t = "default", ...n }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Tf, {
+function Mf({ className: e, size: t = "default", ...n }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Df, {
 		"data-slot": "avatar",
 		"data-size": t,
 		className: J("group/avatar relative flex size-8 shrink-0 rounded-full select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:after:mix-blend-lighten", e),
 		...n
 	});
 }
-function jf({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Of, {
+function Nf({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Af, {
 		"data-slot": "avatar-image",
 		className: J("aspect-square size-full rounded-full object-cover", e),
 		...t
 	});
 }
-function Mf({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(kf, {
+function Pf({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(jf, {
 		"data-slot": "avatar-fallback",
 		className: J("flex size-full items-center justify-center rounded-full bg-muted text-sm text-muted-foreground group-data-[size=sm]/avatar:text-xs", e),
 		...t
@@ -16250,28 +16259,28 @@ function Mf({ className: e, ...t }) {
 }
 //#endregion
 //#region src/components/streamlit/avatar.tsx
-function Nf({ envelope: e }) {
+function Ff({ envelope: e }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		className: "inline-flex p-px",
 		"data-ssui-component": "avatar",
 		"data-testid": "ssui-v2-avatar",
-		children: /* @__PURE__ */ (0, Y.jsxs)(Af, {
+		children: /* @__PURE__ */ (0, Y.jsxs)(Mf, {
 			size: e.props.size,
-			children: [e.props.src === null ? null : /* @__PURE__ */ (0, Y.jsx)(jf, {
+			children: [e.props.src === null ? null : /* @__PURE__ */ (0, Y.jsx)(Nf, {
 				alt: e.props.alt,
 				src: e.props.src
-			}), /* @__PURE__ */ (0, Y.jsx)(Mf, { children: e.props.fallback })]
+			}), /* @__PURE__ */ (0, Y.jsx)(Pf, { children: e.props.fallback })]
 		})
 	});
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/use-render/useRender.mjs
-function Pf(e) {
+function If(e) {
 	return Q(e.defaultTagName ?? "div", e, e);
 }
 //#endregion
 //#region src/components/ui/badge.tsx
-var Ff = S("group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3!", {
+var Lf = S("group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3!", {
 	variants: { variant: {
 		default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
 		secondary: "bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80",
@@ -16282,10 +16291,10 @@ var Ff = S("group/badge inline-flex h-5 w-fit shrink-0 items-center justify-cent
 	} },
 	defaultVariants: { variant: "default" }
 });
-function If({ className: e, variant: t = "default", render: n, ...r }) {
-	return Pf({
+function Rf({ className: e, variant: t = "default", render: n, ...r }) {
+	return If({
 		defaultTagName: "span",
-		props: va({ className: J(Ff({ variant: t }), e) }, r),
+		props: va({ className: J(Lf({ variant: t }), e) }, r),
 		render: n,
 		state: {
 			slot: "badge",
@@ -16295,13 +16304,13 @@ function If({ className: e, variant: t = "default", render: n, ...r }) {
 }
 //#endregion
 //#region src/components/streamlit/badge.tsx
-function Lf({ envelope: e }) {
+function zf({ envelope: e }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		className: "flex flex-wrap items-center gap-2 p-px",
 		"data-ssui-component": "badge",
 		"data-testid": "ssui-v2-badge",
 		role: "list",
-		children: e.props.badges.map((e, t) => /* @__PURE__ */ (0, Y.jsx)(If, {
+		children: e.props.badges.map((e, t) => /* @__PURE__ */ (0, Y.jsx)(Rf, {
 			role: "listitem",
 			variant: e.variant,
 			children: e.text
@@ -16310,7 +16319,7 @@ function Lf({ envelope: e }) {
 }
 //#endregion
 //#region src/components/ui/breadcrumb.tsx
-function Rf({ className: e, ...t }) {
+function Bf({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("nav", {
 		"aria-label": "breadcrumb",
 		"data-slot": "breadcrumb",
@@ -16318,29 +16327,29 @@ function Rf({ className: e, ...t }) {
 		...t
 	});
 }
-function zf({ className: e, ...t }) {
+function Vf({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("ol", {
 		"data-slot": "breadcrumb-list",
 		className: J("flex flex-wrap items-center gap-1.5 text-sm wrap-break-word text-muted-foreground", e),
 		...t
 	});
 }
-function Bf({ className: e, ...t }) {
+function Hf({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("li", {
 		"data-slot": "breadcrumb-item",
 		className: J("inline-flex items-center gap-1", e),
 		...t
 	});
 }
-function Vf({ className: e, render: t, ...n }) {
-	return Pf({
+function Uf({ className: e, render: t, ...n }) {
+	return If({
 		defaultTagName: "a",
 		props: va({ className: J("transition-colors hover:text-foreground", e) }, n),
 		render: t,
 		state: { slot: "breadcrumb-link" }
 	});
 }
-function Hf({ className: e, ...t }) {
+function Wf({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("span", {
 		"data-slot": "breadcrumb-page",
 		role: "link",
@@ -16350,7 +16359,7 @@ function Hf({ className: e, ...t }) {
 		...t
 	});
 }
-function Uf({ children: e, className: t, ...n }) {
+function Gf({ children: e, className: t, ...n }) {
 	return /* @__PURE__ */ (0, Y.jsx)("li", {
 		"data-slot": "breadcrumb-separator",
 		role: "presentation",
@@ -16362,12 +16371,12 @@ function Uf({ children: e, className: t, ...n }) {
 }
 //#endregion
 //#region src/components/streamlit/breadcrumb.tsx
-function Wf({ envelope: e, setTriggerValue: t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Rf, {
+function Kf({ envelope: e, setTriggerValue: t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Bf, {
 		"aria-label": e.props.label,
 		"data-ssui-component": "breadcrumb",
 		"data-testid": "ssui-v2-breadcrumb",
-		children: /* @__PURE__ */ (0, Y.jsx)(zf, { children: e.props.items.map((n, r) => /* @__PURE__ */ (0, Y.jsxs)(C.Fragment, { children: [/* @__PURE__ */ (0, Y.jsx)(Bf, { children: n.current ? /* @__PURE__ */ (0, Y.jsx)(Hf, { children: n.text }) : /* @__PURE__ */ (0, Y.jsx)(Vf, {
+		children: /* @__PURE__ */ (0, Y.jsx)(Vf, { children: e.props.items.map((n, r) => /* @__PURE__ */ (0, Y.jsxs)(C.Fragment, { children: [/* @__PURE__ */ (0, Y.jsx)(Hf, { children: n.current ? /* @__PURE__ */ (0, Y.jsx)(Wf, { children: n.text }) : /* @__PURE__ */ (0, Y.jsx)(Uf, {
 			href: "#",
 			onClick: (e) => {
 				e.preventDefault(), t("action", {
@@ -16377,12 +16386,12 @@ function Wf({ envelope: e, setTriggerValue: t }) {
 				});
 			},
 			children: n.text
-		}) }), r < e.props.items.length - 1 ? /* @__PURE__ */ (0, Y.jsx)(Uf, {}) : null] }, `${n.text}-${r}`)) })
+		}) }), r < e.props.items.length - 1 ? /* @__PURE__ */ (0, Y.jsx)(Gf, {}) : null] }, `${n.text}-${r}`)) })
 	});
 }
 //#endregion
 //#region src/components/streamlit/button.tsx
-function Gf({ envelope: e, setTriggerValue: t }) {
+function qf({ envelope: e, setTriggerValue: t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		className: J("p-px", e.props.stretch ? "flex w-full" : "inline-flex"),
 		"data-ssui-component": "button",
@@ -16401,7 +16410,7 @@ function Gf({ envelope: e, setTriggerValue: t }) {
 }
 //#endregion
 //#region src/components/ui/card.tsx
-function Kf({ className: e, size: t = "default", ...n }) {
+function Jf({ className: e, size: t = "default", ...n }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		"data-slot": "card",
 		"data-size": t,
@@ -16409,42 +16418,42 @@ function Kf({ className: e, size: t = "default", ...n }) {
 		...n
 	});
 }
-function qf({ className: e, ...t }) {
+function Yf({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		"data-slot": "card-header",
 		className: J("group/card-header @container/card-header grid auto-rows-min items-start gap-1 rounded-t-xl px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing)", e),
 		...t
 	});
 }
-function Jf({ className: e, ...t }) {
+function Xf({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		"data-slot": "card-title",
 		className: J("cn-font-heading text-base leading-snug font-medium group-data-[size=sm]/card:text-sm", e),
 		...t
 	});
 }
-function Yf({ className: e, ...t }) {
+function Zf({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		"data-slot": "card-description",
 		className: J("text-sm text-muted-foreground", e),
 		...t
 	});
 }
-function Xf({ className: e, ...t }) {
+function Qf({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		"data-slot": "card-action",
 		className: J("col-start-2 row-span-2 row-start-1 self-start justify-self-end", e),
 		...t
 	});
 }
-function Zf({ className: e, ...t }) {
+function $f({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		"data-slot": "card-content",
 		className: J("px-(--card-spacing)", e),
 		...t
 	});
 }
-function Qf({ className: e, ...t }) {
+function ep({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		"data-slot": "card-footer",
 		className: J("flex items-center rounded-b-xl border-t bg-muted/50 p-(--card-spacing)", e),
@@ -16453,52 +16462,52 @@ function Qf({ className: e, ...t }) {
 }
 //#endregion
 //#region src/components/streamlit/card.tsx
-function $f({ envelope: e }) {
+function tp({ envelope: e }) {
 	let { props: t } = e, n = t.title !== null || t.description !== null;
-	return /* @__PURE__ */ (0, Y.jsxs)(Kf, {
+	return /* @__PURE__ */ (0, Y.jsxs)(Jf, {
 		"data-ssui-component": "card",
 		"data-testid": "ssui-v2-card",
 		size: t.size,
 		children: [
-			n ? /* @__PURE__ */ (0, Y.jsxs)(qf, { children: [t.title === null ? null : /* @__PURE__ */ (0, Y.jsx)(Jf, { children: t.title }), t.description === null ? null : /* @__PURE__ */ (0, Y.jsx)(Yf, { children: t.description })] }) : null,
-			t.content === null ? null : /* @__PURE__ */ (0, Y.jsx)(Zf, { children: /* @__PURE__ */ (0, Y.jsx)("div", {
+			n ? /* @__PURE__ */ (0, Y.jsxs)(Yf, { children: [t.title === null ? null : /* @__PURE__ */ (0, Y.jsx)(Xf, { children: t.title }), t.description === null ? null : /* @__PURE__ */ (0, Y.jsx)(Zf, { children: t.description })] }) : null,
+			t.content === null ? null : /* @__PURE__ */ (0, Y.jsx)($f, { children: /* @__PURE__ */ (0, Y.jsx)("div", {
 				className: "text-sm",
 				children: t.content
 			}) }),
-			t.footer === null ? null : /* @__PURE__ */ (0, Y.jsx)(Qf, { children: t.footer })
+			t.footer === null ? null : /* @__PURE__ */ (0, Y.jsx)(ep, { children: t.footer })
 		]
 	});
 }
-function ep({ envelope: e }) {
+function np({ envelope: e }) {
 	let { props: t } = e, n = t.variant === "dashboard";
-	return /* @__PURE__ */ (0, Y.jsxs)(Kf, {
+	return /* @__PURE__ */ (0, Y.jsxs)(Jf, {
 		className: n ? "@container/card" : void 0,
 		"data-ssui-component": "metric_card",
 		"data-testid": "ssui-v2-metric-card",
 		size: t.size,
 		children: [
-			/* @__PURE__ */ (0, Y.jsxs)(qf, { children: [
-				/* @__PURE__ */ (0, Y.jsx)(Yf, { children: t.label }),
-				/* @__PURE__ */ (0, Y.jsx)(Jf, {
+			/* @__PURE__ */ (0, Y.jsxs)(Yf, { children: [
+				/* @__PURE__ */ (0, Y.jsx)(Zf, { children: t.label }),
+				/* @__PURE__ */ (0, Y.jsx)(Xf, {
 					className: n ? "text-2xl font-semibold tabular-nums @[250px]/card:text-3xl" : "text-2xl font-semibold tracking-tight",
 					children: t.value
 				}),
-				n && t.delta !== null ? /* @__PURE__ */ (0, Y.jsx)(Xf, { children: /* @__PURE__ */ (0, Y.jsx)(If, {
+				n && t.delta !== null ? /* @__PURE__ */ (0, Y.jsx)(Qf, { children: /* @__PURE__ */ (0, Y.jsx)(Rf, {
 					variant: "outline",
 					children: t.delta
 				}) }) : null
 			] }),
-			t.description === null ? null : n ? /* @__PURE__ */ (0, Y.jsx)(Qf, {
+			t.description === null ? null : n ? /* @__PURE__ */ (0, Y.jsx)(ep, {
 				className: "flex-col items-start gap-1.5 text-sm",
 				children: /* @__PURE__ */ (0, Y.jsx)("div", {
 					className: "text-muted-foreground",
 					children: t.description
 				})
-			}) : /* @__PURE__ */ (0, Y.jsx)(Zf, { children: /* @__PURE__ */ (0, Y.jsx)("div", {
+			}) : /* @__PURE__ */ (0, Y.jsx)($f, { children: /* @__PURE__ */ (0, Y.jsx)("div", {
 				className: "text-sm text-muted-foreground",
 				children: t.description
 			}) }),
-			!n && t.delta !== null ? /* @__PURE__ */ (0, Y.jsx)(Qf, { children: /* @__PURE__ */ (0, Y.jsx)(If, {
+			!n && t.delta !== null ? /* @__PURE__ */ (0, Y.jsx)(ep, { children: /* @__PURE__ */ (0, Y.jsx)(Rf, {
 				variant: "secondary",
 				children: t.delta
 			}) }) : null
@@ -16507,7 +16516,7 @@ function ep({ envelope: e }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+utils@0.3.1_@types+react@19.2.17_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/utils/getDefaultFormSubmitter.mjs
-function tp(e) {
+function rp(e) {
 	if (!e) return null;
 	for (let t of e.elements) {
 		let e = t.tagName;
@@ -16520,11 +16529,11 @@ function tp(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/checkbox/root/CheckboxRootDataAttributes.mjs
-var np = /*#__PURE__*/ function(e) {
+var ip = /*#__PURE__*/ function(e) {
 	return e.checked = "data-checked", e.unchecked = "data-unchecked", e.indeterminate = "data-indeterminate", e.disabled = "data-disabled", e.readonly = "data-readonly", e.required = "data-required", e.valid = "data-valid", e.invalid = "data-invalid", e.touched = "data-touched", e.dirty = "data-dirty", e.filled = "data-filled", e.focused = "data-focused", e;
-}({}), rp = /*#__PURE__*/ function(e) {
+}({}), ap = /*#__PURE__*/ function(e) {
 	return e.disabled = "data-disabled", e.valid = "data-valid", e.invalid = "data-invalid", e.touched = "data-touched", e.dirty = "data-dirty", e.filled = "data-filled", e.focused = "data-focused", e;
-}({}), ip = {
+}({}), op = {
 	badInput: !1,
 	customError: !1,
 	patternMismatch: !1,
@@ -16536,35 +16545,35 @@ var np = /*#__PURE__*/ function(e) {
 	typeMismatch: !1,
 	valid: null,
 	valueMissing: !1
-}, ap = {
+}, sp = {
 	valid: null,
 	touched: !1,
 	dirty: !1,
 	filled: !1,
 	focused: !1
-}, op = {
+}, cp = {
 	disabled: !1,
-	...ap
-}, sp = { valid(e) {
-	return e === null ? null : e ? { [rp.valid]: "" } : { [rp.invalid]: "" };
+	...sp
+}, lp = { valid(e) {
+	return e === null ? null : e ? { [ap.valid]: "" } : { [ap.invalid]: "" };
 } };
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/checkbox/utils/useStateAttributesMapping.mjs
-function cp(e) {
+function up(e) {
 	return C.useMemo(() => ({
 		checked(t) {
-			return e.indeterminate ? {} : t ? { [np.checked]: "" } : { [np.unchecked]: "" };
+			return e.indeterminate ? {} : t ? { [ip.checked]: "" } : { [ip.unchecked]: "" };
 		},
-		...sp
+		...lp
 	}), [e.indeterminate]);
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/field-root-context/FieldRootContext.mjs
-var lp = {
+var dp = {
 	invalid: void 0,
 	name: void 0,
 	validityData: {
-		state: ip,
+		state: op,
 		errors: [],
 		error: "",
 		value: "",
@@ -16572,19 +16581,19 @@ var lp = {
 	},
 	setValidityData: un,
 	disabled: void 0,
-	touched: ap.touched,
+	touched: sp.touched,
 	setTouched: un,
-	dirty: ap.dirty,
+	dirty: sp.dirty,
 	setDirty: un,
-	filled: ap.filled,
+	filled: sp.filled,
 	setFilled: un,
-	focused: ap.focused,
+	focused: sp.focused,
 	setFocused: un,
 	validate: () => null,
 	validationMode: "onSubmit",
 	validationDebounceTime: 0,
 	shouldValidateOnChange: () => !1,
-	state: op,
+	state: cp,
 	markedDirtyRef: { current: !1 },
 	registerFieldControl: un,
 	validation: {
@@ -16594,16 +16603,16 @@ var lp = {
 		commit: async () => {},
 		change: un
 	}
-}, up = /*#__PURE__*/ C.createContext(lp);
-function dp(e = !0) {
-	let t = C.useContext(up);
+}, fp = /*#__PURE__*/ C.createContext(dp);
+function pp(e = !0) {
+	let t = C.useContext(fp);
 	if (t.setValidityData === un && !e) throw Error(la(28));
 	return t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/field-register-control/useRegisterFieldControl.mjs
-function fp(e, t, n, r, i = !0, a) {
-	let { registerFieldControl: o } = dp(), s = C.useRef(null);
+function mp(e, t, n, r, i = !0, a) {
+	let { registerFieldControl: o } = pp(), s = C.useRef(null);
 	s.current ||= Symbol(), X(() => {
 		let c = s.current;
 		if (!(!c || !i)) return o(c, {
@@ -16627,25 +16636,25 @@ function fp(e, t, n, r, i = !0, a) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/field/item/FieldItemContext.mjs
-var pp = /*#__PURE__*/ C.createContext({ disabled: !1 });
-function mp() {
-	return C.useContext(pp);
+var hp = /*#__PURE__*/ C.createContext({ disabled: !1 });
+function gp() {
+	return C.useContext(hp);
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/form-context/FormContext.mjs
-var hp = /*#__PURE__*/ C.createContext({
+var _p = /*#__PURE__*/ C.createContext({
 	formRef: { current: { fields: /* @__PURE__ */ new Map() } },
 	errors: {},
 	clearErrors: un,
 	validationMode: "onSubmit",
 	submitAttemptedRef: { current: !1 }
 });
-function gp() {
-	return C.useContext(hp);
+function vp() {
+	return C.useContext(_p);
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/labelable-provider/LabelableContext.mjs
-var _p = /*#__PURE__*/ C.createContext({
+var yp = /*#__PURE__*/ C.createContext({
 	controlId: void 0,
 	registerControlId: un,
 	labelId: void 0,
@@ -16654,23 +16663,23 @@ var _p = /*#__PURE__*/ C.createContext({
 	setMessageIds: un,
 	getDescriptionProps: (e) => e
 });
-function vp() {
-	return C.useContext(_p);
+function bp() {
+	return C.useContext(yp);
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/labelable-provider/useAriaLabelledBy.mjs
-function yp(e, t, n, r = !0, i) {
+function xp(e, t, n, r = !0, i) {
 	let [a, o] = C.useState(), s = zl(i ? `${i}-label` : void 0), c = e ?? t ?? a;
 	return X(() => {
-		let i = e || t || !r ? void 0 : bp(n.current, s);
+		let i = e || t || !r ? void 0 : Sp(n.current, s);
 		a !== i && o(i);
 	}), c;
 }
-function bp(e, t) {
-	let n = xp(e);
+function Sp(e, t) {
+	let n = Cp(e);
 	if (n) return !n.id && t && (n.id = t), n.id || void 0;
 }
-function xp(e) {
+function Cp(e) {
 	if (!e) return;
 	let t = e.parentElement;
 	if (t && t.tagName === "LABEL") return t;
@@ -16684,24 +16693,24 @@ function xp(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/checkbox-group/CheckboxGroupContext.mjs
-var Sp = /*#__PURE__*/ C.createContext(void 0);
-function Cp(e = !0) {
-	let t = C.useContext(Sp);
+var wp = /*#__PURE__*/ C.createContext(void 0);
+function Tp(e = !0) {
+	let t = C.useContext(wp);
 	if (t === void 0 && !e) throw Error(la(3));
 	return t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/checkbox/root/CheckboxRootContext.mjs
-var wp = /*#__PURE__*/ C.createContext(void 0);
-function Tp() {
-	let e = C.useContext(wp);
+var Ep = /*#__PURE__*/ C.createContext(void 0);
+function Dp() {
+	let e = C.useContext(Ep);
 	if (e === void 0) throw Error(la(14));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/checkbox/root/CheckboxRoot.mjs
-var Ep = "data-parent", Dp = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { checked: n, className: r, defaultChecked: i = !1, "aria-labelledby": a, disabled: o = !1, form: s, id: c, indeterminate: l = !1, inputRef: u, name: d, onCheckedChange: f, parent: p = !1, readOnly: m = !1, render: h, required: g = !1, uncheckedValue: _, value: v, nativeButton: y = !1, style: b, ...x } = e, { clearErrors: S } = gp(), { disabled: w, name: T, setDirty: E, setFilled: D, setFocused: O, setTouched: k, state: A, validationMode: j, validityData: M, validation: N } = dp(), P = mp(), { labelId: F, controlId: I, registerControlId: L, getDescriptionProps: R } = vp(), z = Cp(), B = z?.parent, V = B && z.allValues, H = w || P.disabled || z?.disabled || o, U = T ?? d, W = v ?? U, G = zl(), ee = zl(), te = I;
+var Op = "data-parent", kp = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { checked: n, className: r, defaultChecked: i = !1, "aria-labelledby": a, disabled: o = !1, form: s, id: c, indeterminate: l = !1, inputRef: u, name: d, onCheckedChange: f, parent: p = !1, readOnly: m = !1, render: h, required: g = !1, uncheckedValue: _, value: v, nativeButton: y = !1, style: b, ...x } = e, { clearErrors: S } = vp(), { disabled: w, name: T, setDirty: E, setFilled: D, setFocused: O, setTouched: k, state: A, validationMode: j, validityData: M, validation: N } = pp(), P = gp(), { labelId: F, controlId: I, registerControlId: L, getDescriptionProps: R } = bp(), z = Tp(), B = z?.parent, V = B && z.allValues, H = w || P.disabled || z?.disabled || o, U = T ?? d, W = v ?? U, G = zl(), ee = zl(), te = I;
 	V ? te = p ? ee : `${B.id}-${W}` : c && (te = c);
 	let ne = {};
 	V && (p ? ne = z.parent.getParentProps() : W && (ne = z.parent.getChildProps(W)));
@@ -16725,8 +16734,8 @@ var Ep = "data-parent", Dp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		return () => {
 			!fe.current || L === un || (fe.current = !1, L(e, void 0));
 		};
-	}, [L, de]), fp(ue, G, ge, void 0, !z && !H, d);
-	let be = C.useRef(null), xe = vr(u, be, he.inputRef, he.registerInput), Se = yp(a, F, be, !y, te ?? void 0);
+	}, [L, de]), mp(ue, G, ge, void 0, !z && !H, d);
+	let be = C.useRef(null), xe = vr(u, be, he.inputRef, he.registerInput), Se = xp(a, F, be, !y, te ?? void 0);
 	X(() => {
 		be.current && (be.current.indeterminate = ye, ge && D(!0));
 	}, [
@@ -16789,7 +16798,7 @@ var Ep = "data-parent", Dp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		m,
 		g,
 		ye
-	]), Te = cp(we), Ee = Q("span", e, {
+	]), Te = up(we), Ee = Q("span", e, {
 		state: we,
 		ref: [
 			me,
@@ -16805,7 +16814,7 @@ var Ep = "data-parent", Dp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 				"aria-readonly": m || void 0,
 				"aria-required": g || void 0,
 				"aria-labelledby": Se,
-				[Ep]: p ? "" : void 0,
+				[Op]: p ? "" : void 0,
 				onFocus() {
 					H || O(!0);
 				},
@@ -16821,7 +16830,7 @@ var Ep = "data-parent", Dp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 					}, r.preventDefault = () => {
 						o = !0, a.call(r);
 					}, a.call(r), pt(n).queueMicrotask(() => {
-						e.preventDefault = i, r.preventDefault = a, o || tp(t)?.click();
+						e.preventDefault = i, r.preventDefault = a, o || rp(t)?.click();
 					});
 				},
 				onClick(e) {
@@ -16845,7 +16854,7 @@ var Ep = "data-parent", Dp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		],
 		stateAttributesMapping: Te
 	});
-	return /*#__PURE__*/ (0, Y.jsxs)(wp.Provider, {
+	return /*#__PURE__*/ (0, Y.jsxs)(Ep.Provider, {
 		value: we,
 		children: [
 			Ee,
@@ -16862,8 +16871,8 @@ var Ep = "data-parent", Dp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			})
 		]
 	});
-}), Op = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, keepMounted: a = !1, ...o } = e, s = Tp(), c = s.checked || s.indeterminate, { mounted: l, transitionStatus: u, setMounted: d } = oc(c), f = C.useRef(null), p = {
+}), Ap = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, keepMounted: a = !1, ...o } = e, s = Dp(), c = s.checked || s.indeterminate, { mounted: l, transitionStatus: u, setMounted: d } = oc(c), f = C.useRef(null), p = {
 		...s,
 		transitionStatus: u
 	};
@@ -16875,9 +16884,9 @@ var Ep = "data-parent", Dp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		}
 	});
 	let m = {
-		...cp(s),
+		...up(s),
 		...uc,
-		...sp
+		...lp
 	}, h = a || l, g = Q("span", e, {
 		ref: [t, f],
 		state: p,
@@ -16888,12 +16897,12 @@ var Ep = "data-parent", Dp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 });
 //#endregion
 //#region src/components/ui/checkbox.tsx
-function kp({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Dp, {
+function jp({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(kp, {
 		"data-slot": "checkbox",
 		className: J("peer relative flex size-4 shrink-0 items-center justify-center rounded-[4px] border border-input transition-colors outline-none group-has-disabled/field:opacity-50 after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 aria-invalid:aria-checked:border-primary dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 data-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground dark:data-checked:bg-primary", e),
 		...t,
-		children: /* @__PURE__ */ (0, Y.jsx)(Op, {
+		children: /* @__PURE__ */ (0, Y.jsx)(Ap, {
 			"data-slot": "checkbox-indicator",
 			className: "grid place-content-center text-current transition-none [&>svg]:size-3.5",
 			children: /* @__PURE__ */ (0, Y.jsx)(nf, {})
@@ -16902,13 +16911,13 @@ function kp({ className: e, ...t }) {
 }
 //#endregion
 //#region src/components/streamlit/checkbox.tsx
-function Ap({ envelope: e, setStateValue: t }) {
-	let n = (0, C.useId)(), { commit: r, state: i } = _f(e.state, t);
+function Mp({ envelope: e, setStateValue: t }) {
+	let n = (0, C.useId)(), { commit: r, state: i } = yf(e.state, t);
 	return /* @__PURE__ */ (0, Y.jsxs)("div", {
 		className: "flex min-h-8 items-center gap-2.5 p-px",
 		"data-ssui-component": "checkbox",
 		"data-testid": "ssui-v2-checkbox",
-		children: [/* @__PURE__ */ (0, Y.jsx)(kp, {
+		children: [/* @__PURE__ */ (0, Y.jsx)(jp, {
 			checked: i.value,
 			disabled: e.props.disabled,
 			id: n,
@@ -16924,10 +16933,10 @@ function Ap({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/collapsible/root/stateAttributesMapping.mjs
-var jp = {
+var Np = {
 	...kd,
 	...uc
-}, Mp = /*#__PURE__*/ C.forwardRef(function(e, t) {
+}, Pp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 	let { render: n, className: r, defaultOpen: i = !1, disabled: a = !1, onOpenChange: o, open: s, style: c, ...l } = e, u = Z(o), d = _d({
 		open: s,
 		defaultOpen: i,
@@ -16953,16 +16962,16 @@ var jp = {
 		state: f,
 		ref: t,
 		props: l,
-		stateAttributesMapping: jp
+		stateAttributesMapping: Np
 	});
 	return /*#__PURE__*/ (0, Y.jsx)(vd.Provider, {
 		value: p,
 		children: m
 	});
-}), Np = {
+}), Fp = {
 	...Od,
 	...uc
-}, Pp = /*#__PURE__*/ C.forwardRef(function(e, t) {
+}, Ip = /*#__PURE__*/ C.forwardRef(function(e, t) {
 	let { panelId: n, open: r, handleTrigger: i, state: a, disabled: o } = yd(), { className: s, disabled: c = o, render: l, nativeButton: u = !0, style: d, ...f } = e, { getButtonProps: p, buttonRef: m } = Fl({
 		disabled: c,
 		focusableWhenDisabled: !0,
@@ -16980,11 +16989,11 @@ var jp = {
 			f,
 			p
 		],
-		stateAttributesMapping: Np
+		stateAttributesMapping: Fp
 	});
-}), Fp = /*#__PURE__*/ function(e) {
+}), Lp = /*#__PURE__*/ function(e) {
 	return e.collapsiblePanelHeight = "--collapsible-panel-height", e.collapsiblePanelWidth = "--collapsible-panel-width", e;
-}({}), Ip = /*#__PURE__*/ C.forwardRef(function(e, t) {
+}({}), Rp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 	let { className: n, hiddenUntilFound: r, keepMounted: i, render: a, id: o, style: s, ...c } = e, { mounted: l, onOpenChange: u, open: d, panelId: f, setMounted: p, setPanelIdState: m, setOpen: h, state: g, transitionStatus: _ } = yd(), v = r ?? !1, y = i ?? !1;
 	X(() => {
 		if (o) return m(o), () => {
@@ -17014,54 +17023,54 @@ var jp = {
 		props: [
 			x,
 			{ style: {
-				[Fp.collapsiblePanelHeight]: b === void 0 ? "auto" : `${b}px`,
-				[Fp.collapsiblePanelWidth]: E === void 0 ? "auto" : `${E}px`
+				[Lp.collapsiblePanelHeight]: b === void 0 ? "auto" : `${b}px`,
+				[Lp.collapsiblePanelWidth]: E === void 0 ? "auto" : `${E}px`
 			} },
 			c,
 			O ? { style: O } : void 0,
 			C ? { style: { animationName: "none" } } : void 0
 		],
-		stateAttributesMapping: jp
+		stateAttributesMapping: Np
 	});
 	return w ? k : null;
 });
 //#endregion
 //#region src/components/ui/collapsible.tsx
-function Lp({ ...e }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Mp, {
+function zp({ ...e }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Pp, {
 		"data-slot": "collapsible",
 		...e
 	});
 }
-function Rp({ ...e }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Pp, {
+function Bp({ ...e }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Ip, {
 		"data-slot": "collapsible-trigger",
 		...e
 	});
 }
-function zp({ ...e }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Ip, {
+function Vp({ ...e }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Rp, {
 		"data-slot": "collapsible-content",
 		...e
 	});
 }
 //#endregion
 //#region src/components/streamlit/collapsible.tsx
-function Bp({ envelope: e, setStateValue: t }) {
-	let { commit: n, state: r } = _f(e.state, t);
-	return /* @__PURE__ */ (0, Y.jsxs)(Lp, {
+function Hp({ envelope: e, setStateValue: t }) {
+	let { commit: n, state: r } = yf(e.state, t);
+	return /* @__PURE__ */ (0, Y.jsxs)(zp, {
 		"data-ssui-component": "collapsible",
 		"data-testid": "ssui-v2-collapsible",
 		disabled: e.props.disabled,
 		onOpenChange: n,
 		open: r.value,
-		children: [/* @__PURE__ */ (0, Y.jsxs)(Rp, {
+		children: [/* @__PURE__ */ (0, Y.jsxs)(Bp, {
 			className: "group flex w-full items-center justify-between rounded-lg border px-3 py-2 text-left text-sm font-medium outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
 			children: [e.props.title, /* @__PURE__ */ (0, Y.jsx)(rf, {
 				"aria-hidden": "true",
 				className: "size-4 transition-transform group-aria-expanded:rotate-180"
 			})]
-		}), /* @__PURE__ */ (0, Y.jsxs)(zp, {
+		}), /* @__PURE__ */ (0, Y.jsxs)(Vp, {
 			className: "space-y-1 px-3 pt-2 text-sm",
 			children: [e.props.firstItem === null ? null : /* @__PURE__ */ (0, Y.jsx)("div", {
 				className: "font-medium",
@@ -17075,32 +17084,32 @@ function Bp({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/positioner/MenuPositionerContext.mjs
-var Vp = /*#__PURE__*/ C.createContext(void 0);
-function Hp(e) {
-	let t = C.useContext(Vp);
+var Up = /*#__PURE__*/ C.createContext(void 0);
+function Wp(e) {
+	let t = C.useContext(Up);
 	if (t === void 0 && !e) throw Error(la(33));
 	return t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/root/MenuRootContext.mjs
-var Up = /*#__PURE__*/ C.createContext(void 0);
-function Wp(e) {
-	let t = C.useContext(Up);
+var Gp = /*#__PURE__*/ C.createContext(void 0);
+function Kp(e) {
+	let t = C.useContext(Gp);
 	if (t === void 0 && !e) throw Error(la(36));
 	return t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/context-menu/root/ContextMenuRootContext.mjs
-var Gp = /*#__PURE__*/ C.createContext(void 0);
-function Kp(e = !0) {
-	let t = C.useContext(Gp);
+var qp = /*#__PURE__*/ C.createContext(void 0);
+function Jp(e = !0) {
+	let t = C.useContext(qp);
 	if (t === void 0 && !e) throw Error(la(25));
 	return t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/item/useMenuItemCommonProps.mjs
-function qp(e) {
-	let { closeOnClick: t, highlighted: n, id: r, nodeId: i, store: a, typingRef: o, itemRef: s, itemMetadata: c } = e, { events: l } = a.useState("floatingTreeRoot"), u = a.useState("open"), d = Kp(!0), f = d !== void 0;
+function Yp(e) {
+	let { closeOnClick: t, highlighted: n, id: r, nodeId: i, store: a, typingRef: o, itemRef: s, itemMetadata: c } = e, { events: l } = a.useState("floatingTreeRoot"), u = a.useState("open"), d = Jp(!0), f = d !== void 0;
 	return C.useMemo(() => ({
 		id: r,
 		role: "menuitem",
@@ -17144,14 +17153,14 @@ function qp(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/item/useMenuItem.mjs
-var Jp = { type: "regular-item" };
-function Yp(e) {
+var Xp = { type: "regular-item" };
+function Zp(e) {
 	let { closeOnClick: t, disabled: n = !1, highlighted: r, id: i, store: a, typingRef: o = a.context.typingRef, nativeButton: s, itemMetadata: c, nodeId: l } = e, u = a.useState("disabled"), d = n || u, f = C.useRef(null), { getButtonProps: p, buttonRef: m } = Fl({
 		disabled: d,
 		focusableWhenDisabled: !0,
 		native: s,
 		composite: !0
-	}), h = qp({
+	}), h = Yp({
 		closeOnClick: t,
 		highlighted: r,
 		id: i,
@@ -17174,15 +17183,15 @@ function Yp(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/group/MenuGroupContext.mjs
-var Xp = /*#__PURE__*/ C.createContext(void 0);
-function Zp() {
-	let e = C.useContext(Xp);
+var Qp = /*#__PURE__*/ C.createContext(void 0);
+function $p() {
+	let e = C.useContext(Qp);
 	if (e === void 0) throw Error(la(31));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/group/MenuGroup.mjs
-var Qp = /*#__PURE__*/ C.forwardRef(function(e, t) {
+var em = /*#__PURE__*/ C.forwardRef(function(e, t) {
 	let { render: n, className: r, style: i, ...a } = e, [o, s] = C.useState(void 0), c = Q("div", e, {
 		ref: t,
 		props: {
@@ -17191,12 +17200,12 @@ var Qp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			...a
 		}
 	});
-	return /*#__PURE__*/ (0, Y.jsx)(Xp.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(Qp.Provider, {
 		value: s,
 		children: c
 	});
-}), $p = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, id: a, ...o } = e, s = zl(a), c = Zp();
+}), tm = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, id: a, ...o } = e, s = zl(a), c = $p();
 	return X(() => (c(s), () => {
 		c(void 0);
 	}), [c, s]), Q("div", e, {
@@ -17207,8 +17216,8 @@ var Qp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			...o
 		}
 	});
-}), em = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, id: i, label: a, nativeButton: o = !1, disabled: s = !1, closeOnClick: c = !0, style: l, ...u } = e, d = xd({ label: a }), f = Hp(!0), p = zl(i), { store: m } = Wp(), h = m.useState("isActive", d.index), g = m.useState("itemProps"), { getItemProps: _, itemRef: v } = Yp({
+}), nm = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, id: i, label: a, nativeButton: o = !1, disabled: s = !1, closeOnClick: c = !0, style: l, ...u } = e, d = xd({ label: a }), f = Wp(!0), p = zl(i), { store: m } = Kp(), h = m.useState("isActive", d.index), g = m.useState("itemProps"), { getItemProps: _, itemRef: v } = Zp({
 		closeOnClick: c,
 		disabled: s,
 		highlighted: h,
@@ -17216,7 +17225,7 @@ var Qp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		store: m,
 		nativeButton: o,
 		nodeId: f?.context.nodeId,
-		itemMetadata: Jp
+		itemMetadata: Xp
 	});
 	return Q("div", e, {
 		state: {
@@ -17234,24 +17243,24 @@ var Qp = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			d.ref
 		]
 	});
-}), tm = /*#__PURE__*/ C.createContext(void 0);
-function nm(e) {
-	let t = C.useContext(tm);
+}), rm = /*#__PURE__*/ C.createContext(void 0);
+function im(e) {
+	let t = C.useContext(rm);
 	if (t === void 0 && !e) throw Error(la(69));
 	return t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/getDisabledMountTransitionStyles.mjs
-function rm(e) {
+function am(e) {
 	return e === "starting" ? La : fn;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/popup/MenuPopup.mjs
-var im = {
+var om = {
 	...kl,
 	...uc
-}, am = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, finalFocus: a, ...o } = e, { store: s } = Wp(), { side: c, align: l } = Hp(), u = nm(!0) != null, d = s.useState("open"), f = s.useState("transitionStatus"), p = s.useState("popupProps"), m = s.useState("mounted"), h = s.useState("instantType"), g = s.useState("activeTriggerElement"), _ = s.useState("parent"), v = s.useState("lastOpenChangeReason"), y = s.useState("rootId"), b = s.useState("floatingRootContext"), x = s.useState("floatingTreeRoot"), S = s.useState("closeDelay"), w = s.useState("activeTriggerElement"), T = s.useState("hoverEnabled"), E = s.useState("disabled"), D = s.useState("openMethod"), O = _.type === "context-menu";
+}, sm = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, finalFocus: a, ...o } = e, { store: s } = Kp(), { side: c, align: l } = Wp(), u = im(!0) != null, d = s.useState("open"), f = s.useState("transitionStatus"), p = s.useState("popupProps"), m = s.useState("mounted"), h = s.useState("instantType"), g = s.useState("activeTriggerElement"), _ = s.useState("parent"), v = s.useState("lastOpenChangeReason"), y = s.useState("rootId"), b = s.useState("floatingRootContext"), x = s.useState("floatingTreeRoot"), S = s.useState("closeDelay"), w = s.useState("activeTriggerElement"), T = s.useState("hoverEnabled"), E = s.useState("disabled"), D = s.useState("openMethod"), O = _.type === "context-menu";
 	fc({
 		open: d,
 		ref: s.context.popupRef,
@@ -17285,13 +17294,13 @@ var im = {
 			s.context.popupRef,
 			k
 		],
-		stateAttributesMapping: im,
+		stateAttributesMapping: om,
 		props: [
 			p,
 			{ onKeyDown(e) {
 				u && ru.has(e.key) && e.stopPropagation();
 			} },
-			rm(f),
+			am(f),
 			o,
 			{ "data-rootownerid": y }
 		]
@@ -17310,24 +17319,24 @@ var im = {
 		beforeContentFocusGuardRef: _.type === void 0 ? s.context.beforeContentFocusGuardRef : void 0,
 		children: A
 	});
-}), om = /*#__PURE__*/ C.createContext(void 0);
-function sm() {
-	let e = C.useContext(om);
+}), cm = /*#__PURE__*/ C.createContext(void 0);
+function lm() {
+	let e = C.useContext(cm);
 	if (e === void 0) throw Error(la(32));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/portal/MenuPortal.mjs
-var cm = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { keepMounted: n = !1, ...r } = e, { store: i } = Wp();
-	return i.useState("mounted") || n ? /*#__PURE__*/ (0, Y.jsx)(om.Provider, {
+var um = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { keepMounted: n = !1, ...r } = e, { store: i } = Kp();
+	return i.useState("mounted") || n ? /*#__PURE__*/ (0, Y.jsx)(cm.Provider, {
 		value: n,
 		children: /*#__PURE__*/ (0, Y.jsx)(qa, {
 			ref: t,
 			...r
 		})
 	}) : null;
-}), lm = (e) => ({
+}), dm = (e) => ({
 	name: "arrow",
 	options: e,
 	async fn(t) {
@@ -17349,26 +17358,26 @@ var cm = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			reset: N
 		};
 	}
-}), um = (e, t) => ({
-	...lm(e),
+}), fm = (e, t) => ({
+	...dm(e),
 	options: [e, t]
-}), dm = Ts().fn, fm = {
+}), pm = Ts().fn, mm = {
 	name: "hide",
 	async fn(e) {
 		let { width: t, height: n, x: r, y: i } = e.rects.reference, a = t === 0 && n === 0 && r === 0 && i === 0;
-		return { data: { referenceHidden: (await dm(e)).data?.referenceHidden || a } };
+		return { data: { referenceHidden: (await pm(e)).data?.referenceHidden || a } };
 	}
-}, pm = {
+}, hm = {
 	sideX: "left",
 	sideY: "top"
-}, mm = {
+}, gm = {
 	name: "adaptiveOrigin",
 	async fn(e) {
 		let { x: t, y: n, rects: { floating: r }, elements: { floating: i }, platform: a, strategy: o, placement: s } = e, c = pt(i), l = c.getComputedStyle(i);
 		if (l.transitionDuration === "0s" || l.transitionDuration === "") return {
 			x: t,
 			y: n,
-			data: pm
+			data: hm
 		};
 		let u = await a.getOffsetParent?.(i), d = {
 			width: 0,
@@ -17387,7 +17396,7 @@ var cm = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		} else await a.isElement?.(u) && (d = await a.getDimensions(u));
 		let f = Wr(s), p = t, m = n;
 		f === "left" && (p = d.width - (t + r.width)), f === "top" && (m = d.height - (n + r.height));
-		let h = f === "left" ? "right" : pm.sideX, g = f === "top" ? "bottom" : pm.sideY;
+		let h = f === "left" ? "right" : hm.sideX, g = f === "top" ? "bottom" : hm.sideY;
 		return {
 			x: p,
 			y: m,
@@ -17400,7 +17409,7 @@ var cm = /*#__PURE__*/ C.forwardRef(function(e, t) {
 };
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/useAnchorPositioning.mjs
-function hm(e, t, n) {
+function _m(e, t, n) {
 	let r = e === "inline-start" || e === "inline-end";
 	return {
 		top: "top",
@@ -17409,10 +17418,10 @@ function hm(e, t, n) {
 		left: r ? n ? "inline-end" : "inline-start" : "left"
 	}[t];
 }
-function gm(e, t, n) {
+function vm(e, t, n) {
 	let { rects: r, placement: i } = e;
 	return {
-		side: hm(t, Wr(i), n),
+		side: _m(t, Wr(i), n),
 		align: Gr(i) || "center",
 		anchor: {
 			width: r.reference.width,
@@ -17424,7 +17433,7 @@ function gm(e, t, n) {
 		}
 	};
 }
-function _m(e) {
+function ym(e) {
 	let { anchor: t, positionMethod: n = "absolute", side: r = "bottom", sideOffset: i = 0, align: a = "center", alignOffset: o = 0, collisionBoundary: s, collisionPadding: c = 5, sticky: l = !1, arrowPadding: u = 5, disableAnchorTracking: d = !1, inline: f, keepMounted: p = !1, floatingRootContext: m, mounted: h, collisionAvoidance: g, shiftCrossAxis: _ = !1, nodeId: v, adaptiveOrigin: y, lazyFlip: b = !1, externalTree: x } = e, [S, w] = C.useState(null);
 	!h && S !== null && w(null);
 	let T = g.side || "flip", E = g.align || "flip", D = g.fallbackAxisSide || "end", O = typeof t == "function" ? t : void 0, k = Z(O), A = O ? k : t, j = wr(t), M = wr(h), N = fd() === "rtl", P = S || {
@@ -17451,7 +17460,7 @@ function _m(e) {
 		padding: I
 	}, H = C.useRef(null), U = wr(i), W = wr(o), G = typeof i == "function" ? 0 : i, ee = typeof o == "function" ? 0 : o, te = [];
 	f && te.push(f), te.push(bs((e) => {
-		let t = gm(e, r, N), n = typeof U.current == "function" ? U.current(t) : U.current, i = typeof W.current == "function" ? W.current(t) : W.current;
+		let t = vm(e, r, N), n = typeof U.current == "function" ? U.current(t) : U.current, i = typeof W.current == "function" ? W.current(t) : W.current;
 		return {
 			mainAxis: n,
 			crossAxis: i,
@@ -17508,14 +17517,14 @@ function _m(e) {
 			let a = pt(e).devicePixelRatio || 1, { x: o, y: s, width: c, height: l } = r.reference, u = (Math.round((o + c) * a) - Math.round(o * a)) / a, d = (Math.round((s + l) * a) - Math.round(s * a)) / a;
 			i.setProperty("--anchor-width", `${u}px`), i.setProperty("--anchor-height", `${d}px`);
 		}
-	}), um((e) => ({
+	}), fm((e) => ({
 		element: H.current || Zt(e.elements.floating).createElement("div"),
 		padding: u,
 		offsetParent: "floating"
 	}), [u]), {
 		name: "transformOrigin",
 		fn(e) {
-			let { elements: t, middlewareData: n, placement: a, rects: o, y: s } = e, c = Wr(a), l = Jr(c), u = H.current, d = n.arrow?.x || 0, f = n.arrow?.y || 0, p = u?.clientWidth || 0, m = u?.clientHeight || 0, h = d + p / 2, g = f + m / 2, _ = Math.abs(n.shift?.y || 0), v = o.reference.height / 2, y = typeof i == "function" ? i(gm(e, r, N)) : i, b = _ > y, x = {
+			let { elements: t, middlewareData: n, placement: a, rects: o, y: s } = e, c = Wr(a), l = Jr(c), u = H.current, d = n.arrow?.x || 0, f = n.arrow?.y || 0, p = u?.clientWidth || 0, m = u?.clientHeight || 0, h = d + p / 2, g = f + m / 2, _ = Math.abs(n.shift?.y || 0), v = o.reference.height / 2, y = typeof i == "function" ? i(vm(e, r, N)) : i, b = _ > y, x = {
 				top: `${h}px calc(100% + ${y}px)`,
 				bottom: `${h}px ${-y}px`,
 				left: `calc(100% + ${y}px) ${g}px`,
@@ -17523,7 +17532,7 @@ function _m(e) {
 			}[c], S = `${h}px ${o.reference.y + v - s}px`;
 			return t.floating.style.setProperty("--transform-origin", re && l === "y" && b ? S : x), {};
 		}
-	}, fm, y), X(() => {
+	}, mm, y), X(() => {
 		!h && m && m.update({
 			referenceElement: null,
 			floatingElement: null,
@@ -17543,7 +17552,7 @@ function _m(e) {
 		whileElementsMounted: p ? void 0 : (...e) => os(...e, oe),
 		nodeId: v,
 		externalTree: x
-	}), { sideX: _e, sideY: ve } = de.adaptiveOrigin || pm, ye = he ? n : "fixed", be = C.useMemo(() => {
+	}), { sideX: _e, sideY: ve } = de.adaptiveOrigin || hm, ye = he ? n : "fixed", be = C.useMemo(() => {
 		let e = y ? {
 			position: ye,
 			[_e]: le,
@@ -17565,7 +17574,7 @@ function _m(e) {
 	]), xe = C.useRef(null);
 	X(() => {
 		if (!h) return;
-		let e = j.current, t = typeof e == "function" ? e() : e, n = (vm(t) ? t.current : t) || null;
+		let e = j.current, t = typeof e == "function" ? e() : e, n = (bm(t) ? t.current : t) || null;
 		n !== xe.current && (se.setPositionReference(n), xe.current = n);
 	}, [
 		h,
@@ -17575,7 +17584,7 @@ function _m(e) {
 	]), C.useEffect(() => {
 		if (!h) return;
 		let e = j.current;
-		typeof e != "function" && vm(e) && e.current !== xe.current && (se.setPositionReference(e.current), xe.current = e.current);
+		typeof e != "function" && bm(e) && e.current !== xe.current && (se.setPositionReference(e.current), xe.current = e.current);
 	}, [
 		h,
 		se,
@@ -17590,7 +17599,7 @@ function _m(e) {
 		fe,
 		oe
 	]);
-	let Se = Wr(pe), Ce = hm(r, Se, N), we = Gr(pe) || "center", Te = !!de.hide?.referenceHidden;
+	let Se = Wr(pe), Ce = _m(r, Se, N), we = Gr(pe) || "center", Te = !!de.hide?.referenceHidden;
 	X(() => {
 		b && h && he && w(Se);
 	}, [
@@ -17632,12 +17641,12 @@ function _m(e) {
 		fe
 	]);
 }
-function vm(e) {
+function bm(e) {
 	return e != null && "current" in e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/usePositioner.mjs
-function ym(e, t, { styles: n, transitionStatus: r, props: i, refs: a, hidden: o, inert: s = !1 }) {
+function xm(e, t, { styles: n, transitionStatus: r, props: i, refs: a, hidden: o, inert: s = !1 }) {
 	let c = { ...n };
 	return s && (c.pointerEvents = "none"), Q("div", e, {
 		state: t,
@@ -17648,7 +17657,7 @@ function ym(e, t, { styles: n, transitionStatus: r, props: i, refs: a, hidden: o
 				hidden: o,
 				style: c
 			},
-			rm(r),
+			am(r),
 			i
 		],
 		stateAttributesMapping: kl
@@ -17656,8 +17665,8 @@ function ym(e, t, { styles: n, transitionStatus: r, props: i, refs: a, hidden: o
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/useAnchoredPopupScrollLock.mjs
-var bm = 20;
-function xm(e, t, n, r) {
+var Sm = 20;
+function Cm(e, t, n, r) {
 	let [i, a] = C.useState(!1);
 	X(() => {
 		if (!e || !t || n == null) {
@@ -17665,7 +17674,7 @@ function xm(e, t, n, r) {
 			return;
 		}
 		let r = Zt(n).documentElement.clientWidth, i = n.offsetWidth;
-		a(r > 0 && i > 0 && i >= r - bm);
+		a(r > 0 && i > 0 && i >= r - Sm);
 	}, [
 		e,
 		t,
@@ -17674,12 +17683,12 @@ function xm(e, t, n, r) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/positioner/MenuPositioner.mjs
-var Sm = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { anchor: n, positionMethod: r = "absolute", className: i, render: a, side: o, align: s, sideOffset: c = 0, alignOffset: l = 0, collisionBoundary: u = "clipping-ancestors", collisionPadding: d = 5, arrowPadding: f = 5, sticky: p = !1, disableAnchorTracking: m = !1, collisionAvoidance: h = za, style: g, ..._ } = e, { store: v } = Wp(), y = sm(), b = Kp(!0), x = v.useState("parent"), S = v.useState("floatingRootContext"), w = v.useState("floatingTreeRoot"), T = v.useState("mounted"), E = v.useState("open"), D = v.useState("modal"), O = v.useState("openMethod"), k = v.useState("activeTriggerElement"), A = v.useState("transitionStatus"), j = v.useState("positionerElement"), M = v.useState("instantType"), N = v.useState("hasViewport"), P = v.useState("lastOpenChangeReason"), F = v.useState("floatingNodeId"), I = v.useState("floatingParentNodeId"), L = S.useState("domReferenceElement"), R = C.useRef(null), z = dc(j, !1, !1), B = n, V = c, H = l, U = s, W = h;
+var wm = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { anchor: n, positionMethod: r = "absolute", className: i, render: a, side: o, align: s, sideOffset: c = 0, alignOffset: l = 0, collisionBoundary: u = "clipping-ancestors", collisionPadding: d = 5, arrowPadding: f = 5, sticky: p = !1, disableAnchorTracking: m = !1, collisionAvoidance: h = za, style: g, ..._ } = e, { store: v } = Kp(), y = lm(), b = Jp(!0), x = v.useState("parent"), S = v.useState("floatingRootContext"), w = v.useState("floatingTreeRoot"), T = v.useState("mounted"), E = v.useState("open"), D = v.useState("modal"), O = v.useState("openMethod"), k = v.useState("activeTriggerElement"), A = v.useState("transitionStatus"), j = v.useState("positionerElement"), M = v.useState("instantType"), N = v.useState("hasViewport"), P = v.useState("lastOpenChangeReason"), F = v.useState("floatingNodeId"), I = v.useState("floatingParentNodeId"), L = S.useState("domReferenceElement"), R = C.useRef(null), z = dc(j, !1, !1), B = n, V = c, H = l, U = s, W = h;
 	x.type === "context-menu" && (B = n ?? x.context?.anchor, U ??= "start", !o && U !== "center" && (H = e.alignOffset ?? 2, V = e.sideOffset ?? -5));
 	let G = o, ee = U;
 	x.type === "menu" ? (G ??= "inline-end", ee ??= "start", W = e.collisionAvoidance ?? Ba) : x.type === "menubar" && (G ??= x.context.orientation === "vertical" ? "inline-end" : "bottom", ee ??= "start");
-	let te = x.type === "context-menu", ne = _m({
+	let te = x.type === "context-menu", ne = ym({
 		anchor: B,
 		floatingRootContext: S,
 		positionMethod: b ? "fixed" : r,
@@ -17698,7 +17707,7 @@ var Sm = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		collisionAvoidance: W,
 		shiftCrossAxis: te && !("side" in W && W.side === "flip"),
 		externalTree: w,
-		adaptiveOrigin: N ? mm : void 0
+		adaptiveOrigin: N ? gm : void 0
 	});
 	C.useEffect(() => {
 		function e(e) {
@@ -17781,8 +17790,8 @@ var Sm = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		nested: x.type === "menu",
 		instant: M
 	}, ae = x.type === "menubar" && x.context.modal;
-	xm(E && (ae || D && P !== "trigger-hover"), O === "touch", j, k);
-	let oe = ym(e, ie, {
+	Cm(E && (ae || D && P !== "trigger-hover"), O === "touch", j, k);
+	let oe = xm(e, ie, {
 		styles: ne.positionerStyles,
 		transitionStatus: A,
 		props: _,
@@ -17790,7 +17799,7 @@ var Sm = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		hidden: !T,
 		inert: !E
 	}), se = T && x.type !== "menu" && (x.type !== "menubar" && D && P !== "trigger-hover" || x.type === "menubar" && x.context.modal), ce = null;
-	return x.type === "menubar" ? ce = x.context.contentElement : x.type === void 0 && (ce = k), /*#__PURE__*/ (0, Y.jsxs)(Vp.Provider, {
+	return x.type === "menubar" ? ce = x.context.contentElement : x.type === void 0 && (ce = k), /*#__PURE__*/ (0, Y.jsxs)(Up.Provider, {
 		value: ne,
 		children: [se && /*#__PURE__*/ (0, Y.jsx)(mu, {
 			ref: x.type === "context-menu" || x.type === "nested-context-menu" ? x.context.internalBackdropRef : null,
@@ -17805,15 +17814,15 @@ var Sm = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			})
 		})]
 	});
-}), Cm = /*#__PURE__*/ C.createContext(null);
-function wm(e) {
-	let t = C.useContext(Cm);
+}), Tm = /*#__PURE__*/ C.createContext(null);
+function Em(e) {
+	let t = C.useContext(Tm);
 	if (t === null && !e) throw Error(la(5));
 	return t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/store/MenuStore.mjs
-var Tm = {
+var Dm = {
 	...Fc,
 	disabled: $((e) => e.parent.type === "menubar" && e.parent.context.disabled || e.disabled),
 	modal: $((e) => (e.parent.type === void 0 || e.parent.type === "context-menu") && (e.modal ?? !0)),
@@ -17838,10 +17847,10 @@ var Tm = {
 		if (e.keyboardEventRelay) return e.keyboardEventRelay;
 		if (e.parent.type === "menu") return e.parent.store.select("keyboardEventRelay");
 	})
-}, Em = class e extends nc {
+}, Om = class e extends nc {
 	constructor(e) {
 		super({
-			...Dm(),
+			...km(),
 			...e
 		}, {
 			positionerRef: /*#__PURE__*/ C.createRef(),
@@ -17854,7 +17863,7 @@ var Tm = {
 			beforeContentFocusGuardRef: /*#__PURE__*/ C.createRef(),
 			onOpenChangeComplete: void 0,
 			triggerElements: new Ec()
-		}, Tm), this.unsubscribeParentListener = this.observe("parent", (e) => {
+		}, Dm), this.unsubscribeParentListener = this.observe("parent", (e) => {
 			if (this.unsubscribeParentListener?.(), e.type === "menu") {
 				let t = e.store.select("rootId"), n = e.store.select("floatingTreeRoot"), r = e.store.select("keyboardEventRelay");
 				this.unsubscribeParentListener = e.store.subscribe(() => {
@@ -17878,7 +17887,7 @@ var Tm = {
 	}
 	unsubscribeParentListener = null;
 };
-function Dm() {
+function km() {
 	return {
 		...Oc(),
 		disabled: !1,
@@ -17904,14 +17913,14 @@ function Dm() {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/submenu-root/MenuSubmenuRootContext.mjs
-var Om = /*#__PURE__*/ C.createContext(void 0);
-function km() {
-	return C.useContext(Om);
+var Am = /*#__PURE__*/ C.createContext(void 0);
+function jm() {
+	return C.useContext(Am);
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/root/MenuRoot.mjs
-var Am = Gs(function(e) {
-	let { children: t, open: n, onOpenChange: r, onOpenChangeComplete: i, defaultOpen: a = !1, disabled: o = !1, modal: s, loopFocus: c = !0, orientation: l = "vertical", actionsRef: u, closeParentOnEsc: d = !1, handle: f, triggerId: p, defaultTriggerId: m = null, highlightItemOnHover: h = !0 } = e, g = Kp(!0), _ = Wp(!0), v = wm(!0), y = km(), b = C.useMemo(() => y && _ ? {
+var Mm = Gs(function(e) {
+	let { children: t, open: n, onOpenChange: r, onOpenChangeComplete: i, defaultOpen: a = !1, disabled: o = !1, modal: s, loopFocus: c = !0, orientation: l = "vertical", actionsRef: u, closeParentOnEsc: d = !1, handle: f, triggerId: p, defaultTriggerId: m = null, highlightItemOnHover: h = !0 } = e, g = Jp(!0), _ = Kp(!0), v = Em(!0), y = jm(), b = C.useMemo(() => y && _ ? {
 		type: "menu",
 		store: _.store
 	} : v ? {
@@ -17925,7 +17934,7 @@ var Am = Gs(function(e) {
 		_,
 		v,
 		y
-	]), x = Em.useStore(f?.store, {
+	]), x = Om.useStore(f?.store, {
 		open: a,
 		openProp: n,
 		activeTriggerId: m,
@@ -18110,7 +18119,7 @@ var Am = Gs(function(e) {
 	let fe = C.useMemo(() => ({
 		store: x,
 		parent: b
-	}), [x, b]), pe = /*#__PURE__*/ (0, Y.jsx)(Up.Provider, {
+	}), [x, b]), pe = /*#__PURE__*/ (0, Y.jsx)(Gp.Provider, {
 		value: fe,
 		children: typeof t == "function" ? t({ payload: I }) : t
 	});
@@ -18121,7 +18130,7 @@ var Am = Gs(function(e) {
 });
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/getPseudoElementBounds.mjs
-function jm(e) {
+function Nm(e) {
 	let t = e.getBoundingClientRect(), n = pt(e);
 	if (Xt) return t;
 	let r = n.getComputedStyle(e, "::before"), i = n.getComputedStyle(e, "::after");
@@ -18136,7 +18145,7 @@ function jm(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/composite/item/useCompositeItem.mjs
-function Mm(e = {}) {
+function Pm(e = {}) {
 	let { highlightItemOnHover: t, highlightedIndex: n, onHighlightedIndexChange: r } = Nl(), { ref: i, index: a } = xd(e), o = n === a, s = C.useRef(null), c = vr(i, s);
 	return {
 		compositeProps: {
@@ -18157,8 +18166,8 @@ function Mm(e = {}) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/composite/item/CompositeItem.mjs
-function Nm(e) {
-	let { render: t, className: n, style: r, state: i = fn, props: a = dn, refs: o = dn, metadata: s, stateAttributesMapping: c, tag: l = "div", ...u } = e, { compositeProps: d, compositeRef: f } = Mm({ metadata: s });
+function Fm(e) {
+	let { render: t, className: n, style: r, state: i = fn, props: a = dn, refs: o = dn, metadata: s, stateAttributesMapping: c, tag: l = "div", ...u } = e, { compositeProps: d, compositeRef: f } = Pm({ metadata: s });
 	return Q(l, e, {
 		state: i,
 		ref: [...o, f],
@@ -18172,13 +18181,13 @@ function Nm(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/utils/findRootOwnerId.mjs
-function Pm(e) {
+function Im(e) {
 	if (_t(e) && e.hasAttribute("data-rootownerid")) return e.getAttribute("data-rootownerid") ?? void 0;
-	if (!kt(e)) return Pm(Mt(e));
+	if (!kt(e)) return Im(Mt(e));
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/popups/useTriggerFocusGuards.mjs
-function Fm(e, t) {
+function Lm(e, t) {
 	let n = C.useRef(null);
 	function r(t) {
 		Ha.flushSync(() => {
@@ -18208,7 +18217,7 @@ function Fm(e, t) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/useMixedToggleClickHandler.mjs
-function Im(e) {
+function Rm(e) {
 	let { enabled: t = !0, mouseDownAction: n, open: r } = e, i = C.useRef(!1);
 	return C.useMemo(() => t ? {
 		onMouseDown: (e) => {
@@ -18227,10 +18236,10 @@ function Im(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/menu/trigger/MenuTrigger.mjs
-var Lm = 2, Rm = Ks(function(e, t) {
-	let { render: n, className: r, style: i, disabled: a = !1, nativeButton: o = !0, id: s, openOnHover: c, delay: l = 100, closeDelay: u = 0, handle: d, payload: f, ...p } = e, m = Wp(!0), h = d?.store ?? m?.store;
+var zm = 2, Bm = Ks(function(e, t) {
+	let { render: n, className: r, style: i, disabled: a = !1, nativeButton: o = !0, id: s, openOnHover: c, delay: l = 100, closeDelay: u = 0, handle: d, payload: f, ...p } = e, m = Kp(!0), h = d?.store ?? m?.store;
 	if (!h) throw Error(la(85));
-	let g = zl(s), _ = h.useState("isTriggerActive", g), v = h.useState("floatingRootContext"), y = h.useState("isOpenedByTrigger", g), b = h.useState("triggerPopupId", g), x = C.useRef(null), S = Bm(), w = Nl(!0), T = $a(), E = C.useMemo(() => T ?? new Ya(), [T]), { registerTrigger: D, isMountedByThisTrigger: O } = xc(g, x, h, {
+	let g = zl(s), _ = h.useState("isTriggerActive", g), v = h.useState("floatingRootContext"), y = h.useState("isOpenedByTrigger", g), b = h.useState("triggerPopupId", g), x = C.useRef(null), S = Hm(), w = Nl(!0), T = $a(), E = C.useMemo(() => T ?? new Ya(), [T]), { registerTrigger: D, isMountedByThisTrigger: O } = xc(g, x, h, {
 		payload: f,
 		closeDelay: u,
 		parent: S,
@@ -18253,9 +18262,9 @@ var Lm = 2, Rm = Ks(function(e, t) {
 		if (!P.current) return;
 		F.clear(), h.context.allowMouseUpTriggerRef.current = !1;
 		let t = e.target;
-		if (Fn(P.current, t) || Fn(h.select("positionerElement"), t) || t === P.current || t != null && Pm(t) === h.select("rootId")) return;
-		let n = jm(P.current);
-		e.clientX >= n.left - Lm && e.clientX <= n.right + Lm && e.clientY >= n.top - Lm && e.clientY <= n.bottom + Lm || E.events.emit("close", {
+		if (Fn(P.current, t) || Fn(h.select("positionerElement"), t) || t === P.current || t != null && Im(t) === h.select("rootId")) return;
+		let n = Nm(P.current);
+		e.clientX >= n.left - zm && e.clientX <= n.right + zm && e.clientY >= n.top - zm && e.clientY <= n.bottom + zm || E.events.emit("close", {
 			domEvent: e,
 			reason: cr
 		});
@@ -18278,17 +18287,17 @@ var Lm = 2, Rm = Ks(function(e, t) {
 		externalTree: E,
 		isActiveTrigger: _,
 		isClosing: () => h.select("transitionStatus") === "ending"
-	}), z = zm(y, h.select("lastOpenChangeReason")), B = mo(v, {
+	}), z = Vm(y, h.select("lastOpenChangeReason")), B = mo(v, {
 		enabled: !j && S.type !== "context-menu",
 		event: y && k ? "click" : "mousedown",
 		toggle: !0,
 		ignoreMouse: !1,
 		stickIfOpen: S.type === void 0 && z
-	}), V = zc(v, { enabled: !j && L }), H = Im({
+	}), V = zc(v, { enabled: !j && L }), H = Rm({
 		open: y,
 		enabled: k,
 		mouseDownAction: "open"
-	}), U = C.useMemo(() => va(V.reference, B.reference), [V.reference, B.reference]), W = h.useState("triggerProps", O), { preFocusGuardRef: G, handlePreFocusGuardFocus: ee, handleFocusTargetFocus: te } = Fm(h, x), ne = {
+	}), U = C.useMemo(() => va(V.reference, B.reference), [V.reference, B.reference]), W = h.useState("triggerProps", O), { preFocusGuardRef: G, handlePreFocusGuardFocus: ee, handleFocusTargetFocus: te } = Lm(h, x), ne = {
 		disabled: j,
 		open: y
 	}, re = [
@@ -18322,7 +18331,7 @@ var Lm = 2, Rm = Ks(function(e, t) {
 		ref: re,
 		props: ie
 	});
-	return k ? /*#__PURE__*/ (0, Y.jsx)(Nm, {
+	return k ? /*#__PURE__*/ (0, Y.jsx)(Fm, {
 		tag: "button",
 		render: n,
 		className: r,
@@ -18343,7 +18352,7 @@ var Lm = 2, Rm = Ks(function(e, t) {
 		}, `${g}-post-focus-guard`)
 	] }) : /*#__PURE__*/ (0, Y.jsx)(C.Fragment, { children: ae }, g);
 });
-function zm(e, t) {
+function Vm(e, t) {
 	let n = an(), [r, i] = C.useState(!1);
 	return X(() => {
 		e && t === "trigger-hover" ? (i(!0), n.start(500, () => {
@@ -18355,8 +18364,8 @@ function zm(e, t) {
 		n
 	]), r;
 }
-function Bm() {
-	let e = Kp(!0), t = Wp(!0), n = wm(!0);
+function Hm() {
+	let e = Jp(!0), t = Kp(!0), n = Em(!0);
 	return C.useMemo(() => n ? {
 		type: "menubar",
 		context: n
@@ -18371,7 +18380,7 @@ function Bm() {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+utils@0.3.1_@types+react@19.2.17_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/utils/usePreviousValue.mjs
-function Vm(e) {
+function Um(e) {
 	let [t, n] = C.useState({
 		current: e,
 		previous: null
@@ -18383,7 +18392,7 @@ function Vm(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/separator/Separator.mjs
-var Hm = /*#__PURE__*/ C.forwardRef(function(e, t) {
+var Wm = /*#__PURE__*/ C.forwardRef(function(e, t) {
 	let { className: n, render: r, orientation: i = "horizontal", style: a, ...o } = e;
 	return Q("div", e, {
 		state: { orientation: i },
@@ -18396,35 +18405,35 @@ var Hm = /*#__PURE__*/ C.forwardRef(function(e, t) {
 });
 //#endregion
 //#region node_modules/.pnpm/@base-ui+utils@0.3.1_@types+react@19.2.17_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/utils/isElementDisabled.mjs
-function Um(e) {
+function Gm(e) {
 	return e == null || e.hasAttribute("disabled") || e.getAttribute("aria-disabled") === "true";
 }
 //#endregion
 //#region src/components/ui/dropdown-menu.tsx
-function Wm({ ...e }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Am, {
+function Km({ ...e }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Mm, {
 		"data-slot": "dropdown-menu",
 		...e
 	});
 }
-function Gm({ ...e }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Rm, {
+function qm({ ...e }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Bm, {
 		"data-slot": "dropdown-menu-trigger",
 		...e
 	});
 }
-function Km({ align: e = "start", alignOffset: t = 0, side: n = "bottom", sideOffset: r = 4, className: i, ...a }) {
+function Jm({ align: e = "start", alignOffset: t = 0, side: n = "bottom", sideOffset: r = 4, className: i, ...a }) {
 	let o = Au();
-	return /* @__PURE__ */ (0, Y.jsx)(cm, {
+	return /* @__PURE__ */ (0, Y.jsx)(um, {
 		container: o,
-		children: /* @__PURE__ */ (0, Y.jsx)(Sm, {
+		children: /* @__PURE__ */ (0, Y.jsx)(wm, {
 			className: "isolate z-50 outline-none",
 			align: e,
 			alignOffset: t,
 			side: n,
 			sideOffset: r,
 			positionMethod: "fixed",
-			children: /* @__PURE__ */ (0, Y.jsx)(am, {
+			children: /* @__PURE__ */ (0, Y.jsx)(sm, {
 				"data-slot": "dropdown-menu-content",
 				className: J("cn-menu-target cn-menu-translucent z-50 max-h-(--available-height) w-(--anchor-width) min-w-32 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-lg bg-popover p-1 text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 outline-none data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:overflow-hidden data-closed:fade-out-0 data-closed:zoom-out-95", i),
 				...a
@@ -18432,22 +18441,22 @@ function Km({ align: e = "start", alignOffset: t = 0, side: n = "bottom", sideOf
 		})
 	});
 }
-function qm({ ...e }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Qp, {
+function Ym({ ...e }) {
+	return /* @__PURE__ */ (0, Y.jsx)(em, {
 		"data-slot": "dropdown-menu-group",
 		...e
 	});
 }
-function Jm({ className: e, inset: t, ...n }) {
-	return /* @__PURE__ */ (0, Y.jsx)($p, {
+function Xm({ className: e, inset: t, ...n }) {
+	return /* @__PURE__ */ (0, Y.jsx)(tm, {
 		"data-slot": "dropdown-menu-label",
 		"data-inset": t,
 		className: J("px-1.5 py-1 text-xs font-medium text-muted-foreground data-inset:pl-7", e),
 		...n
 	});
 }
-function Ym({ className: e, inset: t, variant: n = "default", ...r }) {
-	return /* @__PURE__ */ (0, Y.jsx)(em, {
+function Zm({ className: e, inset: t, variant: n = "default", ...r }) {
+	return /* @__PURE__ */ (0, Y.jsx)(nm, {
 		"data-slot": "dropdown-menu-item",
 		"data-inset": t,
 		"data-variant": n,
@@ -18457,31 +18466,31 @@ function Ym({ className: e, inset: t, variant: n = "default", ...r }) {
 }
 //#endregion
 //#region src/components/streamlit/dropdown-menu.tsx
-function Xm({ envelope: e, setTriggerValue: t }) {
+function Qm({ envelope: e, setTriggerValue: t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		className: "inline-flex p-px",
 		"data-ssui-component": "dropdown-menu",
 		"data-testid": "ssui-v2-dropdown-menu",
-		children: /* @__PURE__ */ (0, Y.jsxs)(Wm, {
+		children: /* @__PURE__ */ (0, Y.jsxs)(Km, {
 			disabled: e.props.disabled,
 			modal: !1,
-			children: [/* @__PURE__ */ (0, Y.jsxs)(Gm, {
+			children: [/* @__PURE__ */ (0, Y.jsxs)(qm, {
 				render: /* @__PURE__ */ (0, Y.jsx)(Cu, { variant: "outline" }),
 				children: [e.props.label, /* @__PURE__ */ (0, Y.jsx)(rf, {
 					"aria-hidden": "true",
 					"data-icon": "inline-end"
 				})]
-			}), /* @__PURE__ */ (0, Y.jsx)(Km, {
+			}), /* @__PURE__ */ (0, Y.jsx)(Jm, {
 				"aria-label": e.props.menuLabel ?? e.props.label,
 				"data-testid": "ssui-v2-dropdown-menu-content",
-				children: /* @__PURE__ */ (0, Y.jsxs)(qm, { children: [e.props.menuLabel ? /* @__PURE__ */ (0, Y.jsx)(Jm, { children: e.props.menuLabel }) : null, e.props.items.length > 0 ? e.props.items.map((e) => /* @__PURE__ */ (0, Y.jsx)(Ym, {
+				children: /* @__PURE__ */ (0, Y.jsxs)(Ym, { children: [e.props.menuLabel ? /* @__PURE__ */ (0, Y.jsx)(Xm, { children: e.props.menuLabel }) : null, e.props.items.length > 0 ? e.props.items.map((e) => /* @__PURE__ */ (0, Y.jsx)(Zm, {
 					disabled: e.disabled,
 					onClick: () => {
 						t("action", e.value);
 					},
 					variant: e.variant,
 					children: e.label
-				}, e.value)) : /* @__PURE__ */ (0, Y.jsx)(Ym, {
+				}, e.value)) : /* @__PURE__ */ (0, Y.jsx)(Zm, {
 					disabled: !0,
 					children: "No actions"
 				})] })
@@ -18491,7 +18500,7 @@ function Xm({ envelope: e, setTriggerValue: t }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@date-fns+tz@1.5.0/node_modules/@date-fns/tz/tzName/index.js
-function Zm(e, t, n = "long") {
+function $m(e, t, n = "long") {
 	return new Intl.DateTimeFormat("en-US", {
 		hour: "numeric",
 		timeZone: e,
@@ -18500,30 +18509,30 @@ function Zm(e, t, n = "long") {
 }
 //#endregion
 //#region node_modules/.pnpm/@date-fns+tz@1.5.0/node_modules/@date-fns/tz/tzOffset/index.js
-var Qm = {}, $m = {};
-function eh(e, t) {
+var eh = {}, th = {};
+function nh(e, t) {
 	try {
-		let n = (Qm[e] ||= new Intl.DateTimeFormat("en-US", {
+		let n = (eh[e] ||= new Intl.DateTimeFormat("en-US", {
 			timeZone: e,
 			timeZoneName: "longOffset"
 		}).format)(t).split("GMT")[1];
-		return n in $m ? $m[n] : nh(n, n.split(":"));
+		return n in th ? th[n] : ih(n, n.split(":"));
 	} catch {
-		if (e in $m) return $m[e];
-		let t = e?.match(th);
-		return t ? nh(e, t.slice(1)) : NaN;
+		if (e in th) return th[e];
+		let t = e?.match(rh);
+		return t ? ih(e, t.slice(1)) : NaN;
 	}
 }
-var th = /([+-]\d\d):?(\d\d)?/;
-function nh(e, t) {
+var rh = /([+-]\d\d):?(\d\d)?/;
+function ih(e, t) {
 	let n = +(t[0] || 0), r = +(t[1] || 0), i = (t[2] || 0) / 60;
-	return $m[e] = n * 60 + r > 0 ? n * 60 + r + i : n * 60 - r - i;
+	return th[e] = n * 60 + r > 0 ? n * 60 + r + i : n * 60 - r - i;
 }
 //#endregion
 //#region node_modules/.pnpm/@date-fns+tz@1.5.0/node_modules/@date-fns/tz/date/mini.js
-var rh = class e extends Date {
+var ah = class e extends Date {
 	constructor(...e) {
-		super(), e.length > 1 && typeof e[e.length - 1] == "string" && (this.timeZone = e.pop()), this.internal = /* @__PURE__ */ new Date(), isNaN(eh(this.timeZone, this)) ? this.setTime(NaN) : e.length ? typeof e[0] == "number" && (e.length === 1 || e.length === 2 && typeof e[1] != "number") ? this.setTime(e[0]) : typeof e[0] == "string" ? this.setTime(+new Date(e[0])) : e[0] instanceof Date ? this.setTime(+e[0]) : (this.setTime(+new Date(...e)), sh(this, e)) : this.setTime(Date.now());
+		super(), e.length > 1 && typeof e[e.length - 1] == "string" && (this.timeZone = e.pop()), this.internal = /* @__PURE__ */ new Date(), isNaN(nh(this.timeZone, this)) ? this.setTime(NaN) : e.length ? typeof e[0] == "number" && (e.length === 1 || e.length === 2 && typeof e[1] != "number") ? this.setTime(e[0]) : typeof e[0] == "string" ? this.setTime(+new Date(e[0])) : e[0] instanceof Date ? this.setTime(+e[0]) : (this.setTime(+new Date(...e)), lh(this, e)) : this.setTime(Date.now());
 	}
 	static tz(t, ...n) {
 		return n.length ? new e(...n, t) : new e(Date.now(), t);
@@ -18532,69 +18541,69 @@ var rh = class e extends Date {
 		return new e(+this, t);
 	}
 	getTimezoneOffset() {
-		let e = -eh(this.timeZone, this);
+		let e = -nh(this.timeZone, this);
 		return e > 0 ? Math.floor(e) : Math.ceil(e);
 	}
 	setTime(e) {
-		return Date.prototype.setTime.apply(this, arguments), ah(this), +this;
+		return Date.prototype.setTime.apply(this, arguments), sh(this), +this;
 	}
 	[Symbol.for("constructDateFrom")](t) {
 		return new e(+new Date(t), this.timeZone);
 	}
-}, ih = /^(get|set)(?!UTC)/;
+}, oh = /^(get|set)(?!UTC)/;
 Object.getOwnPropertyNames(Date.prototype).forEach((e) => {
-	if (!ih.test(e)) return;
-	let t = e.replace(ih, "$1UTC");
-	rh.prototype[t] && (e.startsWith("get") ? rh.prototype[e] = function() {
+	if (!oh.test(e)) return;
+	let t = e.replace(oh, "$1UTC");
+	ah.prototype[t] && (e.startsWith("get") ? ah.prototype[e] = function() {
 		return this.internal[t]();
-	} : (rh.prototype[e] = function() {
-		return Date.prototype[t].apply(this.internal, arguments), oh(this), +this;
-	}, rh.prototype[t] = function() {
-		return Date.prototype[t].apply(this, arguments), ah(this), +this;
+	} : (ah.prototype[e] = function() {
+		return Date.prototype[t].apply(this.internal, arguments), ch(this), +this;
+	}, ah.prototype[t] = function() {
+		return Date.prototype[t].apply(this, arguments), sh(this), +this;
 	}));
 });
-function ah(e) {
-	e.internal.setTime(+e), e.internal.setUTCSeconds(e.internal.getUTCSeconds() - Math.round(-eh(e.timeZone, e) * 60));
+function sh(e) {
+	e.internal.setTime(+e), e.internal.setUTCSeconds(e.internal.getUTCSeconds() - Math.round(-nh(e.timeZone, e) * 60));
 }
-function oh(e) {
-	Date.prototype.setFullYear.call(e, e.internal.getUTCFullYear(), e.internal.getUTCMonth(), e.internal.getUTCDate()), Date.prototype.setHours.call(e, e.internal.getUTCHours(), e.internal.getUTCMinutes(), e.internal.getUTCSeconds(), e.internal.getUTCMilliseconds()), sh(e);
+function ch(e) {
+	Date.prototype.setFullYear.call(e, e.internal.getUTCFullYear(), e.internal.getUTCMonth(), e.internal.getUTCDate()), Date.prototype.setHours.call(e, e.internal.getUTCHours(), e.internal.getUTCMinutes(), e.internal.getUTCSeconds(), e.internal.getUTCMilliseconds()), lh(e);
 }
-function sh(e, t) {
-	let n = Array.isArray(t) ? ch(t) : +e.internal, r = eh(e.timeZone, e), i = r > 0 ? Math.floor(r) : Math.ceil(r), a = /* @__PURE__ */ new Date(+e);
+function lh(e, t) {
+	let n = Array.isArray(t) ? uh(t) : +e.internal, r = nh(e.timeZone, e), i = r > 0 ? Math.floor(r) : Math.ceil(r), a = /* @__PURE__ */ new Date(+e);
 	a.setUTCHours(a.getUTCHours() - 1);
 	let o = -(/* @__PURE__ */ new Date(+e)).getTimezoneOffset(), s = -(/* @__PURE__ */ new Date(+a)).getTimezoneOffset(), c = o - s, l = o;
 	if (c && o !== i && Date.prototype.getHours.apply(e) !== (Array.isArray(t) ? t[3] || 0 : e.internal.getUTCHours())) {
 		let t = /* @__PURE__ */ new Date(+e), n = o - i;
 		n && t.setUTCMinutes(t.getUTCMinutes() + n);
-		let r = eh(e.timeZone, t);
+		let r = nh(e.timeZone, t);
 		(r > 0 ? Math.floor(r) : Math.ceil(r)) === i && (l = s);
 	}
 	let u = l - i;
 	u && Date.prototype.setUTCMinutes.call(e, Date.prototype.getUTCMinutes.call(e) + u);
 	let d = /* @__PURE__ */ new Date(+e);
 	d.setUTCSeconds(0);
-	let f = o > 0 ? d.getSeconds() : (d.getSeconds() - 60) % 60, p = Math.round(-(eh(e.timeZone, e) * 60)) % 60;
+	let f = o > 0 ? d.getSeconds() : (d.getSeconds() - 60) % 60, p = Math.round(-(nh(e.timeZone, e) * 60)) % 60;
 	(p || f) && Date.prototype.setUTCSeconds.call(e, Date.prototype.getUTCSeconds.call(e) + p + f);
-	let m = eh(e.timeZone, e), h = m > 0 ? Math.floor(m) : Math.ceil(m), g = -(/* @__PURE__ */ new Date(+e)).getTimezoneOffset() - h, _ = h !== i, v = g - u, y = h - i, b = n - h * 60 * 1e3, x = y > 0 && lh(e) - n === y * 60 * 1e3 && lh(e, b) !== n;
+	let m = nh(e.timeZone, e), h = m > 0 ? Math.floor(m) : Math.ceil(m), g = -(/* @__PURE__ */ new Date(+e)).getTimezoneOffset() - h, _ = h !== i, v = g - u, y = h - i, b = n - h * 60 * 1e3, x = y > 0 && dh(e) - n === y * 60 * 1e3 && dh(e, b) !== n;
 	if (_ && v && !x) {
 		Date.prototype.setUTCMinutes.call(e, Date.prototype.getUTCMinutes.call(e) + v);
-		let t = eh(e.timeZone, e), n = h - (t > 0 ? Math.floor(t) : Math.ceil(t));
+		let t = nh(e.timeZone, e), n = h - (t > 0 ? Math.floor(t) : Math.ceil(t));
 		n && v < 0 && Date.prototype.setUTCMinutes.call(e, Date.prototype.getUTCMinutes.call(e) + n);
 	}
-	ah(e);
+	sh(e);
 	let S = (t ? n : n + p * 1e3) - +e.internal;
-	S && Math.abs(S) < 18e5 && (Date.prototype.setTime.call(e, +e + S), ah(e));
+	S && Math.abs(S) < 18e5 && (Date.prototype.setTime.call(e, +e + S), sh(e));
 }
-function ch(e) {
+function uh(e) {
 	return Date.UTC(e[0], e.length > 1 ? e[1] : 0, e.length > 2 ? e[2] : 1, ...e.slice(3));
 }
-function lh(e, t) {
+function dh(e, t) {
 	let n = new Date(t ?? +e);
-	return n.setUTCSeconds(n.getUTCSeconds() - Math.round(-eh(e.timeZone, n) * 60)), +n;
+	return n.setUTCSeconds(n.getUTCSeconds() - Math.round(-nh(e.timeZone, n) * 60)), +n;
 }
 //#endregion
 //#region node_modules/.pnpm/@date-fns+tz@1.5.0/node_modules/@date-fns/tz/date/index.js
-var uh = class e extends rh {
+var fh = class e extends ah {
 	static tz(t, ...n) {
 		return n.length ? new e(...n, t) : new e(Date.now(), t);
 	}
@@ -18611,7 +18620,7 @@ var uh = class e extends rh {
 	}
 	toTimeString() {
 		let e = this.internal.toUTCString().split(" ")[4], [t, n, r] = this.tzComponents();
-		return `${e} GMT${t}${n}${r} (${Zm(this.timeZone, this)})`;
+		return `${e} GMT${t}${n}${r} (${$m(this.timeZone, this)})`;
 	}
 	toLocaleString(e, t) {
 		return Date.prototype.toLocaleString.call(this, e, {
@@ -18645,156 +18654,156 @@ var uh = class e extends rh {
 	[Symbol.for("constructDateFrom")](t) {
 		return new e(+new Date(t), this.timeZone);
 	}
-}, dh = 365.2425, fh = 6048e5, ph = 864e5, mh = 86400;
-mh * 7, mh * dh / 12 * 3;
-var hh = Symbol.for("constructDateFrom");
+}, ph = 365.2425, mh = 6048e5, hh = 864e5, gh = 86400;
+gh * 7, gh * ph / 12 * 3;
+var _h = Symbol.for("constructDateFrom");
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/constructFrom.js
-function gh(e, t) {
-	return typeof e == "function" ? e(t) : e && typeof e == "object" && hh in e ? e[hh](t) : e instanceof Date ? new e.constructor(t) : new Date(t);
+function vh(e, t) {
+	return typeof e == "function" ? e(t) : e && typeof e == "object" && _h in e ? e[_h](t) : e instanceof Date ? new e.constructor(t) : new Date(t);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/toDate.js
-function _h(e, t) {
-	return gh(t || e, e);
+function yh(e, t) {
+	return vh(t || e, e);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/addDays.js
-function vh(e, t, n) {
-	let r = _h(e, n?.in);
-	return isNaN(t) ? gh(n?.in || e, NaN) : (t && r.setDate(r.getDate() + t), r);
+function bh(e, t, n) {
+	let r = yh(e, n?.in);
+	return isNaN(t) ? vh(n?.in || e, NaN) : (t && r.setDate(r.getDate() + t), r);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/addMonths.js
-function yh(e, t, n) {
-	let r = _h(e, n?.in);
-	if (isNaN(t)) return gh(n?.in || e, NaN);
+function xh(e, t, n) {
+	let r = yh(e, n?.in);
+	if (isNaN(t)) return vh(n?.in || e, NaN);
 	if (!t) return r;
-	let i = r.getDate(), a = gh(n?.in || e, r.getTime());
+	let i = r.getDate(), a = vh(n?.in || e, r.getTime());
 	return a.setMonth(r.getMonth() + t + 1, 0), i >= a.getDate() ? a : (r.setFullYear(a.getFullYear(), a.getMonth(), i), r);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/_lib/defaultOptions.js
-var bh = {};
-function xh() {
-	return bh;
+var Sh = {};
+function Ch() {
+	return Sh;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/startOfWeek.js
-function Sh(e, t) {
-	let n = xh(), r = t?.weekStartsOn ?? t?.locale?.options?.weekStartsOn ?? n.weekStartsOn ?? n.locale?.options?.weekStartsOn ?? 0, i = _h(e, t?.in), a = i.getDay(), o = (a < r ? 7 : 0) + a - r;
+function wh(e, t) {
+	let n = Ch(), r = t?.weekStartsOn ?? t?.locale?.options?.weekStartsOn ?? n.weekStartsOn ?? n.locale?.options?.weekStartsOn ?? 0, i = yh(e, t?.in), a = i.getDay(), o = (a < r ? 7 : 0) + a - r;
 	return i.setDate(i.getDate() - o), i.setHours(0, 0, 0, 0), i;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/startOfISOWeek.js
-function Ch(e, t) {
-	return Sh(e, {
+function Th(e, t) {
+	return wh(e, {
 		...t,
 		weekStartsOn: 1
 	});
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/getISOWeekYear.js
-function wh(e, t) {
-	let n = _h(e, t?.in), r = n.getFullYear(), i = gh(n, 0);
+function Eh(e, t) {
+	let n = yh(e, t?.in), r = n.getFullYear(), i = vh(n, 0);
 	i.setFullYear(r + 1, 0, 4), i.setHours(0, 0, 0, 0);
-	let a = Ch(i), o = gh(n, 0);
+	let a = Th(i), o = vh(n, 0);
 	o.setFullYear(r, 0, 4), o.setHours(0, 0, 0, 0);
-	let s = Ch(o);
+	let s = Th(o);
 	return n.getTime() >= a.getTime() ? r + 1 : n.getTime() >= s.getTime() ? r : r - 1;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/_lib/getTimezoneOffsetInMilliseconds.js
-function Th(e) {
-	let t = _h(e), n = new Date(Date.UTC(t.getFullYear(), t.getMonth(), t.getDate(), t.getHours(), t.getMinutes(), t.getSeconds(), t.getMilliseconds()));
+function Dh(e) {
+	let t = yh(e), n = new Date(Date.UTC(t.getFullYear(), t.getMonth(), t.getDate(), t.getHours(), t.getMinutes(), t.getSeconds(), t.getMilliseconds()));
 	return n.setUTCFullYear(t.getFullYear()), e - +n;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/_lib/normalizeDates.js
-function Eh(e, ...t) {
-	let n = gh.bind(null, e || t.find((e) => typeof e == "object"));
+function Oh(e, ...t) {
+	let n = vh.bind(null, e || t.find((e) => typeof e == "object"));
 	return t.map(n);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/startOfDay.js
-function Dh(e, t) {
-	let n = _h(e, t?.in);
+function kh(e, t) {
+	let n = yh(e, t?.in);
 	return n.setHours(0, 0, 0, 0), n;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/differenceInCalendarDays.js
-function Oh(e, t, n) {
-	let [r, i] = Eh(n?.in, e, t), a = Dh(r), o = Dh(i), s = +a - Th(a), c = +o - Th(o);
-	return Math.round((s - c) / ph);
+function Ah(e, t, n) {
+	let [r, i] = Oh(n?.in, e, t), a = kh(r), o = kh(i), s = +a - Dh(a), c = +o - Dh(o);
+	return Math.round((s - c) / hh);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/startOfISOWeekYear.js
-function kh(e, t) {
-	let n = wh(e, t), r = gh(t?.in || e, 0);
-	return r.setFullYear(n, 0, 4), r.setHours(0, 0, 0, 0), Ch(r);
+function jh(e, t) {
+	let n = Eh(e, t), r = vh(t?.in || e, 0);
+	return r.setFullYear(n, 0, 4), r.setHours(0, 0, 0, 0), Th(r);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/addWeeks.js
-function Ah(e, t, n) {
-	return vh(e, t * 7, n);
+function Mh(e, t, n) {
+	return bh(e, t * 7, n);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/addYears.js
-function jh(e, t, n) {
-	return yh(e, t * 12, n);
+function Nh(e, t, n) {
+	return xh(e, t * 12, n);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/max.js
-function Mh(e, t) {
+function Ph(e, t) {
 	let n, r = t?.in;
 	return e.forEach((e) => {
-		!r && typeof e == "object" && (r = gh.bind(null, e));
-		let t = _h(e, r);
+		!r && typeof e == "object" && (r = vh.bind(null, e));
+		let t = yh(e, r);
 		(!n || n < t || isNaN(+t)) && (n = t);
-	}), gh(r, n || NaN);
+	}), vh(r, n || NaN);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/min.js
-function Nh(e, t) {
+function Fh(e, t) {
 	let n, r = t?.in;
 	return e.forEach((e) => {
-		!r && typeof e == "object" && (r = gh.bind(null, e));
-		let t = _h(e, r);
+		!r && typeof e == "object" && (r = vh.bind(null, e));
+		let t = yh(e, r);
 		(!n || n > t || isNaN(+t)) && (n = t);
-	}), gh(r, n || NaN);
+	}), vh(r, n || NaN);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/isSameDay.js
-function Ph(e, t, n) {
-	let [r, i] = Eh(n?.in, e, t);
-	return +Dh(r) == +Dh(i);
+function Ih(e, t, n) {
+	let [r, i] = Oh(n?.in, e, t);
+	return +kh(r) == +kh(i);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/isDate.js
-function Fh(e) {
+function Lh(e) {
 	return e instanceof Date || typeof e == "object" && Object.prototype.toString.call(e) === "[object Date]";
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/isValid.js
-function Ih(e) {
-	return !(!Fh(e) && typeof e != "number" || isNaN(+_h(e)));
+function Rh(e) {
+	return !(!Lh(e) && typeof e != "number" || isNaN(+yh(e)));
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/differenceInCalendarMonths.js
-function Lh(e, t, n) {
-	let [r, i] = Eh(n?.in, e, t), a = r.getFullYear() - i.getFullYear(), o = r.getMonth() - i.getMonth();
+function zh(e, t, n) {
+	let [r, i] = Oh(n?.in, e, t), a = r.getFullYear() - i.getFullYear(), o = r.getMonth() - i.getMonth();
 	return a * 12 + o;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/endOfMonth.js
-function Rh(e, t) {
-	let n = _h(e, t?.in), r = n.getMonth();
+function Bh(e, t) {
+	let n = yh(e, t?.in), r = n.getMonth();
 	return n.setFullYear(n.getFullYear(), r + 1, 0), n.setHours(23, 59, 59, 999), n;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/_lib/normalizeInterval.js
-function zh(e, t) {
-	let [n, r] = Eh(e, t.start, t.end);
+function Vh(e, t) {
+	let [n, r] = Oh(e, t.start, t.end);
 	return {
 		start: n,
 		end: r
@@ -18802,63 +18811,63 @@ function zh(e, t) {
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/eachMonthOfInterval.js
-function Bh(e, t) {
-	let { start: n, end: r } = zh(t?.in, e), i = +n > +r, a = i ? +n : +r, o = i ? r : n;
+function Hh(e, t) {
+	let { start: n, end: r } = Vh(t?.in, e), i = +n > +r, a = i ? +n : +r, o = i ? r : n;
 	o.setHours(0, 0, 0, 0), o.setDate(1);
 	let s = t?.step ?? 1;
 	if (!s) return [];
 	s < 0 && (s = -s, i = !i);
 	let c = [];
-	for (; +o <= a;) c.push(gh(n, o)), o.setMonth(o.getMonth() + s);
+	for (; +o <= a;) c.push(vh(n, o)), o.setMonth(o.getMonth() + s);
 	return i ? c.reverse() : c;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/startOfMonth.js
-function Vh(e, t) {
-	let n = _h(e, t?.in);
+function Uh(e, t) {
+	let n = yh(e, t?.in);
 	return n.setDate(1), n.setHours(0, 0, 0, 0), n;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/endOfYear.js
-function Hh(e, t) {
-	let n = _h(e, t?.in), r = n.getFullYear();
+function Wh(e, t) {
+	let n = yh(e, t?.in), r = n.getFullYear();
 	return n.setFullYear(r + 1, 0, 0), n.setHours(23, 59, 59, 999), n;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/startOfYear.js
-function Uh(e, t) {
-	let n = _h(e, t?.in);
+function Gh(e, t) {
+	let n = yh(e, t?.in);
 	return n.setFullYear(n.getFullYear(), 0, 1), n.setHours(0, 0, 0, 0), n;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/eachYearOfInterval.js
-function Wh(e, t) {
-	let { start: n, end: r } = zh(t?.in, e), i = +n > +r, a = i ? +n : +r, o = i ? r : n;
+function Kh(e, t) {
+	let { start: n, end: r } = Vh(t?.in, e), i = +n > +r, a = i ? +n : +r, o = i ? r : n;
 	o.setHours(0, 0, 0, 0), o.setMonth(0, 1);
 	let s = t?.step ?? 1;
 	if (!s) return [];
 	s < 0 && (s = -s, i = !i);
 	let c = [];
-	for (; +o <= a;) c.push(gh(n, o)), o.setFullYear(o.getFullYear() + s);
+	for (; +o <= a;) c.push(vh(n, o)), o.setFullYear(o.getFullYear() + s);
 	return i ? c.reverse() : c;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/endOfWeek.js
-function Gh(e, t) {
-	let n = xh(), r = t?.weekStartsOn ?? t?.locale?.options?.weekStartsOn ?? n.weekStartsOn ?? n.locale?.options?.weekStartsOn ?? 0, i = _h(e, t?.in), a = i.getDay(), o = (a < r ? -7 : 0) + 6 - (a - r);
+function qh(e, t) {
+	let n = Ch(), r = t?.weekStartsOn ?? t?.locale?.options?.weekStartsOn ?? n.weekStartsOn ?? n.locale?.options?.weekStartsOn ?? 0, i = yh(e, t?.in), a = i.getDay(), o = (a < r ? -7 : 0) + 6 - (a - r);
 	return i.setDate(i.getDate() + o), i.setHours(23, 59, 59, 999), i;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/endOfISOWeek.js
-function Kh(e, t) {
-	return Gh(e, {
+function Jh(e, t) {
+	return qh(e, {
 		...t,
 		weekStartsOn: 1
 	});
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/locale/en-US/_lib/formatDistance.js
-var qh = {
+var Yh = {
 	lessThanXSeconds: {
 		one: "less than a second",
 		other: "less than {{count}} seconds"
@@ -18920,20 +18929,20 @@ var qh = {
 		one: "almost 1 year",
 		other: "almost {{count}} years"
 	}
-}, Jh = (e, t, n) => {
-	let r, i = qh[e];
+}, Xh = (e, t, n) => {
+	let r, i = Yh[e];
 	return r = typeof i == "string" ? i : t === 1 ? i.one : i.other.replace("{{count}}", t.toString()), n?.addSuffix ? n.comparison && n.comparison > 0 ? "in " + r : r + " ago" : r;
 };
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/locale/_lib/buildFormatLongFn.js
-function Yh(e) {
+function Zh(e) {
 	return (t = {}) => {
 		let n = t.width ? String(t.width) : e.defaultWidth;
 		return e.formats[n] || e.formats[e.defaultWidth];
 	};
 }
-var Xh = {
-	date: Yh({
+var Qh = {
+	date: Zh({
 		formats: {
 			full: "EEEE, MMMM do, y",
 			long: "MMMM do, y",
@@ -18942,7 +18951,7 @@ var Xh = {
 		},
 		defaultWidth: "full"
 	}),
-	time: Yh({
+	time: Zh({
 		formats: {
 			full: "h:mm:ss a zzzz",
 			long: "h:mm:ss a z",
@@ -18951,7 +18960,7 @@ var Xh = {
 		},
 		defaultWidth: "full"
 	}),
-	dateTime: Yh({
+	dateTime: Zh({
 		formats: {
 			full: "{{date}} 'at' {{time}}",
 			long: "{{date}} 'at' {{time}}",
@@ -18960,17 +18969,17 @@ var Xh = {
 		},
 		defaultWidth: "full"
 	})
-}, Zh = {
+}, $h = {
 	lastWeek: "'last' eeee 'at' p",
 	yesterday: "'yesterday at' p",
 	today: "'today at' p",
 	tomorrow: "'tomorrow at' p",
 	nextWeek: "eeee 'at' p",
 	other: "P"
-}, Qh = (e, t, n, r) => Zh[e];
+}, eg = (e, t, n, r) => $h[e];
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/locale/_lib/buildLocalizeFn.js
-function $h(e) {
+function tg(e) {
 	return (t, n) => {
 		let r = n?.context ? String(n.context) : "standalone", i;
 		if (r === "formatting" && e.formattingValues) {
@@ -18984,7 +18993,7 @@ function $h(e) {
 		return i[a];
 	};
 }
-var eg = {
+var ng = {
 	ordinalNumber: (e, t) => {
 		let n = Number(e), r = n % 100;
 		if (r > 20 || r < 10) switch (r % 10) {
@@ -18994,7 +19003,7 @@ var eg = {
 		}
 		return n + "th";
 	},
-	era: $h({
+	era: tg({
 		values: {
 			narrow: ["B", "A"],
 			abbreviated: ["BC", "AD"],
@@ -19002,7 +19011,7 @@ var eg = {
 		},
 		defaultWidth: "wide"
 	}),
-	quarter: $h({
+	quarter: tg({
 		values: {
 			narrow: [
 				"1",
@@ -19026,7 +19035,7 @@ var eg = {
 		defaultWidth: "wide",
 		argumentCallback: (e) => e - 1
 	}),
-	month: $h({
+	month: tg({
 		values: {
 			narrow: [
 				"J",
@@ -19073,7 +19082,7 @@ var eg = {
 		},
 		defaultWidth: "wide"
 	}),
-	day: $h({
+	day: tg({
 		values: {
 			narrow: [
 				"S",
@@ -19114,7 +19123,7 @@ var eg = {
 		},
 		defaultWidth: "wide"
 	}),
-	dayPeriod: $h({
+	dayPeriod: tg({
 		values: {
 			narrow: {
 				am: "a",
@@ -19185,11 +19194,11 @@ var eg = {
 };
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/locale/_lib/buildMatchFn.js
-function tg(e) {
+function rg(e) {
 	return (t, n = {}) => {
 		let r = n.width, i = r && e.matchPatterns[r] || e.matchPatterns[e.defaultMatchWidth], a = t.match(i);
 		if (!a) return null;
-		let o = a[0], s = r && e.parsePatterns[r] || e.parsePatterns[e.defaultParseWidth], c = Array.isArray(s) ? rg(s, (e) => e.test(o)) : ng(s, (e) => e.test(o)), l;
+		let o = a[0], s = r && e.parsePatterns[r] || e.parsePatterns[e.defaultParseWidth], c = Array.isArray(s) ? ag(s, (e) => e.test(o)) : ig(s, (e) => e.test(o)), l;
 		l = e.valueCallback ? e.valueCallback(c) : c, l = n.valueCallback ? n.valueCallback(l) : l;
 		let u = t.slice(o.length);
 		return {
@@ -19198,15 +19207,15 @@ function tg(e) {
 		};
 	};
 }
-function ng(e, t) {
+function ig(e, t) {
 	for (let n in e) if (Object.prototype.hasOwnProperty.call(e, n) && t(e[n])) return n;
 }
-function rg(e, t) {
+function ag(e, t) {
 	for (let n = 0; n < e.length; n++) if (t(e[n])) return n;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/locale/_lib/buildMatchPatternFn.js
-function ig(e) {
+function og(e) {
 	return (t, n = {}) => {
 		let r = t.match(e.matchPattern);
 		if (!r) return null;
@@ -19223,19 +19232,19 @@ function ig(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/locale/en-US.js
-var ag = {
+var sg = {
 	code: "en-US",
-	formatDistance: Jh,
-	formatLong: Xh,
-	formatRelative: Qh,
-	localize: eg,
+	formatDistance: Xh,
+	formatLong: Qh,
+	formatRelative: eg,
+	localize: ng,
 	match: {
-		ordinalNumber: ig({
+		ordinalNumber: og({
 			matchPattern: /^(\d+)(th|st|nd|rd)?/i,
 			parsePattern: /\d+/i,
 			valueCallback: (e) => parseInt(e, 10)
 		}),
-		era: tg({
+		era: rg({
 			matchPatterns: {
 				narrow: /^(b|a)/i,
 				abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
@@ -19245,7 +19254,7 @@ var ag = {
 			parsePatterns: { any: [/^b/i, /^(a|c)/i] },
 			defaultParseWidth: "any"
 		}),
-		quarter: tg({
+		quarter: rg({
 			matchPatterns: {
 				narrow: /^[1234]/i,
 				abbreviated: /^q[1234]/i,
@@ -19261,7 +19270,7 @@ var ag = {
 			defaultParseWidth: "any",
 			valueCallback: (e) => e + 1
 		}),
-		month: tg({
+		month: rg({
 			matchPatterns: {
 				narrow: /^[jfmasond]/i,
 				abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
@@ -19300,7 +19309,7 @@ var ag = {
 			},
 			defaultParseWidth: "any"
 		}),
-		day: tg({
+		day: rg({
 			matchPatterns: {
 				narrow: /^[smtwf]/i,
 				short: /^(su|mo|tu|we|th|fr|sa)/i,
@@ -19330,7 +19339,7 @@ var ag = {
 			},
 			defaultParseWidth: "any"
 		}),
-		dayPeriod: tg({
+		dayPeriod: rg({
 			matchPatterns: {
 				narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
 				any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
@@ -19356,56 +19365,56 @@ var ag = {
 };
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/getDayOfYear.js
-function og(e, t) {
-	let n = _h(e, t?.in);
-	return Oh(n, Uh(n)) + 1;
+function cg(e, t) {
+	let n = yh(e, t?.in);
+	return Ah(n, Gh(n)) + 1;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/getISOWeek.js
-function sg(e, t) {
-	let n = _h(e, t?.in), r = Ch(n) - +kh(n);
-	return Math.round(r / fh) + 1;
+function lg(e, t) {
+	let n = yh(e, t?.in), r = Th(n) - +jh(n);
+	return Math.round(r / mh) + 1;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/getWeekYear.js
-function cg(e, t) {
-	let n = _h(e, t?.in), r = n.getFullYear(), i = xh(), a = t?.firstWeekContainsDate ?? t?.locale?.options?.firstWeekContainsDate ?? i.firstWeekContainsDate ?? i.locale?.options?.firstWeekContainsDate ?? 1, o = gh(t?.in || e, 0);
+function ug(e, t) {
+	let n = yh(e, t?.in), r = n.getFullYear(), i = Ch(), a = t?.firstWeekContainsDate ?? t?.locale?.options?.firstWeekContainsDate ?? i.firstWeekContainsDate ?? i.locale?.options?.firstWeekContainsDate ?? 1, o = vh(t?.in || e, 0);
 	o.setFullYear(r + 1, 0, a), o.setHours(0, 0, 0, 0);
-	let s = Sh(o, t), c = gh(t?.in || e, 0);
+	let s = wh(o, t), c = vh(t?.in || e, 0);
 	c.setFullYear(r, 0, a), c.setHours(0, 0, 0, 0);
-	let l = Sh(c, t);
+	let l = wh(c, t);
 	return +n >= +s ? r + 1 : +n >= +l ? r : r - 1;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/startOfWeekYear.js
-function lg(e, t) {
-	let n = xh(), r = t?.firstWeekContainsDate ?? t?.locale?.options?.firstWeekContainsDate ?? n.firstWeekContainsDate ?? n.locale?.options?.firstWeekContainsDate ?? 1, i = cg(e, t), a = gh(t?.in || e, 0);
-	return a.setFullYear(i, 0, r), a.setHours(0, 0, 0, 0), Sh(a, t);
+function dg(e, t) {
+	let n = Ch(), r = t?.firstWeekContainsDate ?? t?.locale?.options?.firstWeekContainsDate ?? n.firstWeekContainsDate ?? n.locale?.options?.firstWeekContainsDate ?? 1, i = ug(e, t), a = vh(t?.in || e, 0);
+	return a.setFullYear(i, 0, r), a.setHours(0, 0, 0, 0), wh(a, t);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/getWeek.js
-function ug(e, t) {
-	let n = _h(e, t?.in), r = Sh(n, t) - +lg(n, t);
-	return Math.round(r / fh) + 1;
+function fg(e, t) {
+	let n = yh(e, t?.in), r = wh(n, t) - +dg(n, t);
+	return Math.round(r / mh) + 1;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/_lib/addLeadingZeros.js
-function dg(e, t) {
+function pg(e, t) {
 	return (e < 0 ? "-" : "") + Math.abs(e).toString().padStart(t, "0");
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/_lib/format/lightFormatters.js
-var fg = {
+var mg = {
 	y(e, t) {
 		let n = e.getFullYear(), r = n > 0 ? n : 1 - n;
-		return dg(t === "yy" ? r % 100 : r, t.length);
+		return pg(t === "yy" ? r % 100 : r, t.length);
 	},
 	M(e, t) {
 		let n = e.getMonth();
-		return t === "M" ? String(n + 1) : dg(n + 1, 2);
+		return t === "M" ? String(n + 1) : pg(n + 1, 2);
 	},
 	d(e, t) {
-		return dg(e.getDate(), t.length);
+		return pg(e.getDate(), t.length);
 	},
 	a(e, t) {
 		let n = e.getHours() / 12 >= 1 ? "pm" : "am";
@@ -19418,22 +19427,22 @@ var fg = {
 		}
 	},
 	h(e, t) {
-		return dg(e.getHours() % 12 || 12, t.length);
+		return pg(e.getHours() % 12 || 12, t.length);
 	},
 	H(e, t) {
-		return dg(e.getHours(), t.length);
+		return pg(e.getHours(), t.length);
 	},
 	m(e, t) {
-		return dg(e.getMinutes(), t.length);
+		return pg(e.getMinutes(), t.length);
 	},
 	s(e, t) {
-		return dg(e.getSeconds(), t.length);
+		return pg(e.getSeconds(), t.length);
 	},
 	S(e, t) {
 		let n = t.length, r = e.getMilliseconds();
-		return dg(Math.trunc(r * 10 ** (n - 3)), t.length);
+		return pg(Math.trunc(r * 10 ** (n - 3)), t.length);
 	}
-}, pg = {
+}, hg = {
 	am: "am",
 	pm: "pm",
 	midnight: "midnight",
@@ -19442,7 +19451,7 @@ var fg = {
 	afternoon: "afternoon",
 	evening: "evening",
 	night: "night"
-}, mg = {
+}, gg = {
 	G: function(e, t, n) {
 		let r = +(e.getFullYear() > 0);
 		switch (t) {
@@ -19458,23 +19467,23 @@ var fg = {
 			let t = e.getFullYear(), r = t > 0 ? t : 1 - t;
 			return n.ordinalNumber(r, { unit: "year" });
 		}
-		return fg.y(e, t);
+		return mg.y(e, t);
 	},
 	Y: function(e, t, n, r) {
-		let i = cg(e, r), a = i > 0 ? i : 1 - i;
-		return t === "YY" ? dg(a % 100, 2) : t === "Yo" ? n.ordinalNumber(a, { unit: "year" }) : dg(a, t.length);
+		let i = ug(e, r), a = i > 0 ? i : 1 - i;
+		return t === "YY" ? pg(a % 100, 2) : t === "Yo" ? n.ordinalNumber(a, { unit: "year" }) : pg(a, t.length);
 	},
 	R: function(e, t) {
-		return dg(wh(e), t.length);
+		return pg(Eh(e), t.length);
 	},
 	u: function(e, t) {
-		return dg(e.getFullYear(), t.length);
+		return pg(e.getFullYear(), t.length);
 	},
 	Q: function(e, t, n) {
 		let r = Math.ceil((e.getMonth() + 1) / 3);
 		switch (t) {
 			case "Q": return String(r);
-			case "QQ": return dg(r, 2);
+			case "QQ": return pg(r, 2);
 			case "Qo": return n.ordinalNumber(r, { unit: "quarter" });
 			case "QQQ": return n.quarter(r, {
 				width: "abbreviated",
@@ -19494,7 +19503,7 @@ var fg = {
 		let r = Math.ceil((e.getMonth() + 1) / 3);
 		switch (t) {
 			case "q": return String(r);
-			case "qq": return dg(r, 2);
+			case "qq": return pg(r, 2);
 			case "qo": return n.ordinalNumber(r, { unit: "quarter" });
 			case "qqq": return n.quarter(r, {
 				width: "abbreviated",
@@ -19514,7 +19523,7 @@ var fg = {
 		let r = e.getMonth();
 		switch (t) {
 			case "M":
-			case "MM": return fg.M(e, t);
+			case "MM": return mg.M(e, t);
 			case "Mo": return n.ordinalNumber(r + 1, { unit: "month" });
 			case "MMM": return n.month(r, {
 				width: "abbreviated",
@@ -19534,7 +19543,7 @@ var fg = {
 		let r = e.getMonth();
 		switch (t) {
 			case "L": return String(r + 1);
-			case "LL": return dg(r + 1, 2);
+			case "LL": return pg(r + 1, 2);
 			case "Lo": return n.ordinalNumber(r + 1, { unit: "month" });
 			case "LLL": return n.month(r, {
 				width: "abbreviated",
@@ -19551,19 +19560,19 @@ var fg = {
 		}
 	},
 	w: function(e, t, n, r) {
-		let i = ug(e, r);
-		return t === "wo" ? n.ordinalNumber(i, { unit: "week" }) : dg(i, t.length);
+		let i = fg(e, r);
+		return t === "wo" ? n.ordinalNumber(i, { unit: "week" }) : pg(i, t.length);
 	},
 	I: function(e, t, n) {
-		let r = sg(e);
-		return t === "Io" ? n.ordinalNumber(r, { unit: "week" }) : dg(r, t.length);
+		let r = lg(e);
+		return t === "Io" ? n.ordinalNumber(r, { unit: "week" }) : pg(r, t.length);
 	},
 	d: function(e, t, n) {
-		return t === "do" ? n.ordinalNumber(e.getDate(), { unit: "date" }) : fg.d(e, t);
+		return t === "do" ? n.ordinalNumber(e.getDate(), { unit: "date" }) : mg.d(e, t);
 	},
 	D: function(e, t, n) {
-		let r = og(e);
-		return t === "Do" ? n.ordinalNumber(r, { unit: "dayOfYear" }) : dg(r, t.length);
+		let r = cg(e);
+		return t === "Do" ? n.ordinalNumber(r, { unit: "dayOfYear" }) : pg(r, t.length);
 	},
 	E: function(e, t, n) {
 		let r = e.getDay();
@@ -19592,7 +19601,7 @@ var fg = {
 		let i = e.getDay(), a = (i - r.weekStartsOn + 8) % 7 || 7;
 		switch (t) {
 			case "e": return String(a);
-			case "ee": return dg(a, 2);
+			case "ee": return pg(a, 2);
 			case "eo": return n.ordinalNumber(a, { unit: "day" });
 			case "eee": return n.day(i, {
 				width: "abbreviated",
@@ -19616,7 +19625,7 @@ var fg = {
 		let i = e.getDay(), a = (i - r.weekStartsOn + 8) % 7 || 7;
 		switch (t) {
 			case "c": return String(a);
-			case "cc": return dg(a, t.length);
+			case "cc": return pg(a, t.length);
 			case "co": return n.ordinalNumber(a, { unit: "day" });
 			case "ccc": return n.day(i, {
 				width: "abbreviated",
@@ -19640,7 +19649,7 @@ var fg = {
 		let r = e.getDay(), i = r === 0 ? 7 : r;
 		switch (t) {
 			case "i": return String(i);
-			case "ii": return dg(i, t.length);
+			case "ii": return pg(i, t.length);
 			case "io": return n.ordinalNumber(i, { unit: "day" });
 			case "iii": return n.day(r, {
 				width: "abbreviated",
@@ -19684,7 +19693,7 @@ var fg = {
 	},
 	b: function(e, t, n) {
 		let r = e.getHours(), i;
-		switch (i = r === 12 ? pg.noon : r === 0 ? pg.midnight : r / 12 >= 1 ? "pm" : "am", t) {
+		switch (i = r === 12 ? hg.noon : r === 0 ? hg.midnight : r / 12 >= 1 ? "pm" : "am", t) {
 			case "b":
 			case "bb": return n.dayPeriod(i, {
 				width: "abbreviated",
@@ -19706,7 +19715,7 @@ var fg = {
 	},
 	B: function(e, t, n) {
 		let r = e.getHours(), i;
-		switch (i = r >= 17 ? pg.evening : r >= 12 ? pg.afternoon : r >= 4 ? pg.morning : pg.night, t) {
+		switch (i = r >= 17 ? hg.evening : r >= 12 ? hg.afternoon : r >= 4 ? hg.morning : hg.night, t) {
 			case "B":
 			case "BB":
 			case "BBB": return n.dayPeriod(i, {
@@ -19728,45 +19737,45 @@ var fg = {
 			let t = e.getHours() % 12;
 			return t === 0 && (t = 12), n.ordinalNumber(t, { unit: "hour" });
 		}
-		return fg.h(e, t);
+		return mg.h(e, t);
 	},
 	H: function(e, t, n) {
-		return t === "Ho" ? n.ordinalNumber(e.getHours(), { unit: "hour" }) : fg.H(e, t);
+		return t === "Ho" ? n.ordinalNumber(e.getHours(), { unit: "hour" }) : mg.H(e, t);
 	},
 	K: function(e, t, n) {
 		let r = e.getHours() % 12;
-		return t === "Ko" ? n.ordinalNumber(r, { unit: "hour" }) : dg(r, t.length);
+		return t === "Ko" ? n.ordinalNumber(r, { unit: "hour" }) : pg(r, t.length);
 	},
 	k: function(e, t, n) {
 		let r = e.getHours();
-		return r === 0 && (r = 24), t === "ko" ? n.ordinalNumber(r, { unit: "hour" }) : dg(r, t.length);
+		return r === 0 && (r = 24), t === "ko" ? n.ordinalNumber(r, { unit: "hour" }) : pg(r, t.length);
 	},
 	m: function(e, t, n) {
-		return t === "mo" ? n.ordinalNumber(e.getMinutes(), { unit: "minute" }) : fg.m(e, t);
+		return t === "mo" ? n.ordinalNumber(e.getMinutes(), { unit: "minute" }) : mg.m(e, t);
 	},
 	s: function(e, t, n) {
-		return t === "so" ? n.ordinalNumber(e.getSeconds(), { unit: "second" }) : fg.s(e, t);
+		return t === "so" ? n.ordinalNumber(e.getSeconds(), { unit: "second" }) : mg.s(e, t);
 	},
 	S: function(e, t) {
-		return fg.S(e, t);
+		return mg.S(e, t);
 	},
 	X: function(e, t, n) {
 		let r = e.getTimezoneOffset();
 		if (r === 0) return "Z";
 		switch (t) {
-			case "X": return gg(r);
+			case "X": return vg(r);
 			case "XXXX":
-			case "XX": return _g(r);
-			default: return _g(r, ":");
+			case "XX": return yg(r);
+			default: return yg(r, ":");
 		}
 	},
 	x: function(e, t, n) {
 		let r = e.getTimezoneOffset();
 		switch (t) {
-			case "x": return gg(r);
+			case "x": return vg(r);
 			case "xxxx":
-			case "xx": return _g(r);
-			default: return _g(r, ":");
+			case "xx": return yg(r);
+			default: return yg(r, ":");
 		}
 	},
 	O: function(e, t, n) {
@@ -19774,8 +19783,8 @@ var fg = {
 		switch (t) {
 			case "O":
 			case "OO":
-			case "OOO": return "GMT" + hg(r, ":");
-			default: return "GMT" + _g(r, ":");
+			case "OOO": return "GMT" + _g(r, ":");
+			default: return "GMT" + yg(r, ":");
 		}
 	},
 	z: function(e, t, n) {
@@ -19783,49 +19792,49 @@ var fg = {
 		switch (t) {
 			case "z":
 			case "zz":
-			case "zzz": return "GMT" + hg(r, ":");
-			default: return "GMT" + _g(r, ":");
+			case "zzz": return "GMT" + _g(r, ":");
+			default: return "GMT" + yg(r, ":");
 		}
 	},
 	t: function(e, t, n) {
-		return dg(Math.trunc(e / 1e3), t.length);
+		return pg(Math.trunc(e / 1e3), t.length);
 	},
 	T: function(e, t, n) {
-		return dg(+e, t.length);
+		return pg(+e, t.length);
 	}
 };
-function hg(e, t = "") {
-	let n = e > 0 ? "-" : "+", r = Math.abs(e), i = Math.trunc(r / 60), a = r % 60;
-	return a === 0 ? n + String(i) : n + String(i) + t + dg(a, 2);
-}
-function gg(e, t) {
-	return e % 60 == 0 ? (e > 0 ? "-" : "+") + dg(Math.abs(e) / 60, 2) : _g(e, t);
-}
 function _g(e, t = "") {
-	let n = e > 0 ? "-" : "+", r = Math.abs(e), i = dg(Math.trunc(r / 60), 2), a = dg(r % 60, 2);
+	let n = e > 0 ? "-" : "+", r = Math.abs(e), i = Math.trunc(r / 60), a = r % 60;
+	return a === 0 ? n + String(i) : n + String(i) + t + pg(a, 2);
+}
+function vg(e, t) {
+	return e % 60 == 0 ? (e > 0 ? "-" : "+") + pg(Math.abs(e) / 60, 2) : yg(e, t);
+}
+function yg(e, t = "") {
+	let n = e > 0 ? "-" : "+", r = Math.abs(e), i = pg(Math.trunc(r / 60), 2), a = pg(r % 60, 2);
 	return n + i + t + a;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/_lib/format/longFormatters.js
-var vg = (e, t) => {
+var bg = (e, t) => {
 	switch (e) {
 		case "P": return t.date({ width: "short" });
 		case "PP": return t.date({ width: "medium" });
 		case "PPP": return t.date({ width: "long" });
 		default: return t.date({ width: "full" });
 	}
-}, yg = (e, t) => {
+}, xg = (e, t) => {
 	switch (e) {
 		case "p": return t.time({ width: "short" });
 		case "pp": return t.time({ width: "medium" });
 		case "ppp": return t.time({ width: "long" });
 		default: return t.time({ width: "full" });
 	}
-}, bg = {
-	p: yg,
+}, Sg = {
+	p: xg,
 	P: (e, t) => {
 		let n = e.match(/(P+)(p+)?/) || [], r = n[1], i = n[2];
-		if (!i) return vg(e, t);
+		if (!i) return bg(e, t);
 		let a;
 		switch (r) {
 			case "P":
@@ -19839,42 +19848,42 @@ var vg = (e, t) => {
 				break;
 			default: a = t.dateTime({ width: "full" });
 		}
-		return a.replace("{{date}}", vg(r, t)).replace("{{time}}", yg(i, t));
+		return a.replace("{{date}}", bg(r, t)).replace("{{time}}", xg(i, t));
 	}
-}, xg = /^D+$/, Sg = /^Y+$/, Cg = [
+}, Cg = /^D+$/, wg = /^Y+$/, Tg = [
 	"D",
 	"DD",
 	"YY",
 	"YYYY"
 ];
-function wg(e) {
-	return xg.test(e);
+function Eg(e) {
+	return Cg.test(e);
 }
-function Tg(e) {
-	return Sg.test(e);
+function Dg(e) {
+	return wg.test(e);
 }
-function Eg(e, t, n) {
-	let r = Dg(e, t, n);
-	if (console.warn(r), Cg.includes(e)) throw RangeError(r);
+function Og(e, t, n) {
+	let r = kg(e, t, n);
+	if (console.warn(r), Tg.includes(e)) throw RangeError(r);
 }
-function Dg(e, t, n) {
+function kg(e, t, n) {
 	let r = e[0] === "Y" ? "years" : "days of the month";
 	return `Use \`${e.toLowerCase()}\` instead of \`${e}\` (in \`${t}\`) for formatting ${r} to the input \`${n}\`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md`;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/format.js
-var Og = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g, kg = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g, Ag = /^'([^]*?)'?$/, jg = /''/g, Mg = /[a-zA-Z]/;
-function Ng(e, t, n) {
-	let r = xh(), i = n?.locale ?? r.locale ?? ag, a = n?.firstWeekContainsDate ?? n?.locale?.options?.firstWeekContainsDate ?? r.firstWeekContainsDate ?? r.locale?.options?.firstWeekContainsDate ?? 1, o = n?.weekStartsOn ?? n?.locale?.options?.weekStartsOn ?? r.weekStartsOn ?? r.locale?.options?.weekStartsOn ?? 0, s = _h(e, n?.in);
-	if (!Ih(s)) throw RangeError("Invalid time value");
-	let c = t.match(kg).map((e) => {
+var Ag = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g, jg = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g, Mg = /^'([^]*?)'?$/, Ng = /''/g, Pg = /[a-zA-Z]/;
+function Fg(e, t, n) {
+	let r = Ch(), i = n?.locale ?? r.locale ?? sg, a = n?.firstWeekContainsDate ?? n?.locale?.options?.firstWeekContainsDate ?? r.firstWeekContainsDate ?? r.locale?.options?.firstWeekContainsDate ?? 1, o = n?.weekStartsOn ?? n?.locale?.options?.weekStartsOn ?? r.weekStartsOn ?? r.locale?.options?.weekStartsOn ?? 0, s = yh(e, n?.in);
+	if (!Rh(s)) throw RangeError("Invalid time value");
+	let c = t.match(jg).map((e) => {
 		let t = e[0];
 		if (t === "p" || t === "P") {
-			let n = bg[t];
+			let n = Sg[t];
 			return n(e, i.formatLong);
 		}
 		return e;
-	}).join("").match(Og).map((e) => {
+	}).join("").match(Ag).map((e) => {
 		if (e === "''") return {
 			isToken: !1,
 			value: "'"
@@ -19882,13 +19891,13 @@ function Ng(e, t, n) {
 		let t = e[0];
 		if (t === "'") return {
 			isToken: !1,
-			value: Pg(e)
+			value: Ig(e)
 		};
-		if (mg[t]) return {
+		if (gg[t]) return {
 			isToken: !0,
 			value: e
 		};
-		if (t.match(Mg)) throw RangeError("Format string contains an unescaped latin alphabet character `" + t + "`");
+		if (t.match(Pg)) throw RangeError("Format string contains an unescaped latin alphabet character `" + t + "`");
 		return {
 			isToken: !1,
 			value: e
@@ -19903,95 +19912,95 @@ function Ng(e, t, n) {
 	return c.map((r) => {
 		if (!r.isToken) return r.value;
 		let a = r.value;
-		(!n?.useAdditionalWeekYearTokens && Tg(a) || !n?.useAdditionalDayOfYearTokens && wg(a)) && Eg(a, t, String(e));
-		let o = mg[a[0]];
+		(!n?.useAdditionalWeekYearTokens && Dg(a) || !n?.useAdditionalDayOfYearTokens && Eg(a)) && Og(a, t, String(e));
+		let o = gg[a[0]];
 		return o(s, a, i.localize, l);
 	}).join("");
 }
-function Pg(e) {
-	let t = e.match(Ag);
-	return t ? t[1].replace(jg, "'") : e;
+function Ig(e) {
+	let t = e.match(Mg);
+	return t ? t[1].replace(Ng, "'") : e;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/getDaysInMonth.js
-function Fg(e, t) {
-	let n = _h(e, t?.in), r = n.getFullYear(), i = n.getMonth(), a = gh(n, 0);
+function Lg(e, t) {
+	let n = yh(e, t?.in), r = n.getFullYear(), i = n.getMonth(), a = vh(n, 0);
 	return a.setFullYear(r, i + 1, 0), a.setHours(0, 0, 0, 0), a.getDate();
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/getMonth.js
-function Ig(e, t) {
-	return _h(e, t?.in).getMonth();
+function Rg(e, t) {
+	return yh(e, t?.in).getMonth();
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/getYear.js
-function Lg(e, t) {
-	return _h(e, t?.in).getFullYear();
+function zg(e, t) {
+	return yh(e, t?.in).getFullYear();
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/isAfter.js
-function Rg(e, t) {
-	return +_h(e) > +_h(t);
+function Bg(e, t) {
+	return +yh(e) > +yh(t);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/isBefore.js
-function zg(e, t) {
-	return +_h(e) < +_h(t);
+function Vg(e, t) {
+	return +yh(e) < +yh(t);
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/isSameMonth.js
-function Bg(e, t, n) {
-	let [r, i] = Eh(n?.in, e, t);
+function Hg(e, t, n) {
+	let [r, i] = Oh(n?.in, e, t);
 	return r.getFullYear() === i.getFullYear() && r.getMonth() === i.getMonth();
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/isSameYear.js
-function Vg(e, t, n) {
-	let [r, i] = Eh(n?.in, e, t);
+function Ug(e, t, n) {
+	let [r, i] = Oh(n?.in, e, t);
 	return r.getFullYear() === i.getFullYear();
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/setMonth.js
-function Hg(e, t, n) {
-	let r = _h(e, n?.in), i = r.getFullYear(), a = r.getDate(), o = gh(n?.in || e, 0);
+function Wg(e, t, n) {
+	let r = yh(e, n?.in), i = r.getFullYear(), a = r.getDate(), o = vh(n?.in || e, 0);
 	o.setFullYear(i, t, 15), o.setHours(0, 0, 0, 0);
-	let s = Fg(o);
+	let s = Lg(o);
 	return r.setMonth(t, Math.min(a, s)), r;
 }
 //#endregion
 //#region node_modules/.pnpm/date-fns@4.4.0/node_modules/date-fns/setYear.js
-function Ug(e, t, n) {
-	let r = _h(e, n?.in);
-	return isNaN(+r) ? gh(n?.in || e, NaN) : (r.setFullYear(t), r);
+function Gg(e, t, n) {
+	let r = yh(e, n?.in);
+	return isNaN(+r) ? vh(n?.in || e, NaN) : (r.setFullYear(t), r);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getBroadcastWeeksInMonth.js
-var Wg = 5, Gg = 4;
-function Kg(e, t) {
+var Kg = 5, qg = 4;
+function Jg(e, t) {
 	let n = t.startOfMonth(e), r = n.getDay() > 0 ? n.getDay() : 7, i = t.addDays(e, -r + 1), a = t.addDays(i, 34);
-	return t.getMonth(e) === t.getMonth(a) ? Wg : Gg;
+	return t.getMonth(e) === t.getMonth(a) ? Kg : qg;
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/startOfBroadcastWeek.js
-function qg(e, t) {
+function Yg(e, t) {
 	let n = t.startOfMonth(e), r = n.getDay();
 	return r === 1 ? n : r === 0 ? t.addDays(n, -6) : t.addDays(n, -1 * (r - 1));
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/endOfBroadcastWeek.js
-function Jg(e, t) {
-	let n = qg(e, t), r = Kg(e, t);
+function Xg(e, t) {
+	let n = Yg(e, t), r = Jg(e, t);
 	return t.addDays(n, r * 7 - 1);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/locale/en-US.js
-var Yg = {
-	...ag,
+var Zg = {
+	...sg,
 	labels: {
 		labelDayButton: (e, t, n, r) => {
 			let i;
-			i = r && typeof r.format == "function" ? r.format.bind(r) : (e, t) => Ng(e, t, {
-				locale: ag,
+			i = r && typeof r.format == "function" ? r.format.bind(r) : (e, t) => Fg(e, t, {
+				locale: sg,
 				...n
 			});
 			let a = i(e, "PPPP");
@@ -20004,15 +20013,15 @@ var Yg = {
 		labelYearDropdown: "Choose the Year",
 		labelGrid: (e, t, n) => {
 			let r;
-			return r = n && typeof n.format == "function" ? n.format.bind(n) : (e, n) => Ng(e, n, {
-				locale: ag,
+			return r = n && typeof n.format == "function" ? n.format.bind(n) : (e, n) => Fg(e, n, {
+				locale: sg,
 				...t
 			}), r(e, "LLLL yyyy");
 		},
 		labelGridcell: (e, t, n, r) => {
 			let i;
-			i = r && typeof r.format == "function" ? r.format.bind(r) : (e, t) => Ng(e, t, {
-				locale: ag,
+			i = r && typeof r.format == "function" ? r.format.bind(r) : (e, t) => Fg(e, t, {
+				locale: sg,
 				...n
 			});
 			let a = i(e, "PPPP");
@@ -20022,26 +20031,26 @@ var Yg = {
 		labelWeekNumberHeader: "Week Number",
 		labelWeekday: (e, t, n) => {
 			let r;
-			return r = n && typeof n.format == "function" ? n.format.bind(n) : (e, n) => Ng(e, n, {
-				locale: ag,
+			return r = n && typeof n.format == "function" ? n.format.bind(n) : (e, n) => Fg(e, n, {
+				locale: sg,
 				...t
 			}), r(e, "cccc");
 		}
 	}
-}, Xg = class e {
+}, Qg = class e {
 	constructor(e, t) {
-		this.today = () => this.overrides?.today ? this.overrides.today() : this.options.timeZone ? uh.tz(this.options.timeZone) : new (this.options.Date ?? Date)(), this.newDate = (e, t, n) => this.overrides?.newDate ? this.overrides.newDate(e, t, n) : this.options.timeZone ? new uh(e, t, n, this.options.timeZone) : new Date(e, t, n), this.addDays = (e, t) => this.overrides?.addDays ? this.overrides.addDays(e, t) : vh(e, t), this.addMonths = (e, t) => this.overrides?.addMonths ? this.overrides.addMonths(e, t) : yh(e, t), this.addWeeks = (e, t) => this.overrides?.addWeeks ? this.overrides.addWeeks(e, t) : Ah(e, t), this.addYears = (e, t) => this.overrides?.addYears ? this.overrides.addYears(e, t) : jh(e, t), this.differenceInCalendarDays = (e, t) => this.overrides?.differenceInCalendarDays ? this.overrides.differenceInCalendarDays(e, t) : Oh(e, t), this.differenceInCalendarMonths = (e, t) => this.overrides?.differenceInCalendarMonths ? this.overrides.differenceInCalendarMonths(e, t) : Lh(e, t), this.eachMonthOfInterval = (e) => this.overrides?.eachMonthOfInterval ? this.overrides.eachMonthOfInterval(e) : Bh(e), this.eachYearOfInterval = (e) => {
-			let t = this.overrides?.eachYearOfInterval ? this.overrides.eachYearOfInterval(e) : Wh(e), n = new Set(t.map((e) => this.getYear(e)));
+		this.today = () => this.overrides?.today ? this.overrides.today() : this.options.timeZone ? fh.tz(this.options.timeZone) : new (this.options.Date ?? Date)(), this.newDate = (e, t, n) => this.overrides?.newDate ? this.overrides.newDate(e, t, n) : this.options.timeZone ? new fh(e, t, n, this.options.timeZone) : new Date(e, t, n), this.addDays = (e, t) => this.overrides?.addDays ? this.overrides.addDays(e, t) : bh(e, t), this.addMonths = (e, t) => this.overrides?.addMonths ? this.overrides.addMonths(e, t) : xh(e, t), this.addWeeks = (e, t) => this.overrides?.addWeeks ? this.overrides.addWeeks(e, t) : Mh(e, t), this.addYears = (e, t) => this.overrides?.addYears ? this.overrides.addYears(e, t) : Nh(e, t), this.differenceInCalendarDays = (e, t) => this.overrides?.differenceInCalendarDays ? this.overrides.differenceInCalendarDays(e, t) : Ah(e, t), this.differenceInCalendarMonths = (e, t) => this.overrides?.differenceInCalendarMonths ? this.overrides.differenceInCalendarMonths(e, t) : zh(e, t), this.eachMonthOfInterval = (e) => this.overrides?.eachMonthOfInterval ? this.overrides.eachMonthOfInterval(e) : Hh(e), this.eachYearOfInterval = (e) => {
+			let t = this.overrides?.eachYearOfInterval ? this.overrides.eachYearOfInterval(e) : Kh(e), n = new Set(t.map((e) => this.getYear(e)));
 			if (n.size === t.length) return t;
 			let r = [];
 			return n.forEach((e) => {
 				r.push(new Date(e, 0, 1));
 			}), r;
-		}, this.endOfBroadcastWeek = (e) => this.overrides?.endOfBroadcastWeek ? this.overrides.endOfBroadcastWeek(e) : Jg(e, this), this.endOfISOWeek = (e) => this.overrides?.endOfISOWeek ? this.overrides.endOfISOWeek(e) : Kh(e), this.endOfMonth = (e) => this.overrides?.endOfMonth ? this.overrides.endOfMonth(e) : Rh(e), this.endOfWeek = (e, t) => this.overrides?.endOfWeek ? this.overrides.endOfWeek(e, t) : Gh(e, this.options), this.endOfYear = (e) => this.overrides?.endOfYear ? this.overrides.endOfYear(e) : Hh(e), this.format = (e, t, n) => {
-			let r = this.overrides?.format ? this.overrides.format(e, t, this.options) : Ng(e, t, this.options);
+		}, this.endOfBroadcastWeek = (e) => this.overrides?.endOfBroadcastWeek ? this.overrides.endOfBroadcastWeek(e) : Xg(e, this), this.endOfISOWeek = (e) => this.overrides?.endOfISOWeek ? this.overrides.endOfISOWeek(e) : Jh(e), this.endOfMonth = (e) => this.overrides?.endOfMonth ? this.overrides.endOfMonth(e) : Bh(e), this.endOfWeek = (e, t) => this.overrides?.endOfWeek ? this.overrides.endOfWeek(e, t) : qh(e, this.options), this.endOfYear = (e) => this.overrides?.endOfYear ? this.overrides.endOfYear(e) : Wh(e), this.format = (e, t, n) => {
+			let r = this.overrides?.format ? this.overrides.format(e, t, this.options) : Fg(e, t, this.options);
 			return this.options.numerals && this.options.numerals !== "latn" ? this.replaceDigits(r) : r;
-		}, this.getISOWeek = (e) => this.overrides?.getISOWeek ? this.overrides.getISOWeek(e) : sg(e), this.getMonth = (e, t) => this.overrides?.getMonth ? this.overrides.getMonth(e, this.options) : Ig(e, this.options), this.getYear = (e, t) => this.overrides?.getYear ? this.overrides.getYear(e, this.options) : Lg(e, this.options), this.getWeek = (e, t) => this.overrides?.getWeek ? this.overrides.getWeek(e, this.options) : ug(e, this.options), this.isAfter = (e, t) => this.overrides?.isAfter ? this.overrides.isAfter(e, t) : Rg(e, t), this.isBefore = (e, t) => this.overrides?.isBefore ? this.overrides.isBefore(e, t) : zg(e, t), this.isDate = (e) => this.overrides?.isDate ? this.overrides.isDate(e) : Fh(e), this.isSameDay = (e, t) => this.overrides?.isSameDay ? this.overrides.isSameDay(e, t) : Ph(e, t), this.isSameMonth = (e, t) => this.overrides?.isSameMonth ? this.overrides.isSameMonth(e, t) : Bg(e, t), this.isSameYear = (e, t) => this.overrides?.isSameYear ? this.overrides.isSameYear(e, t) : Vg(e, t), this.max = (e) => this.overrides?.max ? this.overrides.max(e) : Mh(e), this.min = (e) => this.overrides?.min ? this.overrides.min(e) : Nh(e), this.setMonth = (e, t) => this.overrides?.setMonth ? this.overrides.setMonth(e, t) : Hg(e, t), this.setYear = (e, t) => this.overrides?.setYear ? this.overrides.setYear(e, t) : Ug(e, t), this.startOfBroadcastWeek = (e, t) => this.overrides?.startOfBroadcastWeek ? this.overrides.startOfBroadcastWeek(e, this) : qg(e, this), this.startOfDay = (e) => this.overrides?.startOfDay ? this.overrides.startOfDay(e) : Dh(e), this.startOfISOWeek = (e) => this.overrides?.startOfISOWeek ? this.overrides.startOfISOWeek(e) : Ch(e), this.startOfMonth = (e) => this.overrides?.startOfMonth ? this.overrides.startOfMonth(e) : Vh(e), this.startOfWeek = (e, t) => this.overrides?.startOfWeek ? this.overrides.startOfWeek(e, this.options) : Sh(e, this.options), this.startOfYear = (e) => this.overrides?.startOfYear ? this.overrides.startOfYear(e) : Uh(e), this.options = {
-			locale: Yg,
+		}, this.getISOWeek = (e) => this.overrides?.getISOWeek ? this.overrides.getISOWeek(e) : lg(e), this.getMonth = (e, t) => this.overrides?.getMonth ? this.overrides.getMonth(e, this.options) : Rg(e, this.options), this.getYear = (e, t) => this.overrides?.getYear ? this.overrides.getYear(e, this.options) : zg(e, this.options), this.getWeek = (e, t) => this.overrides?.getWeek ? this.overrides.getWeek(e, this.options) : fg(e, this.options), this.isAfter = (e, t) => this.overrides?.isAfter ? this.overrides.isAfter(e, t) : Bg(e, t), this.isBefore = (e, t) => this.overrides?.isBefore ? this.overrides.isBefore(e, t) : Vg(e, t), this.isDate = (e) => this.overrides?.isDate ? this.overrides.isDate(e) : Lh(e), this.isSameDay = (e, t) => this.overrides?.isSameDay ? this.overrides.isSameDay(e, t) : Ih(e, t), this.isSameMonth = (e, t) => this.overrides?.isSameMonth ? this.overrides.isSameMonth(e, t) : Hg(e, t), this.isSameYear = (e, t) => this.overrides?.isSameYear ? this.overrides.isSameYear(e, t) : Ug(e, t), this.max = (e) => this.overrides?.max ? this.overrides.max(e) : Ph(e), this.min = (e) => this.overrides?.min ? this.overrides.min(e) : Fh(e), this.setMonth = (e, t) => this.overrides?.setMonth ? this.overrides.setMonth(e, t) : Wg(e, t), this.setYear = (e, t) => this.overrides?.setYear ? this.overrides.setYear(e, t) : Gg(e, t), this.startOfBroadcastWeek = (e, t) => this.overrides?.startOfBroadcastWeek ? this.overrides.startOfBroadcastWeek(e, this) : Yg(e, this), this.startOfDay = (e) => this.overrides?.startOfDay ? this.overrides.startOfDay(e) : kh(e), this.startOfISOWeek = (e) => this.overrides?.startOfISOWeek ? this.overrides.startOfISOWeek(e) : Th(e), this.startOfMonth = (e) => this.overrides?.startOfMonth ? this.overrides.startOfMonth(e) : Uh(e), this.startOfWeek = (e, t) => this.overrides?.startOfWeek ? this.overrides.startOfWeek(e, this.options) : wh(e, this.options), this.startOfYear = (e) => this.overrides?.startOfYear ? this.overrides.startOfYear(e) : Gh(e), this.options = {
+			locale: Zg,
 			...e
 		}, this.overrides = t;
 	}
@@ -20075,7 +20084,7 @@ var Yg = {
 		return this.format(t, o);
 	}
 };
-Xg.yearFirstLocales = /* @__PURE__ */ new Set([
+Qg.yearFirstLocales = /* @__PURE__ */ new Set([
 	"eu",
 	"hu",
 	"ja",
@@ -20094,30 +20103,30 @@ Xg.yearFirstLocales = /* @__PURE__ */ new Set([
 	"zh-HK",
 	"zh-TW"
 ]);
-var Zg = new Xg(), Qg = class {
-	constructor(e, t, n = Zg) {
+var $g = new Qg(), e_ = class {
+	constructor(e, t, n = $g) {
 		this.date = e, this.displayMonth = t, this.outside = !!(t && !n.isSameMonth(e, t)), this.dateLib = n, this.isoDate = n.format(e, "yyyy-MM-dd"), this.displayMonthId = n.format(t, "yyyy-MM"), this.dateMonthId = n.format(e, "yyyy-MM");
 	}
 	isEqualTo(e) {
 		return this.dateLib.isSameDay(e.date, this.date) && this.dateLib.isSameMonth(e.displayMonth, this.displayMonth);
 	}
-}, $g = class {
+}, t_ = class {
 	constructor(e, t) {
 		this.date = e, this.weeks = t;
 	}
-}, e_ = class {
+}, n_ = class {
 	constructor(e, t) {
 		this.days = t, this.weekNumber = e;
 	}
 };
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/CaptionLabel.js
-function t_(e) {
+function r_(e) {
 	return C.createElement("span", { ...e });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Chevron.js
-function n_(e) {
+function i_(e) {
 	let { size: t = 24, orientation: n = "left", className: r, style: i } = e;
 	return C.createElement("svg", {
 		className: r,
@@ -20129,13 +20138,13 @@ function n_(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Day.js
-function r_(e) {
+function a_(e) {
 	let { day: t, modifiers: n, ...r } = e;
 	return C.createElement("td", { ...r });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/DayButton.js
-function i_(e) {
+function o_(e) {
 	let { day: t, modifiers: n, ...r } = e, i = C.useRef(null);
 	return C.useEffect(() => {
 		n.focused && i.current?.focus();
@@ -20146,38 +20155,38 @@ function i_(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/UI.js
-var a_;
-(function(e) {
-	e.Root = "root", e.Chevron = "chevron", e.Day = "day", e.DayButton = "day_button", e.CaptionLabel = "caption_label", e.Dropdowns = "dropdowns", e.Dropdown = "dropdown", e.DropdownRoot = "dropdown_root", e.Footer = "footer", e.MonthGrid = "month_grid", e.MonthCaption = "month_caption", e.MonthsDropdown = "months_dropdown", e.Month = "month", e.Months = "months", e.Nav = "nav", e.NextMonthButton = "button_next", e.PreviousMonthButton = "button_previous", e.Week = "week", e.Weeks = "weeks", e.Weekday = "weekday", e.Weekdays = "weekdays", e.WeekNumber = "week_number", e.WeekNumberHeader = "week_number_header", e.YearsDropdown = "years_dropdown";
-})(a_ ||= {});
-var o_;
-(function(e) {
-	e.disabled = "disabled", e.hidden = "hidden", e.outside = "outside", e.focused = "focused", e.today = "today";
-})(o_ ||= {});
 var s_;
 (function(e) {
-	e.range_end = "range_end", e.range_middle = "range_middle", e.range_start = "range_start", e.selected = "selected";
+	e.Root = "root", e.Chevron = "chevron", e.Day = "day", e.DayButton = "day_button", e.CaptionLabel = "caption_label", e.Dropdowns = "dropdowns", e.Dropdown = "dropdown", e.DropdownRoot = "dropdown_root", e.Footer = "footer", e.MonthGrid = "month_grid", e.MonthCaption = "month_caption", e.MonthsDropdown = "months_dropdown", e.Month = "month", e.Months = "months", e.Nav = "nav", e.NextMonthButton = "button_next", e.PreviousMonthButton = "button_previous", e.Week = "week", e.Weeks = "weeks", e.Weekday = "weekday", e.Weekdays = "weekdays", e.WeekNumber = "week_number", e.WeekNumberHeader = "week_number_header", e.YearsDropdown = "years_dropdown";
 })(s_ ||= {});
 var c_;
 (function(e) {
-	e.weeks_before_enter = "weeks_before_enter", e.weeks_before_exit = "weeks_before_exit", e.weeks_after_enter = "weeks_after_enter", e.weeks_after_exit = "weeks_after_exit", e.caption_after_enter = "caption_after_enter", e.caption_after_exit = "caption_after_exit", e.caption_before_enter = "caption_before_enter", e.caption_before_exit = "caption_before_exit";
+	e.disabled = "disabled", e.hidden = "hidden", e.outside = "outside", e.focused = "focused", e.today = "today";
 })(c_ ||= {});
+var l_;
+(function(e) {
+	e.range_end = "range_end", e.range_middle = "range_middle", e.range_start = "range_start", e.selected = "selected";
+})(l_ ||= {});
+var u_;
+(function(e) {
+	e.weeks_before_enter = "weeks_before_enter", e.weeks_before_exit = "weeks_before_exit", e.weeks_after_enter = "weeks_after_enter", e.weeks_after_exit = "weeks_after_exit", e.caption_after_enter = "caption_after_enter", e.caption_after_exit = "caption_after_exit", e.caption_before_enter = "caption_before_enter", e.caption_before_exit = "caption_before_exit";
+})(u_ ||= {});
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/useDayPicker.js
-var l_ = (0, C.createContext)(void 0);
-function u_() {
-	let e = (0, C.useContext)(l_);
+var d_ = (0, C.createContext)(void 0);
+function f_() {
+	let e = (0, C.useContext)(d_);
 	if (e === void 0) throw Error("useDayPicker() must be used within a custom component.");
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Dropdown.js
-function d_(e) {
-	let { options: t, className: n, ...r } = e, { classNames: i, components: a, styles: o } = u_(), s = [i[a_.Dropdown], n].join(" "), c = t?.find(({ value: e }) => e === r.value);
+function p_(e) {
+	let { options: t, className: n, ...r } = e, { classNames: i, components: a, styles: o } = f_(), s = [i[s_.Dropdown], n].join(" "), c = t?.find(({ value: e }) => e === r.value);
 	return C.createElement("span", {
 		"data-disabled": r.disabled,
-		className: i[a_.DropdownRoot],
-		style: o?.[a_.DropdownRoot]
+		className: i[s_.DropdownRoot],
+		style: o?.[s_.DropdownRoot]
 	}, C.createElement(a.Select, {
 		className: s,
 		...r
@@ -20186,79 +20195,79 @@ function d_(e) {
 		value: e,
 		disabled: n
 	}, t))), C.createElement("span", {
-		className: i[a_.CaptionLabel],
-		style: o?.[a_.CaptionLabel],
+		className: i[s_.CaptionLabel],
+		style: o?.[s_.CaptionLabel],
 		"aria-hidden": !0
 	}, c?.label, C.createElement(a.Chevron, {
 		orientation: "down",
 		size: 18,
-		className: i[a_.Chevron],
-		style: o?.[a_.Chevron]
+		className: i[s_.Chevron],
+		style: o?.[s_.Chevron]
 	})));
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/DropdownNav.js
-function f_(e) {
+function m_(e) {
 	return C.createElement("div", { ...e });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Footer.js
-function p_(e) {
+function h_(e) {
 	return C.createElement("div", { ...e });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Month.js
-function m_(e) {
+function g_(e) {
 	let { calendarMonth: t, displayIndex: n, ...r } = e;
 	return C.createElement("div", { ...r }, e.children);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/MonthCaption.js
-function h_(e) {
+function __(e) {
 	let { calendarMonth: t, displayIndex: n, ...r } = e;
 	return C.createElement("div", { ...r });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/MonthGrid.js
-function g_(e) {
+function v_(e) {
 	return C.createElement("table", { ...e });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Months.js
-function __(e) {
+function y_(e) {
 	return C.createElement("div", { ...e });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/MonthsDropdown.js
-function v_(e) {
-	let { components: t } = u_();
+function b_(e) {
+	let { components: t } = f_();
 	return C.createElement(t.Dropdown, { ...e });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Nav.js
-function y_(e) {
-	let { onPreviousClick: t, onNextClick: n, previousMonth: r, nextMonth: i, ...a } = e, { components: o, classNames: s, styles: c, labels: { labelPrevious: l, labelNext: u } } = u_(), d = (0, C.useCallback)((e) => {
+function x_(e) {
+	let { onPreviousClick: t, onNextClick: n, previousMonth: r, nextMonth: i, ...a } = e, { components: o, classNames: s, styles: c, labels: { labelPrevious: l, labelNext: u } } = f_(), d = (0, C.useCallback)((e) => {
 		i && n?.(e);
 	}, [i, n]), f = (0, C.useCallback)((e) => {
 		r && t?.(e);
 	}, [r, t]);
 	return C.createElement("nav", { ...a }, C.createElement(o.PreviousMonthButton, {
 		type: "button",
-		className: s[a_.PreviousMonthButton],
-		style: c?.[a_.PreviousMonthButton],
+		className: s[s_.PreviousMonthButton],
+		style: c?.[s_.PreviousMonthButton],
 		tabIndex: r ? void 0 : -1,
 		"aria-disabled": !r || void 0,
 		"aria-label": l(r),
 		onClick: f
 	}, C.createElement(o.Chevron, {
 		disabled: !r || void 0,
-		className: s[a_.Chevron],
-		style: c?.[a_.Chevron],
+		className: s[s_.Chevron],
+		style: c?.[s_.Chevron],
 		orientation: "left"
 	})), C.createElement(o.NextMonthButton, {
 		type: "button",
-		className: s[a_.NextMonthButton],
-		style: c?.[a_.NextMonthButton],
+		className: s[s_.NextMonthButton],
+		style: c?.[s_.NextMonthButton],
 		tabIndex: i ? void 0 : -1,
 		"aria-disabled": !i || void 0,
 		"aria-label": u(i),
@@ -20266,28 +20275,28 @@ function y_(e) {
 	}, C.createElement(o.Chevron, {
 		disabled: !i || void 0,
 		orientation: "right",
-		className: s[a_.Chevron],
-		style: c?.[a_.Chevron]
+		className: s[s_.Chevron],
+		style: c?.[s_.Chevron]
 	})));
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/NextMonthButton.js
-function b_(e) {
-	return C.createElement("button", { ...e });
-}
-//#endregion
-//#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Option.js
-function x_(e) {
-	return C.createElement("option", { ...e });
-}
-//#endregion
-//#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/PreviousMonthButton.js
 function S_(e) {
 	return C.createElement("button", { ...e });
 }
 //#endregion
-//#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Root.js
+//#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Option.js
 function C_(e) {
+	return C.createElement("option", { ...e });
+}
+//#endregion
+//#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/PreviousMonthButton.js
+function w_(e) {
+	return C.createElement("button", { ...e });
+}
+//#endregion
+//#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Root.js
+function T_(e) {
 	let { rootRef: t, ...n } = e;
 	return C.createElement("div", {
 		...n,
@@ -20296,143 +20305,143 @@ function C_(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Select.js
-function w_(e) {
+function E_(e) {
 	return C.createElement("select", { ...e });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Week.js
-function T_(e) {
+function D_(e) {
 	let { week: t, ...n } = e;
 	return C.createElement("tr", { ...n });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Weekday.js
-function E_(e) {
+function O_(e) {
 	return C.createElement("th", { ...e });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Weekdays.js
-function D_(e) {
+function k_(e) {
 	return C.createElement("thead", { "aria-hidden": !0 }, C.createElement("tr", { ...e }));
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/WeekNumber.js
-function O_(e) {
+function A_(e) {
 	let { week: t, ...n } = e;
 	return C.createElement("th", { ...n });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/WeekNumberHeader.js
-function k_(e) {
+function j_(e) {
 	return C.createElement("th", { ...e });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/Weeks.js
-function A_(e) {
+function M_(e) {
 	return C.createElement("tbody", { ...e });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/YearsDropdown.js
-function j_(e) {
-	let { components: t } = u_();
+function N_(e) {
+	let { components: t } = f_();
 	return C.createElement(t.Dropdown, { ...e });
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/components/custom-components.js
-var M_ = /* @__PURE__ */ s({
-	CaptionLabel: () => t_,
-	Chevron: () => n_,
-	Day: () => r_,
-	DayButton: () => i_,
-	Dropdown: () => d_,
-	DropdownNav: () => f_,
-	Footer: () => p_,
-	Month: () => m_,
-	MonthCaption: () => h_,
-	MonthGrid: () => g_,
-	Months: () => __,
-	MonthsDropdown: () => v_,
-	Nav: () => y_,
-	NextMonthButton: () => b_,
-	Option: () => x_,
-	PreviousMonthButton: () => S_,
-	Root: () => C_,
-	Select: () => w_,
-	Week: () => T_,
-	WeekNumber: () => O_,
-	WeekNumberHeader: () => k_,
-	Weekday: () => E_,
-	Weekdays: () => D_,
-	Weeks: () => A_,
-	YearsDropdown: () => j_
+var P_ = /* @__PURE__ */ s({
+	CaptionLabel: () => r_,
+	Chevron: () => i_,
+	Day: () => a_,
+	DayButton: () => o_,
+	Dropdown: () => p_,
+	DropdownNav: () => m_,
+	Footer: () => h_,
+	Month: () => g_,
+	MonthCaption: () => __,
+	MonthGrid: () => v_,
+	Months: () => y_,
+	MonthsDropdown: () => b_,
+	Nav: () => x_,
+	NextMonthButton: () => S_,
+	Option: () => C_,
+	PreviousMonthButton: () => w_,
+	Root: () => T_,
+	Select: () => E_,
+	Week: () => D_,
+	WeekNumber: () => A_,
+	WeekNumberHeader: () => j_,
+	Weekday: () => O_,
+	Weekdays: () => k_,
+	Weeks: () => M_,
+	YearsDropdown: () => N_
 });
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/utils/rangeIncludesDate.js
-function N_(e, t, n = !1, r = Zg) {
+function F_(e, t, n = !1, r = $g) {
 	let { from: i, to: a } = e, { differenceInCalendarDays: o, isSameDay: s } = r;
 	return i && a ? (o(a, i) < 0 && ([i, a] = [a, i]), o(t, i) >= +!!n && o(a, t) >= +!!n) : !n && a ? s(a, t) : !n && i ? s(i, t) : !1;
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/utils/typeguards.js
-function P_(e) {
+function I_(e) {
 	return !!(e && typeof e == "object" && "before" in e && "after" in e);
 }
-function F_(e) {
+function L_(e) {
 	return !!(e && typeof e == "object" && "from" in e);
 }
-function I_(e) {
+function R_(e) {
 	return !!(e && typeof e == "object" && "after" in e);
 }
-function L_(e) {
+function z_(e) {
 	return !!(e && typeof e == "object" && "before" in e);
 }
-function R_(e) {
+function B_(e) {
 	return !!(e && typeof e == "object" && "dayOfWeek" in e);
 }
-function z_(e, t) {
+function V_(e, t) {
 	return Array.isArray(e) && e.every(t.isDate);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/utils/dateMatchModifiers.js
-function B_(e, t, n = Zg) {
+function H_(e, t, n = $g) {
 	let r = Array.isArray(t) ? t : [t], { isSameDay: i, differenceInCalendarDays: a, isAfter: o } = n;
 	return r.some((t) => {
 		if (typeof t == "boolean") return t;
 		if (n.isDate(t)) return i(e, t);
-		if (z_(t, n)) return t.some((t) => i(e, t));
-		if (F_(t)) return N_(t, e, !1, n);
-		if (R_(t)) return Array.isArray(t.dayOfWeek) ? t.dayOfWeek.includes(e.getDay()) : t.dayOfWeek === e.getDay();
-		if (P_(t)) {
+		if (V_(t, n)) return t.some((t) => i(e, t));
+		if (L_(t)) return F_(t, e, !1, n);
+		if (B_(t)) return Array.isArray(t.dayOfWeek) ? t.dayOfWeek.includes(e.getDay()) : t.dayOfWeek === e.getDay();
+		if (I_(t)) {
 			let n = a(t.before, e), r = a(t.after, e), i = n > 0, s = r < 0;
 			return o(t.before, t.after) ? s && i : i || s;
 		}
-		return I_(t) ? a(e, t.after) > 0 : L_(t) ? a(t.before, e) > 0 : typeof t == "function" && t(e);
+		return R_(t) ? a(e, t.after) > 0 : z_(t) ? a(t.before, e) > 0 : typeof t == "function" && t(e);
 	});
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/createGetModifiers.js
-function V_(e, t, n, r, i) {
+function U_(e, t, n, r, i) {
 	let { disabled: a, hidden: o, modifiers: s, showOutsideDays: c, broadcastCalendar: l, today: u = i.today() } = t, { isSameDay: d, isSameMonth: f, startOfMonth: p, isBefore: m, endOfMonth: h, isAfter: g } = i, _ = n && p(n), v = r && h(r), y = {
-		[o_.focused]: [],
-		[o_.outside]: [],
-		[o_.disabled]: [],
-		[o_.hidden]: [],
-		[o_.today]: []
+		[c_.focused]: [],
+		[c_.outside]: [],
+		[c_.disabled]: [],
+		[c_.hidden]: [],
+		[c_.today]: []
 	}, b = {};
 	for (let t of e) {
-		let { date: e, displayMonth: n } = t, r = !!(n && !f(e, n)), p = !!(_ && m(e, _)), h = !!(v && g(e, v)), x = !!(a && B_(e, a, i)), S = !!(o && B_(e, o, i)) || p || h || !l && !c && r || l && c === !1 && r, C = d(e, u);
+		let { date: e, displayMonth: n } = t, r = !!(n && !f(e, n)), p = !!(_ && m(e, _)), h = !!(v && g(e, v)), x = !!(a && H_(e, a, i)), S = !!(o && H_(e, o, i)) || p || h || !l && !c && r || l && c === !1 && r, C = d(e, u);
 		r && y.outside.push(t), x && y.disabled.push(t), S && y.hidden.push(t), C && y.today.push(t), s && Object.keys(s).forEach((n) => {
 			let r = s?.[n];
-			r && B_(e, r, i) && (b[n] ? b[n].push(t) : b[n] = [t]);
+			r && H_(e, r, i) && (b[n] ? b[n].push(t) : b[n] = [t]);
 		});
 	}
 	return (e) => {
 		let t = {
-			[o_.focused]: !1,
-			[o_.disabled]: !1,
-			[o_.hidden]: !1,
-			[o_.outside]: !1,
-			[o_.today]: !1
+			[c_.focused]: !1,
+			[c_.disabled]: !1,
+			[c_.hidden]: !1,
+			[c_.outside]: !1,
+			[c_.today]: !1
 		}, n = {};
 		for (let n in y) t[n] = y[n].some((t) => t === e);
 		for (let t in b) n[t] = b[t].some((t) => t === e);
@@ -20444,20 +20453,20 @@ function V_(e, t, n, r, i) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getClassNamesForModifiers.js
-function H_(e, t, n = {}) {
-	return Object.entries(e).filter(([, e]) => e === !0).reduce((e, [r]) => (n[r] ? e.push(n[r]) : t[o_[r]] ? e.push(t[o_[r]]) : t[s_[r]] && e.push(t[s_[r]]), e), [t[a_.Day]]);
+function W_(e, t, n = {}) {
+	return Object.entries(e).filter(([, e]) => e === !0).reduce((e, [r]) => (n[r] ? e.push(n[r]) : t[c_[r]] ? e.push(t[c_[r]]) : t[l_[r]] && e.push(t[l_[r]]), e), [t[s_.Day]]);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getComponents.js
-function U_(e) {
+function G_(e) {
 	return {
-		...M_,
+		...P_,
 		...e
 	};
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getDataAttributes.js
-function W_(e) {
+function K_(e) {
 	let t = {
 		"data-mode": e.mode ?? void 0,
 		"data-required": "required" in e ? e.required : void 0,
@@ -20472,162 +20481,162 @@ function W_(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getDefaultClassNames.js
-function G_() {
+function q_() {
 	let e = {};
-	for (let t in a_) e[a_[t]] = `rdp-${a_[t]}`;
-	for (let t in o_) e[o_[t]] = `rdp-${o_[t]}`;
 	for (let t in s_) e[s_[t]] = `rdp-${s_[t]}`;
 	for (let t in c_) e[c_[t]] = `rdp-${c_[t]}`;
+	for (let t in l_) e[l_[t]] = `rdp-${l_[t]}`;
+	for (let t in u_) e[u_[t]] = `rdp-${u_[t]}`;
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/formatters/formatCaption.js
-function K_(e, t, n) {
-	return (n ?? new Xg(t)).formatMonthYear(e);
+function J_(e, t, n) {
+	return (n ?? new Qg(t)).formatMonthYear(e);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/formatters/formatDay.js
-function q_(e, t, n) {
-	return (n ?? new Xg(t)).format(e, "d");
+function Y_(e, t, n) {
+	return (n ?? new Qg(t)).format(e, "d");
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/formatters/formatMonthDropdown.js
-function J_(e, t = Zg) {
+function X_(e, t = $g) {
 	return t.format(e, "LLLL");
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/formatters/formatWeekdayName.js
-function Y_(e, t, n) {
-	return (n ?? new Xg(t)).format(e, "cccccc");
+function Z_(e, t, n) {
+	return (n ?? new Qg(t)).format(e, "cccccc");
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/formatters/formatWeekNumber.js
-function X_(e, t = Zg) {
+function Q_(e, t = $g) {
 	return e < 10 ? t.formatNumber(`0${e.toLocaleString()}`) : t.formatNumber(`${e.toLocaleString()}`);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/formatters/formatWeekNumberHeader.js
-function Z_() {
+function $_() {
 	return "";
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/formatters/formatYearDropdown.js
-function Q_(e, t = Zg) {
+function ev(e, t = $g) {
 	return t.format(e, "yyyy");
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/formatters/index.js
-var $_ = /* @__PURE__ */ s({
-	formatCaption: () => K_,
-	formatDay: () => q_,
-	formatMonthDropdown: () => J_,
-	formatWeekNumber: () => X_,
-	formatWeekNumberHeader: () => Z_,
-	formatWeekdayName: () => Y_,
-	formatYearDropdown: () => Q_
+var tv = /* @__PURE__ */ s({
+	formatCaption: () => J_,
+	formatDay: () => Y_,
+	formatMonthDropdown: () => X_,
+	formatWeekNumber: () => Q_,
+	formatWeekNumberHeader: () => $_,
+	formatWeekdayName: () => Z_,
+	formatYearDropdown: () => ev
 });
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getFormatters.js
-function ev(e) {
+function nv(e) {
 	return {
-		...$_,
+		...tv,
 		...e
 	};
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/labels/labelDayButton.js
-function tv(e, t, n, r) {
-	let i = (r ?? new Xg(n)).format(e, "PPPP");
+function rv(e, t, n, r) {
+	let i = (r ?? new Qg(n)).format(e, "PPPP");
 	return t.today && (i = `Today, ${i}`), t.selected && (i = `${i}, selected`), i;
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/labels/labelGrid.js
-function nv(e, t, n) {
-	return (n ?? new Xg(t)).formatMonthYear(e);
+function iv(e, t, n) {
+	return (n ?? new Qg(t)).formatMonthYear(e);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/labels/labelGridcell.js
-function rv(e, t, n, r) {
-	let i = (r ?? new Xg(n)).format(e, "PPPP");
+function av(e, t, n, r) {
+	let i = (r ?? new Qg(n)).format(e, "PPPP");
 	return t?.today && (i = `Today, ${i}`), i;
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/labels/labelMonthDropdown.js
-function iv(e) {
+function ov(e) {
 	return "Choose the Month";
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/labels/labelNav.js
-function av() {
+function sv() {
 	return "";
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/labels/labelNext.js
-var ov = "Go to the Next Month";
-function sv(e, t) {
-	return ov;
+var cv = "Go to the Next Month";
+function lv(e, t) {
+	return cv;
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/labels/labelPrevious.js
-function cv(e) {
+function uv(e) {
 	return "Go to the Previous Month";
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/labels/labelWeekday.js
-function lv(e, t, n) {
-	return (n ?? new Xg(t)).format(e, "cccc");
+function dv(e, t, n) {
+	return (n ?? new Qg(t)).format(e, "cccc");
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/labels/labelWeekNumber.js
-function uv(e, t) {
+function fv(e, t) {
 	return `Week ${e}`;
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/labels/labelWeekNumberHeader.js
-function dv(e) {
+function pv(e) {
 	return "Week Number";
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/labels/labelYearDropdown.js
-function fv(e) {
+function mv(e) {
 	return "Choose the Year";
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/labels/index.js
-var pv = /* @__PURE__ */ s({
-	labelDayButton: () => tv,
-	labelGrid: () => nv,
-	labelGridcell: () => rv,
-	labelMonthDropdown: () => iv,
-	labelNav: () => av,
-	labelNext: () => sv,
-	labelPrevious: () => cv,
-	labelWeekNumber: () => uv,
-	labelWeekNumberHeader: () => dv,
-	labelWeekday: () => lv,
-	labelYearDropdown: () => fv
-}), mv = (e, t, n) => t || (n ? typeof n == "function" ? n : (...e) => n : e);
-function hv(e, t) {
+var hv = /* @__PURE__ */ s({
+	labelDayButton: () => rv,
+	labelGrid: () => iv,
+	labelGridcell: () => av,
+	labelMonthDropdown: () => ov,
+	labelNav: () => sv,
+	labelNext: () => lv,
+	labelPrevious: () => uv,
+	labelWeekNumber: () => fv,
+	labelWeekNumberHeader: () => pv,
+	labelWeekday: () => dv,
+	labelYearDropdown: () => mv
+}), gv = (e, t, n) => t || (n ? typeof n == "function" ? n : (...e) => n : e);
+function _v(e, t) {
 	let n = t.locale?.labels ?? {};
 	return {
-		...pv,
+		...hv,
 		...e ?? {},
-		labelDayButton: mv(tv, e?.labelDayButton, n.labelDayButton),
-		labelMonthDropdown: mv(iv, e?.labelMonthDropdown, n.labelMonthDropdown),
-		labelNext: mv(sv, e?.labelNext, n.labelNext),
-		labelPrevious: mv(cv, e?.labelPrevious, n.labelPrevious),
-		labelWeekNumber: mv(uv, e?.labelWeekNumber, n.labelWeekNumber),
-		labelYearDropdown: mv(fv, e?.labelYearDropdown, n.labelYearDropdown),
-		labelGrid: mv(nv, e?.labelGrid, n.labelGrid),
-		labelGridcell: mv(rv, e?.labelGridcell, n.labelGridcell),
-		labelNav: mv(av, e?.labelNav, n.labelNav),
-		labelWeekNumberHeader: mv(dv, e?.labelWeekNumberHeader, n.labelWeekNumberHeader),
-		labelWeekday: mv(lv, e?.labelWeekday, n.labelWeekday)
+		labelDayButton: gv(rv, e?.labelDayButton, n.labelDayButton),
+		labelMonthDropdown: gv(ov, e?.labelMonthDropdown, n.labelMonthDropdown),
+		labelNext: gv(lv, e?.labelNext, n.labelNext),
+		labelPrevious: gv(uv, e?.labelPrevious, n.labelPrevious),
+		labelWeekNumber: gv(fv, e?.labelWeekNumber, n.labelWeekNumber),
+		labelYearDropdown: gv(mv, e?.labelYearDropdown, n.labelYearDropdown),
+		labelGrid: gv(iv, e?.labelGrid, n.labelGrid),
+		labelGridcell: gv(av, e?.labelGridcell, n.labelGridcell),
+		labelNav: gv(sv, e?.labelNav, n.labelNav),
+		labelWeekNumberHeader: gv(pv, e?.labelWeekNumberHeader, n.labelWeekNumberHeader),
+		labelWeekday: gv(dv, e?.labelWeekday, n.labelWeekday)
 	};
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getMonthOptions.js
-function gv(e, t, n, r, i) {
+function vv(e, t, n, r, i) {
 	let { startOfMonth: a, startOfYear: o, endOfYear: s, eachMonthOfInterval: c, getMonth: l } = i;
 	return c({
 		start: o(e),
@@ -20643,8 +20652,8 @@ function gv(e, t, n, r, i) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getStyleForModifiers.js
-function _v(e, t = {}, n = {}) {
-	let r = { ...t?.[a_.Day] };
+function yv(e, t = {}, n = {}) {
+	let r = { ...t?.[s_.Day] };
 	return Object.entries(e).filter(([, e]) => e === !0).forEach(([e]) => {
 		r = {
 			...r,
@@ -20654,7 +20663,7 @@ function _v(e, t = {}, n = {}) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getWeekdays.js
-function vv(e, t, n, r) {
+function bv(e, t, n, r) {
 	let i = r ?? e.today(), a = n ? e.startOfBroadcastWeek(i, e) : t ? e.startOfISOWeek(i) : e.startOfWeek(i), o = [];
 	for (let t = 0; t < 7; t++) {
 		let n = e.addDays(a, t);
@@ -20664,7 +20673,7 @@ function vv(e, t, n, r) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getYearOptions.js
-function yv(e, t, n, r, i = !1) {
+function xv(e, t, n, r, i = !1) {
 	if (!e || !t) return;
 	let { startOfYear: a, endOfYear: o, eachYearOfInterval: s, getYear: c } = r, l = s({
 		start: a(e),
@@ -20681,17 +20690,17 @@ function yv(e, t, n, r, i = !1) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/noonDateLib.js
-function bv(e, t = {}) {
+function Sv(e, t = {}) {
 	let { weekStartsOn: n, locale: r } = t, i = n ?? r?.options?.weekStartsOn ?? 0, a = (t) => {
 		let n = typeof t == "number" || typeof t == "string" ? new Date(t) : t;
-		return new uh(n.getFullYear(), n.getMonth(), n.getDate(), 12, 0, 0, e);
+		return new fh(n.getFullYear(), n.getMonth(), n.getDate(), 12, 0, 0, e);
 	}, o = (e) => {
 		let t = a(e);
 		return new Date(t.getFullYear(), t.getMonth(), t.getDate(), 0, 0, 0, 0);
 	};
 	return {
-		today: () => a(uh.tz(e)),
-		newDate: (t, n, r) => new uh(t, n, r, 12, 0, 0, e),
+		today: () => a(fh.tz(e)),
+		newDate: (t, n, r) => new fh(t, n, r, 12, 0, 0, e),
 		startOfDay: (e) => a(e),
 		startOfWeek: (e, t) => {
 			let n = a(e), r = t?.weekStartsOn ?? i, o = (n.getDay() - r + 7) % 7;
@@ -20726,8 +20735,8 @@ function bv(e, t = {}) {
 			return t.setMonth(11, 31), t;
 		},
 		eachMonthOfInterval: (t) => {
-			let n = a(t.start), r = a(t.end), i = [], o = new uh(n.getFullYear(), n.getMonth(), 1, 12, 0, 0, e), s = r.getFullYear() * 12 + r.getMonth();
-			for (; o.getFullYear() * 12 + o.getMonth() <= s;) i.push(new uh(o, e)), o.setMonth(o.getMonth() + 1, 1);
+			let n = a(t.start), r = a(t.end), i = [], o = new fh(n.getFullYear(), n.getMonth(), 1, 12, 0, 0, e), s = r.getFullYear() * 12 + r.getMonth();
+			for (; o.getFullYear() * 12 + o.getMonth() <= s;) i.push(new fh(o, e)), o.setMonth(o.getMonth() + 1, 1);
 			return i;
 		},
 		addDays: (e, t) => {
@@ -20747,68 +20756,68 @@ function bv(e, t = {}) {
 			return n.setFullYear(n.getFullYear() + t), n;
 		},
 		eachYearOfInterval: (t) => {
-			let n = a(t.start), r = a(t.end), i = [], o = new uh(n.getFullYear(), 0, 1, 12, 0, 0, e);
-			for (; o.getFullYear() <= r.getFullYear();) i.push(new uh(o, e)), o.setFullYear(o.getFullYear() + 1, 0, 1);
+			let n = a(t.start), r = a(t.end), i = [], o = new fh(n.getFullYear(), 0, 1, 12, 0, 0, e);
+			for (; o.getFullYear() <= r.getFullYear();) i.push(new fh(o, e)), o.setFullYear(o.getFullYear() + 1, 0, 1);
 			return i;
 		},
-		getWeek: (e, t) => ug(o(e), {
+		getWeek: (e, t) => fg(o(e), {
 			weekStartsOn: t?.weekStartsOn ?? i,
 			firstWeekContainsDate: t?.firstWeekContainsDate ?? r?.options?.firstWeekContainsDate ?? 1
 		}),
-		getISOWeek: (e) => sg(o(e)),
-		differenceInCalendarDays: (e, t) => Oh(o(e), o(t)),
-		differenceInCalendarMonths: (e, t) => Lh(o(e), o(t))
+		getISOWeek: (e) => lg(o(e)),
+		differenceInCalendarDays: (e, t) => Ah(o(e), o(t)),
+		differenceInCalendarMonths: (e, t) => zh(o(e), o(t))
 	};
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/useAnimation.js
-var xv = (e) => e instanceof HTMLElement ? e : null, Sv = (e) => [...e.querySelectorAll("[data-animated-month]") ?? []], Cv = (e) => xv(e.querySelector("[data-animated-month]")), wv = (e) => xv(e.querySelector("[data-animated-caption]")), Tv = (e) => xv(e.querySelector("[data-animated-weeks]")), Ev = (e) => xv(e.querySelector("[data-animated-nav]")), Dv = (e) => xv(e.querySelector("[data-animated-weekdays]"));
-function Ov(e, t, { classNames: n, months: r, focused: i, dateLib: a }) {
+var Cv = (e) => e instanceof HTMLElement ? e : null, wv = (e) => [...e.querySelectorAll("[data-animated-month]") ?? []], Tv = (e) => Cv(e.querySelector("[data-animated-month]")), Ev = (e) => Cv(e.querySelector("[data-animated-caption]")), Dv = (e) => Cv(e.querySelector("[data-animated-weeks]")), Ov = (e) => Cv(e.querySelector("[data-animated-nav]")), kv = (e) => Cv(e.querySelector("[data-animated-weekdays]"));
+function Av(e, t, { classNames: n, months: r, focused: i, dateLib: a }) {
 	let o = (0, C.useRef)(null), s = (0, C.useRef)(r), c = (0, C.useRef)(!1);
 	(0, C.useLayoutEffect)(() => {
 		let l = s.current;
 		if (s.current = r, !t || !e.current || !(e.current instanceof HTMLElement) || r.length === 0 || l.length === 0 || r.length !== l.length) return;
-		let u = a.isSameMonth(r[0].date, l[0].date), d = a.isAfter(r[0].date, l[0].date), f = d ? n[c_.caption_after_enter] : n[c_.caption_before_enter], p = d ? n[c_.weeks_after_enter] : n[c_.weeks_before_enter], m = o.current, h = e.current.cloneNode(!0);
-		if (h instanceof HTMLElement ? (Sv(h).forEach((e) => {
+		let u = a.isSameMonth(r[0].date, l[0].date), d = a.isAfter(r[0].date, l[0].date), f = d ? n[u_.caption_after_enter] : n[u_.caption_before_enter], p = d ? n[u_.weeks_after_enter] : n[u_.weeks_before_enter], m = o.current, h = e.current.cloneNode(!0);
+		if (h instanceof HTMLElement ? (wv(h).forEach((e) => {
 			if (!(e instanceof HTMLElement)) return;
-			let t = Cv(e);
+			let t = Tv(e);
 			t && e.contains(t) && e.removeChild(t);
-			let n = wv(e);
+			let n = Ev(e);
 			n && n.classList.remove(f);
-			let r = Tv(e);
+			let r = Dv(e);
 			r && r.classList.remove(p);
 		}), o.current = h) : o.current = null, c.current || u || i) return;
-		let g = m instanceof HTMLElement ? Sv(m) : [], _ = Sv(e.current);
+		let g = m instanceof HTMLElement ? wv(m) : [], _ = wv(e.current);
 		if (_?.every((e) => e instanceof HTMLElement) && g?.every((e) => e instanceof HTMLElement)) {
 			c.current = !0;
 			let t = [];
 			e.current.style.isolation = "isolate";
-			let r = Ev(e.current);
+			let r = Ov(e.current);
 			r && (r.style.zIndex = "1"), _.forEach((i, a) => {
 				let o = g[a];
 				if (!o) return;
 				i.style.position = "relative", i.style.overflow = "hidden";
-				let s = wv(i);
+				let s = Ev(i);
 				s && s.classList.add(f);
-				let l = Tv(i);
+				let l = Dv(i);
 				l && l.classList.add(p);
 				let u = () => {
 					c.current = !1, e.current && (e.current.style.isolation = ""), r && (r.style.zIndex = ""), s && s.classList.remove(f), l && l.classList.remove(p), i.style.position = "", i.style.overflow = "", i.contains(o) && i.removeChild(o);
 				};
 				t.push(u), o.style.pointerEvents = "none", o.style.position = "absolute", o.style.overflow = "hidden", o.setAttribute("aria-hidden", "true");
-				let m = Dv(o);
+				let m = kv(o);
 				m && (m.style.opacity = "0");
-				let h = wv(o);
-				h && (h.classList.add(d ? n[c_.caption_before_exit] : n[c_.caption_after_exit]), h.addEventListener("animationend", u));
-				let _ = Tv(o);
-				_ && _.classList.add(d ? n[c_.weeks_before_exit] : n[c_.weeks_after_exit]), i.insertBefore(o, i.firstChild);
+				let h = Ev(o);
+				h && (h.classList.add(d ? n[u_.caption_before_exit] : n[u_.caption_after_exit]), h.addEventListener("animationend", u));
+				let _ = Dv(o);
+				_ && _.classList.add(d ? n[u_.weeks_before_exit] : n[u_.weeks_after_exit]), i.insertBefore(o, i.firstChild);
 			});
 		}
 	});
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getDates.js
-function kv(e, t, n, r) {
+function jv(e, t, n, r) {
 	let i = e[0], a = e[e.length - 1], { ISOWeek: o, fixedWeeks: s, broadcastCalendar: c } = n ?? {}, { addDays: l, differenceInCalendarDays: u, differenceInCalendarMonths: d, endOfBroadcastWeek: f, endOfISOWeek: p, endOfMonth: m, endOfWeek: h, isAfter: g, startOfBroadcastWeek: _, startOfISOWeek: v, startOfWeek: y } = r, b = c ? _(i, r) : o ? v(i) : y(i), x = c ? f(a) : o ? p(m(a)) : h(m(a)), S = t && (c ? f(t) : o ? p(t) : h(t)), C = u(S && g(x, S) ? S : x, b), w = d(a, i) + 1, T = [];
 	for (let e = 0; e <= C; e++) {
 		let t = l(b, e);
@@ -20826,7 +20835,7 @@ function kv(e, t, n, r) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getDays.js
-function Av(e) {
+function Mv(e) {
 	let t = [];
 	return e.reduce((e, n) => {
 		let r = n.weeks.reduce((e, t) => e.concat(t.days.slice()), t.slice());
@@ -20835,7 +20844,7 @@ function Av(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getDisplayMonths.js
-function jv(e, t, n, r) {
+function Nv(e, t, n, r) {
 	let { numberOfMonths: i = 1 } = n, a = [];
 	for (let n = 0; n < i; n++) {
 		let i = r.addMonths(e, n);
@@ -20846,13 +20855,13 @@ function jv(e, t, n, r) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getInitialMonth.js
-function Mv(e, t, n, r) {
+function Pv(e, t, n, r) {
 	let { month: i, defaultMonth: a, today: o = r.today(), numberOfMonths: s = 1 } = e, c = i || a || o, { differenceInCalendarMonths: l, addMonths: u, startOfMonth: d } = r;
 	return n && l(n, c) < s - 1 && (c = u(n, -1 * (s - 1))), t && l(c, t) < 0 && (c = t), d(c);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getMonths.js
-function Nv(e, t, n, r) {
+function Fv(e, t, n, r) {
 	let { addDays: i, endOfBroadcastWeek: a, endOfISOWeek: o, endOfMonth: s, endOfWeek: c, getISOWeek: l, getWeek: u, startOfBroadcastWeek: d, startOfISOWeek: f, startOfWeek: p } = r, m = e.reduce((e, m) => {
 		let h = n.broadcastCalendar ? d(m, r) : n.ISOWeek ? f(m) : p(m), g = n.broadcastCalendar ? a(m) : n.ISOWeek ? o(s(m)) : c(s(m)), _ = t.filter((e) => e >= h && e <= g), v = n.broadcastCalendar ? 35 : 42;
 		if (n.fixedWeeks && _.length < v) {
@@ -20862,9 +20871,9 @@ function Nv(e, t, n, r) {
 			});
 			_.push(...e);
 		}
-		let y = new $g(m, _.reduce((e, t) => {
-			let i = n.ISOWeek ? l(t) : u(t), a = e.find((e) => e.weekNumber === i), o = new Qg(t, m, r);
-			return a ? a.days.push(o) : e.push(new e_(i, [o])), e;
+		let y = new t_(m, _.reduce((e, t) => {
+			let i = n.ISOWeek ? l(t) : u(t), a = e.find((e) => e.weekNumber === i), o = new e_(t, m, r);
+			return a ? a.days.push(o) : e.push(new n_(i, [o])), e;
 		}, []));
 		return e.push(y), e;
 	}, []);
@@ -20872,45 +20881,45 @@ function Nv(e, t, n, r) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getNavMonth.js
-function Pv(e, t) {
+function Iv(e, t) {
 	let { startMonth: n, endMonth: r } = e, { startOfYear: i, startOfDay: a, startOfMonth: o, endOfMonth: s, addYears: c, endOfYear: l, today: u } = t, d = e.captionLayout === "dropdown" || e.captionLayout === "dropdown-years";
 	return n ? n = o(n) : !n && d && (n = i(c(e.today ?? u(), -100))), r ? r = s(r) : !r && d && (r = l(e.today ?? u())), [n && a(n), r && a(r)];
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getNextMonth.js
-function Fv(e, t, n, r) {
+function Lv(e, t, n, r) {
 	if (n.disableNavigation) return;
 	let { pagedNavigation: i, numberOfMonths: a = 1 } = n, { startOfMonth: o, addMonths: s, differenceInCalendarMonths: c } = r, l = i ? a : 1, u = o(e);
 	if (!t || !(c(t, e) < a)) return s(u, l);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getPreviousMonth.js
-function Iv(e, t, n, r) {
+function Rv(e, t, n, r) {
 	if (n.disableNavigation) return;
 	let { pagedNavigation: i, numberOfMonths: a } = n, { startOfMonth: o, addMonths: s, differenceInCalendarMonths: c } = r, l = i ? a ?? 1 : 1, u = o(e);
 	if (!t || !(c(u, t) <= 0)) return s(u, -l);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getWeeks.js
-function Lv(e) {
+function zv(e) {
 	return e.reduce((e, t) => e.concat(t.weeks.slice()), [].slice());
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/useControlledValue.js
-function Rv(e, t) {
+function Bv(e, t) {
 	let [n, r] = (0, C.useState)(e);
 	return [t === void 0 ? n : t, r];
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/useCalendar.js
-function zv(e, t) {
-	let [n, r] = Pv(e, t), { startOfMonth: i, endOfMonth: a } = t, o = Mv(e, n, r, t), [s, c] = Rv(o, e.month ? o : void 0);
+function Vv(e, t) {
+	let [n, r] = Iv(e, t), { startOfMonth: i, endOfMonth: a } = t, o = Pv(e, n, r, t), [s, c] = Bv(o, e.month ? o : void 0);
 	(0, C.useEffect)(() => {
-		let i = Mv(e, n, r, t);
+		let i = Pv(e, n, r, t);
 		c(i);
 	}, [e.timeZone]);
 	let { months: l, weeks: u, days: d, previousMonth: f, nextMonth: p } = (0, C.useMemo)(() => {
-		let i = jv(s, r, { numberOfMonths: e.numberOfMonths }, t), o = Nv(i, kv(i, e.endMonth ? a(e.endMonth) : void 0, {
+		let i = Nv(s, r, { numberOfMonths: e.numberOfMonths }, t), o = Fv(i, jv(i, e.endMonth ? a(e.endMonth) : void 0, {
 			ISOWeek: e.ISOWeek,
 			fixedWeeks: e.fixedWeeks,
 			broadcastCalendar: e.broadcastCalendar
@@ -20922,10 +20931,10 @@ function zv(e, t) {
 		}, t);
 		return {
 			months: o,
-			weeks: Lv(o),
-			days: Av(o),
-			previousMonth: Iv(s, n, e, t),
-			nextMonth: Fv(s, r, e, t)
+			weeks: zv(o),
+			days: Mv(o),
+			previousMonth: Rv(s, n, e, t),
+			nextMonth: Lv(s, r, e, t)
 		};
 	}, [
 		t,
@@ -20961,24 +20970,24 @@ function zv(e, t) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/calculateFocusTarget.js
-var Bv;
+var Hv;
 (function(e) {
 	e[e.Today = 0] = "Today", e[e.Selected = 1] = "Selected", e[e.LastFocused = 2] = "LastFocused", e[e.FocusedModifier = 3] = "FocusedModifier";
-})(Bv ||= {});
-function Vv(e) {
-	return !e[o_.disabled] && !e[o_.hidden] && !e[o_.outside];
+})(Hv ||= {});
+function Uv(e) {
+	return !e[c_.disabled] && !e[c_.hidden] && !e[c_.outside];
 }
-function Hv(e, t, n, r) {
+function Wv(e, t, n, r) {
 	let i, a = -1;
 	for (let o of e) {
 		let e = t(o);
-		Vv(e) && (e[o_.focused] && a < Bv.FocusedModifier ? (i = o, a = Bv.FocusedModifier) : r?.isEqualTo(o) && a < Bv.LastFocused ? (i = o, a = Bv.LastFocused) : n(o.date) && a < Bv.Selected ? (i = o, a = Bv.Selected) : e[o_.today] && a < Bv.Today && (i = o, a = Bv.Today));
+		Uv(e) && (e[c_.focused] && a < Hv.FocusedModifier ? (i = o, a = Hv.FocusedModifier) : r?.isEqualTo(o) && a < Hv.LastFocused ? (i = o, a = Hv.LastFocused) : n(o.date) && a < Hv.Selected ? (i = o, a = Hv.Selected) : e[c_.today] && a < Hv.Today && (i = o, a = Hv.Today));
 	}
-	return i ||= e.find((e) => Vv(t(e))), i;
+	return i ||= e.find((e) => Uv(t(e))), i;
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getFocusableDate.js
-function Uv(e, t, n, r, i, a, o) {
+function Gv(e, t, n, r, i, a, o) {
 	let { ISOWeek: s, broadcastCalendar: c } = a, { addDays: l, addMonths: u, addWeeks: d, addYears: f, endOfBroadcastWeek: p, endOfISOWeek: m, endOfWeek: h, max: g, min: _, startOfBroadcastWeek: v, startOfISOWeek: y, startOfWeek: b } = o, x = {
 		day: l,
 		week: d,
@@ -20991,15 +21000,15 @@ function Uv(e, t, n, r, i, a, o) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/helpers/getNextFocus.js
-function Wv(e, t, n, r, i, a, o, s = 0) {
+function Kv(e, t, n, r, i, a, o, s = 0) {
 	if (s > 365) return;
-	let c = Uv(e, t, n.date, r, i, a, o), l = !!(a.disabled && B_(c, a.disabled, o)), u = !!(a.hidden && B_(c, a.hidden, o)), d = new Qg(c, c, o);
-	return !l && !u ? d : Wv(e, t, d, r, i, a, o, s + 1);
+	let c = Gv(e, t, n.date, r, i, a, o), l = !!(a.disabled && H_(c, a.disabled, o)), u = !!(a.hidden && H_(c, a.hidden, o)), d = new e_(c, c, o);
+	return !l && !u ? d : Kv(e, t, d, r, i, a, o, s + 1);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/useFocus.js
-function Gv(e, t, n, r, i) {
-	let { autoFocus: a } = e, [o, s] = (0, C.useState)(), c = Hv(t.days, n, r || (() => !1), o), [l, u] = (0, C.useState)(a ? c : void 0);
+function qv(e, t, n, r, i) {
+	let { autoFocus: a } = e, [o, s] = (0, C.useState)(), c = Wv(t.days, n, r || (() => !1), o), [l, u] = (0, C.useState)(a ? c : void 0);
 	return {
 		isFocusTarget: (e) => !!c?.isEqualTo(e),
 		setFocused: u,
@@ -21009,15 +21018,15 @@ function Gv(e, t, n, r, i) {
 		},
 		moveFocus: (n, r) => {
 			if (!l) return;
-			let a = Wv(n, r, l, t.navStart, t.navEnd, e, i);
+			let a = Kv(n, r, l, t.navStart, t.navEnd, e, i);
 			a && (e.disableNavigation && !t.days.some((e) => e.isEqualTo(a)) || (t.goToDay(a), u(a)));
 		}
 	};
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/selection/useMulti.js
-function Kv(e, t) {
-	let { selected: n, required: r, onSelect: i } = e, [a, o] = Rv(n, i ? n : void 0), s = i ? n : a, { isSameDay: c } = t, l = (e) => s?.some((t) => c(t, e)) ?? !1, { min: u, max: d } = e;
+function Jv(e, t) {
+	let { selected: n, required: r, onSelect: i } = e, [a, o] = Bv(n, i ? n : void 0), s = i ? n : a, { isSameDay: c } = t, l = (e) => s?.some((t) => c(t, e)) ?? !1, { min: u, max: d } = e;
 	return {
 		selected: s,
 		select: (e, t, n) => {
@@ -21033,7 +21042,7 @@ function Kv(e, t) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/utils/addToRange.js
-function qv(e, t, n = 0, r = 0, i = !1, a = Zg) {
+function Yv(e, t, n = 0, r = 0, i = !1, a = $g) {
 	let { from: o, to: s } = t || {}, { isSameDay: c, isAfter: l, isBefore: u } = a, d;
 	if (!o && !s) d = {
 		from: e,
@@ -21088,7 +21097,7 @@ function qv(e, t, n = 0, r = 0, i = !1, a = Zg) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/utils/rangeContainsDayOfWeek.js
-function Jv(e, t, n = Zg) {
+function Xv(e, t, n = $g) {
 	let r = Array.isArray(t) ? t : [t], i = e.from, a = n.differenceInCalendarDays(e.to, e.from), o = Math.min(a, 6);
 	for (let e = 0; e <= o; e++) {
 		if (r.includes(i.getDay())) return !0;
@@ -21098,20 +21107,20 @@ function Jv(e, t, n = Zg) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/utils/rangeOverlaps.js
-function Yv(e, t, n = Zg) {
-	return N_(e, t.from, !1, n) || N_(e, t.to, !1, n) || N_(t, e.from, !1, n) || N_(t, e.to, !1, n);
+function Zv(e, t, n = $g) {
+	return F_(e, t.from, !1, n) || F_(e, t.to, !1, n) || F_(t, e.from, !1, n) || F_(t, e.to, !1, n);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/utils/rangeContainsModifiers.js
-function Xv(e, t, n = Zg) {
+function Qv(e, t, n = $g) {
 	let r = Array.isArray(t) ? t : [t];
-	if (r.filter((e) => typeof e != "function").some((t) => typeof t == "boolean" ? t : n.isDate(t) ? N_(e, t, !1, n) : z_(t, n) ? t.some((t) => N_(e, t, !1, n)) : F_(t) ? t.from && t.to ? Yv(e, {
+	if (r.filter((e) => typeof e != "function").some((t) => typeof t == "boolean" ? t : n.isDate(t) ? F_(e, t, !1, n) : V_(t, n) ? t.some((t) => F_(e, t, !1, n)) : L_(t) ? t.from && t.to ? Zv(e, {
 		from: t.from,
 		to: t.to
-	}, n) : !1 : R_(t) ? Jv(e, t.dayOfWeek, n) : P_(t) ? n.isAfter(t.before, t.after) ? Yv(e, {
+	}, n) : !1 : B_(t) ? Xv(e, t.dayOfWeek, n) : I_(t) ? n.isAfter(t.before, t.after) ? Zv(e, {
 		from: n.addDays(t.after, 1),
 		to: n.addDays(t.before, -1)
-	}, n) : B_(e.from, t, n) || B_(e.to, t, n) : I_(t) || L_(t) ? B_(e.from, t, n) || B_(e.to, t, n) : !1)) return !0;
+	}, n) : H_(e.from, t, n) || H_(e.to, t, n) : R_(t) || z_(t) ? H_(e.from, t, n) || H_(e.to, t, n) : !1)) return !0;
 	let i = r.filter((e) => typeof e == "function");
 	if (i.length) {
 		let t = e.from, r = n.differenceInCalendarDays(e.to, e.from);
@@ -21124,8 +21133,8 @@ function Xv(e, t, n = Zg) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/selection/useRange.js
-function Zv(e, t) {
-	let { disabled: n, excludeDisabled: r, resetOnSelect: i, selected: a, required: o, onSelect: s } = e, [c, l] = Rv(a, s ? a : void 0), u = s ? a : c;
+function $v(e, t) {
+	let { disabled: n, excludeDisabled: r, resetOnSelect: i, selected: a, required: o, onSelect: s } = e, [c, l] = Bv(a, s ? a : void 0), u = s ? a : c;
 	return {
 		selected: u,
 		select: (a, c, d) => {
@@ -21135,20 +21144,20 @@ function Zv(e, t) {
 				m = i && (r || !u?.from) ? !o && s ? void 0 : {
 					from: a,
 					to: void 0
-				} : qv(a, u, f, p, o, t);
+				} : Yv(a, u, f, p, o, t);
 			}
-			return r && n && m?.from && m.to && Xv({
+			return r && n && m?.from && m.to && Qv({
 				from: m.from,
 				to: m.to
 			}, n, t) && (m.from = a, m.to = void 0), s || l(m), s?.(m, a, c, d), m;
 		},
-		isSelected: (e) => u && N_(u, e, !1, t)
+		isSelected: (e) => u && F_(u, e, !1, t)
 	};
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/selection/useSingle.js
-function Qv(e, t) {
-	let { selected: n, required: r, onSelect: i } = e, [a, o] = Rv(n, i ? n : void 0), s = i ? n : a, { isSameDay: c } = t;
+function ey(e, t) {
+	let { selected: n, required: r, onSelect: i } = e, [a, o] = Bv(n, i ? n : void 0), s = i ? n : a, { isSameDay: c } = t;
 	return {
 		selected: s,
 		select: (e, t, n) => {
@@ -21160,8 +21169,8 @@ function Qv(e, t) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/useSelection.js
-function $v(e, t) {
-	let n = Qv(e, t), r = Kv(e, t), i = Zv(e, t);
+function ty(e, t) {
+	let n = ey(e, t), r = Jv(e, t), i = $v(e, t);
 	switch (e.mode) {
 		case "single": return n;
 		case "multiple": return r;
@@ -21171,56 +21180,56 @@ function $v(e, t) {
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/utils/toTimeZone.js
-function ey(e, t) {
-	return e instanceof uh && e.timeZone === t ? e : new uh(e, t);
+function ny(e, t) {
+	return e instanceof fh && e.timeZone === t ? e : new fh(e, t);
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/utils/convertMatchersToTimeZone.js
-function ty(e, t, n) {
-	if (!n) return ey(e, t);
-	let r = ey(e, t), i = new uh(r.getFullYear(), r.getMonth(), r.getDate(), 12, 0, 0, t);
+function ry(e, t, n) {
+	if (!n) return ny(e, t);
+	let r = ny(e, t), i = new fh(r.getFullYear(), r.getMonth(), r.getDate(), 12, 0, 0, t);
 	return new Date(i.getTime());
 }
-function ny(e, t, n) {
-	return typeof e == "boolean" || typeof e == "function" ? e : e instanceof Date ? ty(e, t, n) : Array.isArray(e) ? e.map((e) => e instanceof Date ? ty(e, t, n) : e) : F_(e) ? {
+function iy(e, t, n) {
+	return typeof e == "boolean" || typeof e == "function" ? e : e instanceof Date ? ry(e, t, n) : Array.isArray(e) ? e.map((e) => e instanceof Date ? ry(e, t, n) : e) : L_(e) ? {
 		...e,
-		from: e.from ? ey(e.from, t) : e.from,
-		to: e.to ? ey(e.to, t) : e.to
-	} : P_(e) ? {
-		before: ty(e.before, t, n),
-		after: ty(e.after, t, n)
-	} : I_(e) ? { after: ty(e.after, t, n) } : L_(e) ? { before: ty(e.before, t, n) } : e;
+		from: e.from ? ny(e.from, t) : e.from,
+		to: e.to ? ny(e.to, t) : e.to
+	} : I_(e) ? {
+		before: ry(e.before, t, n),
+		after: ry(e.after, t, n)
+	} : R_(e) ? { after: ry(e.after, t, n) } : z_(e) ? { before: ry(e.before, t, n) } : e;
 }
-function ry(e, t, n) {
-	return e && (Array.isArray(e) ? e.map((e) => ny(e, t, n)) : ny(e, t, n));
+function ay(e, t, n) {
+	return e && (Array.isArray(e) ? e.map((e) => iy(e, t, n)) : iy(e, t, n));
 }
 //#endregion
 //#region node_modules/.pnpm/react-day-picker@10.0.1_@types+react@19.2.17_react@19.2.8/node_modules/react-day-picker/dist/esm/DayPicker.js
-function iy(e) {
+function oy(e) {
 	let t = e, n = t.timeZone;
 	if (n && (t = {
 		...e,
 		timeZone: n
-	}, t.today && (t.today = ey(t.today, n)), t.month && (t.month = ey(t.month, n)), t.defaultMonth && (t.defaultMonth = ey(t.defaultMonth, n)), t.startMonth && (t.startMonth = ey(t.startMonth, n)), t.endMonth && (t.endMonth = ey(t.endMonth, n)), t.mode === "single" && t.selected ? t.selected = ey(t.selected, n) : t.mode === "multiple" && t.selected ? t.selected = t.selected?.map((e) => ey(e, n)) : t.mode === "range" && t.selected && (t.selected = {
-		from: t.selected.from ? ey(t.selected.from, n) : t.selected.from,
-		to: t.selected.to ? ey(t.selected.to, n) : t.selected.to
-	}), t.disabled !== void 0 && (t.disabled = ry(t.disabled, n)), t.hidden !== void 0 && (t.hidden = ry(t.hidden, n)), t.modifiers)) {
+	}, t.today && (t.today = ny(t.today, n)), t.month && (t.month = ny(t.month, n)), t.defaultMonth && (t.defaultMonth = ny(t.defaultMonth, n)), t.startMonth && (t.startMonth = ny(t.startMonth, n)), t.endMonth && (t.endMonth = ny(t.endMonth, n)), t.mode === "single" && t.selected ? t.selected = ny(t.selected, n) : t.mode === "multiple" && t.selected ? t.selected = t.selected?.map((e) => ny(e, n)) : t.mode === "range" && t.selected && (t.selected = {
+		from: t.selected.from ? ny(t.selected.from, n) : t.selected.from,
+		to: t.selected.to ? ny(t.selected.to, n) : t.selected.to
+	}), t.disabled !== void 0 && (t.disabled = ay(t.disabled, n)), t.hidden !== void 0 && (t.hidden = ay(t.hidden, n)), t.modifiers)) {
 		let e = {};
 		Object.keys(t.modifiers).forEach((r) => {
-			e[r] = ry(t.modifiers?.[r], n);
+			e[r] = ay(t.modifiers?.[r], n);
 		}), t.modifiers = e;
 	}
 	let { components: r, formatters: i, labels: a, dateLib: o, locale: s, classNames: c } = (0, C.useMemo)(() => {
 		let e = {
-			...Yg,
+			...Zg,
 			...t.locale
-		}, n = t.broadcastCalendar ? 1 : t.weekStartsOn, r = t.noonSafe && t.timeZone ? bv(t.timeZone, {
+		}, n = t.broadcastCalendar ? 1 : t.weekStartsOn, r = t.noonSafe && t.timeZone ? Sv(t.timeZone, {
 			weekStartsOn: n,
 			locale: e
 		}) : void 0, i = t.dateLib && r ? {
 			...r,
 			...t.dateLib
-		} : t.dateLib ?? r, a = new Xg({
+		} : t.dateLib ?? r, a = new Qg({
 			locale: e,
 			weekStartsOn: n,
 			firstWeekContainsDate: t.firstWeekContainsDate,
@@ -21231,12 +21240,12 @@ function iy(e) {
 		}, i);
 		return {
 			dateLib: a,
-			components: U_(t.components),
-			formatters: ev(t.formatters),
-			labels: hv(t.labels, a.options),
+			components: G_(t.components),
+			formatters: nv(t.formatters),
+			labels: _v(t.labels, a.options),
 			locale: e,
 			classNames: {
-				...G_(),
+				...q_(),
 				...t.classNames
 			}
 		};
@@ -21260,7 +21269,7 @@ function iy(e) {
 		...t,
 		today: o.today()
 	});
-	let { captionLayout: l, mode: u, navLayout: d, numberOfMonths: f = 1, onDayBlur: p, onDayClick: m, onDayFocus: h, onDayKeyDown: g, onDayMouseEnter: _, onDayMouseLeave: v, onNextClick: y, onPrevClick: b, showWeekNumber: x, styles: S } = t, { formatCaption: w, formatDay: T, formatMonthDropdown: E, formatWeekNumber: D, formatWeekNumberHeader: O, formatWeekdayName: k, formatYearDropdown: A } = i, j = zv(t, o), { days: M, months: N, navStart: P, navEnd: F, previousMonth: I, nextMonth: L, goToMonth: R } = j, z = V_(M, t, P, F, o), { isSelected: B, select: V, selected: H } = $v(t, o) ?? {}, { blur: U, focused: W, isFocusTarget: G, moveFocus: ee, setFocused: te } = Gv(t, j, z, B ?? (() => !1), o), { labelDayButton: ne, labelGridcell: re, labelGrid: ie, labelMonthDropdown: ae, labelNav: oe, labelPrevious: se, labelNext: ce, labelWeekday: le, labelWeekNumber: ue, labelWeekNumberHeader: de, labelYearDropdown: fe } = a, pe = (0, C.useMemo)(() => vv(o, t.ISOWeek, t.broadcastCalendar, t.today), [
+	let { captionLayout: l, mode: u, navLayout: d, numberOfMonths: f = 1, onDayBlur: p, onDayClick: m, onDayFocus: h, onDayKeyDown: g, onDayMouseEnter: _, onDayMouseLeave: v, onNextClick: y, onPrevClick: b, showWeekNumber: x, styles: S } = t, { formatCaption: w, formatDay: T, formatMonthDropdown: E, formatWeekNumber: D, formatWeekNumberHeader: O, formatWeekdayName: k, formatYearDropdown: A } = i, j = Vv(t, o), { days: M, months: N, navStart: P, navEnd: F, previousMonth: I, nextMonth: L, goToMonth: R } = j, z = U_(M, t, P, F, o), { isSelected: B, select: V, selected: H } = ty(t, o) ?? {}, { blur: U, focused: W, isFocusTarget: G, moveFocus: ee, setFocused: te } = qv(t, j, z, B ?? (() => !1), o), { labelDayButton: ne, labelGridcell: re, labelGrid: ie, labelMonthDropdown: ae, labelNav: oe, labelPrevious: se, labelNext: ce, labelWeekday: le, labelWeekNumber: ue, labelWeekNumberHeader: de, labelYearDropdown: fe } = a, pe = (0, C.useMemo)(() => bv(o, t.ISOWeek, t.broadcastCalendar, t.today), [
 		o,
 		t.ISOWeek,
 		t.broadcastCalendar,
@@ -21319,9 +21328,9 @@ function iy(e) {
 		let r = Number(n.target.value), i = o.setYear(o.startOfMonth(e), r);
 		R(o.addMonths(i, -t));
 	}, [o, R]), { className: Te, style: Ee } = (0, C.useMemo)(() => ({
-		className: [c[a_.Root], t.className].filter(Boolean).join(" "),
+		className: [c[s_.Root], t.className].filter(Boolean).join(" "),
 		style: {
-			...S?.[a_.Root],
+			...S?.[s_.Root],
 			...t.style
 		}
 	}), [
@@ -21329,14 +21338,14 @@ function iy(e) {
 		t.className,
 		t.style,
 		S
-	]), De = W_(t), Oe = (e) => {
-		let t = S?.[a_.Dropdown], n = S?.[e];
+	]), De = K_(t), Oe = (e) => {
+		let t = S?.[s_.Dropdown], n = S?.[e];
 		if (!(!t && !n)) return {
 			...t,
 			...n
 		};
 	}, ke = (0, C.useRef)(null);
-	Ov(ke, !!t.animate, {
+	Av(ke, !!t.animate, {
 		classNames: c,
 		months: N,
 		focused: W,
@@ -21358,7 +21367,7 @@ function iy(e) {
 		labels: a,
 		formatters: i
 	};
-	return C.createElement(l_.Provider, { value: Ae }, C.createElement(r.Root, {
+	return C.createElement(d_.Provider, { value: Ae }, C.createElement(r.Root, {
 		rootRef: t.animate ? ke : void 0,
 		className: Te,
 		style: Ee,
@@ -21372,12 +21381,12 @@ function iy(e) {
 		"aria-labelledby": t["aria-labelledby"],
 		...De
 	}, C.createElement(r.Months, {
-		className: c[a_.Months],
-		style: S?.[a_.Months]
+		className: c[s_.Months],
+		style: S?.[s_.Months]
 	}, !t.hideNavigation && !d && C.createElement(r.Nav, {
 		"data-animated-nav": t.animate ? "true" : void 0,
-		className: c[a_.Nav],
-		style: S?.[a_.Nav],
+		className: c[s_.Nav],
+		style: S?.[s_.Nav],
 		"aria-label": oe(),
 		onPreviousClick: he,
 		onNextClick: ge,
@@ -21387,15 +21396,15 @@ function iy(e) {
 		let a = t.reverseMonths ? N.length - 1 - n : n;
 		return C.createElement(r.Month, {
 			"data-animated-month": t.animate ? "true" : void 0,
-			className: c[a_.Month],
-			style: S?.[a_.Month],
+			className: c[s_.Month],
+			style: S?.[s_.Month],
 			key: n,
 			displayIndex: n,
 			calendarMonth: e
 		}, d === "around" && !t.hideNavigation && n === 0 && C.createElement(r.PreviousMonthButton, {
 			type: "button",
-			className: c[a_.PreviousMonthButton],
-			style: S?.[a_.PreviousMonthButton],
+			className: c[s_.PreviousMonthButton],
+			style: S?.[s_.PreviousMonthButton],
 			tabIndex: I ? void 0 : -1,
 			"aria-disabled": !I || void 0,
 			"aria-label": se(I),
@@ -21403,36 +21412,36 @@ function iy(e) {
 			"data-animated-button": t.animate ? "true" : void 0
 		}, C.createElement(r.Chevron, {
 			disabled: !I || void 0,
-			className: c[a_.Chevron],
-			style: S?.[a_.Chevron],
+			className: c[s_.Chevron],
+			style: S?.[s_.Chevron],
 			orientation: t.dir === "rtl" ? "right" : "left"
 		})), C.createElement(r.MonthCaption, {
 			"data-animated-caption": t.animate ? "true" : void 0,
-			className: c[a_.MonthCaption],
-			style: S?.[a_.MonthCaption],
+			className: c[s_.MonthCaption],
+			style: S?.[s_.MonthCaption],
 			calendarMonth: e,
 			displayIndex: n
 		}, l?.startsWith("dropdown") ? C.createElement(r.DropdownNav, {
-			className: c[a_.Dropdowns],
-			style: S?.[a_.Dropdowns]
+			className: c[s_.Dropdowns],
+			style: S?.[s_.Dropdowns]
 		}, (() => {
 			let n = l === "dropdown" || l === "dropdown-months" ? C.createElement(r.MonthsDropdown, {
 				key: "month",
-				className: c[a_.MonthsDropdown],
+				className: c[s_.MonthsDropdown],
 				"aria-label": ae(),
 				disabled: !!t.disableNavigation,
 				onChange: Ce(e.date, a),
-				options: gv(e.date, P, F, i, o),
-				style: Oe(a_.MonthsDropdown),
+				options: vv(e.date, P, F, i, o),
+				style: Oe(s_.MonthsDropdown),
 				value: o.getMonth(e.date)
 			}) : C.createElement("span", { key: "month" }, E(e.date, o)), s = l === "dropdown" || l === "dropdown-years" ? C.createElement(r.YearsDropdown, {
 				key: "year",
-				className: c[a_.YearsDropdown],
+				className: c[s_.YearsDropdown],
 				"aria-label": fe(o.options),
 				disabled: !!t.disableNavigation,
 				onChange: we(e.date, a),
-				options: yv(P, F, i, o, !!t.reverseYears),
-				style: Oe(a_.YearsDropdown),
+				options: xv(P, F, i, o, !!t.reverseYears),
+				style: Oe(s_.YearsDropdown),
 				value: o.getYear(e.date)
 			}) : C.createElement("span", { key: "year" }, A(e.date, o));
 			return o.getMonthYearOrder() === "year-first" ? [s, n] : [n, s];
@@ -21452,14 +21461,14 @@ function iy(e) {
 				wordWrap: "normal"
 			}
 		}, w(e.date, o.options, o))) : C.createElement(r.CaptionLabel, {
-			className: c[a_.CaptionLabel],
-			style: S?.[a_.CaptionLabel],
+			className: c[s_.CaptionLabel],
+			style: S?.[s_.CaptionLabel],
 			role: "status",
 			"aria-live": "polite"
 		}, w(e.date, o.options, o))), d === "around" && !t.hideNavigation && n === f - 1 && C.createElement(r.NextMonthButton, {
 			type: "button",
-			className: c[a_.NextMonthButton],
-			style: S?.[a_.NextMonthButton],
+			className: c[s_.NextMonthButton],
+			style: S?.[s_.NextMonthButton],
 			tabIndex: L ? void 0 : -1,
 			"aria-disabled": !L || void 0,
 			"aria-label": ce(L),
@@ -21467,13 +21476,13 @@ function iy(e) {
 			"data-animated-button": t.animate ? "true" : void 0
 		}, C.createElement(r.Chevron, {
 			disabled: !L || void 0,
-			className: c[a_.Chevron],
-			style: S?.[a_.Chevron],
+			className: c[s_.Chevron],
+			style: S?.[s_.Chevron],
 			orientation: t.dir === "rtl" ? "left" : "right"
 		})), n === f - 1 && d === "after" && !t.hideNavigation && C.createElement(r.Nav, {
 			"data-animated-nav": t.animate ? "true" : void 0,
-			className: c[a_.Nav],
-			style: S?.[a_.Nav],
+			className: c[s_.Nav],
+			style: S?.[s_.Nav],
 			"aria-label": oe(),
 			onPreviousClick: he,
 			onNextClick: ge,
@@ -21483,46 +21492,46 @@ function iy(e) {
 			role: "grid",
 			"aria-multiselectable": u === "multiple" || u === "range",
 			"aria-label": ie(e.date, o.options, o) || void 0,
-			className: c[a_.MonthGrid],
-			style: S?.[a_.MonthGrid]
+			className: c[s_.MonthGrid],
+			style: S?.[s_.MonthGrid]
 		}, !t.hideWeekdays && C.createElement(r.Weekdays, {
 			"data-animated-weekdays": t.animate ? "true" : void 0,
-			className: c[a_.Weekdays],
-			style: S?.[a_.Weekdays]
+			className: c[s_.Weekdays],
+			style: S?.[s_.Weekdays]
 		}, x && C.createElement(r.WeekNumberHeader, {
 			"aria-label": de(o.options),
-			className: c[a_.WeekNumberHeader],
-			style: S?.[a_.WeekNumberHeader],
+			className: c[s_.WeekNumberHeader],
+			style: S?.[s_.WeekNumberHeader],
 			scope: "col"
 		}, O()), pe.map((e) => C.createElement(r.Weekday, {
 			"aria-label": le(e, o.options, o),
-			className: c[a_.Weekday],
+			className: c[s_.Weekday],
 			key: String(e),
-			style: S?.[a_.Weekday],
+			style: S?.[s_.Weekday],
 			scope: "col"
 		}, k(e, o.options, o)))), C.createElement(r.Weeks, {
 			"data-animated-weeks": t.animate ? "true" : void 0,
-			className: c[a_.Weeks],
-			style: S?.[a_.Weeks]
+			className: c[s_.Weeks],
+			style: S?.[s_.Weeks]
 		}, e.weeks.map((e) => C.createElement(r.Week, {
-			className: c[a_.Week],
+			className: c[s_.Week],
 			key: e.weekNumber,
-			style: S?.[a_.Week],
+			style: S?.[s_.Week],
 			week: e
 		}, x && C.createElement(r.WeekNumber, {
 			week: e,
-			style: S?.[a_.WeekNumber],
+			style: S?.[s_.WeekNumber],
 			"aria-label": ue(e.weekNumber, { locale: s }),
-			className: c[a_.WeekNumber],
+			className: c[s_.WeekNumber],
 			scope: "row",
 			role: "rowheader"
 		}, D(e.weekNumber, o)), e.days.map((e) => {
 			let { date: n } = e, i = z(e);
-			if (i[o_.focused] = !i.hidden && !!W?.isEqualTo(e), i[s_.selected] = B?.(n) || i.selected, F_(H)) {
+			if (i[c_.focused] = !i.hidden && !!W?.isEqualTo(e), i[l_.selected] = B?.(n) || i.selected, L_(H)) {
 				let { from: e, to: t } = H;
-				i[s_.range_start] = !!(e && t && o.isSameDay(n, e)), i[s_.range_end] = !!(e && t && o.isSameDay(n, t)), i[s_.range_middle] = N_(H, n, !0, o);
+				i[l_.range_start] = !!(e && t && o.isSameDay(n, e)), i[l_.range_end] = !!(e && t && o.isSameDay(n, t)), i[l_.range_middle] = F_(H, n, !0, o);
 			}
-			let a = _v(i, S, t.modifiersStyles), s = H_(i, c, t.modifiersClassNames), l = !me && !i.hidden ? re(n, i, o.options, o) : void 0;
+			let a = yv(i, S, t.modifiersStyles), s = W_(i, c, t.modifiersClassNames), l = !me && !i.hidden ? re(n, i, o.options, o) : void 0;
 			return C.createElement(r.Day, {
 				key: `${e.isoDate}_${e.displayMonthId}`,
 				day: e,
@@ -21541,8 +21550,8 @@ function iy(e) {
 				"data-focused": i.focused || void 0,
 				"data-today": i.today || void 0
 			}, !i.hidden && me ? C.createElement(r.DayButton, {
-				className: c[a_.DayButton],
-				style: S?.[a_.DayButton],
+				className: c[s_.DayButton],
+				style: S?.[s_.DayButton],
 				type: "button",
 				day: e,
 				modifiers: i,
@@ -21559,17 +21568,17 @@ function iy(e) {
 			}, T(n, o.options, o)) : !i.hidden && T(e.date, o.options, o));
 		}))))));
 	})), t.footer && C.createElement(r.Footer, {
-		className: c[a_.Footer],
-		style: S?.[a_.Footer],
+		className: c[s_.Footer],
+		style: S?.[s_.Footer],
 		role: "status",
 		"aria-live": "polite"
 	}, t.footer)));
 }
 //#endregion
 //#region src/components/ui/calendar.tsx
-function ay({ className: e, classNames: t, showOutsideDays: n = !0, captionLayout: r = "label", buttonVariant: i = "ghost", locale: a, formatters: o, components: s, ...c }) {
-	let l = G_();
-	return /* @__PURE__ */ (0, Y.jsx)(iy, {
+function sy({ className: e, classNames: t, showOutsideDays: n = !0, captionLayout: r = "label", buttonVariant: i = "ghost", locale: a, formatters: o, components: s, ...c }) {
+	let l = q_();
+	return /* @__PURE__ */ (0, Y.jsx)(oy, {
 		showOutsideDays: n,
 		className: J("group/calendar bg-background p-2 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(7)] in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent", String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`, String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`, e),
 		captionLayout: r,
@@ -21614,7 +21623,7 @@ function ay({ className: e, classNames: t, showOutsideDays: n = !0, captionLayou
 				...n
 			}),
 			Chevron: ({ className: e, orientation: t, ...n }) => t === "left" ? /* @__PURE__ */ (0, Y.jsx)(af, { className: J("cn-rtl-flip size-4", e) }) : t === "right" ? /* @__PURE__ */ (0, Y.jsx)(of, { className: J("cn-rtl-flip size-4", e) }) : /* @__PURE__ */ (0, Y.jsx)(rf, { className: J("size-4", e) }),
-			DayButton: ({ ...e }) => /* @__PURE__ */ (0, Y.jsx)(oy, {
+			DayButton: ({ ...e }) => /* @__PURE__ */ (0, Y.jsx)(cy, {
 				locale: a,
 				...e
 			}),
@@ -21630,8 +21639,8 @@ function ay({ className: e, classNames: t, showOutsideDays: n = !0, captionLayou
 		...c
 	});
 }
-function oy({ className: e, day: t, modifiers: n, locale: r, ...i }) {
-	let a = G_(), o = C.useRef(null);
+function cy({ className: e, day: t, modifiers: n, locale: r, ...i }) {
+	let a = q_(), o = C.useRef(null);
 	return C.useEffect(() => {
 		n.focused && o.current?.focus();
 	}, [n.focused]), /* @__PURE__ */ (0, Y.jsx)(Cu, {
@@ -21648,15 +21657,15 @@ function oy({ className: e, day: t, modifiers: n, locale: r, ...i }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/popover/root/PopoverRootContext.mjs
-var sy = /*#__PURE__*/ C.createContext(void 0);
-function cy(e) {
-	let t = C.useContext(sy);
+var ly = /*#__PURE__*/ C.createContext(void 0);
+function uy(e) {
+	let t = C.useContext(ly);
 	if (t === void 0 && !e) throw Error(la(47));
 	return t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/popover/store/PopoverStore.mjs
-function ly() {
+function dy() {
 	return {
 		...Oc(),
 		disabled: !1,
@@ -21674,7 +21683,7 @@ function ly() {
 		hasViewport: !1
 	};
 }
-var uy = {
+var fy = {
 	...Fc,
 	disabled: $((e) => e.disabled),
 	instantType: $((e) => e.instantType),
@@ -21688,10 +21697,10 @@ var uy = {
 	openOnHover: $((e) => e.openOnHover),
 	closeDelay: $((e) => e.closeDelay),
 	hasViewport: $((e) => e.hasViewport)
-}, dy = class e extends nc {
+}, py = class e extends nc {
 	constructor(e, t, n = !1) {
 		let r = {
-			...ly(),
+			...dy(),
 			...e
 		}, i = new Ec();
 		r.open && e?.mounted === void 0 && (r.mounted = !0), r.floatingRootContext = kc(i, t, n), super(r, {
@@ -21704,7 +21713,7 @@ var uy = {
 			beforeContentFocusGuardRef: /*#__PURE__*/ C.createRef(),
 			stickIfOpenTimeout: new rn(),
 			triggerElements: i
-		}, uy);
+		}, fy);
 	}
 	setOpen = (e, t) => {
 		let n = t.reason === Qn, r = t.reason === "trigger-press" && t.event.detail === 0, i = !e && (t.reason === "escape-key" || t.reason == null), a = vc(t), o = this.select("activeTriggerId");
@@ -21729,8 +21738,8 @@ var uy = {
 };
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/popover/root/PopoverRoot.mjs
-function fy({ props: e }) {
-	let { children: t, open: n, defaultOpen: r = !1, onOpenChange: i, onOpenChangeComplete: a, modal: o = !1, handle: s, triggerId: c, defaultTriggerId: l = null } = e, u = dy.useStore(s?.store, {
+function my({ props: e }) {
+	let { children: t, open: n, defaultOpen: r = !1, onOpenChange: i, onOpenChangeComplete: a, modal: o = !1, handle: s, triggerId: c, defaultTriggerId: l = null } = e, u = py.useStore(s?.store, {
 		modal: o,
 		open: r,
 		openProp: n,
@@ -21760,18 +21769,18 @@ function fy({ props: e }) {
 		close: g
 	}), [h, g]);
 	let _ = d || f, v = C.useMemo(() => ({ store: u }), [u]);
-	return /*#__PURE__*/ (0, Y.jsxs)(sy.Provider, {
+	return /*#__PURE__*/ (0, Y.jsxs)(ly.Provider, {
 		value: v,
-		children: [_ && /*#__PURE__*/ (0, Y.jsx)(my, {
+		children: [_ && /*#__PURE__*/ (0, Y.jsx)(gy, {
 			store: u,
 			modal: o
 		}), typeof t == "function" ? t({ payload: p }) : t]
 	});
 }
-function py(e) {
-	return cy(!0) ? /*#__PURE__*/ (0, Y.jsx)(fy, { props: e }) : /*#__PURE__*/ (0, Y.jsx)(no, { children: /*#__PURE__*/ (0, Y.jsx)(fy, { props: e }) });
+function hy(e) {
+	return uy(!0) ? /*#__PURE__*/ (0, Y.jsx)(my, { props: e }) : /*#__PURE__*/ (0, Y.jsx)(no, { children: /*#__PURE__*/ (0, Y.jsx)(my, { props: e }) });
 }
-function my({ store: e, modal: t }) {
+function gy({ store: e, modal: t }) {
 	let n = _o(e.useState("floatingRootContext"), { outsidePressEvent: {
 		mouse: t === "trap-focus" ? "sloppy" : "intentional",
 		touch: "sloppy"
@@ -21784,8 +21793,8 @@ function my({ store: e, modal: t }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/popover/trigger/PopoverTrigger.mjs
-var hy = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, disabled: a = !1, nativeButton: o = !0, handle: s, payload: c, openOnHover: l = !1, delay: u = 300, closeDelay: d = 0, id: f, ...p } = e, m = cy(!0), h = s?.store ?? m?.store;
+var _y = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, disabled: a = !1, nativeButton: o = !0, handle: s, payload: c, openOnHover: l = !1, delay: u = 300, closeDelay: d = 0, id: f, ...p } = e, m = uy(!0), h = s?.store ?? m?.store;
 	if (!h) throw Error(la(74));
 	let g = zl(f), _ = h.useState("isTriggerActive", g), v = h.useState("floatingRootContext"), y = h.useState("isOpenedByTrigger", g), b = h.useState("triggerPopupId", g), x = C.useRef(null), { registerTrigger: S, isMountedByThisTrigger: w } = xc(g, x, h, {
 		payload: c,
@@ -21812,7 +21821,7 @@ var hy = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		native: o
 	}), F = { open(e) {
 		return e && T === "trigger-press" ? Ol.open(e) : Dl.open(e);
-	} }, { preFocusGuardRef: I, handlePreFocusGuardFocus: L, handleFocusTargetFocus: R } = Fm(h, x), z = Q("button", e, {
+	} }, { preFocusGuardRef: I, handlePreFocusGuardFocus: L, handleFocusTargetFocus: R } = Lm(h, x), z = Q("button", e, {
 		state: {
 			disabled: a,
 			open: y
@@ -21851,33 +21860,33 @@ var hy = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			onFocus: R
 		})
 	] }) : /*#__PURE__*/ (0, Y.jsx)(C.Fragment, { children: z }, g);
-}), gy = /*#__PURE__*/ C.createContext(void 0);
-function _y() {
-	let e = C.useContext(gy);
+}), vy = /*#__PURE__*/ C.createContext(void 0);
+function yy() {
+	let e = C.useContext(vy);
 	if (e === void 0) throw Error(la(45));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/popover/portal/PopoverPortal.mjs
-var vy = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { keepMounted: n = !1, ...r } = e, { store: i } = cy();
-	return i.useState("mounted") || n ? /*#__PURE__*/ (0, Y.jsx)(gy.Provider, {
+var by = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { keepMounted: n = !1, ...r } = e, { store: i } = uy();
+	return i.useState("mounted") || n ? /*#__PURE__*/ (0, Y.jsx)(vy.Provider, {
 		value: n,
 		children: /*#__PURE__*/ (0, Y.jsx)(qa, {
 			ref: t,
 			...r
 		})
 	}) : null;
-}), yy = /*#__PURE__*/ C.createContext(void 0);
-function by() {
-	let e = C.useContext(yy);
+}), xy = /*#__PURE__*/ C.createContext(void 0);
+function Sy() {
+	let e = C.useContext(xy);
 	if (!e) throw Error(la(46));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/popover/positioner/PopoverPositioner.mjs
-var xy = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, anchor: a, positionMethod: o = "absolute", side: s = "bottom", align: c = "center", sideOffset: l = 0, alignOffset: u = 0, collisionBoundary: d = "clipping-ancestors", collisionPadding: f = 5, arrowPadding: p = 5, sticky: m = !1, disableAnchorTracking: h = !1, collisionAvoidance: g = Ba, ..._ } = e, { store: v } = cy(), y = _y(), b = eo(), x = v.useState("floatingRootContext"), S = v.useState("mounted"), w = v.useState("open"), T = v.useState("openChangeReason"), E = v.useState("activeTriggerElement"), D = v.useState("modal"), O = v.useState("openMethod"), k = v.useState("positionerElement"), A = v.useState("instantType"), j = v.useState("transitionStatus"), M = v.useState("hasViewport"), N = C.useRef(null), P = dc(k, !1, !1), F = _m({
+var Cy = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, anchor: a, positionMethod: o = "absolute", side: s = "bottom", align: c = "center", sideOffset: l = 0, alignOffset: u = 0, collisionBoundary: d = "clipping-ancestors", collisionPadding: f = 5, arrowPadding: p = 5, sticky: m = !1, disableAnchorTracking: h = !1, collisionAvoidance: g = Ba, ..._ } = e, { store: v } = uy(), y = yy(), b = eo(), x = v.useState("floatingRootContext"), S = v.useState("mounted"), w = v.useState("open"), T = v.useState("openChangeReason"), E = v.useState("activeTriggerElement"), D = v.useState("modal"), O = v.useState("openMethod"), k = v.useState("positionerElement"), A = v.useState("instantType"), j = v.useState("transitionStatus"), M = v.useState("hasViewport"), N = C.useRef(null), P = dc(k, !1, !1), F = ym({
 		anchor: a,
 		floatingRootContext: x,
 		positionMethod: o,
@@ -21894,7 +21903,7 @@ var xy = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		keepMounted: y,
 		nodeId: b,
 		collisionAvoidance: g,
-		adaptiveOrigin: M ? mm : void 0
+		adaptiveOrigin: M ? gm : void 0
 	}), I = x.useState("domReferenceElement");
 	X(() => {
 		let e = I, t = N.current;
@@ -21911,10 +21920,10 @@ var xy = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		I,
 		P,
 		v
-	]), xm(w && D === !0 && T !== "trigger-hover", O === "touch", k, E);
+	]), Cm(w && D === !0 && T !== "trigger-hover", O === "touch", k, E);
 	let L = C.useCallback((e) => {
 		v.set("positionerElement", e);
-	}, [v]), R = ym(e, {
+	}, [v]), R = xm(e, {
 		open: w,
 		side: F.side,
 		align: F.align,
@@ -21928,7 +21937,7 @@ var xy = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		hidden: !S,
 		inert: !w
 	});
-	return /*#__PURE__*/ (0, Y.jsxs)(yy.Provider, {
+	return /*#__PURE__*/ (0, Y.jsxs)(xy.Provider, {
 		value: F,
 		children: [S && D === !0 && T !== "trigger-hover" && /*#__PURE__*/ (0, Y.jsx)(mu, {
 			ref: v.context.internalBackdropRef,
@@ -21939,8 +21948,8 @@ var xy = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			children: R
 		})]
 	});
-}), Sy = /*#__PURE__*/ C.createContext(void 0);
-function Cy() {
+}), wy = /*#__PURE__*/ C.createContext(void 0);
+function Ty() {
 	let [e, t] = C.useState(0), n = Z(() => (t((e) => e + 1), () => {
 		t((e) => Math.max(0, e - 1));
 	}));
@@ -21949,20 +21958,20 @@ function Cy() {
 		hasClosePart: e > 0
 	};
 }
-function wy(e) {
+function Ey(e) {
 	let { value: t, children: n } = e;
-	return /*#__PURE__*/ (0, Y.jsx)(Sy.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(wy.Provider, {
 		value: t,
 		children: n
 	});
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/popover/popup/PopoverPopup.mjs
-var Ty = {
+var Dy = {
 	...kl,
 	...uc
-}, Ey = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, initialFocus: a, finalFocus: o, ...s } = e, { store: c } = cy(), l = by(), u = nm(!0) != null, { context: d, hasClosePart: f } = Cy(), p = c.useState("open"), m = c.useState("openMethod"), h = c.useState("instantType"), g = c.useState("transitionStatus"), _ = c.useState("popupProps"), v = c.useState("titleElementId"), y = c.useState("descriptionElementId"), b = c.useState("modal"), x = c.useState("mounted"), S = c.useState("openChangeReason"), w = c.useState("activeTriggerElement"), T = c.useState("floatingRootContext"), E = T.useState("floatingId"), D = c.useState("disabled"), O = c.useState("openOnHover"), k = c.useState("closeDelay"), A = s.id ?? E;
+}, Oy = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, initialFocus: a, finalFocus: o, ...s } = e, { store: c } = uy(), l = Sy(), u = im(!0) != null, { context: d, hasClosePart: f } = Ty(), p = c.useState("open"), m = c.useState("openMethod"), h = c.useState("instantType"), g = c.useState("transitionStatus"), _ = c.useState("popupProps"), v = c.useState("titleElementId"), y = c.useState("descriptionElementId"), b = c.useState("modal"), x = c.useState("mounted"), S = c.useState("openChangeReason"), w = c.useState("activeTriggerElement"), T = c.useState("floatingRootContext"), E = T.useState("floatingId"), D = c.useState("disabled"), O = c.useState("openOnHover"), k = c.useState("closeDelay"), A = s.id ?? E;
 	fc({
 		open: p,
 		ref: c.context.popupRef,
@@ -22002,10 +22011,10 @@ var Ty = {
 					u && ru.has(e.key) && e.stopPropagation();
 				}
 			},
-			rm(g),
+			am(g),
 			s
 		],
-		stateAttributesMapping: Ty
+		stateAttributesMapping: Dy
 	});
 	return /*#__PURE__*/ (0, Y.jsx)(po, {
 		context: T,
@@ -22018,19 +22027,19 @@ var Ty = {
 		previousFocusableElement: _t(w) ? w : void 0,
 		nextFocusableElement: c.context.triggerFocusTargetRef,
 		beforeContentFocusGuardRef: c.context.beforeContentFocusGuardRef,
-		children: /*#__PURE__*/ (0, Y.jsx)(wy, {
+		children: /*#__PURE__*/ (0, Y.jsx)(Ey, {
 			value: d,
 			children: P
 		})
 	});
-}), Dy = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, ...a } = e, { store: o } = cy(), s = zl(a.id);
+}), ky = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, ...a } = e, { store: o } = uy(), s = zl(a.id);
 	return o.useSyncedValueWithCleanup("titleElementId", s), Q("h2", e, {
 		ref: t,
 		props: [{ id: s }, a]
 	});
-}), Oy = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, ...a } = e, { store: o } = cy(), s = zl(a.id);
+}), Ay = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, ...a } = e, { store: o } = uy(), s = zl(a.id);
 	return o.useSyncedValueWithCleanup("descriptionElementId", s), Q("p", e, {
 		ref: t,
 		props: [{ id: s }, a]
@@ -22038,30 +22047,30 @@ var Ty = {
 });
 //#endregion
 //#region src/components/ui/popover.tsx
-function ky({ ...e }) {
-	return /* @__PURE__ */ (0, Y.jsx)(py, {
+function jy({ ...e }) {
+	return /* @__PURE__ */ (0, Y.jsx)(hy, {
 		"data-slot": "popover",
 		...e
 	});
 }
-function Ay({ ...e }) {
-	return /* @__PURE__ */ (0, Y.jsx)(hy, {
+function My({ ...e }) {
+	return /* @__PURE__ */ (0, Y.jsx)(_y, {
 		"data-slot": "popover-trigger",
 		...e
 	});
 }
-function jy({ className: e, align: t = "center", alignOffset: n = 0, side: r = "bottom", sideOffset: i = 4, ...a }) {
+function Ny({ className: e, align: t = "center", alignOffset: n = 0, side: r = "bottom", sideOffset: i = 4, ...a }) {
 	let o = Au();
-	return /* @__PURE__ */ (0, Y.jsx)(vy, {
+	return /* @__PURE__ */ (0, Y.jsx)(by, {
 		container: o,
-		children: /* @__PURE__ */ (0, Y.jsx)(xy, {
+		children: /* @__PURE__ */ (0, Y.jsx)(Cy, {
 			align: t,
 			alignOffset: n,
 			side: r,
 			sideOffset: i,
 			className: "isolate z-50",
 			positionMethod: "fixed",
-			children: /* @__PURE__ */ (0, Y.jsx)(Ey, {
+			children: /* @__PURE__ */ (0, Y.jsx)(Oy, {
 				"data-slot": "popover-content",
 				className: J("z-50 flex w-72 origin-(--transform-origin) flex-col gap-2.5 rounded-lg bg-popover p-2.5 text-sm text-popover-foreground shadow-md ring-1 ring-foreground/10 outline-hidden duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95", e),
 				...a
@@ -22069,22 +22078,22 @@ function jy({ className: e, align: t = "center", alignOffset: n = 0, side: r = "
 		})
 	});
 }
-function My({ className: e, ...t }) {
+function Py({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		"data-slot": "popover-header",
 		className: J("flex flex-col gap-0.5 text-sm", e),
 		...t
 	});
 }
-function Ny({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Dy, {
+function Fy({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(ky, {
 		"data-slot": "popover-title",
 		className: J("font-medium", e),
 		...t
 	});
 }
-function Py({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Oy, {
+function Iy({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Ay, {
 		"data-slot": "popover-description",
 		className: J("text-muted-foreground", e),
 		...t
@@ -22092,33 +22101,33 @@ function Py({ className: e, ...t }) {
 }
 //#endregion
 //#region src/lib/date.ts
-function Fy(e) {
+function Ly(e) {
 	if (e === null) return;
 	let t = Number(e.slice(0, 4)), n = Number(e.slice(5, 7)), r = Number(e.slice(8, 10)), i = /* @__PURE__ */ new Date(0);
 	return i.setHours(12, 0, 0, 0), i.setFullYear(t, n - 1, r), i;
 }
-function Iy(e) {
+function Ry(e) {
 	return `${String(e.getFullYear()).padStart(4, "0")}-${String(e.getMonth() + 1).padStart(2, "0")}-${String(e.getDate()).padStart(2, "0")}`;
 }
 //#endregion
 //#region src/components/streamlit/date-picker.tsx
-function Ly(e) {
+function zy(e) {
 	if (Array.isArray(e)) return {
-		from: Fy(e[0]),
-		to: Fy(e[1])
+		from: Ly(e[0]),
+		to: Ly(e[1])
 	};
 }
-function Ry(e, t) {
+function By(e, t) {
 	return e === null ? t : Array.isArray(e) ? e.join(" – ") : e;
 }
-function zy({ envelope: e, setStateValue: t }) {
-	let n = (0, C.useId)(), { commit: r, state: i } = _f(e.state, t), [a, o] = (0, C.useState)(!1), [s, c] = (0, C.useState)(Ly(i.value));
+function Vy({ envelope: e, setStateValue: t }) {
+	let n = (0, C.useId)(), { commit: r, state: i } = yf(e.state, t), [a, o] = (0, C.useState)(!1), [s, c] = (0, C.useState)(zy(i.value));
 	(0, C.useEffect)(() => {
-		c(Ly(i.value));
+		c(zy(i.value));
 	}, [i.value]);
-	let l = Fy(e.props.minDate), u = Fy(e.props.maxDate), d = [];
+	let l = Ly(e.props.minDate), u = Ly(e.props.maxDate), d = [];
 	l !== void 0 && d.push({ before: l }), u !== void 0 && d.push({ after: u });
-	let f = e.props.disabled ? !0 : d.length > 0 ? d : void 0, p = typeof i.value == "string" ? Fy(i.value) : void 0, m = p ?? s?.from ?? l ?? u ?? /* @__PURE__ */ new Date(), h = (e) => {
+	let f = e.props.disabled ? !0 : d.length > 0 ? d : void 0, p = typeof i.value == "string" ? Ly(i.value) : void 0, m = p ?? s?.from ?? l ?? u ?? /* @__PURE__ */ new Date(), h = (e) => {
 		r(e), o(!1);
 	};
 	return /* @__PURE__ */ (0, Y.jsxs)("div", {
@@ -22129,13 +22138,13 @@ function zy({ envelope: e, setStateValue: t }) {
 			className: "text-sm font-medium leading-none",
 			id: n,
 			children: e.props.label
-		}), /* @__PURE__ */ (0, Y.jsxs)(ky, {
+		}), /* @__PURE__ */ (0, Y.jsxs)(jy, {
 			modal: !1,
 			onOpenChange: (e) => {
-				c(Ly(i.value)), o(e);
+				c(zy(i.value)), o(e);
 			},
 			open: a,
-			children: [/* @__PURE__ */ (0, Y.jsxs)(Ay, {
+			children: [/* @__PURE__ */ (0, Y.jsxs)(My, {
 				"aria-label": e.props.label === null ? "Date picker" : void 0,
 				"aria-labelledby": e.props.label === null ? void 0 : n,
 				disabled: e.props.disabled,
@@ -22145,24 +22154,24 @@ function zy({ envelope: e, setStateValue: t }) {
 				}),
 				children: [/* @__PURE__ */ (0, Y.jsx)(tf, { "aria-hidden": "true" }), /* @__PURE__ */ (0, Y.jsx)("span", {
 					className: i.value === null ? "text-muted-foreground" : void 0,
-					children: Ry(i.value, e.props.placeholder)
+					children: By(i.value, e.props.placeholder)
 				})]
-			}), /* @__PURE__ */ (0, Y.jsxs)(jy, {
+			}), /* @__PURE__ */ (0, Y.jsxs)(Ny, {
 				"aria-label": e.props.label ?? "Date picker",
 				align: "start",
 				className: "w-auto gap-0 p-0",
 				"data-testid": "ssui-v2-date-picker-content",
-				children: [e.props.mode === "single" ? /* @__PURE__ */ (0, Y.jsx)(ay, {
+				children: [e.props.mode === "single" ? /* @__PURE__ */ (0, Y.jsx)(sy, {
 					defaultMonth: m,
 					disabled: f,
 					endMonth: u,
 					mode: "single",
 					onSelect: (e) => {
-						h(e === void 0 ? null : Iy(e));
+						h(e === void 0 ? null : Ry(e));
 					},
 					selected: p,
 					startMonth: l
-				}) : /* @__PURE__ */ (0, Y.jsx)(ay, {
+				}) : /* @__PURE__ */ (0, Y.jsx)(sy, {
 					defaultMonth: m,
 					disabled: f,
 					endMonth: u,
@@ -22194,7 +22203,7 @@ function zy({ envelope: e, setStateValue: t }) {
 						e.props.mode === "range" ? /* @__PURE__ */ (0, Y.jsx)(Cu, {
 							disabled: s?.from === void 0 || s.to === void 0,
 							onClick: () => {
-								s?.from !== void 0 && s.to !== void 0 && h([Iy(s.from), Iy(s.to)]);
+								s?.from !== void 0 && s.to !== void 0 && h([Ry(s.from), Ry(s.to)]);
 							},
 							size: "sm",
 							children: "Apply"
@@ -22207,16 +22216,16 @@ function zy({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/fieldset/root/FieldsetRootContext.mjs
-var By = /*#__PURE__*/ C.createContext(void 0);
-function Vy(e = !1) {
-	let t = C.useContext(By);
+var Hy = /*#__PURE__*/ C.createContext(void 0);
+function Uy(e = !1) {
+	let t = C.useContext(Hy);
 	if (!t && !e) throw Error(la(86));
 	return t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/labelable-provider/useLabelableId.mjs
-function Hy(e = {}) {
-	let { id: t, implicit: n = !1, controlRef: r } = e, { controlId: i, registerControlId: a } = vp(), o = zl(t), s = n ? i : void 0, c = $t(() => Symbol("labelable-control")), l = C.useRef(!1), u = C.useRef(t != null), d = Z(() => {
+function Wy(e = {}) {
+	let { id: t, implicit: n = !1, controlRef: r } = e, { controlId: i, registerControlId: a } = bp(), o = zl(t), s = n ? i : void 0, c = $t(() => Symbol("labelable-control")), l = C.useRef(!1), u = C.useRef(t != null), d = Z(() => {
 		!l.current || a === un || (l.current = !1, a(c.current, void 0));
 	});
 	return X(() => {
@@ -22249,7 +22258,7 @@ function Hy(e = {}) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/useRegisteredLabelId.mjs
-function Uy(e, t) {
+function Gy(e, t) {
 	let n = zl(e);
 	return X(() => (t(n), () => {
 		t(void 0);
@@ -22257,11 +22266,11 @@ function Uy(e, t) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/field/control/FieldControl.mjs
-var Wy = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, id: i, name: a, value: o, disabled: s = !1, onValueChange: c, defaultValue: l, autoFocus: u = !1, style: d, ...f } = e, { state: p, name: m, disabled: h, setTouched: g, setDirty: _, validityData: v, setFocused: y, setFilled: b, validationMode: x, validation: S } = dp(), { clearErrors: w } = gp(), T = h || s, E = m ?? a, D = {
+var Ky = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, id: i, name: a, value: o, disabled: s = !1, onValueChange: c, defaultValue: l, autoFocus: u = !1, style: d, ...f } = e, { state: p, name: m, disabled: h, setTouched: g, setDirty: _, validityData: v, setFocused: y, setFilled: b, validationMode: x, validation: S } = pp(), { clearErrors: w } = vp(), T = h || s, E = m ?? a, D = {
 		...p,
 		disabled: T
-	}, { labelId: O } = vp(), k = Hy({ id: i });
+	}, { labelId: O } = bp(), k = Wy({ id: i });
 	X(() => {
 		let e = o != null;
 		S.inputRef.current?.value || e && o !== "" ? b(!0) : e && o === "" && b(!1);
@@ -22280,7 +22289,7 @@ var Wy = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		name: "FieldControl",
 		state: "value"
 	}), M = o !== void 0, N = M ? j : void 0, P = Z(() => S.inputRef.current?.value);
-	return fp(S.inputRef, k, N, P, !T, a), Q("input", e, {
+	return mp(S.inputRef, k, N, P, !T, a), Q("input", e, {
 		ref: [t, A],
 		state: D,
 		props: [
@@ -22309,18 +22318,18 @@ var Wy = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			f,
 			(e) => S.getValidationProps(T, e)
 		],
-		stateAttributesMapping: sp
+		stateAttributesMapping: lp
 	});
-}), Gy = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	return /*#__PURE__*/ (0, Y.jsx)(Wy, {
+}), qy = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	return /*#__PURE__*/ (0, Y.jsx)(Ky, {
 		ref: t,
 		...e
 	});
 });
 //#endregion
 //#region src/components/ui/input.tsx
-function Ky({ className: e, type: t, ...n }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Gy, {
+function Jy({ className: e, type: t, ...n }) {
+	return /* @__PURE__ */ (0, Y.jsx)(qy, {
 		type: t,
 		"data-slot": "input",
 		className: J("h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40", e),
@@ -22329,8 +22338,8 @@ function Ky({ className: e, type: t, ...n }) {
 }
 //#endregion
 //#region src/components/streamlit/input.tsx
-function qy({ envelope: e, setStateValue: t }) {
-	let n = (0, C.useId)(), { commitDraft: r, draft: i, setDraft: a } = vf(e.state, t);
+function Yy({ envelope: e, setStateValue: t }) {
+	let n = (0, C.useId)(), { commitDraft: r, draft: i, setDraft: a } = bf(e.state, t);
 	return /* @__PURE__ */ (0, Y.jsxs)("div", {
 		className: "grid min-w-0 gap-1.5 p-px",
 		"data-ssui-component": "input",
@@ -22339,7 +22348,7 @@ function qy({ envelope: e, setStateValue: t }) {
 			className: "text-sm font-medium leading-none",
 			htmlFor: n,
 			children: e.props.label
-		}), /* @__PURE__ */ (0, Y.jsx)(Ky, {
+		}), /* @__PURE__ */ (0, Y.jsx)(Jy, {
 			disabled: e.props.disabled,
 			id: n,
 			maxLength: e.props.maxLength ?? void 0,
@@ -22357,8 +22366,146 @@ function qy({ envelope: e, setStateValue: t }) {
 	});
 }
 //#endregion
+//#region src/lib/number-input.ts
+function Xy(e) {
+	return typeof e == "number" && Number.isFinite(e) && Math.abs(e) <= 2 ** 53 - 1;
+}
+function Zy(e, t) {
+	return Xy(e) && (!t.integer || Number.isSafeInteger(e)) && (t.min === null || e >= t.min) && (t.max === null || e <= t.max);
+}
+function Qy(e, t) {
+	let n = e.trim();
+	if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(n)) return null;
+	let r = Number(n);
+	if (!Xy(r) || t && !Number.isSafeInteger(r)) return null;
+	let [i = "0", a = "0"] = n.toLowerCase().split("e"), o = i.replace(/[+.\-]/g, "");
+	if (r === 0 && /[1-9]/.test(o)) return null;
+	if (t) {
+		let e = (i.split(".")[1]?.length ?? 0) - Number(a);
+		if (e > 0 && /[1-9]/.test(o.slice(-e))) return null;
+	}
+	return r;
+}
+function $y(e, t) {
+	return Math.max(t.min ?? -(2 ** 53 - 1), Math.min(t.max ?? 2 ** 53 - 1, e));
+}
+function eb(e) {
+	let [t = "0", n = "0"] = String(e).toLowerCase().split("e"), r = (t.split(".")[1]?.length ?? 0) - Number(n), i = BigInt(t.replace(".", ""));
+	return r < 0 ? {
+		coefficient: i * 10n ** BigInt(-r),
+		scale: 0
+	} : {
+		coefficient: i,
+		scale: r
+	};
+}
+function tb(e, t, n) {
+	let r = eb(e), i = eb(n.step), a = Math.max(r.scale, i.scale), o = r.coefficient * 10n ** BigInt(a - r.scale) + BigInt(t) * i.coefficient * 10n ** BigInt(a - i.scale);
+	return $y(Number(`${o}e-${a}`), n);
+}
+//#endregion
+//#region src/components/streamlit/number-input.tsx
+function nb({ envelope: e, setStateValue: t }) {
+	let n = (0, C.useId)(), { state: r, commit: i } = yf(e.state, t), { label: a, min: o, max: s, step: c, integer: l, disabled: u } = e.props, [d, f] = (0, C.useState)(String(r.value));
+	(0, C.useEffect)(() => {
+		f(String(r.value));
+	}, [
+		r.value,
+		r.serverRevision,
+		o,
+		s,
+		c,
+		l
+	]);
+	let p = Qy(d, l), m = $y(p ?? r.value, e.props), h = tb(m, -1, e.props), g = tb(m, 1, e.props);
+	function _(e) {
+		u || (f(String(e)), i(e));
+	}
+	function v() {
+		_(p === null ? r.value : m);
+	}
+	return /* @__PURE__ */ (0, Y.jsxs)("div", {
+		className: "grid min-w-0 gap-1.5 p-px",
+		"data-ssui-component": "number-input",
+		"data-testid": "ssui-v2-number-input",
+		children: [/* @__PURE__ */ (0, Y.jsx)("label", {
+			className: "text-sm font-medium leading-none",
+			htmlFor: n,
+			children: a
+		}), /* @__PURE__ */ (0, Y.jsxs)("div", {
+			className: "flex min-w-0 items-center gap-2",
+			children: [
+				/* @__PURE__ */ (0, Y.jsx)(Cu, {
+					"aria-controls": n,
+					"aria-label": `Decrease ${a}`,
+					className: "size-11 touch-manipulation",
+					disabled: u || h === m,
+					onClick: () => _(h),
+					onPointerDown: (e) => {
+						e.button === 0 && e.preventDefault();
+					},
+					size: "icon",
+					type: "button",
+					variant: "outline",
+					children: /* @__PURE__ */ (0, Y.jsx)(uf, { "aria-hidden": "true" })
+				}),
+				/* @__PURE__ */ (0, Y.jsx)(Jy, {
+					"aria-valuemax": s ?? void 0,
+					"aria-valuemin": o ?? void 0,
+					"aria-valuenow": p ?? r.value,
+					autoComplete: "off",
+					className: "h-11 text-center tabular-nums",
+					disabled: u,
+					id: n,
+					inputMode: l ? "numeric" : "decimal",
+					maxLength: 128,
+					onBlur: v,
+					onChange: (e) => f(e.currentTarget.value),
+					onKeyDown: (e) => {
+						if (!(e.nativeEvent.isComposing || e.altKey || e.ctrlKey || e.metaKey)) switch (e.key) {
+							case "Enter":
+								e.preventDefault(), v();
+								break;
+							case "Escape":
+								e.preventDefault(), f(String(r.value));
+								break;
+							case "ArrowUp":
+								e.preventDefault(), _(g);
+								break;
+							case "ArrowDown":
+								e.preventDefault(), _(h);
+								break;
+							case "Home":
+								o !== null && !e.shiftKey && (e.preventDefault(), _(o));
+								break;
+							case "End": s !== null && !e.shiftKey && (e.preventDefault(), _(s));
+						}
+					},
+					role: "spinbutton",
+					type: "text",
+					value: d
+				}),
+				/* @__PURE__ */ (0, Y.jsx)(Cu, {
+					"aria-controls": n,
+					"aria-label": `Increase ${a}`,
+					className: "size-11 touch-manipulation",
+					disabled: u || g === m,
+					onClick: () => _(g),
+					onPointerDown: (e) => {
+						e.button === 0 && e.preventDefault();
+					},
+					size: "icon",
+					type: "button",
+					variant: "outline",
+					children: /* @__PURE__ */ (0, Y.jsx)(df, { "aria-hidden": "true" })
+				})
+			]
+		})]
+	});
+}
+//#endregion
 //#region src/components/streamlit/link-button.tsx
-function Jy({ envelope: e }) {
+function rb({ envelope: e }) {
 	let t = {
 		"data-ssui-component": "link_button",
 		"data-testid": "ssui-v2-link-button"
@@ -22390,51 +22537,51 @@ function Jy({ envelope: e }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/stringifyLocale.mjs
-function Yy(e) {
-	return Array.isArray(e) ? e.map((e) => Yy(e)).join(",") : e == null ? "" : String(e);
+function ib(e) {
+	return Array.isArray(e) ? e.map((e) => ib(e)).join(",") : e == null ? "" : String(e);
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/formatNumber.mjs
-var Xy = /* @__PURE__ */ new Map();
-function Zy(e, t) {
+var ab = /* @__PURE__ */ new Map();
+function ob(e, t) {
 	let n = JSON.stringify({
-		locale: Yy(e),
+		locale: ib(e),
 		options: t
-	}), r = Xy.get(n);
+	}), r = ab.get(n);
 	if (r) return r;
 	let i = new Intl.NumberFormat(e, t);
-	return Xy.set(n, i), i;
+	return ab.set(n, i), i;
 }
-function Qy(e, t, n) {
-	return e == null ? "" : Zy(t, n).format(e);
+function sb(e, t, n) {
+	return e == null ? "" : ob(t, n).format(e);
 }
-function $y(e, t, n) {
-	return e == null ? "" : n ? Qy(e, t, n) : Qy(e / 100, t, { style: "percent" });
+function cb(e, t, n) {
+	return e == null ? "" : n ? sb(e, t, n) : sb(e / 100, t, { style: "percent" });
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/progress/root/ProgressRootContext.mjs
-var eb = /*#__PURE__*/ C.createContext(void 0);
-function tb() {
-	let e = C.useContext(eb);
+var lb = /*#__PURE__*/ C.createContext(void 0);
+function ub() {
+	let e = C.useContext(lb);
 	if (e === void 0) throw Error(la(51));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/progress/root/ProgressRootDataAttributes.mjs
-var nb = /*#__PURE__*/ function(e) {
+var db = /*#__PURE__*/ function(e) {
 	return e.complete = "data-complete", e.indeterminate = "data-indeterminate", e.progressing = "data-progressing", e;
-}({}), rb = { status(e) {
-	return e === "progressing" ? { [nb.progressing]: "" } : e === "complete" ? { [nb.complete]: "" } : e === "indeterminate" ? { [nb.indeterminate]: "" } : null;
+}({}), fb = { status(e) {
+	return e === "progressing" ? { [db.progressing]: "" } : e === "complete" ? { [db.complete]: "" } : e === "indeterminate" ? { [db.indeterminate]: "" } : null;
 } };
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/progress/root/ProgressRoot.mjs
-function ib(e, t) {
+function pb(e, t) {
 	return t == null ? "indeterminate progress" : e || `${t}%`;
 }
-var ab = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { format: n, getAriaValueText: r = ib, locale: i, max: a = 100, min: o = 0, value: s, render: c, className: l, children: u, style: d, ...f } = e, [p, m] = C.useState(), h = wr(n), g = "indeterminate";
+var mb = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { format: n, getAriaValueText: r = pb, locale: i, max: a = 100, min: o = 0, value: s, render: c, className: l, children: u, style: d, ...f } = e, [p, m] = C.useState(), h = wr(n), g = "indeterminate";
 	Number.isFinite(s) && (g = s === a ? "complete" : "progressing");
-	let _ = $y(s, i, h.current), v = C.useMemo(() => ({ status: g }), [g]), y = {
+	let _ = cb(s, i, h.current), v = C.useMemo(() => ({ status: g }), [g]), y = {
 		"aria-labelledby": p,
 		"aria-valuemax": a,
 		"aria-valuemin": o,
@@ -22466,30 +22613,30 @@ var ab = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		state: v,
 		ref: t,
 		props: [y, f],
-		stateAttributesMapping: rb
+		stateAttributesMapping: fb
 	});
-	return /*#__PURE__*/ (0, Y.jsx)(eb.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(lb.Provider, {
 		value: b,
 		children: x
 	});
-}), ob = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, ...a } = e, { state: o } = tb();
+}), hb = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, ...a } = e, { state: o } = ub();
 	return Q("div", e, {
 		state: o,
 		ref: t,
 		props: a,
-		stateAttributesMapping: rb
+		stateAttributesMapping: fb
 	});
 });
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/valueToPercent.mjs
-function sb(e, t, n) {
+function gb(e, t, n) {
 	return (e - t) * 100 / (n - t);
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/progress/indicator/ProgressIndicator.mjs
-var cb = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, ...a } = e, { max: o, min: s, value: c, state: l } = tb(), u = Number.isFinite(c) && c !== null ? sb(c, s, o) : null;
+var _b = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, ...a } = e, { max: o, min: s, value: c, state: l } = ub(), u = Number.isFinite(c) && c !== null ? gb(c, s, o) : null;
 	return Q("div", e, {
 		state: l,
 		ref: t,
@@ -22498,10 +22645,10 @@ var cb = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			height: "inherit",
 			width: `${u}%`
 		} }, a],
-		stateAttributesMapping: rb
+		stateAttributesMapping: fb
 	});
-}), lb = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { className: n, render: r, children: i, style: a, ...o } = e, { value: s, formattedValue: c, state: l } = tb();
+}), vb = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { className: n, render: r, children: i, style: a, ...o } = e, { value: s, formattedValue: c, state: l } = ub();
 	return Q("span", e, {
 		state: l,
 		ref: t,
@@ -22509,54 +22656,54 @@ var cb = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			"aria-hidden": !0,
 			children: typeof i == "function" ? i(s == null ? "indeterminate" : c, s) : s == null ? null : c
 		}, o],
-		stateAttributesMapping: rb
+		stateAttributesMapping: fb
 	});
-}), ub = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, id: a, ...o } = e, { setLabelId: s, state: c } = tb();
+}), yb = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, id: a, ...o } = e, { setLabelId: s, state: c } = ub();
 	return Q("span", e, {
 		state: c,
 		ref: t,
 		props: [{
-			id: Uy(a, s),
+			id: Gy(a, s),
 			role: "presentation"
 		}, o],
-		stateAttributesMapping: rb
+		stateAttributesMapping: fb
 	});
 });
 //#endregion
 //#region src/components/ui/progress.tsx
-function db({ className: e, children: t, value: n, ...r }) {
-	return /* @__PURE__ */ (0, Y.jsxs)(ab, {
+function bb({ className: e, children: t, value: n, ...r }) {
+	return /* @__PURE__ */ (0, Y.jsxs)(mb, {
 		value: n,
 		"data-slot": "progress",
 		className: J("flex flex-wrap gap-3", e),
 		...r,
-		children: [t, /* @__PURE__ */ (0, Y.jsx)(fb, { children: /* @__PURE__ */ (0, Y.jsx)(pb, {}) })]
+		children: [t, /* @__PURE__ */ (0, Y.jsx)(xb, { children: /* @__PURE__ */ (0, Y.jsx)(Sb, {}) })]
 	});
 }
-function fb({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(ob, {
+function xb({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(hb, {
 		className: J("relative flex h-1 w-full items-center overflow-x-hidden rounded-full bg-muted", e),
 		"data-slot": "progress-track",
 		...t
 	});
 }
-function pb({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(cb, {
+function Sb({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(_b, {
 		"data-slot": "progress-indicator",
 		className: J("h-full bg-primary transition-all", e),
 		...t
 	});
 }
-function mb({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(ub, {
+function Cb({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(yb, {
 		className: J("text-sm font-medium", e),
 		"data-slot": "progress-label",
 		...t
 	});
 }
-function hb({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(lb, {
+function wb({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(vb, {
 		className: J("ml-auto text-sm text-muted-foreground tabular-nums", e),
 		"data-slot": "progress-value",
 		...t
@@ -22564,33 +22711,33 @@ function hb({ className: e, ...t }) {
 }
 //#endregion
 //#region src/components/streamlit/progress.tsx
-function gb({ envelope: e }) {
+function Tb({ envelope: e }) {
 	let t = e.props.label ?? "Progress";
-	return /* @__PURE__ */ (0, Y.jsxs)(db, {
+	return /* @__PURE__ */ (0, Y.jsxs)(bb, {
 		"aria-label": t,
 		"data-ssui-component": "progress",
 		"data-testid": "ssui-v2-progress",
 		value: e.props.value,
-		children: [e.props.label === null ? null : /* @__PURE__ */ (0, Y.jsx)(mb, { children: e.props.label }), e.props.showValue ? /* @__PURE__ */ (0, Y.jsx)(hb, { children: (e, t) => `${Math.round(t ?? 0)}%` }) : null]
+		children: [e.props.label === null ? null : /* @__PURE__ */ (0, Y.jsx)(Cb, { children: e.props.label }), e.props.showValue ? /* @__PURE__ */ (0, Y.jsx)(wb, { children: (e, t) => `${Math.round(t ?? 0)}%` }) : null]
 	});
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/radio/root/RadioRootDataAttributes.mjs
-var _b = /*#__PURE__*/ function(e) {
+var Eb = /*#__PURE__*/ function(e) {
 	return e.checked = "data-checked", e.unchecked = "data-unchecked", e.disabled = "data-disabled", e.readonly = "data-readonly", e.required = "data-required", e.valid = "data-valid", e.invalid = "data-invalid", e.touched = "data-touched", e.dirty = "data-dirty", e.filled = "data-filled", e.focused = "data-focused", e;
-}({}), vb = {
+}({}), Db = {
 	checked(e) {
-		return e ? { [_b.checked]: "" } : { [_b.unchecked]: "" };
+		return e ? { [Eb.checked]: "" } : { [Eb.unchecked]: "" };
 	},
 	...uc,
-	...sp
-}, yb = "data-composite-item-active", bb = /*#__PURE__*/ C.createContext(void 0);
-function xb() {
-	return C.useContext(bb);
+	...lp
+}, Ob = "data-composite-item-active", kb = /*#__PURE__*/ C.createContext(void 0);
+function Ab() {
+	return C.useContext(kb);
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/serializeValue.mjs
-function Sb(e) {
+function jb(e) {
 	if (e == null) return "";
 	if (typeof e == "string") return e;
 	try {
@@ -22601,16 +22748,16 @@ function Sb(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/radio/root/RadioRootContext.mjs
-var Cb = /*#__PURE__*/ C.createContext(void 0);
-function wb() {
-	let e = C.useContext(Cb);
+var Mb = /*#__PURE__*/ C.createContext(void 0);
+function Nb() {
+	let e = C.useContext(Mb);
 	if (e === void 0) throw Error(la(52));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/radio/root/RadioRoot.mjs
-var Tb = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, disabled: i = !1, readOnly: a = !1, required: o = !1, "aria-labelledby": s, value: c, inputRef: l, nativeButton: u = !1, id: d, style: f, ...p } = e, m = xb(), { disabled: h, readOnly: g, required: _, form: v, checkedValue: y, touched: b = !1, validation: x, name: S } = m ?? {}, w = m?.setCheckedValue ?? un, T = m?.setTouched ?? un, E = m?.registerControlRef ?? un, D = m?.registerInputRef ?? un, { setTouched: O, setFilled: k, state: A, disabled: j } = dp(), M = mp(), { labelId: N, getDescriptionProps: P } = vp(), F = j || M.disabled || h || i, I = g || a, L = _ || o, R = v, z = m ? y === c : c === "", B = C.useRef(null), V = C.useRef(null), H = Z((e) => {
+var Pb = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, disabled: i = !1, readOnly: a = !1, required: o = !1, "aria-labelledby": s, value: c, inputRef: l, nativeButton: u = !1, id: d, style: f, ...p } = e, m = Ab(), { disabled: h, readOnly: g, required: _, form: v, checkedValue: y, touched: b = !1, validation: x, name: S } = m ?? {}, w = m?.setCheckedValue ?? un, T = m?.setTouched ?? un, E = m?.registerControlRef ?? un, D = m?.registerInputRef ?? un, { setTouched: O, setFilled: k, state: A, disabled: j } = pp(), M = gp(), { labelId: N, getDescriptionProps: P } = bp(), F = j || M.disabled || h || i, I = g || a, L = _ || o, R = v, z = m ? y === c : c === "", B = C.useRef(null), V = C.useRef(null), H = Z((e) => {
 		e && E(e, F);
 	}), U = vr(l, V, D);
 	X(() => {
@@ -22629,17 +22776,17 @@ var Tb = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		E,
 		D
 	]);
-	let W = zl(), G = Hy({
+	let W = zl(), G = Wy({
 		id: d,
 		implicit: !1,
 		controlRef: B
-	}), ee = u ? void 0 : G, te = yp(s, N, V, !u, ee), ne = {
+	}), ee = u ? void 0 : G, te = xp(s, N, V, !u, ee), ne = {
 		role: "radio",
 		"aria-checked": z,
 		"aria-required": L || void 0,
 		"aria-readonly": I || void 0,
 		"aria-labelledby": te,
-		[yb]: z ? "" : void 0,
+		[Ob]: z ? "" : void 0,
 		id: u ? G : W,
 		onKeyDown(e) {
 			e.key === "Enter" && e.preventDefault();
@@ -22672,7 +22819,7 @@ var Tb = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		tabIndex: -1,
 		style: S ? Nr : Mr,
 		"aria-hidden": !0,
-		...c === void 0 ? fn : { value: Sb(c) },
+		...c === void 0 ? fn : { value: jb(c) },
 		disabled: F,
 		checked: z,
 		required: L,
@@ -22713,11 +22860,11 @@ var Tb = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		state: oe,
 		ref: le,
 		props: ue,
-		stateAttributesMapping: vb
+		stateAttributesMapping: Db
 	});
-	return /*#__PURE__*/ (0, Y.jsxs)(Cb.Provider, {
+	return /*#__PURE__*/ (0, Y.jsxs)(Mb.Provider, {
 		value: se,
-		children: [ce ? /*#__PURE__*/ (0, Y.jsx)(Nm, {
+		children: [ce ? /*#__PURE__*/ (0, Y.jsx)(Fm, {
 			tag: "span",
 			render: n,
 			className: r,
@@ -22725,21 +22872,21 @@ var Tb = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			state: oe,
 			refs: le,
 			props: ue,
-			stateAttributesMapping: vb
+			stateAttributesMapping: Db
 		}) : de, /*#__PURE__*/ (0, Y.jsx)("input", {
 			...ae,
 			suppressHydrationWarning: !0
 		})]
 	});
-}), Eb = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, keepMounted: a = !1, ...o } = e, s = wb(), c = s.checked, { mounted: l, transitionStatus: u, setMounted: d } = oc(c), f = {
+}), Fb = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, keepMounted: a = !1, ...o } = e, s = Nb(), c = s.checked, { mounted: l, transitionStatus: u, setMounted: d } = oc(c), f = {
 		...s,
 		transitionStatus: u
 	}, p = C.useRef(null), m = a || l, h = Q("span", e, {
 		ref: [t, p],
 		state: f,
 		props: o,
-		stateAttributesMapping: vb
+		stateAttributesMapping: Db
 	});
 	return fc({
 		open: c,
@@ -22748,9 +22895,9 @@ var Tb = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			c || d(!1);
 		}
 	}), m ? h : null;
-}), Db = [];
-function Ob(e) {
-	let { loopFocus: t = !0, orientation: n = "both", grid: r, onLoop: i, direction: a, highlightedIndex: o, onHighlightedIndexChange: s, rootRef: c, enableHomeAndEndKeys: l = !1, stopEventPropagation: u = !1, disabledIndices: d, modifierKeys: f = Db } = e, [p, m] = C.useState(0), h = r != null, g = C.useRef(null), _ = vr(g, c), v = C.useRef([]), y = C.useRef(!1), b = o ?? p, x = Z((e, t = !1) => {
+}), Ib = [];
+function Lb(e) {
+	let { loopFocus: t = !0, orientation: n = "both", grid: r, onLoop: i, direction: a, highlightedIndex: o, onHighlightedIndexChange: s, rootRef: c, enableHomeAndEndKeys: l = !1, stopEventPropagation: u = !1, disabledIndices: d, modifierKeys: f = Ib } = e, [p, m] = C.useState(0), h = r != null, g = C.useRef(null), _ = vr(g, c), v = C.useRef([]), y = C.useRef(!1), b = o ?? p, x = Z((e, t = !1) => {
 		if ((s ?? m)(e), t) {
 			let t = v.current[e];
 			cu(g.current, t, a, n);
@@ -22782,7 +22929,7 @@ function Ob(e) {
 	]);
 	let w = Z((e, t, n) => i ? i(e, t, n, v) : n), T = Z((e) => {
 		let o = l ? ru : nu;
-		if (!o.has(e.key) || kb(e, f) || !g.current) return;
+		if (!o.has(e.key) || Rb(e, f) || !g.current) return;
 		let s = a === "rtl", c = s ? ql : Jl, p = {
 			horizontal: c,
 			vertical: Kl,
@@ -22792,7 +22939,7 @@ function Ob(e) {
 			vertical: Gl,
 			both: m
 		}[n], y = In(e.nativeEvent);
-		if (y != null && su(y) && !Um(y)) {
+		if (y != null && su(y) && !Gm(y)) {
 			let t = y.selectionStart, n = y.selectionEnd, r = y.value ?? "";
 			if (t == null || e.shiftKey || t !== n || e.key !== _ && t < r.length || e.key !== p && t > 0) return;
 		}
@@ -22847,14 +22994,14 @@ function Ob(e) {
 		relayKeyboardEvent: T
 	};
 }
-function kb(e, t) {
+function Rb(e, t) {
 	for (let n of au.values()) if (!t.includes(n) && e.getModifierState(n)) return !0;
 	return !1;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/composite/root/CompositeRoot.mjs
-function Ab(e) {
-	let { render: t, className: n, style: r, refs: i = dn, props: a = dn, state: o = fn, stateAttributesMapping: s, highlightedIndex: c, onHighlightedIndexChange: l, orientation: u, grid: d, loopFocus: f, onLoop: p, enableHomeAndEndKeys: m, onMapChange: h, stopEventPropagation: g = !0, rootRef: _, disabledIndices: v, modifierKeys: y, highlightItemOnHover: b = !1, tag: x = "div", ...S } = e, { props: w, highlightedIndex: T, onHighlightedIndexChange: E, elementsRef: D, onMapChange: O, relayKeyboardEvent: k } = Ob({
+function zb(e) {
+	let { render: t, className: n, style: r, refs: i = dn, props: a = dn, state: o = fn, stateAttributesMapping: s, highlightedIndex: c, onHighlightedIndexChange: l, orientation: u, grid: d, loopFocus: f, onLoop: p, enableHomeAndEndKeys: m, onMapChange: h, stopEventPropagation: g = !0, rootRef: _, disabledIndices: v, modifierKeys: y, highlightItemOnHover: b = !1, tag: x = "div", ...S } = e, { props: w, highlightedIndex: T, onHighlightedIndexChange: E, elementsRef: D, onMapChange: O, relayKeyboardEvent: k } = Lb({
 		grid: d,
 		loopFocus: f,
 		onLoop: p,
@@ -22900,8 +23047,8 @@ function Ab(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/radio-group/RadioGroup.mjs
-var jb = [iu], Mb = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, disabled: i, readOnly: a, required: o, onValueChange: s, value: c, defaultValue: l, form: u, name: d, inputRef: f, id: p, style: m, ...h } = e, { setTouched: g, setFocused: _, validationMode: v, name: y, disabled: b, state: x, validation: S, setDirty: w, setFilled: T, validityData: E } = dp(), { labelId: D } = vp(), { clearErrors: O } = gp(), k = Vy(!0), A = b || i, j = y ?? d, M = zl(p), [N, P] = id({
+var Bb = [iu], Vb = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, disabled: i, readOnly: a, required: o, onValueChange: s, value: c, defaultValue: l, form: u, name: d, inputRef: f, id: p, style: m, ...h } = e, { setTouched: g, setFocused: _, validationMode: v, name: y, disabled: b, state: x, validation: S, setDirty: w, setFilled: T, validityData: E } = pp(), { labelId: D } = bp(), { clearErrors: O } = vp(), k = Uy(!0), A = b || i, j = y ?? d, M = zl(p), [N, P] = id({
 		controlled: c,
 		default: l,
 		name: "RadioGroup",
@@ -22930,7 +23077,7 @@ var jb = [iu], Mb = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		let e = z.current;
 		return !e || e.disabled || !e.checked ? null : N ?? null;
 	});
-	fp(R, M, N ?? null, W, !A, d), vu(N, () => {
+	mp(R, M, N ?? null, W, !A, d), vu(N, () => {
 		O(j), w(N !== E.initialValue), T(N != null), S.change(N);
 		let e = B.current;
 		N == null && e && !e.disabled && V(e);
@@ -22985,9 +23132,9 @@ var jb = [iu], Mb = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			e.key.startsWith("Arrow") && (I(!0), _(!0));
 		}
 	};
-	return /*#__PURE__*/ (0, Y.jsx)(bb.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(kb.Provider, {
 		value: te,
-		children: /*#__PURE__*/ (0, Y.jsx)(Ab, {
+		children: /*#__PURE__*/ (0, Y.jsx)(zb, {
 			render: n,
 			className: r,
 			style: m,
@@ -22998,27 +23145,27 @@ var jb = [iu], Mb = /*#__PURE__*/ C.forwardRef(function(e, t) {
 				(e) => S.getValidationProps(A ?? !1, e)
 			],
 			refs: [t],
-			stateAttributesMapping: sp,
+			stateAttributesMapping: lp,
 			enableHomeAndEndKeys: !1,
-			modifierKeys: jb
+			modifierKeys: Bb
 		})
 	});
 });
 //#endregion
 //#region src/components/ui/radio-group.tsx
-function Nb({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Mb, {
+function Hb({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Vb, {
 		"data-slot": "radio-group",
 		className: J("grid w-full gap-2", e),
 		...t
 	});
 }
-function Pb({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Tb, {
+function Ub({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Pb, {
 		"data-slot": "radio-group-item",
 		className: J("group/radio-group-item peer relative flex aspect-square size-4 shrink-0 rounded-full border border-input outline-none after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 aria-invalid:aria-checked:border-primary dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 data-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground dark:data-checked:bg-primary", e),
 		...t,
-		children: /* @__PURE__ */ (0, Y.jsx)(Eb, {
+		children: /* @__PURE__ */ (0, Y.jsx)(Fb, {
 			"data-slot": "radio-group-indicator",
 			className: "flex size-4 items-center justify-center",
 			children: /* @__PURE__ */ (0, Y.jsx)("span", { className: "absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-foreground" })
@@ -23027,8 +23174,8 @@ function Pb({ className: e, ...t }) {
 }
 //#endregion
 //#region src/components/streamlit/radio-group.tsx
-function Fb({ envelope: e, setStateValue: t }) {
-	let n = (0, C.useId)(), r = (0, C.useId)(), { commit: i, state: a } = _f(e.state, t);
+function Wb({ envelope: e, setStateValue: t }) {
+	let n = (0, C.useId)(), r = (0, C.useId)(), { commit: i, state: a } = yf(e.state, t);
 	return /* @__PURE__ */ (0, Y.jsxs)("fieldset", {
 		className: "grid min-w-0 gap-2 p-px",
 		"data-ssui-component": "radio_group",
@@ -23037,7 +23184,7 @@ function Fb({ envelope: e, setStateValue: t }) {
 			className: "text-sm font-medium leading-none",
 			id: n,
 			children: e.props.label
-		}), /* @__PURE__ */ (0, Y.jsx)(Nb, {
+		}), /* @__PURE__ */ (0, Y.jsx)(Hb, {
 			"aria-labelledby": n,
 			disabled: e.props.disabled,
 			onValueChange: i,
@@ -23046,7 +23193,7 @@ function Fb({ envelope: e, setStateValue: t }) {
 				let n = `${r}-${t}`;
 				return /* @__PURE__ */ (0, Y.jsxs)("div", {
 					className: "flex items-center gap-2",
-					children: [/* @__PURE__ */ (0, Y.jsx)(Pb, {
+					children: [/* @__PURE__ */ (0, Y.jsx)(Ub, {
 						disabled: e.disabled,
 						id: n,
 						value: e.value
@@ -23062,67 +23209,67 @@ function Fb({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/select/root/SelectRootContext.mjs
-var Ib = /*#__PURE__*/ C.createContext(null), Lb = /*#__PURE__*/ C.createContext(null);
-function Rb() {
-	let e = C.useContext(Ib);
+var Gb = /*#__PURE__*/ C.createContext(null), Kb = /*#__PURE__*/ C.createContext(null);
+function qb() {
+	let e = C.useContext(Gb);
 	if (e === null) throw Error(la(60));
 	return e;
 }
-function zb() {
-	let e = C.useContext(Lb);
+function Jb() {
+	let e = C.useContext(Kb);
 	if (e === null) throw Error(la(61));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/itemEquality.mjs
-var Bb = (e, t) => Object.is(e, t);
-function Vb(e, t, n) {
+var Yb = (e, t) => Object.is(e, t);
+function Xb(e, t, n) {
 	return e == null || t == null ? Object.is(e, t) : n(e, t);
 }
-function Hb(e, t, n) {
-	return !e || e.length === 0 ? !1 : e.some((e) => e !== void 0 && Vb(t, e, n));
+function Zb(e, t, n) {
+	return !e || e.length === 0 ? !1 : e.some((e) => e !== void 0 && Xb(t, e, n));
 }
-function Ub(e, t, n) {
-	return !e || e.length === 0 ? -1 : e.findIndex((e) => e !== void 0 && Vb(e, t, n));
+function Qb(e, t, n) {
+	return !e || e.length === 0 ? -1 : e.findIndex((e) => e !== void 0 && Xb(e, t, n));
 }
-function Wb(e, t, n) {
-	return e.filter((e) => !Vb(t, e, n));
+function $b(e, t, n) {
+	return e.filter((e) => !Xb(t, e, n));
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/resolveValueLabel.mjs
-function Gb(e) {
+function ex(e) {
 	return e != null && e.length > 0 && typeof e[0] == "object" && e[0] != null && "items" in e[0];
 }
-function Kb(e) {
+function tx(e) {
 	if (!Array.isArray(e)) return e != null && "null" in e;
 	let t = e;
-	if (Gb(t)) {
+	if (ex(t)) {
 		for (let e of t) for (let t of e.items) if (t && t.value == null && t.label != null) return !0;
 		return !1;
 	}
 	for (let e of t) if (e && e.value == null && e.label != null) return !0;
 	return !1;
 }
-function qb(e, t) {
+function nx(e, t) {
 	if (t && e != null) return t(e) ?? "";
 	if (e && typeof e == "object") {
 		if ("label" in e && e.label != null) return String(e.label);
 		if ("value" in e) return String(e.value);
 	}
-	return Sb(e);
+	return jb(e);
 }
-function Jb(e, t) {
-	return t && e != null ? t(e) ?? "" : e && typeof e == "object" && "value" in e && "label" in e ? Sb(e.value) : Sb(e);
+function rx(e, t) {
+	return t && e != null ? t(e) ?? "" : e && typeof e == "object" && "value" in e && "label" in e ? jb(e.value) : jb(e);
 }
-function Yb(e, t, n) {
+function ix(e, t, n) {
 	function r() {
-		return qb(e, n);
+		return nx(e, n);
 	}
 	if (n && e != null) return n(e);
 	if (e && typeof e == "object" && "label" in e && e.label != null) return e.label;
 	if (t && !Array.isArray(t)) return t[e] ?? r();
 	if (Array.isArray(t)) {
-		let n = t, i = Gb(n) ? n.flatMap((e) => e.items) : n;
+		let n = t, i = ex(n) ? n.flatMap((e) => e.items) : n;
 		if (typeof e != "object" || !e) {
 			let t = i.find((t) => t.value === e);
 			return t && t.label != null ? t.label : r();
@@ -23134,12 +23281,12 @@ function Yb(e, t, n) {
 	}
 	return r();
 }
-function Xb(e, t, n) {
-	return e.reduce((e, r, i) => (i > 0 && e.push(", "), e.push(/*#__PURE__*/ (0, Y.jsx)(C.Fragment, { children: Yb(r, t, n) }, i)), e), []);
+function ax(e, t, n) {
+	return e.reduce((e, r, i) => (i > 0 && e.push(", "), e.push(/*#__PURE__*/ (0, Y.jsx)(C.Fragment, { children: ix(r, t, n) }, i)), e), []);
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/select/store.mjs
-var Zb = {
+var ox = {
 	id: $((e) => e.id),
 	labelId: $((e) => e.labelId),
 	modal: $((e) => e.modal),
@@ -23151,9 +23298,9 @@ var Zb = {
 	value: $((e) => e.value),
 	hasSelectedValue: $((e) => {
 		let { value: t, multiple: n, itemToStringValue: r } = e;
-		return t == null ? !1 : n && Array.isArray(t) ? t.length > 0 : Jb(t, r) !== "";
+		return t == null ? !1 : n && Array.isArray(t) ? t.length > 0 : rx(t, r) !== "";
 	}),
-	hasNullItemLabel: $((e, t) => t ? Kb(e.items) : !1),
+	hasNullItemLabel: $((e, t) => t ? tx(e.items) : !1),
 	open: $((e) => e.open),
 	mounted: $((e) => e.mounted),
 	forceMount: $((e) => e.forceMount),
@@ -23164,7 +23311,7 @@ var Zb = {
 	isActive: $((e, t) => e.activeIndex === t),
 	isSelected: $((e, t) => {
 		let n = e.isItemEqualToValue, r = e.value;
-		return e.multiple ? Array.isArray(r) && r.some((e) => Vb(t, e, n)) : Vb(t, r, n);
+		return e.multiple ? Array.isArray(r) && r.some((e) => Xb(t, e, n)) : Xb(t, r, n);
 	}),
 	isSelectedByFocus: $((e, t) => e.selectedIndex === t),
 	popupProps: $((e) => e.popupProps),
@@ -23179,26 +23326,26 @@ var Zb = {
 };
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/areArraysEqual.mjs
-function Qb(e, t, n = (e, t) => e === t) {
+function sx(e, t, n = (e, t) => e === t) {
 	return e.length === t.length && e.every((e, r) => n(e, t[r]));
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/internals/clamp.mjs
-function $b(e, t = -(2 ** 53 - 1), n = 2 ** 53 - 1) {
+function cx(e, t = -(2 ** 53 - 1), n = 2 ** 53 - 1) {
 	return Math.max(t, Math.min(e, n));
 }
-function ex(e, t) {
+function lx(e, t) {
 	return Math.max(0, e - t);
 }
-function tx(e, t) {
+function ux(e, t) {
 	if (t <= 0) return 0;
-	let n = $b(e, 0, t), r = n, i = t - n, a = r <= 1, o = i <= 1;
+	let n = cx(e, 0, t), r = n, i = t - n, a = r <= 1, o = i <= 1;
 	return a && o ? r <= i ? 0 : t : a ? 0 : o ? t : n;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/select/root/SelectRoot.mjs
-function nx(e) {
-	let { id: t, value: n, defaultValue: r = null, onValueChange: i, open: a, defaultOpen: o = !1, onOpenChange: s, name: c, form: l, autoComplete: u, disabled: d = !1, readOnly: f = !1, required: p = !1, modal: m = !0, actionsRef: h, inputRef: g, onOpenChangeComplete: _, items: v, multiple: y = !1, itemToStringLabel: b, itemToStringValue: x, isItemEqualToValue: S = Bb, highlightItemOnHover: w = !0, children: T } = e, { clearErrors: E } = gp(), { setDirty: D, setTouched: O, setFocused: k, validityData: A, setFilled: j, name: M, disabled: N, validation: P, validationMode: F } = dp(), I = Hy({ id: t }), L = N || d, R = M ?? c, [z, B] = id({
+function dx(e) {
+	let { id: t, value: n, defaultValue: r = null, onValueChange: i, open: a, defaultOpen: o = !1, onOpenChange: s, name: c, form: l, autoComplete: u, disabled: d = !1, readOnly: f = !1, required: p = !1, modal: m = !0, actionsRef: h, inputRef: g, onOpenChangeComplete: _, items: v, multiple: y = !1, itemToStringLabel: b, itemToStringValue: x, isItemEqualToValue: S = Yb, highlightItemOnHover: w = !0, children: T } = e, { clearErrors: E } = vp(), { setDirty: D, setTouched: O, setFocused: k, validityData: A, setFilled: j, name: M, disabled: N, validation: P, validationMode: F } = pp(), I = Wy({ id: t }), L = N || d, R = M ?? c, [z, B] = id({
 		controlled: n,
 		default: y ? r ?? dn : r,
 		name: "Select",
@@ -23238,17 +23385,17 @@ function nx(e) {
 		scrollUpArrowVisible: !1,
 		scrollDownArrowVisible: !1,
 		hasScrollArrows: !1
-	})).current, he = Zs(me, Zb.activeIndex), ge = Zs(me, Zb.selectedIndex), _e = Zs(me, Zb.triggerElement), ve = Zs(me, Zb.positionerElement), ye = Vm(fe), be = fe ?? ye ?? null, xe = C.useMemo(() => y ? "" : Jb(z, x), [
+	})).current, he = Zs(me, ox.activeIndex), ge = Zs(me, ox.selectedIndex), _e = Zs(me, ox.triggerElement), ve = Zs(me, ox.positionerElement), ye = Um(fe), be = fe ?? ye ?? null, xe = C.useMemo(() => y ? "" : rx(z, x), [
 		y,
 		z,
 		x
-	]), Se = C.useMemo(() => y && Array.isArray(z) ? z.map((e) => Jb(e, x)) : Jb(z, x), [
+	]), Se = C.useMemo(() => y && Array.isArray(z) ? z.map((e) => rx(e, x)) : rx(z, x), [
 		y,
 		z,
 		x
 	]);
-	fp(wr(me.state.triggerElement), I, z, Z(() => Se), !L, c);
-	let Ce = C.useRef(z), we = y ? Array.isArray(z) && z.length > 0 : z != null && Jb(z, x) !== "";
+	mp(wr(me.state.triggerElement), I, z, Z(() => Se), !L, c);
+	let Ce = C.useRef(z), we = y ? Array.isArray(z) && z.length > 0 : z != null && rx(z, x) !== "";
 	X(() => {
 		z !== Ce.current && me.set("forceMount", !0);
 	}, [me, z]), X(() => {
@@ -23259,11 +23406,11 @@ function nx(e) {
 			let n = Array.isArray(z) ? z : [];
 			if (n.length === 0) t = null;
 			else {
-				let r = n[n.length - 1], i = Ub(e, r, S);
+				let r = n[n.length - 1], i = Qb(e, r, S);
 				t = i === -1 ? null : i;
 			}
 		} else {
-			let n = Ub(e, z, S);
+			let n = Qb(e, z, S);
 			t = n === -1 ? null : n;
 		}
 		t === null && (oe.current = null), !V && me.set("selectedIndex", t);
@@ -23279,7 +23426,7 @@ function nx(e) {
 	]);
 	function Te(e) {
 		let t = A.initialValue;
-		return Array.isArray(e) && Array.isArray(t) ? !Qb(e, t, (e, t) => Vb(e, t, S)) : e !== t;
+		return Array.isArray(e) && Array.isArray(t) ? !sx(e, t, (e, t) => Xb(e, t, S)) : e !== t;
 	}
 	vu(z, () => {
 		E(R), D(Te(z)), P.change(z);
@@ -23305,7 +23452,7 @@ function nx(e) {
 	}), ke = Z(() => {
 		let e = me.state.listElement || G.current;
 		if (!e) return;
-		let t = ex(e.scrollHeight, e.clientHeight), n = tx(e.scrollTop, t), r = n > 0, i = n < t;
+		let t = lx(e.scrollHeight, e.clientHeight), n = ux(e.scrollTop, t), r = n > 0, i = n < t;
 		me.state.scrollUpArrowVisible !== r && me.set("scrollUpArrowVisible", r), me.state.scrollDownArrowVisible !== i && me.set("scrollDownArrowVisible", i);
 	}), Ae = Ic({
 		open: V,
@@ -23332,7 +23479,7 @@ function nx(e) {
 		listRef: W,
 		activeIndex: he,
 		selectedIndex: ge,
-		disabledIndices: (e) => Um(U.current[e]),
+		disabledIndices: (e) => Gm(U.current[e]),
 		onMatch(e) {
 			V ? me.set("activeIndex", e) : Oe(re.current[e], hr("none"));
 		},
@@ -23435,7 +23582,7 @@ function nx(e) {
 		_,
 		ke
 	]), Re = vr(g, P.inputRef), ze = y && Array.isArray(z) && z.length > 0, q = y ? void 0 : R, Be = C.useMemo(() => !y || !Array.isArray(z) || !R ? null : z.map((e) => {
-		let t = Jb(e, x);
+		let t = rx(e, x);
 		return /*#__PURE__*/ (0, Y.jsx)("input", {
 			type: "hidden",
 			form: l,
@@ -23451,9 +23598,9 @@ function nx(e) {
 		x,
 		L
 	]);
-	return /*#__PURE__*/ (0, Y.jsx)(Ib.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(Gb.Provider, {
 		value: Le,
-		children: /*#__PURE__*/ (0, Y.jsxs)(Lb.Provider, {
+		children: /*#__PURE__*/ (0, Y.jsxs)(Kb.Provider, {
 			value: Ae,
 			children: [
 				T,
@@ -23467,7 +23614,7 @@ function nx(e) {
 							let t = e.currentTarget.value, n = hr(Xn, e.nativeEvent);
 							function r() {
 								if (y) return;
-								let e = t.toLowerCase(), r = re.current.findIndex((t) => Jb(t, x).toLowerCase() === e || qb(t, b).toLowerCase() === e);
+								let e = t.toLowerCase(), r = re.current.findIndex((t) => rx(t, x).toLowerCase() === e || nx(t, b).toLowerCase() === e);
 								r === -1 && (r = re.current.findIndex((t, n) => {
 									let r = W.current[n];
 									return r != null && r.toLowerCase() === e;
@@ -23499,22 +23646,22 @@ function nx(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/resolveAriaLabelledBy.mjs
-function rx(e) {
+function fx(e) {
 	return e == null ? void 0 : `${e}-label`;
 }
-function ix(e, t) {
+function px(e, t) {
 	return e ?? t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/select/trigger/SelectTrigger.mjs
-var ax = 2, ox = 400, sx = {
+var mx = 2, hx = 400, gx = {
 	...Ol,
-	...sp,
+	...lp,
 	popupSide: (e) => e ? { "data-popup-side": e } : null,
 	value: () => null
-}, cx = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, id: i, disabled: a = !1, nativeButton: o = !0, style: s, ...c } = e, { setTouched: l, setFocused: u, validationMode: d, state: f, disabled: p } = dp(), { labelId: m } = vp(), { store: h, setOpen: g, selectionRef: _, validation: v, readOnly: y, required: b, alignItemWithTriggerActiveRef: x, disabled: S } = Rb(), w = p || S || a, T = Zs(h, Zb.open), E = Zs(h, Zb.mounted), D = Zs(h, Zb.value), O = Zs(h, Zb.triggerProps), k = Zs(h, Zb.positionerElement), A = Zs(h, Zb.listElement), j = Zs(h, Zb.popupSide), M = Zs(h, Zb.id), N = Zs(h, Zb.labelId), P = Zs(h, Zb.hasSelectedValue), F = E && k ? j : null, I = i ?? M, L = ix(m, N);
-	Hy({ id: I });
+}, _x = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, id: i, disabled: a = !1, nativeButton: o = !0, style: s, ...c } = e, { setTouched: l, setFocused: u, validationMode: d, state: f, disabled: p } = pp(), { labelId: m } = bp(), { store: h, setOpen: g, selectionRef: _, validation: v, readOnly: y, required: b, alignItemWithTriggerActiveRef: x, disabled: S } = qb(), w = p || S || a, T = Zs(h, ox.open), E = Zs(h, ox.mounted), D = Zs(h, ox.value), O = Zs(h, ox.triggerProps), k = Zs(h, ox.positionerElement), A = Zs(h, ox.listElement), j = Zs(h, ox.popupSide), M = Zs(h, ox.id), N = Zs(h, ox.labelId), P = Zs(h, ox.hasSelectedValue), F = E && k ? j : null, I = i ?? M, L = px(m, N);
+	Wy({ id: I });
 	let R = wr(k), z = C.useRef(null), { getButtonProps: B, buttonRef: V } = Fl({
 		disabled: w,
 		native: o
@@ -23522,7 +23669,7 @@ var ax = 2, ox = 400, sx = {
 		h.set("triggerElement", e);
 	}), U = an(), W = an(), G = an();
 	C.useEffect(() => {
-		if (T) return G.start(ox, () => {
+		if (T) return G.start(hx, () => {
 			_.current.allowUnselectedMouseUp = !0, _.current.allowSelectedMouseUp = !0;
 		}), () => {
 			G.clear();
@@ -23563,8 +23710,8 @@ var ax = 2, ox = 400, sx = {
 				if (!z.current) return;
 				let t = e.target;
 				if (Fn(z.current, t) || Fn(R.current, t)) return;
-				let n = jm(z.current);
-				e.clientX >= n.left - ax && e.clientX <= n.right + ax && e.clientY >= n.top - ax && e.clientY <= n.bottom + ax || g(!1, hr(cr, e));
+				let n = Nm(z.current);
+				e.clientX >= n.left - mx && e.clientX <= n.right + mx && e.clientY >= n.top - mx && e.clientY <= n.bottom + mx || g(!1, hr(cr, e));
 			}
 			W.start(0, () => {
 				t.addEventListener("mouseup", n, { once: !0 });
@@ -23589,24 +23736,24 @@ var ax = 2, ox = 400, sx = {
 			H
 		],
 		state: ne,
-		stateAttributesMapping: sx,
+		stateAttributesMapping: gx,
 		props: te
 	});
-}), lx = { value: () => null }, ux = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { className: n, render: r, children: i, placeholder: a, style: o, ...s } = e, { store: c, valueRef: l } = Rb(), u = Zs(c, Zb.value), d = Zs(c, Zb.items), f = Zs(c, Zb.itemToStringLabel), p = Zs(c, Zb.hasSelectedValue), m = !p && a != null && i == null, h = Zs(c, Zb.hasNullItemLabel, m), g = {
+}), vx = { value: () => null }, yx = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { className: n, render: r, children: i, placeholder: a, style: o, ...s } = e, { store: c, valueRef: l } = qb(), u = Zs(c, ox.value), d = Zs(c, ox.items), f = Zs(c, ox.itemToStringLabel), p = Zs(c, ox.hasSelectedValue), m = !p && a != null && i == null, h = Zs(c, ox.hasNullItemLabel, m), g = {
 		value: u,
 		placeholder: !p
 	}, _ = null;
-	return _ = typeof i == "function" ? i(u) : i ?? (!p && a != null && !h ? a : Array.isArray(u) ? Xb(u, d, f) : Yb(u, d, f)), Q("span", e, {
+	return _ = typeof i == "function" ? i(u) : i ?? (!p && a != null && !h ? a : Array.isArray(u) ? ax(u, d, f) : ix(u, d, f)), Q("span", e, {
 		state: g,
 		ref: [t, l],
 		props: [{ children: _ }, s],
-		stateAttributesMapping: lx
+		stateAttributesMapping: vx
 	});
-}), dx = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, ...a } = e, { store: o } = Rb();
+}), bx = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, ...a } = e, { store: o } = qb();
 	return Q("span", e, {
-		state: { open: Zs(o, Zb.open) },
+		state: { open: Zs(o, ox.open) },
 		ref: t,
 		props: [{
 			"aria-hidden": !0,
@@ -23614,37 +23761,37 @@ var ax = 2, ox = 400, sx = {
 		}, a],
 		stateAttributesMapping: Dl
 	});
-}), fx = /*#__PURE__*/ C.createContext(void 0), px = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { store: n } = Rb(), r = Zs(n, Zb.mounted), i = Zs(n, Zb.forceMount);
-	return r || i ? /*#__PURE__*/ (0, Y.jsx)(fx.Provider, {
+}), xx = /*#__PURE__*/ C.createContext(void 0), Sx = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { store: n } = qb(), r = Zs(n, ox.mounted), i = Zs(n, ox.forceMount);
+	return r || i ? /*#__PURE__*/ (0, Y.jsx)(xx.Provider, {
 		value: !0,
 		children: /*#__PURE__*/ (0, Y.jsx)(qa, {
 			ref: t,
 			...e
 		})
 	}) : null;
-}), mx = /*#__PURE__*/ C.createContext(void 0);
-function hx() {
-	let e = C.useContext(mx);
+}), Cx = /*#__PURE__*/ C.createContext(void 0);
+function wx() {
+	let e = C.useContext(Cx);
 	if (!e) throw Error(la(59));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/select/popup/utils.mjs
-function gx(e, t) {
+function Tx(e, t) {
 	e && Object.assign(e.style, t);
 }
-var _x = {
+var Ex = {
 	position: "relative",
 	maxHeight: "100%",
 	overflowX: "hidden",
 	overflowY: "auto"
-}, vx = { position: "fixed" }, yx = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { anchor: n, positionMethod: r = "absolute", className: i, render: a, side: o = "bottom", align: s = "center", sideOffset: c = 0, alignOffset: l = 0, collisionBoundary: u = "clipping-ancestors", collisionPadding: d, arrowPadding: f = 5, sticky: p = !1, disableAnchorTracking: m, alignItemWithTrigger: h = !0, collisionAvoidance: g = za, style: _, ...v } = e, { store: y, listRef: b, labelsRef: x, alignItemWithTriggerActiveRef: S, selectedItemTextRef: w, valuesRef: T, initialValueRef: E, popupRef: D, setValue: O } = Rb(), k = zb(), A = Zs(y, Zb.open), j = Zs(y, Zb.mounted), M = Zs(y, Zb.modal), N = Zs(y, Zb.value), P = Zs(y, Zb.openMethod), F = Zs(y, Zb.positionerElement), I = Zs(y, Zb.triggerElement), L = Zs(y, Zb.isItemEqualToValue), R = Zs(y, Zb.transitionStatus), z = C.useRef(null), B = C.useRef(null), [V, H] = C.useState(h), U = j && V && P !== "touch";
+}, Dx = { position: "fixed" }, Ox = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { anchor: n, positionMethod: r = "absolute", className: i, render: a, side: o = "bottom", align: s = "center", sideOffset: c = 0, alignOffset: l = 0, collisionBoundary: u = "clipping-ancestors", collisionPadding: d, arrowPadding: f = 5, sticky: p = !1, disableAnchorTracking: m, alignItemWithTrigger: h = !0, collisionAvoidance: g = za, style: _, ...v } = e, { store: y, listRef: b, labelsRef: x, alignItemWithTriggerActiveRef: S, selectedItemTextRef: w, valuesRef: T, initialValueRef: E, popupRef: D, setValue: O } = qb(), k = Jb(), A = Zs(y, ox.open), j = Zs(y, ox.mounted), M = Zs(y, ox.modal), N = Zs(y, ox.value), P = Zs(y, ox.openMethod), F = Zs(y, ox.positionerElement), I = Zs(y, ox.triggerElement), L = Zs(y, ox.isItemEqualToValue), R = Zs(y, ox.transitionStatus), z = C.useRef(null), B = C.useRef(null), [V, H] = C.useState(h), U = j && V && P !== "touch";
 	!j && V !== h && H(h), X(() => {
-		j || (Zb.scrollUpArrowVisible(y.state) && y.set("scrollUpArrowVisible", !1), Zb.scrollDownArrowVisible(y.state) && y.set("scrollDownArrowVisible", !1));
-	}, [y, j]), C.useImperativeHandle(S, () => U), xm((U || M) && A, P === "touch", F, I);
-	let W = _m({
+		j || (ox.scrollUpArrowVisible(y.state) && y.set("scrollUpArrowVisible", !1), ox.scrollDownArrowVisible(y.state) && y.set("scrollDownArrowVisible", !1));
+	}, [y, j]), C.useImperativeHandle(S, () => U), Cm((U || M) && A, P === "touch", F, I);
+	let W = ym({
 		anchor: n,
 		floatingRootContext: k,
 		positionMethod: r,
@@ -23660,7 +23807,7 @@ var _x = {
 		disableAnchorTracking: m ?? U,
 		collisionAvoidance: g,
 		keepMounted: !0
-	}), G = U ? "none" : W.side, ee = U ? vx : W.positionerStyles, te = {
+	}), G = U ? "none" : W.side, ee = U ? Dx : W.positionerStyles, te = {
 		open: A,
 		side: G,
 		align: W.align,
@@ -23669,7 +23816,7 @@ var _x = {
 	X(() => {
 		y.set("popupSide", W.side);
 	}, [y, W.side]);
-	let ne = ym(e, te, {
+	let ne = xm(e, te, {
 		styles: ee,
 		transitionStatus: R,
 		props: v,
@@ -23683,13 +23830,13 @@ var _x = {
 		let t = re.current;
 		if (re.current = e.size, e.size === t) return;
 		let n = hr(Xn);
-		if (t !== 0 && !y.state.multiple && N !== null && Ub(T.current, N, L) === -1) {
-			let e = E.current, t = e != null && Ub(T.current, e, L) !== -1 ? e : null;
+		if (t !== 0 && !y.state.multiple && N !== null && Qb(T.current, N, L) === -1) {
+			let e = E.current, t = e != null && Qb(T.current, e, L) !== -1 ? e : null;
 			O(t, n), t === null && (y.set("selectedIndex", null), w.current = null);
 		}
 		if (t !== 0 && y.state.multiple && Array.isArray(N)) {
-			let e = (e) => Ub(T.current, e, L) !== -1, t = N.filter((t) => e(t));
-			(t.length !== N.length || t.some((e) => !Hb(N, e, L))) && (O(t, n), t.length === 0 && (y.set("selectedIndex", null), w.current = null));
+			let e = (e) => Qb(T.current, e, L) !== -1, t = N.filter((t) => e(t));
+			(t.length !== N.length || t.some((e) => !Zb(N, e, L))) && (O(t, n), t.length === 0 && (y.set("selectedIndex", null), w.current = null));
 		}
 		if (A && U) {
 			y.update({
@@ -23697,7 +23844,7 @@ var _x = {
 				scrollDownArrowVisible: !1
 			});
 			let e = { height: "" };
-			gx(F, e), gx(D.current, e);
+			Tx(F, e), Tx(D.current, e);
 		}
 	}), ae = C.useMemo(() => ({
 		...W,
@@ -23716,7 +23863,7 @@ var _x = {
 		elementsRef: b,
 		labelsRef: x,
 		onMapChange: ie,
-		children: /*#__PURE__*/ (0, Y.jsxs)(mx.Provider, {
+		children: /*#__PURE__*/ (0, Y.jsxs)(Cx.Provider, {
 			value: ae,
 			children: [j && M && /*#__PURE__*/ (0, Y.jsx)(mu, {
 				inert: pu(!A),
@@ -23724,27 +23871,27 @@ var _x = {
 			}), ne]
 		})
 	});
-}), bx = "base-ui-disable-scrollbar", xx = {
-	className: bx,
+}), kx = "base-ui-disable-scrollbar", Ax = {
+	className: kx,
 	getElement(e) {
 		return /*#__PURE__*/ (0, Y.jsx)("style", {
 			nonce: e,
-			href: bx,
+			href: kx,
 			precedence: "base-ui:low",
-			children: `.${bx}{scrollbar-width:none}.${bx}::-webkit-scrollbar{display:none}`
+			children: `.${kx}{scrollbar-width:none}.${kx}::-webkit-scrollbar{display:none}`
 		});
 	}
-}, Sx = /*#__PURE__*/ C.createContext(void 0), Cx = { disableStyleElements: !1 };
-function wx() {
-	return C.useContext(Sx) ?? Cx;
+}, jx = /*#__PURE__*/ C.createContext(void 0), Mx = { disableStyleElements: !1 };
+function Nx() {
+	return C.useContext(jx) ?? Mx;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/select/popup/SelectPopup.mjs
-var Tx = {
+var Px = {
 	...kl,
 	...uc
-}, Ex = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, finalFocus: a, ...o } = e, { store: s, popupRef: c, onOpenChangeComplete: l, setOpen: u, valueRef: d, firstItemTextRef: f, selectedItemTextRef: p, multiple: m, handleScrollArrowVisibility: h, scrollHandlerRef: g, listRef: _, highlightItemOnHover: v } = Rb(), { side: y, align: b, alignItemWithTriggerActive: x, isPositioned: S, setControlledAlignItemWithTrigger: w } = hx(), T = nm(!0) != null, E = zb(), D = fd(), { nonce: O, disableStyleElements: k } = wx(), A = Zs(s, Zb.id), j = Zs(s, Zb.open), M = Zs(s, Zb.openMethod), N = Zs(s, Zb.mounted), P = Zs(s, Zb.popupProps), F = Zs(s, Zb.transitionStatus), I = Zs(s, Zb.triggerElement), L = Zs(s, Zb.positionerElement), R = Zs(s, Zb.listElement), z = C.useRef(!1), B = C.useRef(!1), V = C.useRef({}), H = ln(), U = Z((e) => {
+}, Fx = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, finalFocus: a, ...o } = e, { store: s, popupRef: c, onOpenChangeComplete: l, setOpen: u, valueRef: d, firstItemTextRef: f, selectedItemTextRef: p, multiple: m, handleScrollArrowVisibility: h, scrollHandlerRef: g, listRef: _, highlightItemOnHover: v } = qb(), { side: y, align: b, alignItemWithTriggerActive: x, isPositioned: S, setControlledAlignItemWithTrigger: w } = wx(), T = im(!0) != null, E = Jb(), D = fd(), { nonce: O, disableStyleElements: k } = Nx(), A = Zs(s, ox.id), j = Zs(s, ox.open), M = Zs(s, ox.openMethod), N = Zs(s, ox.mounted), P = Zs(s, ox.popupProps), F = Zs(s, ox.transitionStatus), I = Zs(s, ox.triggerElement), L = Zs(s, ox.positionerElement), R = Zs(s, ox.listElement), z = C.useRef(!1), B = C.useRef(!1), V = C.useRef({}), H = ln(), U = Z((e) => {
 		if (!L || !c.current || !B.current) return;
 		if (z.current || !x) {
 			h();
@@ -23755,10 +23902,10 @@ var Tx = {
 			h();
 			return;
 		}
-		let r = kx(L), i = Ax(L.getBoundingClientRect().height, "y", r), a = Zt(L), o = pt(L), s = o.getComputedStyle(L), l = parseFloat(s.marginTop), u = parseFloat(s.marginBottom), d = Dx(o.getComputedStyle(c.current)), f = Math.min(a.documentElement.clientHeight - l - u, d), p = e.scrollTop, m = Ox(e), g = 0, _ = null, v = !1, y = !1, b = (e) => {
+		let r = Rx(L), i = zx(L.getBoundingClientRect().height, "y", r), a = Zt(L), o = pt(L), s = o.getComputedStyle(L), l = parseFloat(s.marginTop), u = parseFloat(s.marginBottom), d = Ix(o.getComputedStyle(c.current)), f = Math.min(a.documentElement.clientHeight - l - u, d), p = e.scrollTop, m = Lx(e), g = 0, _ = null, v = !1, y = !1, b = (e) => {
 			L.style.height = `${e}px`;
 		}, S = (t, n) => {
-			let r = $b(t, 0, f - i);
+			let r = cx(t, 0, f - i);
 			r > 0 && b(i + r), e.scrollTop = n, f - (i + r) <= 1 && (z.current = !0), h();
 		}, C = t ? m - p : p, w = Math.min(i + C, f);
 		if (g = w, C <= 1) {
@@ -23766,7 +23913,7 @@ var Tx = {
 			return;
 		}
 		if (f - w > 1 ? t ? y = !0 : _ = 0 : (v = !0, n && p < m && (_ = p - (C - (i + C - f)))), g = Math.ceil(g), g !== 0 && b(g), y || _ != null) {
-			let t = Ox(e), n = y ? t : $b(_, 0, t);
+			let t = Lx(e), n = y ? t : cx(_, 0, t);
 			Math.abs(e.scrollTop - n) > 1 && (e.scrollTop = n);
 		}
 		(v || g >= f - 1) && (z.current = !0), h();
@@ -23797,7 +23944,7 @@ var Tx = {
 			marginBottom: L.style.marginBottom
 		});
 	}, [c, L]), X(() => {
-		j || x || (B.current = !1, z.current = !1, gx(L, V.current));
+		j || x || (B.current = !1, z.current = !1, Tx(L, V.current));
 	}, [
 		j,
 		x,
@@ -23810,34 +23957,34 @@ var Tx = {
 			B.current = !0, H.request(h), e.style.removeProperty("--transform-origin");
 			return;
 		}
-		let t = Nx(e);
+		let t = Hx(e);
 		e.style.removeProperty("--transform-origin");
 		try {
 			let t = p.current;
-			t?.isConnected || (t = !Zb.hasSelectedValue(s.state) && f.current?.isConnected ? f.current : null);
-			let n = d.current, r = pt(L), i = r.getComputedStyle(L), a = r.getComputedStyle(e), o = Zt(I), c = kx(I), l = jx(I.getBoundingClientRect(), c), u = jx(L.getBoundingClientRect(), c), m = l.height, g = R || e, y = g.scrollHeight, b = parseFloat(a.borderBottomWidth), x = parseFloat(i.marginTop) || 10, S = parseFloat(i.marginBottom) || 10, C = parseFloat(i.minHeight) || 100, T = Dx(a), E = o.documentElement.clientHeight - x - S, O = o.documentElement.clientWidth, k = E - l.bottom + m, A, j = D === "rtl" ? l.right - u.width : l.left, M = 0;
+			t?.isConnected || (t = !ox.hasSelectedValue(s.state) && f.current?.isConnected ? f.current : null);
+			let n = d.current, r = pt(L), i = r.getComputedStyle(L), a = r.getComputedStyle(e), o = Zt(I), c = Rx(I), l = Bx(I.getBoundingClientRect(), c), u = Bx(L.getBoundingClientRect(), c), m = l.height, g = R || e, y = g.scrollHeight, b = parseFloat(a.borderBottomWidth), x = parseFloat(i.marginTop) || 10, S = parseFloat(i.marginBottom) || 10, C = parseFloat(i.minHeight) || 100, T = Ix(a), E = o.documentElement.clientHeight - x - S, O = o.documentElement.clientWidth, k = E - l.bottom + m, A, j = D === "rtl" ? l.right - u.width : l.left, M = 0;
 			if (t && n) {
-				let e = jx(n.getBoundingClientRect(), c);
-				A = jx(t.getBoundingClientRect(), c), j = u.left + (D === "rtl" ? e.right - A.right : e.left - A.left);
+				let e = Bx(n.getBoundingClientRect(), c);
+				A = Bx(t.getBoundingClientRect(), c), j = u.left + (D === "rtl" ? e.right - A.right : e.left - A.left);
 				let r = e.top - l.top + e.height / 2;
 				M = A.top - u.top + A.height / 2 - r;
 			}
 			let N = k + M + S + b, P = Math.min(E, N), F = E - x - S, H = N - P, U = O - 5;
-			L.style.left = `${$b(j, 5, U - u.width)}px`, L.style.height = `${P}px`, L.style.maxHeight = "none", L.style.marginTop = `${x}px`, L.style.marginBottom = `${S}px`, e.style.height = "100%";
-			let W = Ox(g), G = H >= W - 1;
+			L.style.left = `${cx(j, 5, U - u.width)}px`, L.style.height = `${P}px`, L.style.maxHeight = "none", L.style.marginTop = `${x}px`, L.style.marginBottom = `${S}px`, e.style.height = "100%";
+			let W = Lx(g), G = H >= W - 1;
 			G && (P = Math.min(E, u.height) - (H - W));
 			let ee = l.top < 20 || l.bottom > E - 20 || Math.ceil(P) + 1 < Math.min(y, C), te = (r.visualViewport?.scale ?? 1) !== 1 && Jt;
 			if (ee || te) {
-				B.current = !0, gx(L, V.current), w(!1);
+				B.current = !0, Tx(L, V.current), w(!1);
 				return;
 			}
 			let ne = Math.max(C, P);
 			if (G) {
 				let e = Math.max(0, E - N);
-				L.style.top = u.height >= F ? "0" : `${e}px`, L.style.height = `${P}px`, g.scrollTop = Ox(g);
+				L.style.top = u.height >= F ? "0" : `${e}px`, L.style.height = `${P}px`, g.scrollTop = Lx(g);
 			} else L.style.bottom = "0", g.scrollTop = H;
 			if (A) {
-				let t = u.top, n = u.height, r = A.top + A.height / 2, i = $b(n > 0 ? (r - t) / n * 100 : 50, 0, 100);
+				let t = u.top, n = u.height, r = A.top + A.height / 2, i = cx(n > 0 ? (r - t) / n * 100 : 50, 0, 100);
 				e.style.setProperty("--transform-origin", `50% ${i}%`);
 			}
 			(ne === E || P >= T) && (z.current = !0), h(), v && s.state.selectedIndex === null && s.state.activeIndex === null && _.current[0] != null && s.set("activeIndex", 0), B.current = !0;
@@ -23890,20 +24037,20 @@ var Tx = {
 		onScroll(e) {
 			R || U(e.currentTarget);
 		},
-		...x && { style: R ? { height: "100%" } : _x }
+		...x && { style: R ? { height: "100%" } : Ex }
 	}, ee = Q("div", e, {
 		ref: [t, c],
 		state: W,
-		stateAttributesMapping: Tx,
+		stateAttributesMapping: Px,
 		props: [
 			P,
 			G,
-			rm(F),
-			{ className: !R && x ? xx.className : void 0 },
+			am(F),
+			{ className: !R && x ? Ax.className : void 0 },
 			o
 		]
 	});
-	return /*#__PURE__*/ (0, Y.jsxs)(C.Fragment, { children: [!k && xx.getElement(O), /*#__PURE__*/ (0, Y.jsx)(po, {
+	return /*#__PURE__*/ (0, Y.jsxs)(C.Fragment, { children: [!k && Ax.getElement(O), /*#__PURE__*/ (0, Y.jsx)(po, {
 		context: E,
 		modal: !1,
 		disabled: !N,
@@ -23913,37 +24060,37 @@ var Tx = {
 		children: ee
 	})] });
 });
-function Dx(e) {
+function Ix(e) {
 	let t = e.maxHeight || "";
 	return t.endsWith("px") && parseFloat(t) || Infinity;
 }
-function Ox(e) {
-	return ex(e.scrollHeight, e.clientHeight);
+function Lx(e) {
+	return lx(e.scrollHeight, e.clientHeight);
 }
-function kx(e) {
+function Rx(e) {
 	return rs.getScale(e);
 }
-function Ax(e, t, n) {
+function zx(e, t, n) {
 	return e / n[t];
 }
-function jx(e, t) {
+function Bx(e, t) {
 	return ci({
-		x: Ax(e.x, "x", t),
-		y: Ax(e.y, "y", t),
-		width: Ax(e.width, "x", t),
-		height: Ax(e.height, "y", t)
+		x: zx(e.x, "x", t),
+		y: zx(e.y, "y", t),
+		width: zx(e.width, "x", t),
+		height: zx(e.height, "y", t)
 	});
 }
-var Mx = [
+var Vx = [
 	["transform", "none"],
 	["scale", "1"],
 	["translate", "0 0"]
 ];
-function Nx(e) {
+function Hx(e) {
 	let { style: t } = e, n = {};
-	for (let [e, r] of Mx) n[e] = t.getPropertyValue(e), t.setProperty(e, r, "important");
+	for (let [e, r] of Vx) n[e] = t.getPropertyValue(e), t.setProperty(e, r, "important");
 	return () => {
-		for (let [e] of Mx) {
+		for (let [e] of Vx) {
 			let r = n[e];
 			r ? t.setProperty(e, r) : t.removeProperty(e);
 		}
@@ -23951,16 +24098,16 @@ function Nx(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/select/list/SelectList.mjs
-var Px = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, ...a } = e, { store: o, scrollHandlerRef: s } = Rb(), { alignItemWithTriggerActive: c } = hx(), l = Zs(o, Zb.hasScrollArrows), u = Zs(o, Zb.openMethod), d = Zs(o, Zb.multiple), f = {
-		id: `${Zs(o, Zb.id)}-list`,
+var Ux = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, ...a } = e, { store: o, scrollHandlerRef: s } = qb(), { alignItemWithTriggerActive: c } = wx(), l = Zs(o, ox.hasScrollArrows), u = Zs(o, ox.openMethod), d = Zs(o, ox.multiple), f = {
+		id: `${Zs(o, ox.id)}-list`,
 		role: "listbox",
 		"aria-multiselectable": d || void 0,
 		onScroll(e) {
 			s.current?.(e.currentTarget);
 		},
-		...c && { style: _x },
-		className: l && u !== "touch" ? xx.className : void 0
+		...c && { style: Ex },
+		className: l && u !== "touch" ? Ax.className : void 0
 	};
 	return Q("div", e, {
 		ref: [t, Z((e) => {
@@ -23968,20 +24115,20 @@ var Px = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		})],
 		props: [f, a]
 	});
-}), Fx = /*#__PURE__*/ C.createContext(void 0);
-function Ix() {
-	let e = C.useContext(Fx);
+}), Wx = /*#__PURE__*/ C.createContext(void 0);
+function Gx() {
+	let e = C.useContext(Wx);
 	if (!e) throw Error(la(57));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/select/item/SelectItem.mjs
-var Lx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef(function(e, t) {
+var Kx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef(function(e, t) {
 	let { render: n, className: r, style: i, value: a = null, label: o, disabled: s = !1, nativeButton: c = !1, ...l } = e, u = C.useRef(null), d = xd({
 		label: o,
 		textRef: u,
 		indexGuessBehavior: bd.GuessFromOrder
-	}), { store: f, itemProps: p, setOpen: m, setValue: h, selectionRef: g, typingRef: _, valuesRef: v, multiple: y, selectedItemTextRef: b, disabled: x, readOnly: S } = Rb(), w = Zs(f, Zb.isActive, d.index), T = Zs(f, Zb.open), E = Zs(f, Zb.isSelected, a), D = Zs(f, Zb.isSelectedByFocus, d.index), O = Zs(f, Zb.isItemEqualToValue), k = d.index, A = k !== -1, j = C.useRef(null);
+	}), { store: f, itemProps: p, setOpen: m, setValue: h, selectionRef: g, typingRef: _, valuesRef: v, multiple: y, selectedItemTextRef: b, disabled: x, readOnly: S } = qb(), w = Zs(f, ox.isActive, d.index), T = Zs(f, ox.open), E = Zs(f, ox.isSelected, a), D = Zs(f, ox.isSelectedByFocus, d.index), O = Zs(f, ox.isItemEqualToValue), k = d.index, A = k !== -1, j = C.useRef(null);
 	X(() => {
 		if (!A) return;
 		let e = v.current;
@@ -23996,7 +24143,7 @@ var Lx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef(function(e, t) {
 	]), X(() => {
 		if (!A) return;
 		let e = f.state.value, t = e;
-		y && Array.isArray(e) && (t = e.length > 0 ? e[e.length - 1] : void 0), t !== void 0 && Vb(a, t, O) && (f.set("selectedIndex", k), u.current && (b.current = u.current));
+		y && Array.isArray(e) && (t = e.length > 0 ? e[e.length - 1] : void 0), t !== void 0 && Xb(a, t, O) && (f.set("selectedIndex", k), u.current && (b.current = u.current));
 	}, [
 		A,
 		k,
@@ -24020,7 +24167,7 @@ var Lx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef(function(e, t) {
 		if (x || S) return;
 		let t = f.state.value;
 		if (y) {
-			let n = Array.isArray(t) ? t : [], r = E ? Wb(n, a, O) : [...n, a];
+			let n = Array.isArray(t) ? t : [], r = E ? $b(n, a, O) : [...n, a];
 			h(r, hr(tr, e));
 		} else h(a, hr(tr, e)), m(!1, hr(tr, e));
 	}
@@ -24082,18 +24229,18 @@ var Lx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef(function(e, t) {
 		D,
 		A
 	]);
-	return /*#__PURE__*/ (0, Y.jsx)(Fx.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(Wx.Provider, {
 		value: H,
 		children: V
 	});
-})), Rx = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let n = e.keepMounted ?? !1, { selected: r } = Ix();
-	return n || r ? /*#__PURE__*/ (0, Y.jsx)(zx, {
+})), qx = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let n = e.keepMounted ?? !1, { selected: r } = Gx();
+	return n || r ? /*#__PURE__*/ (0, Y.jsx)(Jx, {
 		...e,
 		ref: t
 	}) : null;
-}), zx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef((e, t) => {
-	let { render: n, className: r, style: i, keepMounted: a, ...o } = e, { selected: s } = Ix(), c = C.useRef(null), { transitionStatus: l, setMounted: u } = oc(s), d = Q("span", e, {
+}), Jx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef((e, t) => {
+	let { render: n, className: r, style: i, keepMounted: a, ...o } = e, { selected: s } = Gx(), c = C.useRef(null), { transitionStatus: l, setMounted: u } = oc(s), d = Q("span", e, {
 		ref: [t, c],
 		state: {
 			selected: s,
@@ -24112,8 +24259,8 @@ var Lx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef(function(e, t) {
 			s || u(!1);
 		}
 	}), d;
-})), Bx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { index: n, textRef: r, selectedByFocus: i, hasRegistered: a } = Ix(), { firstItemTextRef: o, selectedItemTextRef: s } = Rb(), { render: c, className: l, style: u, ...d } = e;
+})), Yx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { index: n, textRef: r, selectedByFocus: i, hasRegistered: a } = Gx(), { firstItemTextRef: o, selectedItemTextRef: s } = qb(), { render: c, className: l, style: u, ...d } = e;
 	return Q("div", e, {
 		ref: [
 			C.useCallback((e) => {
@@ -24130,8 +24277,8 @@ var Lx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef(function(e, t) {
 		],
 		props: d
 	});
-})), Vx = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, direction: a, keepMounted: o = !1, ...s } = e, c = a === "up", { store: l, popupRef: u, listRef: d, handleScrollArrowVisibility: f, scrollArrowsMountedCountRef: p } = Rb(), { side: m, scrollDownArrowRef: h, scrollUpArrowRef: g } = hx(), _ = Zs(l, c ? Zb.scrollUpArrowVisible : Zb.scrollDownArrowVisible), v = Zs(l, Zb.openMethod), y = _ && v !== "touch", b = an(), x = c ? g : h, { mounted: S, transitionStatus: C, setMounted: w } = oc(y);
+})), Xx = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, direction: a, keepMounted: o = !1, ...s } = e, c = a === "up", { store: l, popupRef: u, listRef: d, handleScrollArrowVisibility: f, scrollArrowsMountedCountRef: p } = qb(), { side: m, scrollDownArrowRef: h, scrollUpArrowRef: g } = wx(), _ = Zs(l, c ? ox.scrollUpArrowVisible : ox.scrollDownArrowVisible), v = Zs(l, ox.openMethod), y = _ && v !== "touch", b = an(), x = c ? g : h, { mounted: S, transitionStatus: C, setMounted: w } = oc(y);
 	X(() => (p.current += 1, l.state.hasScrollArrows || l.set("hasScrollArrows", !0), () => {
 		p.current = Math.max(0, p.current - 1), p.current === 0 && l.state.hasScrollArrows && l.set("hasScrollArrows", !1);
 	}), [l, p]), fc({
@@ -24160,14 +24307,14 @@ var Lx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef(function(e, t) {
 					let e = l.state.listElement ?? u.current;
 					if (!e) return;
 					l.set("activeIndex", null), f();
-					let n = ex(e.scrollHeight, e.clientHeight), r = tx(e.scrollTop, n), i = r === (c ? 0 : n), a = d.current;
+					let n = lx(e.scrollHeight, e.clientHeight), r = ux(e.scrollTop, n), i = r === (c ? 0 : n), a = d.current;
 					if (r !== e.scrollTop && (e.scrollTop = r), a.length === 0 && l.set(c ? "scrollUpArrowVisible" : "scrollDownArrowVisible", !i), i) {
 						b.clear();
 						return;
 					}
 					if (a.length > 0) {
 						let t = x.current?.offsetHeight || 0;
-						e.scrollTop = Hx(a, c, r, e.clientHeight, t, n);
+						e.scrollTop = Zx(a, c, r, e.clientHeight, t, n);
 					}
 					b.start(40, t);
 				}
@@ -24181,7 +24328,7 @@ var Lx = /*#__PURE__*/ C.memo(/*#__PURE__*/ C.forwardRef(function(e, t) {
 	});
 	return S || o ? T : null;
 });
-function Hx(e, t, n, r, i, a) {
+function Zx(e, t, n, r, i, a) {
 	if (t) {
 		let t = 0, r = n + i - 1;
 		for (let n = 0; n < e.length; n += 1) {
@@ -24192,7 +24339,7 @@ function Hx(e, t, n, r, i, a) {
 			}
 		}
 		let o = Math.max(0, t - 1), s = e[o];
-		return o < t && s ? tx(s.offsetTop - i, a) : 0;
+		return o < t && s ? ux(s.offsetTop - i, a) : 0;
 	}
 	let o = e.length - 1, s = n + r - i + 1;
 	for (let t = 0; t < e.length; t += 1) {
@@ -24203,44 +24350,44 @@ function Hx(e, t, n, r, i, a) {
 		}
 	}
 	let c = Math.min(e.length - 1, o + 1), l = e[c];
-	return c > o && l ? tx(l.offsetTop + l.offsetHeight - r + i, a) : a;
+	return c > o && l ? ux(l.offsetTop + l.offsetHeight - r + i, a) : a;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/select/scroll-down-arrow/SelectScrollDownArrow.mjs
-var Ux = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	return /*#__PURE__*/ (0, Y.jsx)(Vx, {
+var Qx = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	return /*#__PURE__*/ (0, Y.jsx)(Xx, {
 		...e,
 		ref: t,
 		direction: "down"
 	});
-}), Wx = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	return /*#__PURE__*/ (0, Y.jsx)(Vx, {
+}), $x = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	return /*#__PURE__*/ (0, Y.jsx)(Xx, {
 		...e,
 		ref: t,
 		direction: "up"
 	});
-}), Gx = nx;
-function Kx({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(ux, {
+}), eS = dx;
+function tS({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(yx, {
 		"data-slot": "select-value",
 		className: J("flex flex-1 text-left", e),
 		...t
 	});
 }
-function qx({ className: e, size: t = "default", children: n, ...r }) {
-	return /* @__PURE__ */ (0, Y.jsxs)(cx, {
+function nS({ className: e, size: t = "default", children: n, ...r }) {
+	return /* @__PURE__ */ (0, Y.jsxs)(_x, {
 		"data-slot": "select-trigger",
 		"data-size": t,
 		className: J("flex w-fit items-center justify-between gap-1.5 rounded-lg border border-input bg-transparent py-2 pr-2 pl-2.5 text-sm whitespace-nowrap transition-colors outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 data-placeholder:text-muted-foreground data-[size=default]:h-8 data-[size=sm]:h-7 data-[size=sm]:rounded-[min(var(--radius-md),10px)] *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4", e),
 		...r,
-		children: [n, /* @__PURE__ */ (0, Y.jsx)(dx, { render: /* @__PURE__ */ (0, Y.jsx)(rf, { className: "pointer-events-none size-4 text-muted-foreground" }) })]
+		children: [n, /* @__PURE__ */ (0, Y.jsx)(bx, { render: /* @__PURE__ */ (0, Y.jsx)(rf, { className: "pointer-events-none size-4 text-muted-foreground" }) })]
 	});
 }
-function Jx({ className: e, children: t, side: n = "bottom", sideOffset: r = 4, align: i = "center", alignOffset: a = 0, alignItemWithTrigger: o = !0, ...s }) {
+function rS({ className: e, children: t, side: n = "bottom", sideOffset: r = 4, align: i = "center", alignOffset: a = 0, alignItemWithTrigger: o = !0, ...s }) {
 	let c = Au();
-	return /* @__PURE__ */ (0, Y.jsx)(px, {
+	return /* @__PURE__ */ (0, Y.jsx)(Sx, {
 		container: c,
-		children: /* @__PURE__ */ (0, Y.jsx)(yx, {
+		children: /* @__PURE__ */ (0, Y.jsx)(Ox, {
 			side: n,
 			sideOffset: r,
 			align: i,
@@ -24248,44 +24395,44 @@ function Jx({ className: e, children: t, side: n = "bottom", sideOffset: r = 4, 
 			alignItemWithTrigger: o,
 			className: "isolate z-50",
 			positionMethod: "fixed",
-			children: /* @__PURE__ */ (0, Y.jsxs)(Ex, {
+			children: /* @__PURE__ */ (0, Y.jsxs)(Fx, {
 				"data-slot": "select-content",
 				"data-align-trigger": o,
 				className: J("cn-menu-target cn-menu-translucent relative isolate z-50 max-h-(--available-height) w-(--anchor-width) min-w-36 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-lg bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 data-[align-trigger=true]:animate-none data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95", e),
 				...s,
 				children: [
-					/* @__PURE__ */ (0, Y.jsx)(Xx, {}),
-					/* @__PURE__ */ (0, Y.jsx)(Px, { children: t }),
-					/* @__PURE__ */ (0, Y.jsx)(Zx, {})
+					/* @__PURE__ */ (0, Y.jsx)(aS, {}),
+					/* @__PURE__ */ (0, Y.jsx)(Ux, { children: t }),
+					/* @__PURE__ */ (0, Y.jsx)(oS, {})
 				]
 			})
 		})
 	});
 }
-function Yx({ className: e, children: t, ...n }) {
-	return /* @__PURE__ */ (0, Y.jsxs)(Lx, {
+function iS({ className: e, children: t, ...n }) {
+	return /* @__PURE__ */ (0, Y.jsxs)(Kx, {
 		"data-slot": "select-item",
 		className: J("relative flex w-full cursor-default items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2", e),
 		...n,
-		children: [/* @__PURE__ */ (0, Y.jsx)(Bx, {
+		children: [/* @__PURE__ */ (0, Y.jsx)(Yx, {
 			className: "flex flex-1 shrink-0 gap-2 whitespace-nowrap",
 			children: t
-		}), /* @__PURE__ */ (0, Y.jsx)(Rx, {
+		}), /* @__PURE__ */ (0, Y.jsx)(qx, {
 			render: /* @__PURE__ */ (0, Y.jsx)("span", { className: "pointer-events-none absolute right-2 flex size-4 items-center justify-center" }),
 			children: /* @__PURE__ */ (0, Y.jsx)(nf, { className: "pointer-events-none" })
 		})]
 	});
 }
-function Xx({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Wx, {
+function aS({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)($x, {
 		"data-slot": "select-scroll-up-button",
 		className: J("top-0 z-10 flex w-full cursor-default items-center justify-center bg-popover py-1 [&_svg:not([class*='size-'])]:size-4", e),
 		...t,
 		children: /* @__PURE__ */ (0, Y.jsx)(sf, {})
 	});
 }
-function Zx({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Ux, {
+function oS({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Qx, {
 		"data-slot": "select-scroll-down-button",
 		className: J("bottom-0 z-10 flex w-full cursor-default items-center justify-center bg-popover py-1 [&_svg:not([class*='size-'])]:size-4", e),
 		...t,
@@ -24294,8 +24441,8 @@ function Zx({ className: e, ...t }) {
 }
 //#endregion
 //#region src/components/streamlit/select.tsx
-function Qx({ envelope: e, setStateValue: t }) {
-	let n = (0, C.useId)(), { commit: r, state: i } = _f(e.state, t), a = e.props.disabled || e.props.options.length === 0;
+function sS({ envelope: e, setStateValue: t }) {
+	let n = (0, C.useId)(), { commit: r, state: i } = yf(e.state, t), a = e.props.disabled || e.props.options.length === 0;
 	return /* @__PURE__ */ (0, Y.jsxs)("div", {
 		className: "grid min-w-0 gap-1.5 p-px",
 		"data-ssui-component": "select",
@@ -24304,7 +24451,7 @@ function Qx({ envelope: e, setStateValue: t }) {
 			className: "text-sm font-medium leading-none",
 			id: n,
 			children: e.props.label
-		}), /* @__PURE__ */ (0, Y.jsxs)(Gx, {
+		}), /* @__PURE__ */ (0, Y.jsxs)(eS, {
 			disabled: a,
 			items: e.props.options,
 			modal: !1,
@@ -24312,16 +24459,16 @@ function Qx({ envelope: e, setStateValue: t }) {
 				r(typeof e == "string" ? e : null);
 			},
 			value: i.value,
-			children: [/* @__PURE__ */ (0, Y.jsx)(qx, {
+			children: [/* @__PURE__ */ (0, Y.jsx)(nS, {
 				"aria-labelledby": n,
 				className: "w-full",
 				"data-testid": "ssui-v2-select-trigger",
-				children: /* @__PURE__ */ (0, Y.jsx)(Kx, { placeholder: e.props.options.length === 0 ? "No options" : e.props.placeholder })
-			}), /* @__PURE__ */ (0, Y.jsx)(Jx, {
+				children: /* @__PURE__ */ (0, Y.jsx)(tS, { placeholder: e.props.options.length === 0 ? "No options" : e.props.placeholder })
+			}), /* @__PURE__ */ (0, Y.jsx)(rS, {
 				align: "start",
 				alignItemWithTrigger: !1,
 				"data-testid": "ssui-v2-select-content",
-				children: e.props.options.map((e) => /* @__PURE__ */ (0, Y.jsx)(Yx, {
+				children: e.props.options.map((e) => /* @__PURE__ */ (0, Y.jsx)(iS, {
 					disabled: e.disabled,
 					value: e.value,
 					children: e.label
@@ -24332,8 +24479,8 @@ function Qx({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region src/components/ui/separator.tsx
-function $x({ className: e, orientation: t = "horizontal", ...n }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Hm, {
+function cS({ className: e, orientation: t = "horizontal", ...n }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Wm, {
 		"data-slot": "separator",
 		orientation: t,
 		className: J("shrink-0 bg-border data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:self-stretch", e),
@@ -24342,84 +24489,84 @@ function $x({ className: e, orientation: t = "horizontal", ...n }) {
 }
 //#endregion
 //#region src/components/streamlit/separator.tsx
-function eS({ envelope: e }) {
+function lS({ envelope: e }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		className: e.props.orientation === "vertical" ? "flex h-8 justify-center" : "py-2",
 		"data-ssui-component": "separator",
 		"data-testid": "ssui-v2-separator",
-		children: /* @__PURE__ */ (0, Y.jsx)($x, { orientation: e.props.orientation })
+		children: /* @__PURE__ */ (0, Y.jsx)(cS, { orientation: e.props.orientation })
 	});
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/utils/asc.mjs
-function tS(e, t) {
+function uS(e, t) {
 	return e - t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/utils/replaceArrayItemAtIndex.mjs
-function nS(e, t, n) {
+function dS(e, t, n) {
 	let r = e.slice();
-	return r[t] = n, r.sort(tS);
+	return r[t] = n, r.sort(uS);
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/utils/getSliderValue.mjs
-function rS(e, t, n, r, i, a) {
+function fS(e, t, n, r, i, a) {
 	let o = e;
-	return o = $b(o, n, r), i && (o = nS(a, t, $b(o, a[t - 1] ?? -Infinity, a[t + 1] ?? Infinity))), o;
+	return o = cx(o, n, r), i && (o = dS(a, t, cx(o, a[t - 1] ?? -Infinity, a[t + 1] ?? Infinity))), o;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/utils/validateMinimumDistance.mjs
-function iS(e, t, n) {
+function pS(e, t, n) {
 	if (!Array.isArray(e)) return !0;
 	let r = e.reduce((e, t, n, r) => (n === r.length - 1 || e.push(Math.abs(t - r[n + 1])), e), []);
 	return Math.min(...r) >= t * n;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/root/stateAttributesMapping.mjs
-var aS = {
+var mS = {
 	activeThumbIndex: () => null,
 	max: () => null,
 	min: () => null,
 	minStepsBetweenValues: () => null,
 	step: () => null,
 	values: () => null,
-	...sp
-}, oS = /*#__PURE__*/ C.createContext(void 0);
-function sS() {
-	let e = C.useContext(oS);
+	...lp
+}, hS = /*#__PURE__*/ C.createContext(void 0);
+function gS() {
+	let e = C.useContext(hS);
 	if (e === void 0) throw Error(la(62));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/root/SliderRoot.mjs
-function cS(e) {
+function _S(e) {
 	return "key" in e ? sr : rr;
 }
-function lS(e, t) {
-	return typeof e == "number" && typeof t == "number" ? e === t : Array.isArray(e) && Array.isArray(t) ? Qb(e, t) : !1;
+function vS(e, t) {
+	return typeof e == "number" && typeof t == "number" ? e === t : Array.isArray(e) && Array.isArray(t) ? sx(e, t) : !1;
 }
-var uS = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { "aria-labelledby": n, className: r, defaultValue: i, disabled: a = !1, id: o, format: s, largeStep: c = 10, locale: l, render: u, max: d = 100, min: f = 0, minStepsBetweenValues: p = 0, form: m, name: h, onValueChange: g, onValueCommitted: _, orientation: v = "horizontal", step: y = 1, thumbCollisionBehavior: b = "push", thumbAlignment: x = "center", value: S, style: w, ...T } = e, E = zl(o), D = rx(E), O = Z(g), k = Z(_), { clearErrors: A } = gp(), { state: j, disabled: M, name: N, setTouched: P, setDirty: F, validityData: I, validation: L } = dp(), { labelId: R } = vp(), [z, B] = C.useState(), V = n ?? ix(R, z), H = M || a, U = N ?? h, [W, G] = id({
+var yS = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { "aria-labelledby": n, className: r, defaultValue: i, disabled: a = !1, id: o, format: s, largeStep: c = 10, locale: l, render: u, max: d = 100, min: f = 0, minStepsBetweenValues: p = 0, form: m, name: h, onValueChange: g, onValueCommitted: _, orientation: v = "horizontal", step: y = 1, thumbCollisionBehavior: b = "push", thumbAlignment: x = "center", value: S, style: w, ...T } = e, E = zl(o), D = fx(E), O = Z(g), k = Z(_), { clearErrors: A } = vp(), { state: j, disabled: M, name: N, setTouched: P, setDirty: F, validityData: I, validation: L } = pp(), { labelId: R } = bp(), [z, B] = C.useState(), V = n ?? px(R, z), H = M || a, U = N ?? h, [W, G] = id({
 		controlled: S,
 		default: i ?? f,
 		name: "Slider"
 	}), ee = C.useRef(null), te = C.useRef(null), ne = C.useRef([]), re = C.useRef(null), ie = C.useRef(null), ae = C.useRef(-1), oe = C.useRef(null), se = C.useRef("none"), ce = wr(s), [le, ue] = C.useState(-1), [de, fe] = C.useState(-1), [pe, me] = C.useState(!1), [he, ge] = C.useState(() => /* @__PURE__ */ new Map()), [_e, ve] = C.useState([void 0, void 0]), ye = Z((e) => {
 		ue(e), e !== -1 && fe(e);
 	});
-	fp(L.inputRef, E, W, void 0, !H, h), vu(W, () => {
+	mp(L.inputRef, E, W, void 0, !H, h), vu(W, () => {
 		A(U), L.change(W);
 		let e = I.initialValue, t;
-		t = Array.isArray(W) && Array.isArray(e) ? !Qb(W, e) : W !== e, F(t);
+		t = Array.isArray(W) && Array.isArray(e) ? !sx(W, e) : W !== e, F(t);
 	});
 	let be = Z((e) => {
 		e && (te.current = e);
-	}), xe = Array.isArray(W), Se = C.useMemo(() => xe ? W.slice().sort(tS) : [$b(W, f, d)], [
+	}), xe = Array.isArray(W), Se = C.useMemo(() => xe ? W.slice().sort(uS) : [cx(W, f, d)], [
 		d,
 		f,
 		xe,
 		W
 	]), Ce = Z((e, t) => {
-		if (Number.isNaN(e) || lS(e, W)) return !1;
+		if (Number.isNaN(e) || vS(e, W)) return !1;
 		let n = t ?? hr("none", void 0, void 0, { activeThumbIndex: -1 }), r = n.event, i = new (r.constructor ?? Event)(r.type, r);
 		return Object.defineProperty(i, "target", {
 			writable: !0,
@@ -24429,9 +24576,9 @@ var uS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			}
 		}), n.event = i, O(e, n), !n.isCanceled && (se.current = n.reason, G(e), !0);
 	}), we = Z((e, t, n) => {
-		let r = rS(e, t, f, d, xe, Se);
-		if (iS(r, y, p)) {
-			let e = cS(n), i = Ce(r, hr(e, n.nativeEvent, void 0, { activeThumbIndex: t }));
+		let r = fS(e, t, f, d, xe, Se);
+		if (pS(r, y, p)) {
+			let e = _S(n), i = Ce(r, hr(e, n.nativeEvent, void 0, { activeThumbIndex: t }));
 			P(!0), i && k(r, gr(e, n.nativeEvent));
 		}
 	});
@@ -24552,9 +24699,9 @@ var uS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			T,
 			(e) => L.getValidationProps(H, e)
 		],
-		stateAttributesMapping: aS
+		stateAttributesMapping: mS
 	});
-	return /*#__PURE__*/ (0, Y.jsx)(oS.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(hS.Provider, {
 		value: Ee,
 		children: /*#__PURE__*/ (0, Y.jsx)(sd, {
 			elementsRef: ne,
@@ -24565,7 +24712,7 @@ var uS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 });
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/utils/getMidpoint.mjs
-function dS(e) {
+function bS(e) {
 	let t = e.getBoundingClientRect();
 	return {
 		x: (t.left + t.right) / 2,
@@ -24574,7 +24721,7 @@ function dS(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/utils/roundValueToStep.mjs
-function fS(e) {
+function xS(e) {
 	if (e === 0) return 0;
 	if (Math.abs(e) < 1) {
 		let t = e.toExponential().split("e-"), n = t[0].split(".")[1];
@@ -24583,30 +24730,30 @@ function fS(e) {
 	let t = e.toString().split(".")[1];
 	return t ? t.length : 0;
 }
-function pS(e, t, n) {
+function SS(e, t, n) {
 	let r = Math.round((e - n) / t) * t + n;
-	return Number(r.toFixed(Math.max(fS(t), fS(n))));
+	return Number(r.toFixed(Math.max(xS(t), xS(n))));
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/utils/getPushedThumbValues.mjs
-function mS({ values: e, index: t, nextValue: n, min: r, max: i, step: a, minStepsBetweenValues: o, initialValues: s }) {
+function CS({ values: e, index: t, nextValue: n, min: r, max: i, step: a, minStepsBetweenValues: o, initialValues: s }) {
 	if (e.length === 0) return [];
 	let c = e.slice(), l = a * o, u = c.length - 1, d = s ?? e;
-	c[t] = $b(n, r + t * l, i - (u - t) * l);
+	c[t] = cx(n, r + t * l, i - (u - t) * l);
 	for (let e = t + 1; e <= u; e += 1) {
 		let t = c[e - 1] + l, n = i - (u - e) * l, r = d[e] ?? c[e], a = Math.max(c[e], t);
-		r < a && (a = Math.max(r, t)), c[e] = $b(a, t, n);
+		r < a && (a = Math.max(r, t)), c[e] = cx(a, t, n);
 	}
 	for (let e = t - 1; e >= 0; --e) {
 		let t = c[e + 1] - l, n = r + e * l, i = d[e] ?? c[e], a = Math.min(c[e], t);
-		i > a && (a = Math.min(i, t)), c[e] = $b(a, n, t);
+		i > a && (a = Math.min(i, t)), c[e] = cx(a, n, t);
 	}
 	for (let e = 0; e <= u; e += 1) c[e] = Number(c[e].toFixed(12));
 	return c;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/utils/resolveThumbCollision.mjs
-function hS({ behavior: e, values: t, currentValues: n, initialValues: r, pressedIndex: i, nextValue: a, min: o, max: s, step: c, minStepsBetweenValues: l }) {
+function wS({ behavior: e, values: t, currentValues: n, initialValues: r, pressedIndex: i, nextValue: a, min: o, max: s, step: c, minStepsBetweenValues: l }) {
 	let u = n ?? t, d = r ?? t;
 	if (!(u.length > 1)) return {
 		value: a,
@@ -24616,7 +24763,7 @@ function hS({ behavior: e, values: t, currentValues: n, initialValues: r, presse
 	let f = c * l;
 	switch (e) {
 		case "swap": {
-			let e = u[i], t = 1e-7, n = u.slice(), r = n[i - 1], p = n[i + 1], m = $b(a, r == null ? o : r + f, p == null ? s : p - f), h = Number(m.toFixed(12));
+			let e = u[i], t = 1e-7, n = u.slice(), r = n[i - 1], p = n[i + 1], m = cx(a, r == null ? o : r + f, p == null ? s : p - f), h = Number(m.toFixed(12));
 			n[i] = h;
 			let g = a > e, _ = a < e, v = g && p != null && a >= p - t, y = _ && r != null && a <= r + t;
 			if (!v && !y) return {
@@ -24626,7 +24773,7 @@ function hS({ behavior: e, values: t, currentValues: n, initialValues: r, presse
 			};
 			let b = v ? i + 1 : i - 1, x = n.map((e, t) => t === i ? h : d[t] ?? u[t]), S = a;
 			S = v ? Math.max(a, n[b]) : Math.min(a, n[b]);
-			let C = mS({
+			let C = CS({
 				values: n,
 				index: b,
 				nextValue: S,
@@ -24641,7 +24788,7 @@ function hS({ behavior: e, values: t, currentValues: n, initialValues: r, presse
 				n = Math.max(n, o + w * f);
 				let r = t == null ? s : t - f;
 				r = Math.min(r, s - (C.length - 1 - w) * f);
-				let i = $b(h, n, r);
+				let i = cx(h, n, r);
 				C[w] = Number(i.toFixed(12));
 			}
 			return {
@@ -24651,7 +24798,7 @@ function hS({ behavior: e, values: t, currentValues: n, initialValues: r, presse
 			};
 		}
 		case "push": return {
-			value: mS({
+			value: CS({
 				values: u,
 				index: i,
 				nextValue: a,
@@ -24664,7 +24811,7 @@ function hS({ behavior: e, values: t, currentValues: n, initialValues: r, presse
 			didSwap: !1
 		};
 		default: {
-			let e = u.slice(), t = e[i - 1], n = e[i + 1], r = $b(a, t == null ? o : t + f, n == null ? s : n - f);
+			let e = u.slice(), t = e[i - 1], n = e[i + 1], r = cx(a, t == null ? o : t + f, n == null ? s : n - f);
 			return e[i] = Number(r.toFixed(12)), {
 				value: e,
 				thumbIndex: i,
@@ -24675,8 +24822,8 @@ function hS({ behavior: e, values: t, currentValues: n, initialValues: r, presse
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/control/SliderControl.mjs
-var gS = 2;
-function _S(e, t) {
+var TS = 2;
+function ES(e, t) {
 	if (!e) return {
 		start: 0,
 		end: 0
@@ -24691,7 +24838,7 @@ function _S(e, t) {
 		end: n(e[`border${i}Width`]) + n(e[`padding${i}`])
 	};
 }
-function vS(e, t) {
+function DS(e, t) {
 	if (t.current != null && e.changedTouches) {
 		let n = e;
 		for (let e = 0; e < n.changedTouches.length; e += 1) {
@@ -24708,8 +24855,8 @@ function vS(e, t) {
 		y: e.clientY
 	};
 }
-var yS = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, ...a } = e, { disabled: o, dragging: s, inset: c, lastChangeReasonRef: l, max: u, min: d, minStepsBetweenValues: f, onValueCommitted: p, orientation: m, pressedInputRef: h, pressedThumbCenterOffsetRef: g, pressedThumbIndexRef: _, pressedValuesRef: v, registerFieldControlRef: y, renderBeforeHydration: b, setActive: x, setDragging: S, setValue: w, state: T, step: E, thumbCollisionBehavior: D, thumbRefs: O, values: k } = sS(), A = fd(), j = k.length > 1, M = m === "vertical", N = C.useRef(null), P = C.useRef(null), F = Z((e) => {
+var OS = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, ...a } = e, { disabled: o, dragging: s, inset: c, lastChangeReasonRef: l, max: u, min: d, minStepsBetweenValues: f, onValueCommitted: p, orientation: m, pressedInputRef: h, pressedThumbCenterOffsetRef: g, pressedThumbIndexRef: _, pressedValuesRef: v, registerFieldControlRef: y, renderBeforeHydration: b, setActive: x, setDragging: S, setValue: w, state: T, step: E, thumbCollisionBehavior: D, thumbRefs: O, values: k } = gS(), A = fd(), j = k.length > 1, M = m === "vertical", N = C.useRef(null), P = C.useRef(null), F = Z((e) => {
 		e && P.current == null && (P.current = pt(e).getComputedStyle(e));
 	}), I = C.useRef(null), L = C.useRef(0), R = C.useRef(0), z = C.useRef(null), B = wr(k);
 	function V(e) {
@@ -24730,8 +24877,8 @@ var yS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 	function W(e) {
 		let t = N.current, n = _.current;
 		if (!t || !j && (n < 0 || n >= k.length)) return null;
-		let { width: r, height: i, bottom: a, left: o, right: s } = t.getBoundingClientRect(), c = _S(P.current, M), l = R.current, p = (M ? i : r) - c.start - c.end - l * 2, m = g.current ?? 0, h = e.x - m, y = e.y - m, b = $b(((M ? a - y - c.end : (A === "rtl" ? s - h : h - o) - c.start) - l) / p, 0, 1), x = (u - d) * b + d;
-		return x = pS(x, E, d), x = $b(x, d, u), j ? n < 0 ? null : hS({
+		let { width: r, height: i, bottom: a, left: o, right: s } = t.getBoundingClientRect(), c = ES(P.current, M), l = R.current, p = (M ? i : r) - c.start - c.end - l * 2, m = g.current ?? 0, h = e.x - m, y = e.y - m, b = cx(((M ? a - y - c.end : (A === "rtl" ? s - h : h - o) - c.start) - l) / p, 0, 1), x = (u - d) * b + d;
+		return x = SS(x, E, d), x = cx(x, d, u), j ? n < 0 ? null : wS({
 			behavior: D,
 			values: k,
 			currentValues: B.current ?? k,
@@ -24763,7 +24910,7 @@ var yS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			for (let i = 0; i < O.current.length; i += 1) {
 				let a = O.current[i];
 				if (gt(a) && !a.querySelector("input[type=\"range\"]")?.disabled) {
-					let o = dS(a), s = Math.abs(e[t] - o[t]);
+					let o = bS(a), s = Math.abs(e[t] - o[t]);
 					(r === void 0 || s <= r) && (n = i, r = s);
 				}
 			}
@@ -24788,14 +24935,14 @@ var yS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		return r && (z.current = e.value, B.current = Array.isArray(e.value) ? e.value : [e.value], e.didSwap && V(e.thumbIndex)), r;
 	}
 	let ne = Z((e) => {
-		let t = vS(e, I);
+		let t = DS(e, I);
 		if (t == null) return;
 		if (L.current += 1, e.type === "pointermove" && e.buttons === 0) {
 			re(e);
 			return;
 		}
 		let n = W(t);
-		n != null && iS(n.value, E, f) && (!s && L.current > gS && S(!0), te(n, "drag", e) && n.didSwap && ee(n.thumbIndex));
+		n != null && pS(n.value, E, f) && (!s && L.current > TS && S(!0), te(n, "drag", e) && n.didSwap && ee(n.thumbIndex));
 	}), re = Z((e) => {
 		if (x(-1), S(!1), h.current = null, g.current = null, z.current != null) {
 			let t = l.current;
@@ -24810,7 +24957,7 @@ var yS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		}
 		let t = e.changedTouches[0];
 		t != null && (I.current = t.identifier);
-		let n = vS(e, I);
+		let n = DS(e, I);
 		if (n != null) {
 			G(n);
 			let t = W(n);
@@ -24855,7 +25002,7 @@ var yS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 					H();
 					return;
 				}
-				let r = vS(e, I);
+				let r = DS(e, I);
 				if (r != null) {
 					G(r);
 					let n = W(r);
@@ -24869,49 +25016,49 @@ var yS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 				i.addEventListener("pointermove", ne, { passive: !0 }), i.addEventListener("pointerup", re, { once: !0 });
 			}
 		}, a],
-		stateAttributesMapping: aS
+		stateAttributesMapping: mS
 	});
-}), bS = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, ...a } = e, { state: o } = sS();
+}), kS = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, ...a } = e, { state: o } = gS();
 	return Q("div", e, {
 		state: o,
 		ref: t,
 		props: [{ style: { position: "relative" } }, a],
-		stateAttributesMapping: aS
+		stateAttributesMapping: mS
 	});
 });
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/useIsHydrating.mjs
-function xS() {
+function AS() {
 	return un;
 }
-function SS() {
+function jS() {
 	return !1;
 }
-function CS() {
+function MS() {
 	return !0;
 }
-function wS() {
-	return (0, Js.useSyncExternalStore)(xS, SS, CS);
+function NS() {
+	return (0, Js.useSyncExternalStore)(AS, jS, MS);
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/thumb/SliderThumbDataAttributes.mjs
-var TS = /*#__PURE__*/ function(e) {
+var PS = /*#__PURE__*/ function(e) {
 	return e.index = "data-index", e.dragging = "data-dragging", e.orientation = "data-orientation", e.disabled = "data-disabled", e.valid = "data-valid", e.invalid = "data-invalid", e.touched = "data-touched", e.dirty = "data-dirty", e.focused = "data-focused", e;
-}({}), ES = /* @__PURE__ */ new Set([
+}({}), FS = /* @__PURE__ */ new Set([
 	...ru,
 	Xl,
 	Zl
 ]);
-function DS(e, t, n, r) {
-	if (!(t < 0)) return e.length === 2 ? t === 0 ? `${Qy(e[t], r, n)} start range` : `${Qy(e[t], r, n)} end range` : n ? Qy(e[t], r, n) : void 0;
+function IS(e, t, n, r) {
+	if (!(t < 0)) return e.length === 2 ? t === 0 ? `${sb(e[t], r, n)} start range` : `${sb(e[t], r, n)} end range` : n ? sb(e[t], r, n) : void 0;
 }
-function OS(e, t, n, r, i) {
+function LS(e, t, n, r, i) {
 	let a = n === 1 ? e + t : e - t;
-	return $b(Number(a.toFixed(Math.max(fS(e), fS(t), fS(r)))), r, i);
+	return cx(Number(a.toFixed(Math.max(xS(e), xS(t), xS(r)))), r, i);
 }
-var kS = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, children: r, className: i, "aria-describedby": a, "aria-label": o, "aria-labelledby": s, "aria-valuetext": c, disabled: l = !1, getAriaLabel: u, getAriaValueText: d, id: f, index: p, inputRef: m, onBlur: h, onFocus: g, onKeyDown: _, tabIndex: v, style: y, ...b } = e, { nonce: x } = wx(), S = zl(f), { active: w, lastUsedThumbIndex: T, controlRef: E, disabled: D, validation: O, formatOptionsRef: k, handleInputChange: A, inset: j, labelId: M, largeStep: N, locale: P, max: F, min: I, minStepsBetweenValues: L, form: R, name: z, orientation: B, pressedInputRef: V, pressedThumbCenterOffsetRef: H, pressedThumbIndexRef: U, renderBeforeHydration: W, setActive: G, setIndicatorPosition: ee, state: te, step: ne, values: re } = sS(), ie = fd(), ae = l || D, oe = re.length > 1, se = B === "vertical", ce = ie === "rtl", { setTouched: le, setFocused: ue, validationMode: de } = dp(), fe = C.useRef(null), pe = C.useRef(null), me = C.useRef(!1), he = zl(), ge = Hy(), _e = oe ? he : ge, { ref: ve, index: ye } = xd({ metadata: C.useMemo(() => ({ inputId: _e }), [_e]) }), be = oe ? p ?? ye : 0, xe = be === re.length - 1, Se = re[be], Ce = sb(Se, I, F), [we, Te] = C.useState(), Ee = wS(), De = T >= 0 && T < re.length ? T : -1, Oe = Z(() => {
+var RS = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, children: r, className: i, "aria-describedby": a, "aria-label": o, "aria-labelledby": s, "aria-valuetext": c, disabled: l = !1, getAriaLabel: u, getAriaValueText: d, id: f, index: p, inputRef: m, onBlur: h, onFocus: g, onKeyDown: _, tabIndex: v, style: y, ...b } = e, { nonce: x } = Nx(), S = zl(f), { active: w, lastUsedThumbIndex: T, controlRef: E, disabled: D, validation: O, formatOptionsRef: k, handleInputChange: A, inset: j, labelId: M, largeStep: N, locale: P, max: F, min: I, minStepsBetweenValues: L, form: R, name: z, orientation: B, pressedInputRef: V, pressedThumbCenterOffsetRef: H, pressedThumbIndexRef: U, renderBeforeHydration: W, setActive: G, setIndicatorPosition: ee, state: te, step: ne, values: re } = gS(), ie = fd(), ae = l || D, oe = re.length > 1, se = B === "vertical", ce = ie === "rtl", { setTouched: le, setFocused: ue, validationMode: de } = pp(), fe = C.useRef(null), pe = C.useRef(null), me = C.useRef(!1), he = zl(), ge = Wy(), _e = oe ? he : ge, { ref: ve, index: ye } = xd({ metadata: C.useMemo(() => ({ inputId: _e }), [_e]) }), be = oe ? p ?? ye : 0, xe = be === re.length - 1, Se = re[be], Ce = gb(Se, I, F), [we, Te] = C.useState(), Ee = NS(), De = T >= 0 && T < re.length ? T : -1, Oe = Z(() => {
 		let e = E.current, t = fe.current;
 		if (!e || !t) return;
 		let n = t.getBoundingClientRect(), r = e.getBoundingClientRect(), i = se ? "height" : "width", a = r[i] - n[i], o = (n[i] / 2 + a * Ce / 100) / r[i] * 100, s = Number.isFinite(o) ? o : void 0;
@@ -24966,7 +25113,7 @@ var kS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		"aria-describedby": a,
 		"aria-orientation": B,
 		"aria-valuenow": Se,
-		"aria-valuetext": typeof d == "function" ? d(Qy(Se, P, k.current ?? void 0), Se, be) : c ?? DS(re, be, k.current ?? void 0, P),
+		"aria-valuetext": typeof d == "function" ? d(sb(Se, P, k.current ?? void 0), Se, be) : c ?? IS(re, be, k.current ?? void 0, P),
 		disabled: ae,
 		form: R,
 		id: _e,
@@ -24985,30 +25132,30 @@ var kS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 				e.stopPropagation();
 				return;
 			}
-			fe.current && (G(-1), le(!0), ue(!1), de === "onBlur" && O.commit(rS(Se, be, I, F, oe, re)));
+			fe.current && (G(-1), le(!0), ue(!1), de === "onBlur" && O.commit(fS(Se, be, I, F, oe, re)));
 		},
 		onKeyDown(e) {
-			if (e.defaultPrevented || !ES.has(e.key)) return;
+			if (e.defaultPrevented || !FS.has(e.key)) return;
 			ru.has(e.key) && e.stopPropagation();
-			let t = null, n = pS(Se, ne, I);
+			let t = null, n = SS(Se, ne, I);
 			switch (e.key) {
 				case Gl:
-					t = OS(n, e.shiftKey ? N : ne, 1, I, F);
+					t = LS(n, e.shiftKey ? N : ne, 1, I, F);
 					break;
 				case Jl:
-					t = OS(n, e.shiftKey ? N : ne, ce ? -1 : 1, I, F);
+					t = LS(n, e.shiftKey ? N : ne, ce ? -1 : 1, I, F);
 					break;
 				case Kl:
-					t = OS(n, e.shiftKey ? N : ne, -1, I, F);
+					t = LS(n, e.shiftKey ? N : ne, -1, I, F);
 					break;
 				case ql:
-					t = OS(n, e.shiftKey ? N : ne, ce ? 1 : -1, I, F);
+					t = LS(n, e.shiftKey ? N : ne, ce ? 1 : -1, I, F);
 					break;
 				case Xl:
-					t = OS(n, N, 1, I, F);
+					t = LS(n, N, 1, I, F);
 					break;
 				case Zl:
-					t = OS(n, N, -1, I, F);
+					t = LS(n, N, -1, I, F);
 					break;
 				case "End":
 					t = F, oe && (t = Number.isFinite(re[be + 1]) ? re[be + 1] - ne * L : F);
@@ -25042,7 +25189,7 @@ var kS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			fe
 		],
 		props: [{
-			[TS.index]: be,
+			[PS.index]: be,
 			children: /*#__PURE__*/ (0, Y.jsxs)(C.Fragment, { children: [
 				r,
 				/*#__PURE__*/ (0, Y.jsx)("input", {
@@ -25062,7 +25209,7 @@ var kS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			onPointerDown(e) {
 				if (!ae) {
 					if (U.current = be, fe.current != null) {
-						let t = B === "horizontal" ? "x" : "y", n = dS(fe.current), r = (B === "horizontal" ? e.clientX : e.clientY) - n[t];
+						let t = B === "horizontal" ? "x" : "y", n = bS(fe.current), r = (B === "horizontal" ? e.clientX : e.clientY) - n[t];
 						H.current = r;
 					}
 					pe.current != null && V.current !== pe.current && (V.current = pe.current);
@@ -25071,12 +25218,12 @@ var kS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			style: Me,
 			suppressHydrationWarning: W || void 0
 		}, b],
-		stateAttributesMapping: aS
+		stateAttributesMapping: mS
 	});
 });
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/slider/indicator/SliderIndicator.mjs
-function AS(e, t, n, r, i, a) {
+function zS(e, t, n, r, i, a) {
 	let o = n === void 0 || t && r === void 0 ? "hidden" : void 0, s = e ? "bottom" : "insetInlineStart", c = e ? "height" : "width", l = {
 		visibility: i && a ? "hidden" : o,
 		position: e ? "absolute" : "relative",
@@ -25084,7 +25231,7 @@ function AS(e, t, n, r, i, a) {
 	};
 	return l["--start-position"] = `${n ?? 0}%`, t ? (l["--relative-size"] = `${(r ?? 0) - (n ?? 0)}%`, l[s] = "var(--start-position)", l[c] = "var(--relative-size)", l) : (l[s] = 0, l[c] = "var(--start-position)", l);
 }
-function jS(e, t, n, r) {
+function BS(e, t, n, r) {
 	let i = e ? "bottom" : "insetInlineStart", a = e ? "height" : "width", o = {
 		position: e ? "absolute" : "relative",
 		[e ? "width" : "height"]: "inherit"
@@ -25093,8 +25240,8 @@ function jS(e, t, n, r) {
 	let s = r - n;
 	return o[i] = `${n}%`, o[a] = `${s}%`, o;
 }
-var MS = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, ...a } = e, { indicatorPosition: o, inset: s, max: c, min: l, orientation: u, renderBeforeHydration: d, state: f, values: p } = sS(), m = wS(), h = u === "vertical", g = p.length > 1, _ = s ? AS(h, g, o[0], o[1], d, m) : jS(h, g, sb(p[0], l, c), sb(p[p.length - 1], l, c));
+var VS = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, ...a } = e, { indicatorPosition: o, inset: s, max: c, min: l, orientation: u, renderBeforeHydration: d, state: f, values: p } = gS(), m = NS(), h = u === "vertical", g = p.length > 1, _ = s ? zS(h, g, o[0], o[1], d, m) : BS(h, g, gb(p[0], l, c), gb(p[p.length - 1], l, c));
 	return Q("div", e, {
 		state: f,
 		ref: t,
@@ -25103,14 +25250,14 @@ var MS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			style: _,
 			suppressHydrationWarning: d || void 0
 		}, a],
-		stateAttributesMapping: aS
+		stateAttributesMapping: mS
 	});
 });
 //#endregion
 //#region src/components/ui/slider.tsx
-function NS({ className: e, defaultValue: t, value: n, min: r = 0, max: i = 100, ...a }) {
+function HS({ className: e, defaultValue: t, value: n, min: r = 0, max: i = 100, ...a }) {
 	let o = Array.isArray(n) ? n : Array.isArray(t) ? t : [r, i];
-	return /* @__PURE__ */ (0, Y.jsx)(uS, {
+	return /* @__PURE__ */ (0, Y.jsx)(yS, {
 		className: J("data-horizontal:w-full data-vertical:h-full", e),
 		"data-slot": "slider",
 		defaultValue: t,
@@ -25119,16 +25266,16 @@ function NS({ className: e, defaultValue: t, value: n, min: r = 0, max: i = 100,
 		max: i,
 		thumbAlignment: "edge",
 		...a,
-		children: /* @__PURE__ */ (0, Y.jsxs)(yS, {
+		children: /* @__PURE__ */ (0, Y.jsxs)(OS, {
 			className: "relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col",
-			children: [/* @__PURE__ */ (0, Y.jsx)(bS, {
+			children: [/* @__PURE__ */ (0, Y.jsx)(kS, {
 				"data-slot": "slider-track",
 				className: "relative grow overflow-hidden rounded-full bg-muted select-none data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1",
-				children: /* @__PURE__ */ (0, Y.jsx)(MS, {
+				children: /* @__PURE__ */ (0, Y.jsx)(VS, {
 					"data-slot": "slider-range",
 					className: "bg-primary select-none data-horizontal:h-full data-vertical:w-full"
 				})
-			}), Array.from({ length: o.length }, (e, t) => /* @__PURE__ */ (0, Y.jsx)(kS, {
+			}), Array.from({ length: o.length }, (e, t) => /* @__PURE__ */ (0, Y.jsx)(RS, {
 				"data-slot": "slider-thumb",
 				className: "relative block size-3 shrink-0 rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] select-none after:absolute after:-inset-2 hover:ring-3 focus-visible:ring-3 focus-visible:outline-hidden active:ring-3 disabled:pointer-events-none disabled:opacity-50"
 			}, t))]
@@ -25137,11 +25284,11 @@ function NS({ className: e, defaultValue: t, value: n, min: r = 0, max: i = 100,
 }
 //#endregion
 //#region src/components/streamlit/slider.tsx
-function PS(e) {
+function US(e) {
 	return typeof e == "number" ? [e] : [...e];
 }
-function FS({ envelope: e, setStateValue: t }) {
-	let n = (0, C.useId)(), { commit: r, draft: i, setDraft: a } = vf(e.state, t);
+function WS({ envelope: e, setStateValue: t }) {
+	let n = (0, C.useId)(), { commit: r, draft: i, setDraft: a } = bf(e.state, t);
 	return /* @__PURE__ */ (0, Y.jsxs)("div", {
 		className: "grid min-w-0 gap-2 p-px",
 		"data-ssui-component": "slider",
@@ -25156,16 +25303,16 @@ function FS({ envelope: e, setStateValue: t }) {
 				className: "tabular-nums text-muted-foreground",
 				children: i.join(" – ")
 			})]
-		}), /* @__PURE__ */ (0, Y.jsx)(NS, {
+		}), /* @__PURE__ */ (0, Y.jsx)(HS, {
 			"aria-labelledby": n,
 			disabled: e.props.disabled,
 			max: e.props.max,
 			min: e.props.min,
 			onValueChange: (e) => {
-				a(PS(e));
+				a(US(e));
 			},
 			onValueCommitted: (e) => {
-				r(PS(e));
+				r(US(e));
 			},
 			step: e.props.step,
 			value: i
@@ -25174,23 +25321,23 @@ function FS({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/switch/root/SwitchRootContext.mjs
-var IS = /*#__PURE__*/ C.createContext(void 0);
-function LS() {
-	let e = C.useContext(IS);
+var GS = /*#__PURE__*/ C.createContext(void 0);
+function KS() {
+	let e = C.useContext(GS);
 	if (e === void 0) throw Error(la(63));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/switch/root/SwitchRootDataAttributes.mjs
-var RS = /*#__PURE__*/ function(e) {
+var qS = /*#__PURE__*/ function(e) {
 	return e.checked = "data-checked", e.unchecked = "data-unchecked", e.disabled = "data-disabled", e.readonly = "data-readonly", e.required = "data-required", e.valid = "data-valid", e.invalid = "data-invalid", e.touched = "data-touched", e.dirty = "data-dirty", e.filled = "data-filled", e.focused = "data-focused", e;
-}({}), zS = {
-	...sp,
+}({}), JS = {
+	...lp,
 	checked(e) {
-		return e ? { [RS.checked]: "" } : { [RS.unchecked]: "" };
+		return e ? { [qS.checked]: "" } : { [qS.unchecked]: "" };
 	}
-}, BS = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { checked: n, className: r, defaultChecked: i, "aria-labelledby": a, form: o, id: s, inputRef: c, name: l, nativeButton: u = !1, onCheckedChange: d, readOnly: f = !1, required: p = !1, disabled: m = !1, render: h, uncheckedValue: g, value: _, style: v, ...y } = e, { clearErrors: b } = gp(), { state: x, setTouched: S, setDirty: w, validityData: T, setFilled: E, setFocused: D, validationMode: O, disabled: k, name: A, validation: j } = dp(), { labelId: M } = vp(), N = k || m, P = A ?? l, F = C.useRef(null), I = vr(F, c, j.inputRef), L = C.useRef(null), R = zl(), z = Hy({
+}, YS = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { checked: n, className: r, defaultChecked: i, "aria-labelledby": a, form: o, id: s, inputRef: c, name: l, nativeButton: u = !1, onCheckedChange: d, readOnly: f = !1, required: p = !1, disabled: m = !1, render: h, uncheckedValue: g, value: _, style: v, ...y } = e, { clearErrors: b } = vp(), { state: x, setTouched: S, setDirty: w, validityData: T, setFilled: E, setFocused: D, validationMode: O, disabled: k, name: A, validation: j } = pp(), { labelId: M } = bp(), N = k || m, P = A ?? l, F = C.useRef(null), I = vr(F, c, j.inputRef), L = C.useRef(null), R = zl(), z = Wy({
 		id: s,
 		implicit: !1,
 		controlRef: L
@@ -25200,7 +25347,7 @@ var RS = /*#__PURE__*/ function(e) {
 		name: "Switch",
 		state: "checked"
 	});
-	fp(L, R, V, void 0, !N, l), X(() => {
+	mp(L, R, V, void 0, !N, l), X(() => {
 		F.current && E(F.current.checked);
 	}, [F, E]), vu(V, () => {
 		b(P), w(V !== T.initialValue), E(V), j.change(V);
@@ -25208,7 +25355,7 @@ var RS = /*#__PURE__*/ function(e) {
 	let { getButtonProps: U, buttonRef: W } = Fl({
 		disabled: N,
 		native: u
-	}), G = yp(a, M, F, !u, B), ee = {
+	}), G = xp(a, M, F, !u, B), ee = {
 		id: u ? z : R,
 		role: "switch",
 		"aria-checked": V,
@@ -25283,9 +25430,9 @@ var RS = /*#__PURE__*/ function(e) {
 			U,
 			(e) => j.getValidationProps(N, e)
 		],
-		stateAttributesMapping: zS
+		stateAttributesMapping: JS
 	});
-	return /*#__PURE__*/ (0, Y.jsxs)(IS.Provider, {
+	return /*#__PURE__*/ (0, Y.jsxs)(GS.Provider, {
 		value: ne,
 		children: [
 			re,
@@ -25302,24 +25449,24 @@ var RS = /*#__PURE__*/ function(e) {
 			})
 		]
 	});
-}), VS = /*#__PURE__*/ C.forwardRef(function(e, t) {
+}), XS = /*#__PURE__*/ C.forwardRef(function(e, t) {
 	let { render: n, className: r, style: i, ...a } = e;
 	return Q("span", e, {
-		state: LS(),
+		state: KS(),
 		ref: t,
-		stateAttributesMapping: zS,
+		stateAttributesMapping: JS,
 		props: a
 	});
 });
 //#endregion
 //#region src/components/ui/switch.tsx
-function HS({ className: e, size: t = "default", ...n }) {
-	return /* @__PURE__ */ (0, Y.jsx)(BS, {
+function ZS({ className: e, size: t = "default", ...n }) {
+	return /* @__PURE__ */ (0, Y.jsx)(YS, {
 		"data-slot": "switch",
 		"data-size": t,
 		className: J("peer group/switch relative inline-flex shrink-0 items-center rounded-full border border-transparent transition-all outline-none after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 data-[size=default]:h-[18.4px] data-[size=default]:w-[32px] data-[size=sm]:h-[14px] data-[size=sm]:w-[24px] dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 data-checked:bg-primary data-unchecked:bg-input dark:data-unchecked:bg-input/80 data-disabled:cursor-not-allowed data-disabled:opacity-50", e),
 		...n,
-		children: /* @__PURE__ */ (0, Y.jsx)(VS, {
+		children: /* @__PURE__ */ (0, Y.jsx)(XS, {
 			"data-slot": "switch-thumb",
 			className: "pointer-events-none block rounded-full bg-background ring-0 transition-transform group-data-[size=default]/switch:size-4 group-data-[size=sm]/switch:size-3 group-data-[size=default]/switch:data-checked:translate-x-[calc(100%-2px)] group-data-[size=sm]/switch:data-checked:translate-x-[calc(100%-2px)] dark:data-checked:bg-primary-foreground group-data-[size=default]/switch:data-unchecked:translate-x-0 group-data-[size=sm]/switch:data-unchecked:translate-x-0 dark:data-unchecked:bg-foreground"
 		})
@@ -25327,13 +25474,13 @@ function HS({ className: e, size: t = "default", ...n }) {
 }
 //#endregion
 //#region src/components/streamlit/switch.tsx
-function US({ envelope: e, setStateValue: t }) {
-	let n = (0, C.useId)(), { commit: r, state: i } = _f(e.state, t);
+function QS({ envelope: e, setStateValue: t }) {
+	let n = (0, C.useId)(), { commit: r, state: i } = yf(e.state, t);
 	return /* @__PURE__ */ (0, Y.jsxs)("div", {
 		className: "flex items-center gap-2 p-px",
 		"data-ssui-component": "switch",
 		"data-testid": "ssui-v2-switch",
-		children: [/* @__PURE__ */ (0, Y.jsx)(HS, {
+		children: [/* @__PURE__ */ (0, Y.jsx)(ZS, {
 			checked: i.value,
 			disabled: e.props.disabled,
 			id: n,
@@ -25347,7 +25494,7 @@ function US({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region src/components/ui/textarea.tsx
-function WS({ className: e, ...t }) {
+function $S({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("textarea", {
 		"data-slot": "textarea",
 		className: J("flex field-sizing-content min-h-16 w-full rounded-lg border border-input bg-transparent px-2.5 py-2 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40", e),
@@ -25356,8 +25503,8 @@ function WS({ className: e, ...t }) {
 }
 //#endregion
 //#region src/components/streamlit/textarea.tsx
-function GS({ envelope: e, setStateValue: t }) {
-	let n = (0, C.useId)(), { commitDraft: r, draft: i, setDraft: a } = vf(e.state, t);
+function eC({ envelope: e, setStateValue: t }) {
+	let n = (0, C.useId)(), { commitDraft: r, draft: i, setDraft: a } = bf(e.state, t);
 	return /* @__PURE__ */ (0, Y.jsxs)("div", {
 		className: "grid min-w-0 gap-1.5 p-px",
 		"data-ssui-component": "textarea",
@@ -25366,7 +25513,7 @@ function GS({ envelope: e, setStateValue: t }) {
 			className: "text-sm font-medium leading-none",
 			htmlFor: n,
 			children: e.props.label
-		}), /* @__PURE__ */ (0, Y.jsx)(WS, {
+		}), /* @__PURE__ */ (0, Y.jsx)($S, {
 			disabled: e.props.disabled,
 			id: n,
 			maxLength: e.props.maxLength ?? void 0,
@@ -25385,30 +25532,30 @@ function GS({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region src/components/streamlit/elements.tsx
-var KS = {
+var tC = {
 	none: "gap-0",
 	xs: "gap-1.5",
 	sm: "gap-2",
 	md: "gap-4",
 	lg: "gap-6",
 	xl: "gap-8"
-}, qS = {
+}, nC = {
 	start: "items-start",
 	center: "items-center",
 	end: "items-end",
 	stretch: "items-stretch"
-}, JS = {
+}, rC = {
 	start: "justify-start",
 	center: "justify-center",
 	end: "justify-end",
 	between: "justify-between"
-}, YS = {
+}, iC = {
 	body: "text-sm text-foreground",
 	muted: "text-sm text-muted-foreground",
 	label: "text-sm font-medium text-foreground",
 	caption: "text-xs text-muted-foreground"
 };
-function XS(e) {
+function aC(e) {
 	let t = "font-semibold tracking-tight text-foreground";
 	switch (e.props.level) {
 		case 2: return /* @__PURE__ */ (0, Y.jsx)("h2", {
@@ -25425,96 +25572,100 @@ function XS(e) {
 		});
 	}
 }
-function ZS(e, t, n) {
+function oC(e, t, n) {
 	let r = ((n, r) => {
 		t(e.id, n, r);
 	}), i = ((t, r) => {
 		n(e.id, t, r);
 	});
 	switch (e.envelope.kind) {
-		case "select": return /* @__PURE__ */ (0, Y.jsx)(Qx, {
+		case "select": return /* @__PURE__ */ (0, Y.jsx)(sS, {
 			envelope: e.envelope,
 			setStateValue: r
 		});
-		case "checkbox": return /* @__PURE__ */ (0, Y.jsx)(Ap, {
+		case "checkbox": return /* @__PURE__ */ (0, Y.jsx)(Mp, {
 			envelope: e.envelope,
 			setStateValue: r
 		});
-		case "button": return /* @__PURE__ */ (0, Y.jsx)(Gf, {
+		case "button": return /* @__PURE__ */ (0, Y.jsx)(qf, {
 			envelope: e.envelope,
 			setTriggerValue: i
 		});
-		case "badge": return /* @__PURE__ */ (0, Y.jsx)(Lf, { envelope: e.envelope });
-		case "progress": return /* @__PURE__ */ (0, Y.jsx)(gb, { envelope: e.envelope });
-		case "separator": return /* @__PURE__ */ (0, Y.jsx)(eS, { envelope: e.envelope });
-		case "aspect_ratio": return /* @__PURE__ */ (0, Y.jsx)(xf, { envelope: e.envelope });
-		case "link_button": return /* @__PURE__ */ (0, Y.jsx)(Jy, { envelope: e.envelope });
-		case "input": return /* @__PURE__ */ (0, Y.jsx)(qy, {
+		case "badge": return /* @__PURE__ */ (0, Y.jsx)(zf, { envelope: e.envelope });
+		case "progress": return /* @__PURE__ */ (0, Y.jsx)(Tb, { envelope: e.envelope });
+		case "separator": return /* @__PURE__ */ (0, Y.jsx)(lS, { envelope: e.envelope });
+		case "aspect_ratio": return /* @__PURE__ */ (0, Y.jsx)(Cf, { envelope: e.envelope });
+		case "link_button": return /* @__PURE__ */ (0, Y.jsx)(rb, { envelope: e.envelope });
+		case "input": return /* @__PURE__ */ (0, Y.jsx)(Yy, {
 			envelope: e.envelope,
 			setStateValue: r
 		});
-		case "textarea": return /* @__PURE__ */ (0, Y.jsx)(GS, {
+		case "number_input": return /* @__PURE__ */ (0, Y.jsx)(nb, {
 			envelope: e.envelope,
 			setStateValue: r
 		});
-		case "radio_group": return /* @__PURE__ */ (0, Y.jsx)(Fb, {
+		case "textarea": return /* @__PURE__ */ (0, Y.jsx)(eC, {
 			envelope: e.envelope,
 			setStateValue: r
 		});
-		case "slider": return /* @__PURE__ */ (0, Y.jsx)(FS, {
+		case "radio_group": return /* @__PURE__ */ (0, Y.jsx)(Wb, {
 			envelope: e.envelope,
 			setStateValue: r
 		});
-		case "switch": return /* @__PURE__ */ (0, Y.jsx)(US, {
+		case "slider": return /* @__PURE__ */ (0, Y.jsx)(WS, {
+			envelope: e.envelope,
+			setStateValue: r
+		});
+		case "switch": return /* @__PURE__ */ (0, Y.jsx)(QS, {
 			envelope: e.envelope,
 			setStateValue: r
 		});
 	}
 }
-function QS(e, t, n) {
-	let r = e.children.map((e) => /* @__PURE__ */ (0, Y.jsx)(C.Fragment, { children: QS(e, t, n) }, e.id));
+function sC(e, t, n) {
+	let r = e.children.map((e) => /* @__PURE__ */ (0, Y.jsx)(C.Fragment, { children: sC(e, t, n) }, e.id));
 	switch (e.type) {
-		case "leaf": return ZS(e, t, n);
+		case "leaf": return oC(e, t, n);
 		case "text": return /* @__PURE__ */ (0, Y.jsx)("p", {
-			className: YS[e.props.variant],
+			className: iC[e.props.variant],
 			children: e.props.text
 		});
-		case "heading": return XS(e);
+		case "heading": return aC(e);
 		case "code": return /* @__PURE__ */ (0, Y.jsx)("code", {
 			className: "block overflow-x-auto rounded-md bg-muted px-3 py-2 font-mono text-xs text-muted-foreground",
 			"data-language": e.props.language,
 			children: e.props.text
 		});
 		case "stack": return /* @__PURE__ */ (0, Y.jsx)("div", {
-			className: J("flex w-full min-w-0", e.props.direction === "vertical" ? "flex-col" : "flex-row", KS[e.props.gap], qS[e.props.align], JS[e.props.justify], e.props.wrap && "flex-wrap"),
+			className: J("flex w-full min-w-0", e.props.direction === "vertical" ? "flex-col" : "flex-row", tC[e.props.gap], nC[e.props.align], rC[e.props.justify], e.props.wrap && "flex-wrap"),
 			children: r
 		});
 		case "grid": {
 			let t = { gridTemplateColumns: e.props.minColumnWidth === null ? `repeat(${e.props.columns}, minmax(0, 1fr))` : `repeat(auto-fit, minmax(min(100%, ${e.props.minColumnWidth}px), 1fr))` };
 			return /* @__PURE__ */ (0, Y.jsx)("div", {
-				className: J("grid w-full min-w-0", KS[e.props.gap]),
+				className: J("grid w-full min-w-0", tC[e.props.gap]),
 				style: t,
 				children: r
 			});
 		}
-		case "card": return /* @__PURE__ */ (0, Y.jsx)(Kf, {
+		case "card": return /* @__PURE__ */ (0, Y.jsx)(Jf, {
 			size: e.props.size,
 			children: r
 		});
-		case "card_header": return /* @__PURE__ */ (0, Y.jsx)(qf, { children: r });
-		case "card_content": return /* @__PURE__ */ (0, Y.jsx)(Zf, { children: r });
-		case "card_footer": return /* @__PURE__ */ (0, Y.jsx)(Qf, { children: r });
+		case "card_header": return /* @__PURE__ */ (0, Y.jsx)(Yf, { children: r });
+		case "card_content": return /* @__PURE__ */ (0, Y.jsx)($f, { children: r });
+		case "card_footer": return /* @__PURE__ */ (0, Y.jsx)(ep, { children: r });
 	}
 }
-var $S = (0, C.memo)(function({ enqueueEvent: e, nodes: t, setNodeState: n }) {
+var cC = (0, C.memo)(function({ enqueueEvent: e, nodes: t, setNodeState: n }) {
 	return t.map((t) => /* @__PURE__ */ (0, Y.jsx)("div", {
 		className: "min-w-0",
 		"data-ssui-element-id": t.id,
-		children: QS(t, n, e)
+		children: sC(t, n, e)
 	}, t.id));
 });
-function eC({ envelope: e, setStateValue: t, setTriggerValue: n }) {
-	let { commit: r, state: i } = _f(e.state, t), a = (0, C.useRef)(i.value), o = (0, C.useRef)(i.value.sequence), s = (0, C.useRef)([]), c = (0, C.useRef)(!1);
+function lC({ envelope: e, setStateValue: t, setTriggerValue: n }) {
+	let { commit: r, state: i } = yf(e.state, t), a = (0, C.useRef)(i.value), o = (0, C.useRef)(i.value.sequence), s = (0, C.useRef)([]), c = (0, C.useRef)(!1);
 	(0, C.useEffect)(() => {
 		a.current = i.value, o.current = Math.max(o.current, i.value.sequence);
 	}, [i.value]);
@@ -25547,7 +25698,7 @@ function eC({ envelope: e, setStateValue: t, setTriggerValue: n }) {
 		className: "@container/elements grid min-w-0 gap-4 p-px",
 		"data-ssui-component": "elements",
 		"data-testid": "ssui-v2-elements",
-		children: /* @__PURE__ */ (0, Y.jsx)($S, {
+		children: /* @__PURE__ */ (0, Y.jsx)(cC, {
 			enqueueEvent: u,
 			nodes: e.props.nodes,
 			setNodeState: l
@@ -25556,22 +25707,22 @@ function eC({ envelope: e, setStateValue: t, setTriggerValue: n }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/preview-card/root/PreviewCardContext.mjs
-var tC = /*#__PURE__*/ C.createContext(void 0);
-function nC(e) {
-	let t = C.useContext(tC);
+var uC = /*#__PURE__*/ C.createContext(void 0);
+function dC(e) {
+	let t = C.useContext(uC);
 	if (t === void 0 && !e) throw Error(la(50));
 	return t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/preview-card/store/PreviewCardStore.mjs
-var rC = {
+var fC = {
 	...Fc,
 	instantType: $((e) => e.instantType),
 	hasViewport: $((e) => e.hasViewport)
-}, iC = class e extends nc {
+}, pC = class e extends nc {
 	constructor(e, t, n = !1) {
 		let r = new Ec(), i = {
-			...aC(),
+			...mC(),
 			...e
 		};
 		i.floatingRootContext = kc(r, t, n), super(i, {
@@ -25581,7 +25732,7 @@ var rC = {
 			triggerElements: r,
 			closeDelayRef: { current: 300 },
 			inlineRectCoordsRef: { current: void 0 }
-		}, rC);
+		}, fC);
 	}
 	setOpen = (e, t) => {
 		let { inlineRectCoordsRef: n } = this.context;
@@ -25594,7 +25745,7 @@ var rC = {
 		return hc(t, (t, r) => new e(n, t, r)).store;
 	}
 };
-function aC() {
+function mC() {
 	return {
 		...Oc(),
 		instantType: void 0,
@@ -25603,8 +25754,8 @@ function aC() {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/preview-card/root/PreviewCardRoot.mjs
-function oC(e) {
-	let { open: t, defaultOpen: n = !1, onOpenChange: r, onOpenChangeComplete: i, actionsRef: a, handle: o, triggerId: s, defaultTriggerId: c = null, children: l } = e, u = iC.useStore(o?.store, {
+function hC(e) {
+	let { open: t, defaultOpen: n = !1, onOpenChange: r, onOpenChangeComplete: i, actionsRef: a, handle: o, triggerId: s, defaultTriggerId: c = null, children: l } = e, u = pC.useStore(o?.store, {
 		open: n,
 		openProp: t,
 		activeTriggerId: c,
@@ -25631,12 +25782,12 @@ function oC(e) {
 		close: g
 	}), [h, g]);
 	let _ = d || p;
-	return /*#__PURE__*/ (0, Y.jsxs)(tC.Provider, {
+	return /*#__PURE__*/ (0, Y.jsxs)(uC.Provider, {
 		value: u,
-		children: [_ && /*#__PURE__*/ (0, Y.jsx)(sC, { store: u }), typeof l == "function" ? l({ payload: m }) : l]
+		children: [_ && /*#__PURE__*/ (0, Y.jsx)(gC, { store: u }), typeof l == "function" ? l({ payload: m }) : l]
 	});
 }
-function sC({ store: e }) {
+function gC({ store: e }) {
 	let t = _o(e.useState("floatingRootContext"));
 	return wc(e, {
 		activeTriggerProps: t.reference ?? fn,
@@ -25644,17 +25795,17 @@ function sC({ store: e }) {
 		popupProps: C.useMemo(() => va(pc, t.floating), [t.floating])
 	}), null;
 }
-var cC = Gs(function(e) {
-	return nC(!0) ? /*#__PURE__*/ (0, Y.jsx)(oC, { ...e }) : /*#__PURE__*/ (0, Y.jsx)(no, { children: /*#__PURE__*/ (0, Y.jsx)(oC, { ...e }) });
-}), lC = /*#__PURE__*/ C.createContext(void 0);
-function uC() {
-	let e = C.useContext(lC);
+var _C = Gs(function(e) {
+	return dC(!0) ? /*#__PURE__*/ (0, Y.jsx)(hC, { ...e }) : /*#__PURE__*/ (0, Y.jsx)(no, { children: /*#__PURE__*/ (0, Y.jsx)(hC, { ...e }) });
+}), vC = /*#__PURE__*/ C.createContext(void 0);
+function yC() {
+	let e = C.useContext(vC);
 	if (e === void 0) throw Error(la(48));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/utils/FloatingPortalLite.mjs
-var dC = /*#__PURE__*/ C.forwardRef(function(e, t) {
+var bC = /*#__PURE__*/ C.forwardRef(function(e, t) {
 	let { children: n, container: r, className: i, render: a, style: o, ...s } = e, { portalNode: c, portalSubtree: l } = Ka({
 		container: r,
 		ref: t,
@@ -25662,17 +25813,17 @@ var dC = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		elementProps: s
 	});
 	return !l && !c ? null : /*#__PURE__*/ (0, Y.jsxs)(C.Fragment, { children: [l, c && /*#__PURE__*/ Ha.createPortal(n, c)] });
-}), fC = /*#__PURE__*/ C.forwardRef(function(e, t) {
+}), xC = /*#__PURE__*/ C.forwardRef(function(e, t) {
 	let { keepMounted: n = !1, ...r } = e;
-	return nC().useState("mounted") || n ? /*#__PURE__*/ (0, Y.jsx)(lC.Provider, {
+	return dC().useState("mounted") || n ? /*#__PURE__*/ (0, Y.jsx)(vC.Provider, {
 		value: n,
-		children: /*#__PURE__*/ (0, Y.jsx)(dC, {
+		children: /*#__PURE__*/ (0, Y.jsx)(bC, {
 			ref: t,
 			...r
 		})
 	}) : null;
-}), pC = Ks(function(e, t) {
-	let { render: n, className: r, delay: i, closeDelay: a, id: o, payload: s, handle: c, style: l, ...u } = e, d = nC(!0), f = c?.store ?? d;
+}), SC = Ks(function(e, t) {
+	let { render: n, className: r, delay: i, closeDelay: a, id: o, payload: s, handle: c, style: l, ...u } = e, d = dC(!0), f = c?.store ?? d;
 	if (!f) throw Error(la(89));
 	let p = zl(o), m = f.useState("isTriggerActive", p), h = f.useState("isOpenedByTrigger", p), g = f.useState("floatingRootContext"), _ = f.context.inlineRectCoordsRef, v = C.useRef(null), y = i ?? 600, b = a ?? 300, { registerTrigger: x, isMountedByThisTrigger: S } = xc(p, v, f, { payload: s });
 	X(() => {
@@ -25711,16 +25862,16 @@ var dC = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		],
 		stateAttributesMapping: Dl
 	});
-}), mC = /*#__PURE__*/ C.createContext(void 0);
-function hC() {
-	let e = C.useContext(mC);
+}), CC = /*#__PURE__*/ C.createContext(void 0);
+function wC() {
+	let e = C.useContext(CC);
 	if (e === void 0) throw Error(la(49));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/preview-card/positioner/PreviewCardPositioner.mjs
-var gC = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, anchor: i, positionMethod: a = "absolute", side: o = "bottom", align: s = "center", sideOffset: c = 0, alignOffset: l = 0, collisionBoundary: u = "clipping-ancestors", collisionPadding: d = 5, arrowPadding: f = 5, sticky: p = !1, disableAnchorTracking: m = !1, collisionAvoidance: h = Ba, style: g, ..._ } = e, v = nC(), y = uC(), b = eo(), x = v.useState("open"), S = v.useState("mounted"), C = v.useState("floatingRootContext"), w = v.useState("instantType"), T = v.useState("transitionStatus"), E = v.useState("hasViewport"), D = v.context.inlineRectCoordsRef, O = _m({
+var TC = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, anchor: i, positionMethod: a = "absolute", side: o = "bottom", align: s = "center", sideOffset: c = 0, alignOffset: l = 0, collisionBoundary: u = "clipping-ancestors", collisionPadding: d = 5, arrowPadding: f = 5, sticky: p = !1, disableAnchorTracking: m = !1, collisionAvoidance: h = Ba, style: g, ..._ } = e, v = dC(), y = yC(), b = eo(), x = v.useState("open"), S = v.useState("mounted"), C = v.useState("floatingRootContext"), w = v.useState("instantType"), T = v.useState("transitionStatus"), E = v.useState("hasViewport"), D = v.context.inlineRectCoordsRef, O = ym({
 		anchor: i,
 		floatingRootContext: C,
 		positionMethod: a,
@@ -25737,7 +25888,7 @@ var gC = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		keepMounted: y,
 		nodeId: b,
 		collisionAvoidance: h,
-		adaptiveOrigin: E ? mm : void 0,
+		adaptiveOrigin: E ? gm : void 0,
 		inline: Is(D)
 	}), k = O.update;
 	X(() => {
@@ -25747,7 +25898,7 @@ var gC = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		S,
 		k
 	]);
-	let A = ym(e, {
+	let A = xm(e, {
 		open: x,
 		side: O.side,
 		align: O.align,
@@ -25761,18 +25912,18 @@ var gC = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		hidden: !S,
 		inert: !x
 	});
-	return /*#__PURE__*/ (0, Y.jsx)(mC.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(CC.Provider, {
 		value: O,
 		children: /*#__PURE__*/ (0, Y.jsx)(to, {
 			id: b,
 			children: A
 		})
 	});
-}), _C = {
+}), EC = {
 	...kl,
 	...uc
-}, vC = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { className: n, render: r, style: i, ...a } = e, o = nC(), { side: s, align: c } = hC(), l = o.useState("open"), u = o.useState("instantType"), d = o.useState("transitionStatus"), f = o.useState("popupProps"), p = o.useState("floatingRootContext");
+}, DC = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { className: n, render: r, style: i, ...a } = e, o = dC(), { side: s, align: c } = wC(), l = o.useState("open"), u = o.useState("instantType"), d = o.useState("transitionStatus"), f = o.useState("popupProps"), p = o.useState("floatingRootContext");
 	return fc({
 		open: l,
 		ref: o.context.popupRef,
@@ -25794,39 +25945,39 @@ var gC = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		],
 		props: [
 			f,
-			rm(d),
+			am(d),
 			a
 		],
-		stateAttributesMapping: _C
+		stateAttributesMapping: EC
 	});
 });
 //#endregion
 //#region src/components/ui/hover-card.tsx
-function yC({ ...e }) {
-	return /* @__PURE__ */ (0, Y.jsx)(cC, {
+function OC({ ...e }) {
+	return /* @__PURE__ */ (0, Y.jsx)(_C, {
 		"data-slot": "hover-card",
 		...e
 	});
 }
-function bC({ ...e }) {
-	return /* @__PURE__ */ (0, Y.jsx)(pC, {
+function kC({ ...e }) {
+	return /* @__PURE__ */ (0, Y.jsx)(SC, {
 		"data-slot": "hover-card-trigger",
 		...e
 	});
 }
-function xC({ className: e, side: t = "bottom", sideOffset: n = 4, align: r = "center", alignOffset: i = 4, ...a }) {
+function AC({ className: e, side: t = "bottom", sideOffset: n = 4, align: r = "center", alignOffset: i = 4, ...a }) {
 	let o = Au();
-	return /* @__PURE__ */ (0, Y.jsx)(fC, {
+	return /* @__PURE__ */ (0, Y.jsx)(xC, {
 		"data-slot": "hover-card-portal",
 		container: o,
-		children: /* @__PURE__ */ (0, Y.jsx)(gC, {
+		children: /* @__PURE__ */ (0, Y.jsx)(TC, {
 			align: r,
 			alignOffset: i,
 			side: t,
 			sideOffset: n,
 			className: "isolate z-50",
 			positionMethod: "fixed",
-			children: /* @__PURE__ */ (0, Y.jsx)(vC, {
+			children: /* @__PURE__ */ (0, Y.jsx)(DC, {
 				"data-slot": "hover-card-content",
 				className: J("z-50 w-64 origin-(--transform-origin) rounded-lg bg-popover p-2.5 text-sm text-popover-foreground shadow-md ring-1 ring-foreground/10 outline-hidden duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95", e),
 				...a
@@ -25836,12 +25987,12 @@ function xC({ className: e, side: t = "bottom", sideOffset: n = 4, align: r = "c
 }
 //#endregion
 //#region src/components/streamlit/hover-card.tsx
-function SC({ envelope: e }) {
+function jC({ envelope: e }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		className: "inline-flex p-px",
 		"data-ssui-component": "hover-card",
 		"data-testid": "ssui-v2-hover-card",
-		children: /* @__PURE__ */ (0, Y.jsxs)(yC, { children: [/* @__PURE__ */ (0, Y.jsx)(bC, {
+		children: /* @__PURE__ */ (0, Y.jsxs)(OC, { children: [/* @__PURE__ */ (0, Y.jsx)(kC, {
 			closeDelay: 100,
 			delay: 200,
 			render: /* @__PURE__ */ (0, Y.jsx)(Cu, {
@@ -25849,7 +26000,7 @@ function SC({ envelope: e }) {
 				variant: "ghost"
 			}),
 			children: e.props.label
-		}), /* @__PURE__ */ (0, Y.jsx)(xC, {
+		}), /* @__PURE__ */ (0, Y.jsx)(AC, {
 			align: "start",
 			"data-testid": "ssui-v2-hover-card-content",
 			children: /* @__PURE__ */ (0, Y.jsx)("p", { children: e.props.content })
@@ -25858,8 +26009,8 @@ function SC({ envelope: e }) {
 }
 //#endregion
 //#region src/components/streamlit/calendar.tsx
-function CC({ envelope: e, setStateValue: t }) {
-	let { commit: n, state: r } = _f(e.state, t), i = Fy(e.props.minDate), a = Fy(e.props.maxDate), o = Fy(r.value), [s, c] = (0, C.useState)(o ?? i ?? a ?? /* @__PURE__ */ new Date());
+function MC({ envelope: e, setStateValue: t }) {
+	let { commit: n, state: r } = yf(e.state, t), i = Ly(e.props.minDate), a = Ly(e.props.maxDate), o = Ly(r.value), [s, c] = (0, C.useState)(o ?? i ?? a ?? /* @__PURE__ */ new Date());
 	(0, C.useEffect)(() => {
 		o !== void 0 && c(o);
 	}, [r.value]);
@@ -25872,14 +26023,14 @@ function CC({ envelope: e, setStateValue: t }) {
 		"data-ssui-component": "calendar",
 		"data-testid": "ssui-v2-calendar",
 		role: "group",
-		children: /* @__PURE__ */ (0, Y.jsx)(ay, {
+		children: /* @__PURE__ */ (0, Y.jsx)(sy, {
 			disabled: u,
 			endMonth: a,
 			mode: "single",
 			month: s,
 			onMonthChange: c,
 			onSelect: (e) => {
-				n(e === void 0 ? null : Iy(e));
+				n(e === void 0 ? null : Ry(e));
 			},
 			selected: o,
 			startMonth: i
@@ -25888,41 +26039,41 @@ function CC({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region node_modules/.pnpm/input-otp@1.4.2_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/input-otp/dist/index.mjs
-var wC = Object.defineProperty, TC = Object.defineProperties, EC = Object.getOwnPropertyDescriptors, DC = Object.getOwnPropertySymbols, OC = Object.prototype.hasOwnProperty, kC = Object.prototype.propertyIsEnumerable, AC = (e, t, n) => t in e ? wC(e, t, {
+var NC = Object.defineProperty, PC = Object.defineProperties, FC = Object.getOwnPropertyDescriptors, IC = Object.getOwnPropertySymbols, LC = Object.prototype.hasOwnProperty, RC = Object.prototype.propertyIsEnumerable, zC = (e, t, n) => t in e ? NC(e, t, {
 	enumerable: !0,
 	configurable: !0,
 	writable: !0,
 	value: n
-}) : e[t] = n, jC = (e, t) => {
-	for (var n in t ||= {}) OC.call(t, n) && AC(e, n, t[n]);
-	if (DC) for (var n of DC(t)) kC.call(t, n) && AC(e, n, t[n]);
+}) : e[t] = n, BC = (e, t) => {
+	for (var n in t ||= {}) LC.call(t, n) && zC(e, n, t[n]);
+	if (IC) for (var n of IC(t)) RC.call(t, n) && zC(e, n, t[n]);
 	return e;
-}, MC = (e, t) => TC(e, EC(t)), NC = (e, t) => {
+}, VC = (e, t) => PC(e, FC(t)), HC = (e, t) => {
 	var n = {};
-	for (var r in e) OC.call(e, r) && t.indexOf(r) < 0 && (n[r] = e[r]);
-	if (e != null && DC) for (var r of DC(e)) t.indexOf(r) < 0 && kC.call(e, r) && (n[r] = e[r]);
+	for (var r in e) LC.call(e, r) && t.indexOf(r) < 0 && (n[r] = e[r]);
+	if (e != null && IC) for (var r of IC(e)) t.indexOf(r) < 0 && RC.call(e, r) && (n[r] = e[r]);
 	return n;
 };
-function PC(e) {
+function UC(e) {
 	return [
 		setTimeout(e, 0),
 		setTimeout(e, 10),
 		setTimeout(e, 50)
 	];
 }
-function FC(e) {
+function WC(e) {
 	let t = C.useRef();
 	return C.useEffect(() => {
 		t.current = e;
 	}), t.current;
 }
-var IC = 18, LC = 40, RC = `${LC}px`, zC = [
+var GC = 18, KC = 40, qC = `${KC}px`, JC = [
 	"[data-lastpass-icon-root]",
 	"com-1password-button",
 	"[data-dashlanecreated]",
 	"[style$=\"2147483647 !important;\"]"
 ].join(",");
-function BC({ containerRef: e, inputRef: t, pushPasswordManagerStrategy: n, isFocused: r }) {
+function YC({ containerRef: e, inputRef: t, pushPasswordManagerStrategy: n, isFocused: r }) {
 	let [i, a] = C.useState(!1), [o, s] = C.useState(!1), [c, l] = C.useState(!1), u = C.useMemo(() => n !== "none" && (n === "increase-width" || n === "experimental-no-flickering") && i && o, [
 		i,
 		o,
@@ -25930,8 +26081,8 @@ function BC({ containerRef: e, inputRef: t, pushPasswordManagerStrategy: n, isFo
 	]), d = C.useCallback(() => {
 		let r = e.current, i = t.current;
 		if (!r || !i || c || n === "none") return;
-		let o = r, s = o.getBoundingClientRect().left + o.offsetWidth, u = o.getBoundingClientRect().top + o.offsetHeight / 2, d = s - IC, f = u;
-		document.querySelectorAll(zC).length === 0 && document.elementFromPoint(d, f) === r || (a(!0), l(!0));
+		let o = r, s = o.getBoundingClientRect().left + o.offsetWidth, u = o.getBoundingClientRect().top + o.offsetHeight / 2, d = s - GC, f = u;
+		document.querySelectorAll(JC).length === 0 && document.elementFromPoint(d, f) === r || (a(!0), l(!0));
 	}, [
 		e,
 		t,
@@ -25943,7 +26094,7 @@ function BC({ containerRef: e, inputRef: t, pushPasswordManagerStrategy: n, isFo
 		if (!t || n === "none") return;
 		function r() {
 			let e = window.innerWidth - t.getBoundingClientRect().right;
-			s(e >= LC);
+			s(e >= KC);
 		}
 		r();
 		let i = setInterval(r, 1e3);
@@ -25967,11 +26118,11 @@ function BC({ containerRef: e, inputRef: t, pushPasswordManagerStrategy: n, isFo
 	]), {
 		hasPWMBadge: i,
 		willPushPWMBadge: u,
-		PWM_BADGE_SPACE_WIDTH: RC
+		PWM_BADGE_SPACE_WIDTH: qC
 	};
 }
-var VC = C.createContext({}), HC = C.forwardRef((e, t) => {
-	var n = e, { value: r, onChange: i, maxLength: a, textAlign: o = "left", pattern: s, placeholder: c, inputMode: l = "numeric", onComplete: u, pushPasswordManagerStrategy: d = "increase-width", pasteTransformer: f, containerClassName: p, noScriptCSSFallback: m = WC, render: h, children: g } = n, _ = NC(n, [
+var XC = C.createContext({}), ZC = C.forwardRef((e, t) => {
+	var n = e, { value: r, onChange: i, maxLength: a, textAlign: o = "left", pattern: s, placeholder: c, inputMode: l = "numeric", onComplete: u, pushPasswordManagerStrategy: d = "increase-width", pasteTransformer: f, containerClassName: p, noScriptCSSFallback: m = $C, render: h, children: g } = n, _ = HC(n, [
 		"value",
 		"onChange",
 		"maxLength",
@@ -25987,7 +26138,7 @@ var VC = C.createContext({}), HC = C.forwardRef((e, t) => {
 		"render",
 		"children"
 	]), v;
-	let [y, b] = C.useState(typeof _.defaultValue == "string" ? _.defaultValue : ""), x = r ?? y, S = FC(x), w = C.useCallback((e) => {
+	let [y, b] = C.useState(typeof _.defaultValue == "string" ? _.defaultValue : ""), x = r ?? y, S = WC(x), w = C.useCallback((e) => {
 		i?.(e), b(e);
 	}, [i]), T = C.useMemo(() => s ? typeof s == "string" ? new RegExp(s) : s : null, [s]), E = C.useRef(null), D = C.useRef(null), O = C.useRef({
 		value: x,
@@ -26041,7 +26192,7 @@ var VC = C.createContext({}), HC = C.forwardRef((e, t) => {
 			let e = document.createElement("style");
 			if (e.id = "input-otp-style", document.head.appendChild(e), e.sheet) {
 				let t = "background: transparent !important; color: transparent !important; border-color: transparent !important; opacity: 0 !important; box-shadow: none !important; -webkit-box-shadow: none !important; -webkit-text-fill-color: transparent !important;";
-				UC(e.sheet, "[data-input-otp]::selection { background: transparent !important; color: transparent !important; }"), UC(e.sheet, `[data-input-otp]:autofill { ${t} }`), UC(e.sheet, `[data-input-otp]:-webkit-autofill { ${t} }`), UC(e.sheet, "@supports (-webkit-touch-callout: none) { [data-input-otp] { letter-spacing: -.6em !important; font-weight: 100 !important; font-stretch: ultra-condensed; font-optical-sizing: none !important; left: -1px !important; right: 1px !important; } }"), UC(e.sheet, "[data-input-otp] + * { pointer-events: all !important; }");
+				QC(e.sheet, "[data-input-otp]::selection { background: transparent !important; color: transparent !important; }"), QC(e.sheet, `[data-input-otp]:autofill { ${t} }`), QC(e.sheet, `[data-input-otp]:-webkit-autofill { ${t} }`), QC(e.sheet, "@supports (-webkit-touch-callout: none) { [data-input-otp] { letter-spacing: -.6em !important; font-weight: 100 !important; font-stretch: ultra-condensed; font-optical-sizing: none !important; left: -1px !important; right: 1px !important; } }"), QC(e.sheet, "[data-input-otp] + * { pointer-events: all !important; }");
 			}
 		}
 		let r = () => {
@@ -26055,7 +26206,7 @@ var VC = C.createContext({}), HC = C.forwardRef((e, t) => {
 	}, []);
 	let [A, j] = C.useState(!1), [M, N] = C.useState(!1), [P, F] = C.useState(null), [I, L] = C.useState(null);
 	C.useEffect(() => {
-		PC(() => {
+		UC(() => {
 			var e;
 			(e = E.current) == null || e.dispatchEvent(new Event("input"));
 			let t = E.current?.selectionStart, n = E.current?.selectionEnd, r = E.current?.selectionDirection;
@@ -26073,7 +26224,7 @@ var VC = C.createContext({}), HC = C.forwardRef((e, t) => {
 		S,
 		x
 	]);
-	let R = BC({
+	let R = YC({
 		containerRef: D,
 		inputRef: E,
 		pushPasswordManagerStrategy: d,
@@ -26143,7 +26294,7 @@ var VC = C.createContext({}), HC = C.forwardRef((e, t) => {
 		R.PWM_BADGE_SPACE_WIDTH,
 		R.willPushPWMBadge,
 		o
-	]), W = C.useMemo(() => C.createElement("input", MC(jC({ autoComplete: _.autoComplete || "one-time-code" }, _), {
+	]), W = C.useMemo(() => C.createElement("input", VC(BC({ autoComplete: _.autoComplete || "one-time-code" }, _), {
 		"data-input-otp": !0,
 		"data-input-otp-placeholder-shown": x.length === 0 || void 0,
 		"data-input-otp-mss": P,
@@ -26208,7 +26359,7 @@ var VC = C.createContext({}), HC = C.forwardRef((e, t) => {
 		P,
 		_.disabled,
 		x
-	]), ee = C.useMemo(() => h ? h(G) : C.createElement(VC.Provider, { value: G }, g), [
+	]), ee = C.useMemo(() => h ? h(G) : C.createElement(XC.Provider, { value: G }, g), [
 		g,
 		G,
 		h
@@ -26224,19 +26375,19 @@ var VC = C.createContext({}), HC = C.forwardRef((e, t) => {
 		pointerEvents: "none"
 	} }, W)));
 });
-HC.displayName = "Input";
-function UC(e, t) {
+ZC.displayName = "Input";
+function QC(e, t) {
 	try {
 		e.insertRule(t);
 	} catch {
 		console.error("input-otp could not insert CSS rule:", t);
 	}
 }
-var WC = "\n[data-input-otp] {\n  --nojs-bg: white !important;\n  --nojs-fg: black !important;\n\n  background-color: var(--nojs-bg) !important;\n  color: var(--nojs-fg) !important;\n  caret-color: var(--nojs-fg) !important;\n  letter-spacing: .25em !important;\n  text-align: center !important;\n  border: 1px solid var(--nojs-fg) !important;\n  border-radius: 4px !important;\n  width: 100% !important;\n}\n@media (prefers-color-scheme: dark) {\n  [data-input-otp] {\n    --nojs-bg: black !important;\n    --nojs-fg: white !important;\n  }\n}";
+var $C = "\n[data-input-otp] {\n  --nojs-bg: white !important;\n  --nojs-fg: black !important;\n\n  background-color: var(--nojs-bg) !important;\n  color: var(--nojs-fg) !important;\n  caret-color: var(--nojs-fg) !important;\n  letter-spacing: .25em !important;\n  text-align: center !important;\n  border: 1px solid var(--nojs-fg) !important;\n  border-radius: 4px !important;\n  width: 100% !important;\n}\n@media (prefers-color-scheme: dark) {\n  [data-input-otp] {\n    --nojs-bg: black !important;\n    --nojs-fg: white !important;\n  }\n}";
 //#endregion
 //#region src/components/ui/input-otp.tsx
-function GC({ className: e, containerClassName: t, ...n }) {
-	return /* @__PURE__ */ (0, Y.jsx)(HC, {
+function ew({ className: e, containerClassName: t, ...n }) {
+	return /* @__PURE__ */ (0, Y.jsx)(ZC, {
 		"data-slot": "input-otp",
 		containerClassName: J("cn-input-otp flex items-center has-disabled:opacity-50", t),
 		spellCheck: !1,
@@ -26244,15 +26395,15 @@ function GC({ className: e, containerClassName: t, ...n }) {
 		...n
 	});
 }
-function KC({ className: e, ...t }) {
+function tw({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		"data-slot": "input-otp-group",
 		className: J("flex items-center rounded-lg has-aria-invalid:border-destructive has-aria-invalid:ring-3 has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40", e),
 		...t
 	});
 }
-function qC({ index: e, className: t, ...n }) {
-	let { char: r, hasFakeCaret: i, isActive: a } = C.useContext(VC)?.slots[e] ?? {};
+function nw({ index: e, className: t, ...n }) {
+	let { char: r, hasFakeCaret: i, isActive: a } = C.useContext(XC)?.slots[e] ?? {};
 	return /* @__PURE__ */ (0, Y.jsxs)("div", {
 		"data-slot": "input-otp-slot",
 		"data-active": a,
@@ -26266,8 +26417,8 @@ function qC({ index: e, className: t, ...n }) {
 }
 //#endregion
 //#region src/components/streamlit/input-otp.tsx
-function JC({ envelope: e, setStateValue: t }) {
-	let n = (0, C.useId)(), { commit: r, commitDraft: i, draft: a, setDraft: o } = vf(e.state, t), s = e.props.pattern === "digits" ? "^[0-9]*$" : "^[a-zA-Z0-9]*$";
+function rw({ envelope: e, setStateValue: t }) {
+	let n = (0, C.useId)(), { commit: r, commitDraft: i, draft: a, setDraft: o } = bf(e.state, t), s = e.props.pattern === "digits" ? "^[0-9]*$" : "^[a-zA-Z0-9]*$";
 	return /* @__PURE__ */ (0, Y.jsxs)("div", {
 		className: "grid min-w-0 gap-1.5 p-px",
 		"data-ssui-component": "input_otp",
@@ -26276,7 +26427,7 @@ function JC({ envelope: e, setStateValue: t }) {
 			className: "text-sm font-medium leading-none",
 			id: n,
 			children: e.props.label
-		}), /* @__PURE__ */ (0, Y.jsx)(GC, {
+		}), /* @__PURE__ */ (0, Y.jsx)(ew, {
 			"aria-labelledby": n,
 			disabled: e.props.disabled,
 			maxLength: e.props.maxLength,
@@ -26287,13 +26438,13 @@ function JC({ envelope: e, setStateValue: t }) {
 			},
 			pattern: s,
 			value: a,
-			children: /* @__PURE__ */ (0, Y.jsx)(KC, { children: Array.from({ length: e.props.maxLength }, (e, t) => /* @__PURE__ */ (0, Y.jsx)(qC, { index: t }, t)) })
+			children: /* @__PURE__ */ (0, Y.jsx)(tw, { children: Array.from({ length: e.props.maxLength }, (e, t) => /* @__PURE__ */ (0, Y.jsx)(nw, { index: t }, t)) })
 		})]
 	});
 }
 //#endregion
 //#region src/components/ui/pagination.tsx
-function YC({ className: e, ...t }) {
+function iw({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("nav", {
 		role: "navigation",
 		"aria-label": "pagination",
@@ -26302,20 +26453,20 @@ function YC({ className: e, ...t }) {
 		...t
 	});
 }
-function XC({ className: e, ...t }) {
+function aw({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("ul", {
 		"data-slot": "pagination-content",
 		className: J("flex items-center gap-0.5", e),
 		...t
 	});
 }
-function ZC({ ...e }) {
+function ow({ ...e }) {
 	return /* @__PURE__ */ (0, Y.jsx)("li", {
 		"data-slot": "pagination-item",
 		...e
 	});
 }
-function QC({ className: e, ...t }) {
+function sw({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsxs)("span", {
 		"aria-hidden": !0,
 		"data-slot": "pagination-ellipsis",
@@ -26329,36 +26480,36 @@ function QC({ className: e, ...t }) {
 }
 //#endregion
 //#region src/components/streamlit/pagination.tsx
-function $C(e, t) {
+function cw(e, t) {
 	return Array.from({ length: Math.max(t - e + 1, 0) }, (t, n) => e + n);
 }
-function ew(e, t, n) {
-	if (t <= n * 2 + 5) return $C(1, t);
+function lw(e, t, n) {
+	if (t <= n * 2 + 5) return cw(1, t);
 	let r = Math.max(e - n, 1), i = Math.min(e + n, t), a = r > 2, o = i < t - 1;
 	return !a && o ? [
-		...$C(1, n * 2 + 3),
+		...cw(1, n * 2 + 3),
 		"ellipsis-right",
 		t
 	] : a && !o ? [
 		1,
 		"ellipsis-left",
-		...$C(t - (n * 2 + 2), t)
+		...cw(t - (n * 2 + 2), t)
 	] : [
 		1,
 		"ellipsis-left",
-		...$C(r, i),
+		...cw(r, i),
 		"ellipsis-right",
 		t
 	];
 }
-function tw({ envelope: e, setStateValue: t }) {
-	let { commit: n, state: r } = _f(e.state, t), i = ew(r.value, e.props.totalPages, e.props.siblingCount);
-	return /* @__PURE__ */ (0, Y.jsx)(YC, {
+function uw({ envelope: e, setStateValue: t }) {
+	let { commit: n, state: r } = yf(e.state, t), i = lw(r.value, e.props.totalPages, e.props.siblingCount);
+	return /* @__PURE__ */ (0, Y.jsx)(iw, {
 		"aria-label": e.props.label,
 		"data-ssui-component": "pagination",
 		"data-testid": "ssui-v2-pagination",
-		children: /* @__PURE__ */ (0, Y.jsxs)(XC, { children: [
-			/* @__PURE__ */ (0, Y.jsx)(ZC, { children: /* @__PURE__ */ (0, Y.jsxs)(Cu, {
+		children: /* @__PURE__ */ (0, Y.jsxs)(aw, { children: [
+			/* @__PURE__ */ (0, Y.jsx)(ow, { children: /* @__PURE__ */ (0, Y.jsxs)(Cu, {
 				"aria-label": "Go to previous page",
 				disabled: e.props.disabled || r.value === 1,
 				onClick: () => {
@@ -26371,7 +26522,7 @@ function tw({ envelope: e, setStateValue: t }) {
 					children: "Previous"
 				})]
 			}) }),
-			i.map((t) => /* @__PURE__ */ (0, Y.jsx)(ZC, { children: typeof t == "number" ? /* @__PURE__ */ (0, Y.jsx)(Cu, {
+			i.map((t) => /* @__PURE__ */ (0, Y.jsx)(ow, { children: typeof t == "number" ? /* @__PURE__ */ (0, Y.jsx)(Cu, {
 				"aria-current": t === r.value ? "page" : void 0,
 				"aria-label": `Go to page ${t}`,
 				disabled: e.props.disabled,
@@ -26381,8 +26532,8 @@ function tw({ envelope: e, setStateValue: t }) {
 				size: "icon",
 				variant: t === r.value ? "outline" : "ghost",
 				children: t
-			}) : /* @__PURE__ */ (0, Y.jsx)(QC, {}) }, t)),
-			/* @__PURE__ */ (0, Y.jsx)(ZC, { children: /* @__PURE__ */ (0, Y.jsxs)(Cu, {
+			}) : /* @__PURE__ */ (0, Y.jsx)(sw, {}) }, t)),
+			/* @__PURE__ */ (0, Y.jsx)(ow, { children: /* @__PURE__ */ (0, Y.jsxs)(Cu, {
 				"aria-label": "Go to next page",
 				disabled: e.props.disabled || r.value === e.props.totalPages,
 				onClick: () => {
@@ -26400,76 +26551,76 @@ function tw({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region src/components/streamlit/popover.tsx
-function nw({ envelope: e }) {
+function dw({ envelope: e }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		className: "inline-flex p-px",
 		"data-ssui-component": "popover",
 		"data-testid": "ssui-v2-popover",
-		children: /* @__PURE__ */ (0, Y.jsxs)(ky, {
+		children: /* @__PURE__ */ (0, Y.jsxs)(jy, {
 			modal: !1,
-			children: [/* @__PURE__ */ (0, Y.jsx)(Ay, {
+			children: [/* @__PURE__ */ (0, Y.jsx)(My, {
 				disabled: e.props.disabled,
 				render: /* @__PURE__ */ (0, Y.jsx)(Cu, { variant: "outline" }),
 				children: e.props.label
-			}), /* @__PURE__ */ (0, Y.jsx)(jy, {
+			}), /* @__PURE__ */ (0, Y.jsx)(Ny, {
 				align: "start",
 				"data-testid": "ssui-v2-popover-content",
-				children: /* @__PURE__ */ (0, Y.jsxs)(My, { children: [/* @__PURE__ */ (0, Y.jsx)(Ny, { children: e.props.label }), /* @__PURE__ */ (0, Y.jsx)(Py, { children: e.props.content ?? "No additional content." })] })
+				children: /* @__PURE__ */ (0, Y.jsxs)(Py, { children: [/* @__PURE__ */ (0, Y.jsx)(Fy, { children: e.props.label }), /* @__PURE__ */ (0, Y.jsx)(Iy, { children: e.props.content ?? "No additional content." })] })
 			})]
 		})
 	});
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/scroll-area/root/ScrollAreaRootContext.mjs
-var rw = /*#__PURE__*/ C.createContext(void 0);
-function iw() {
-	let e = C.useContext(rw);
+var fw = /*#__PURE__*/ C.createContext(void 0);
+function pw() {
+	let e = C.useContext(fw);
 	if (e === void 0) throw Error(la(53));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/scroll-area/root/ScrollAreaRootCssVars.mjs
-var aw = /*#__PURE__*/ function(e) {
+var mw = /*#__PURE__*/ function(e) {
 	return e.scrollAreaCornerHeight = "--scroll-area-corner-height", e.scrollAreaCornerWidth = "--scroll-area-corner-width", e;
 }({});
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/scroll-area/utils/getOffset.mjs
-function ow(e, t, n) {
+function hw(e, t, n) {
 	if (!e) return 0;
 	let r = getComputedStyle(e), i = n === "x" ? "Inline" : "Block";
 	return n === "x" && t === "margin" ? parseFloat(r[`${t}InlineStart`]) * 2 : parseFloat(r[`${t}${i}Start`]) + parseFloat(r[`${t}${i}End`]);
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/scroll-area/scrollbar/ScrollAreaScrollbarDataAttributes.mjs
-var sw = /*#__PURE__*/ function(e) {
+var gw = /*#__PURE__*/ function(e) {
 	return e.orientation = "data-orientation", e.hovering = "data-hovering", e.scrolling = "data-scrolling", e.hasOverflowX = "data-has-overflow-x", e.hasOverflowY = "data-has-overflow-y", e.overflowXStart = "data-overflow-x-start", e.overflowXEnd = "data-overflow-x-end", e.overflowYStart = "data-overflow-y-start", e.overflowYEnd = "data-overflow-y-end", e;
-}({}), cw = /*#__PURE__*/ function(e) {
+}({}), _w = /*#__PURE__*/ function(e) {
 	return e.scrolling = "data-scrolling", e.hasOverflowX = "data-has-overflow-x", e.hasOverflowY = "data-has-overflow-y", e.overflowXStart = "data-overflow-x-start", e.overflowXEnd = "data-overflow-x-end", e.overflowYStart = "data-overflow-y-start", e.overflowYEnd = "data-overflow-y-end", e;
-}({}), lw = {
-	hasOverflowX: (e) => e ? { [cw.hasOverflowX]: "" } : null,
-	hasOverflowY: (e) => e ? { [cw.hasOverflowY]: "" } : null,
-	overflowXStart: (e) => e ? { [cw.overflowXStart]: "" } : null,
-	overflowXEnd: (e) => e ? { [cw.overflowXEnd]: "" } : null,
-	overflowYStart: (e) => e ? { [cw.overflowYStart]: "" } : null,
-	overflowYEnd: (e) => e ? { [cw.overflowYEnd]: "" } : null,
+}({}), vw = {
+	hasOverflowX: (e) => e ? { [_w.hasOverflowX]: "" } : null,
+	hasOverflowY: (e) => e ? { [_w.hasOverflowY]: "" } : null,
+	overflowXStart: (e) => e ? { [_w.overflowXStart]: "" } : null,
+	overflowXEnd: (e) => e ? { [_w.overflowXEnd]: "" } : null,
+	overflowYStart: (e) => e ? { [_w.overflowYStart]: "" } : null,
+	overflowYEnd: (e) => e ? { [_w.overflowYEnd]: "" } : null,
 	cornerHidden: () => null
-}, uw = {
+}, yw = {
 	x: 0,
 	y: 0
-}, dw = {
+}, bw = {
 	width: 0,
 	height: 0
-}, fw = {
+}, xw = {
 	xStart: !1,
 	xEnd: !1,
 	yStart: !1,
 	yEnd: !1
-}, pw = {
+}, Sw = {
 	x: !0,
 	y: !0,
 	corner: !0
-}, mw = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, overflowEdgeThreshold: i, style: a, ...o } = e, { xStart: s, xEnd: c, yStart: l, yEnd: u } = hw(i), d = zl(), f = an(), p = an(), { nonce: m, disableStyleElements: h } = wx(), [g, _] = C.useState(!1), [v, y] = C.useState(!1), [b, x] = C.useState(!1), [S, w] = C.useState(!1), [T, E] = C.useState(!1), [D, O] = C.useState(dw), [k, A] = C.useState(dw), [j, M] = C.useState(fw), [N, P] = C.useState(pw), F = C.useRef(null), I = C.useRef(null), L = C.useRef(null), R = C.useRef(null), z = C.useRef(null), B = C.useRef(null), V = C.useRef(null), H = C.useRef(!1), U = C.useRef(0), W = C.useRef(0), G = C.useRef(0), ee = C.useRef(0), te = C.useRef("vertical"), ne = C.useRef(uw), re = Z((e) => {
+}, Cw = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, overflowEdgeThreshold: i, style: a, ...o } = e, { xStart: s, xEnd: c, yStart: l, yEnd: u } = ww(i), d = zl(), f = an(), p = an(), { nonce: m, disableStyleElements: h } = Nx(), [g, _] = C.useState(!1), [v, y] = C.useState(!1), [b, x] = C.useState(!1), [S, w] = C.useState(!1), [T, E] = C.useState(!1), [D, O] = C.useState(bw), [k, A] = C.useState(bw), [j, M] = C.useState(xw), [N, P] = C.useState(Sw), F = C.useRef(null), I = C.useRef(null), L = C.useRef(null), R = C.useRef(null), z = C.useRef(null), B = C.useRef(null), V = C.useRef(null), H = C.useRef(!1), U = C.useRef(0), W = C.useRef(0), G = C.useRef(0), ee = C.useRef(0), te = C.useRef("vertical"), ne = C.useRef(yw), re = Z((e) => {
 		let t = e.x - ne.current.x, n = e.y - ne.current.y;
 		ne.current = e, n !== 0 && (x(!0), f.start(500, () => {
 			x(!1);
@@ -26477,20 +26628,20 @@ var sw = /*#__PURE__*/ function(e) {
 			y(!1);
 		}));
 	}), ie = Z((e) => {
-		e.button === 0 && (H.current = !0, U.current = e.clientY, W.current = e.clientX, te.current = e.currentTarget.getAttribute(sw.orientation), I.current && (G.current = I.current.scrollTop, ee.current = I.current.scrollLeft), z.current && te.current === "vertical" && z.current.setPointerCapture(e.pointerId), B.current && te.current === "horizontal" && B.current.setPointerCapture(e.pointerId));
+		e.button === 0 && (H.current = !0, U.current = e.clientY, W.current = e.clientX, te.current = e.currentTarget.getAttribute(gw.orientation), I.current && (G.current = I.current.scrollTop, ee.current = I.current.scrollLeft), z.current && te.current === "vertical" && z.current.setPointerCapture(e.pointerId), B.current && te.current === "horizontal" && B.current.setPointerCapture(e.pointerId));
 	}), ae = Z((e) => {
 		if (!H.current) return;
 		let t = e.clientY - U.current, n = e.clientX - W.current;
 		if (I.current) {
 			let r = I.current.scrollHeight, i = I.current.clientHeight, a = I.current.scrollWidth, o = I.current.clientWidth;
 			if (z.current && L.current && te.current === "vertical") {
-				let n = ow(L.current, "padding", "y"), a = ow(z.current, "margin", "y"), o = z.current.offsetHeight, s = t / (L.current.offsetHeight - o - n - a);
+				let n = hw(L.current, "padding", "y"), a = hw(z.current, "margin", "y"), o = z.current.offsetHeight, s = t / (L.current.offsetHeight - o - n - a);
 				I.current.scrollTop = G.current + s * (r - i), e.preventDefault(), x(!0), f.start(500, () => {
 					x(!1);
 				});
 			}
 			if (B.current && R.current && te.current === "horizontal") {
-				let t = ow(R.current, "padding", "x"), r = ow(B.current, "margin", "x"), i = B.current.offsetWidth, s = n / (R.current.offsetWidth - i - t - r);
+				let t = hw(R.current, "padding", "x"), r = hw(B.current, "margin", "x"), i = B.current.offsetWidth, s = n / (R.current.offsetWidth - i - t - r);
 				I.current.scrollLeft = ee.current + s * (a - o), e.preventDefault(), y(!0), p.start(500, () => {
 					y(!1);
 				});
@@ -26534,14 +26685,14 @@ var sw = /*#__PURE__*/ function(e) {
 		},
 		style: {
 			position: "relative",
-			[aw.scrollAreaCornerHeight]: `${D.height}px`,
-			[aw.scrollAreaCornerWidth]: `${D.width}px`
+			[mw.scrollAreaCornerHeight]: `${D.height}px`,
+			[mw.scrollAreaCornerWidth]: `${D.width}px`
 		}
 	}, de = Q("div", e, {
 		state: le,
 		ref: [t, F],
 		props: [ue, o],
-		stateAttributesMapping: lw
+		stateAttributesMapping: vw
 	}), fe = C.useMemo(() => ({
 		handlePointerDown: ie,
 		handlePointerMove: ae,
@@ -26603,12 +26754,12 @@ var sw = /*#__PURE__*/ function(e) {
 		l,
 		u
 	]);
-	return /*#__PURE__*/ (0, Y.jsxs)(rw.Provider, {
+	return /*#__PURE__*/ (0, Y.jsxs)(fw.Provider, {
 		value: fe,
-		children: [!h && xx.getElement(m), de]
+		children: [!h && Ax.getElement(m), de]
 	});
 });
-function hw(e) {
+function ww(e) {
 	if (typeof e == "number") {
 		let t = Math.max(0, e);
 		return {
@@ -26627,15 +26778,15 @@ function hw(e) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/scroll-area/viewport/ScrollAreaViewportContext.mjs
-var gw = /*#__PURE__*/ C.createContext(void 0), _w = /*#__PURE__*/ function(e) {
+var Tw = /*#__PURE__*/ C.createContext(void 0), Ew = /*#__PURE__*/ function(e) {
 	return e.scrollAreaOverflowXStart = "--scroll-area-overflow-x-start", e.scrollAreaOverflowXEnd = "--scroll-area-overflow-x-end", e.scrollAreaOverflowYStart = "--scroll-area-overflow-y-start", e.scrollAreaOverflowYEnd = "--scroll-area-overflow-y-end", e;
-}({}), vw = !1;
-function yw() {
-	vw || Jt || (typeof CSS < "u" && "registerProperty" in CSS && [
-		_w.scrollAreaOverflowXStart,
-		_w.scrollAreaOverflowXEnd,
-		_w.scrollAreaOverflowYStart,
-		_w.scrollAreaOverflowYEnd
+}({}), Dw = !1;
+function Ow() {
+	Dw || Jt || (typeof CSS < "u" && "registerProperty" in CSS && [
+		Ew.scrollAreaOverflowXStart,
+		Ew.scrollAreaOverflowXEnd,
+		Ew.scrollAreaOverflowYStart,
+		Ew.scrollAreaOverflowYEnd
 	].forEach((e) => {
 		try {
 			CSS.registerProperty({
@@ -26645,10 +26796,10 @@ function yw() {
 				initialValue: "0px"
 			});
 		} catch {}
-	}), vw = !0);
+	}), Dw = !0);
 }
-var bw = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, ...a } = e, { viewportRef: o, scrollbarYRef: s, scrollbarXRef: c, thumbYRef: l, thumbXRef: u, cornerRef: d, cornerSize: f, setCornerSize: p, setThumbSize: m, rootId: h, setHiddenState: g, hiddenState: _, setHasMeasuredScrollbar: v, handleScroll: y, setHovering: b, setOverflowEdges: x, overflowEdges: S, overflowEdgeThreshold: w, scrollingX: T, scrollingY: E } = iw(), D = fd(), O = C.useRef(!0), k = C.useRef([
+var kw = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, ...a } = e, { viewportRef: o, scrollbarYRef: s, scrollbarXRef: c, thumbYRef: l, thumbXRef: u, cornerRef: d, cornerSize: f, setCornerSize: p, setThumbSize: m, rootId: h, setHiddenState: g, hiddenState: _, setHasMeasuredScrollbar: v, handleScroll: y, setHovering: b, setOverflowEdges: x, overflowEdges: S, overflowEdgeThreshold: w, scrollingX: T, scrollingY: E } = pw(), D = fd(), O = C.useRef(!0), k = C.useRef([
 		NaN,
 		NaN,
 		NaN,
@@ -26658,14 +26809,14 @@ var bw = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		if (!e) return;
 		let h = e.scrollHeight, _ = e.scrollWidth, y = e.clientHeight, b = e.clientWidth, S = e.scrollTop, C = e.scrollLeft, T = k.current, E = Number.isNaN(T[0]);
 		if (T[0] = y, T[1] = h, T[2] = b, T[3] = _, E && v(!0), h === 0 || _ === 0) return;
-		let O = xw(e), A = O.y, j = O.x, M = b / _, N = y / h, P = Math.max(0, _ - b), F = Math.max(0, h - y), I = 0, L = 0;
+		let O = Aw(e), A = O.y, j = O.x, M = b / _, N = y / h, P = Math.max(0, _ - b), F = Math.max(0, h - y), I = 0, L = 0;
 		if (!j) {
 			let e = 0;
-			e = $b(D === "rtl" ? -C : C, 0, P), I = tx(e, P), L = P - I;
+			e = cx(D === "rtl" ? -C : C, 0, P), I = ux(e, P), L = P - I;
 		}
-		let R = A ? 0 : $b(S, 0, F), z = A ? 0 : tx(R, F), B = A ? 0 : F - z, V = j ? 0 : b, H = A ? 0 : y, U = 0, W = 0;
+		let R = A ? 0 : cx(S, 0, F), z = A ? 0 : ux(R, F), B = A ? 0 : F - z, V = j ? 0 : b, H = A ? 0 : y, U = 0, W = 0;
 		!j && !A && (U = t?.offsetWidth || 0, W = n?.offsetHeight || 0);
-		let G = f.width === 0 && f.height === 0, ee = G ? U : 0, te = G ? W : 0, ne = ow(n, "padding", "x"), re = ow(t, "padding", "y"), ie = ow(i, "margin", "x"), ae = ow(r, "margin", "y"), oe = V - ne - ie, se = H - re - ae, ce = n ? Math.min(n.offsetWidth - ee, oe) : oe, le = t ? Math.min(t.offsetHeight - te, se) : se, ue = Math.max(16, ce * M), de = Math.max(16, le * N);
+		let G = f.width === 0 && f.height === 0, ee = G ? U : 0, te = G ? W : 0, ne = hw(n, "padding", "x"), re = hw(t, "padding", "y"), ie = hw(i, "margin", "x"), ae = hw(r, "margin", "y"), oe = V - ne - ie, se = H - re - ae, ce = n ? Math.min(n.offsetWidth - ee, oe) : oe, le = t ? Math.min(t.offsetHeight - te, se) : se, ue = Math.max(16, ce * M), de = Math.max(16, le * N);
 		if (m((e) => e.height === de && e.width === ue ? e : {
 			width: ue,
 			height: de
@@ -26674,14 +26825,14 @@ var bw = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			r.style.transform = `translate3d(0,${a}px,0)`;
 		}
 		if (n && i) {
-			let e = n.offsetWidth - ue - ne - ie, t = _ - b, r = t === 0 ? 0 : C / t, a = D === "rtl" ? $b(r * e, -e, 0) : $b(r * e, 0, e);
+			let e = n.offsetWidth - ue - ne - ie, t = _ - b, r = t === 0 ? 0 : C / t, a = D === "rtl" ? cx(r * e, -e, 0) : cx(r * e, 0, e);
 			i.style.transform = `translate3d(${a}px,0,0)`;
 		}
 		let fe = [
-			[_w.scrollAreaOverflowXStart, I],
-			[_w.scrollAreaOverflowXEnd, L],
-			[_w.scrollAreaOverflowYStart, z],
-			[_w.scrollAreaOverflowYEnd, B]
+			[Ew.scrollAreaOverflowXStart, I],
+			[Ew.scrollAreaOverflowXEnd, L],
+			[Ew.scrollAreaOverflowYStart, z],
+			[Ew.scrollAreaOverflowYEnd, B]
 		];
 		for (let [t, n] of fe) e.style.setProperty(t, `${n}px`);
 		a && (j || A ? p({
@@ -26690,7 +26841,7 @@ var bw = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		}) : !j && !A && p({
 			width: U,
 			height: W
-		})), g((e) => Sw(e, O));
+		})), g((e) => jw(e, O));
 		let pe = {
 			xStart: !j && I > w.xStart,
 			xEnd: !j && L > w.xEnd,
@@ -26700,7 +26851,7 @@ var bw = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		x((e) => e.xStart === pe.xStart && e.xEnd === pe.xEnd && e.yStart === pe.yStart && e.yEnd === pe.yEnd ? e : pe);
 	});
 	X(() => {
-		o.current && yw();
+		o.current && Ow();
 	}, [o]), X(() => {
 		queueMicrotask(M);
 	}, [
@@ -26742,7 +26893,7 @@ var bw = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		role: "presentation",
 		...h && { "data-id": `${h}-viewport` },
 		tabIndex: _.x && _.y ? -1 : 0,
-		className: xx.className,
+		className: Ax.className,
 		style: { overflow: "scroll" },
 		onScroll() {
 			o.current && (M(), O.current || y({
@@ -26777,14 +26928,14 @@ var bw = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		ref: [t, o],
 		state: F,
 		props: [P, a],
-		stateAttributesMapping: lw
+		stateAttributesMapping: vw
 	}), L = C.useMemo(() => ({ computeThumbPosition: M }), [M]);
-	return /*#__PURE__*/ (0, Y.jsx)(gw.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(Tw.Provider, {
 		value: L,
 		children: I
 	});
 });
-function xw(e) {
+function Aw(e) {
 	let t = e.clientHeight >= e.scrollHeight, n = e.clientWidth >= e.scrollWidth;
 	return {
 		y: t,
@@ -26792,23 +26943,23 @@ function xw(e) {
 		corner: t || n
 	};
 }
-function Sw(e, t) {
+function jw(e, t) {
 	return e.y === t.y && e.x === t.x && e.corner === t.corner ? e : t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/scroll-area/scrollbar/ScrollAreaScrollbarContext.mjs
-var Cw = /*#__PURE__*/ C.createContext(void 0);
-function ww() {
-	let e = C.useContext(Cw);
+var Mw = /*#__PURE__*/ C.createContext(void 0);
+function Nw() {
+	let e = C.useContext(Mw);
 	if (e === void 0) throw Error(la(54));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/scroll-area/scrollbar/ScrollAreaScrollbarCssVars.mjs
-var Tw = /*#__PURE__*/ function(e) {
+var Pw = /*#__PURE__*/ function(e) {
 	return e.scrollAreaThumbHeight = "--scroll-area-thumb-height", e.scrollAreaThumbWidth = "--scroll-area-thumb-width", e;
-}({}), Ew = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, orientation: i = "vertical", keepMounted: a = !1, style: o, ...s } = e, { hovering: c, scrollingX: l, scrollingY: u, hiddenState: d, overflowEdges: f, scrollbarYRef: p, scrollbarXRef: m, viewportRef: h, thumbYRef: g, thumbXRef: _, handlePointerDown: v, handlePointerUp: y, handleScroll: b, rootId: x, thumbSize: S, hasMeasuredScrollbar: w } = iw(), T = {
+}({}), Fw = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, orientation: i = "vertical", keepMounted: a = !1, style: o, ...s } = e, { hovering: c, scrollingX: l, scrollingY: u, hiddenState: d, overflowEdges: f, scrollbarYRef: p, scrollbarXRef: m, viewportRef: h, thumbYRef: g, thumbXRef: _, handlePointerDown: v, handlePointerUp: y, handleScroll: b, rootId: x, thumbSize: S, hasMeasuredScrollbar: w } = pw(), T = {
 		hovering: c,
 		scrolling: {
 			horizontal: l,
@@ -26854,11 +27005,11 @@ var Tw = /*#__PURE__*/ function(e) {
 			let t = In(e.nativeEvent), n = i === "vertical" ? g.current : _.current;
 			if (!(n && Fn(n, t)) && h.current) {
 				if (g.current && p.current && i === "vertical") {
-					let t = ow(g.current, "margin", "y"), n = ow(p.current, "padding", "y"), r = g.current.offsetHeight, i = p.current.getBoundingClientRect(), a = e.clientY - i.top - r / 2 - n + t / 2, o = h.current.scrollHeight, s = h.current.clientHeight, c = a / (p.current.offsetHeight - r - n - t) * (o - s);
+					let t = hw(g.current, "margin", "y"), n = hw(p.current, "padding", "y"), r = g.current.offsetHeight, i = p.current.getBoundingClientRect(), a = e.clientY - i.top - r / 2 - n + t / 2, o = h.current.scrollHeight, s = h.current.clientHeight, c = a / (p.current.offsetHeight - r - n - t) * (o - s);
 					h.current.scrollTop = c;
 				}
 				if (_.current && m.current && i === "horizontal") {
-					let t = ow(_.current, "margin", "x"), n = ow(m.current, "padding", "x"), r = _.current.offsetWidth, i = m.current.getBoundingClientRect(), a = e.clientX - i.left - r / 2 - n + t / 2, o = h.current.scrollWidth, s = h.current.clientWidth, c = a / (m.current.offsetWidth - r - n - t), l;
+					let t = hw(_.current, "margin", "x"), n = hw(m.current, "padding", "x"), r = _.current.offsetWidth, i = m.current.getBoundingClientRect(), a = e.clientX - i.left - r / 2 - n + t / 2, o = h.current.scrollWidth, s = h.current.clientWidth, c = a / (m.current.offsetWidth - r - n - t), l;
 					E === "rtl" ? (l = (1 - c) * (o - s), h.current.scrollLeft <= 0 && (l = -l)) : l = c * (o - s), h.current.scrollLeft = l;
 				}
 				b({
@@ -26877,29 +27028,29 @@ var Tw = /*#__PURE__*/ function(e) {
 			visibility: D ? "hidden" : void 0,
 			...i === "vertical" && {
 				top: 0,
-				bottom: `var(${aw.scrollAreaCornerHeight})`,
+				bottom: `var(${mw.scrollAreaCornerHeight})`,
 				insetInlineEnd: 0,
-				[Tw.scrollAreaThumbHeight]: `${S.height}px`
+				[Pw.scrollAreaThumbHeight]: `${S.height}px`
 			},
 			...i === "horizontal" && {
 				insetInlineStart: 0,
-				insetInlineEnd: `var(${aw.scrollAreaCornerWidth})`,
+				insetInlineEnd: `var(${mw.scrollAreaCornerWidth})`,
 				bottom: 0,
-				[Tw.scrollAreaThumbWidth]: `${S.width}px`
+				[Pw.scrollAreaThumbWidth]: `${S.width}px`
 			}
 		}
 	}, j = Q("div", e, {
 		ref: [t, i === "vertical" ? p : m],
 		state: T,
 		props: [A, s],
-		stateAttributesMapping: lw
+		stateAttributesMapping: vw
 	}), M = C.useMemo(() => ({ orientation: i }), [i]);
-	return k ? /*#__PURE__*/ (0, Y.jsx)(Cw.Provider, {
+	return k ? /*#__PURE__*/ (0, Y.jsx)(Mw.Provider, {
 		value: M,
 		children: j
 	}) : null;
-}), Dw = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, ...a } = e, { thumbYRef: o, thumbXRef: s, handlePointerDown: c, handlePointerMove: l, handlePointerUp: u, setScrollingX: d, setScrollingY: f, scrollingX: p, scrollingY: m, hasMeasuredScrollbar: h } = iw(), { orientation: g } = ww(), _ = {
+}), Iw = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, ...a } = e, { thumbYRef: o, thumbXRef: s, handlePointerDown: c, handlePointerMove: l, handlePointerUp: u, setScrollingX: d, setScrollingY: f, scrollingX: p, scrollingY: m, hasMeasuredScrollbar: h } = pw(), { orientation: g } = Nw(), _ = {
 		scrolling: g === "horizontal" ? p : m,
 		orientation: g
 	};
@@ -26916,13 +27067,13 @@ var Tw = /*#__PURE__*/ function(e) {
 			onPointerCancel: v,
 			style: {
 				visibility: h ? void 0 : "hidden",
-				...g === "vertical" && { height: `var(${Tw.scrollAreaThumbHeight})` },
-				...g === "horizontal" && { width: `var(${Tw.scrollAreaThumbWidth})` }
+				...g === "vertical" && { height: `var(${Pw.scrollAreaThumbHeight})` },
+				...g === "horizontal" && { width: `var(${Pw.scrollAreaThumbWidth})` }
 			}
 		}, a]
 	});
-}), Ow = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { render: n, className: r, style: i, ...a } = e, { cornerRef: o, cornerSize: s, hiddenState: c } = iw(), l = Q("div", e, {
+}), Lw = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { render: n, className: r, style: i, ...a } = e, { cornerRef: o, cornerSize: s, hiddenState: c } = pw(), l = Q("div", e, {
 		ref: [t, o],
 		props: [{ style: {
 			position: "absolute",
@@ -26936,30 +27087,30 @@ var Tw = /*#__PURE__*/ function(e) {
 });
 //#endregion
 //#region src/components/ui/scroll-area.tsx
-function kw({ className: e, children: t, ...n }) {
-	return /* @__PURE__ */ (0, Y.jsxs)(mw, {
+function Rw({ className: e, children: t, ...n }) {
+	return /* @__PURE__ */ (0, Y.jsxs)(Cw, {
 		"data-slot": "scroll-area",
 		className: J("relative", e),
 		...n,
 		children: [
-			/* @__PURE__ */ (0, Y.jsx)(bw, {
+			/* @__PURE__ */ (0, Y.jsx)(kw, {
 				"data-slot": "scroll-area-viewport",
 				className: "size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1",
 				children: t
 			}),
-			/* @__PURE__ */ (0, Y.jsx)(Aw, {}),
-			/* @__PURE__ */ (0, Y.jsx)(Ow, {})
+			/* @__PURE__ */ (0, Y.jsx)(zw, {}),
+			/* @__PURE__ */ (0, Y.jsx)(Lw, {})
 		]
 	});
 }
-function Aw({ className: e, orientation: t = "vertical", ...n }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Ew, {
+function zw({ className: e, orientation: t = "vertical", ...n }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Fw, {
 		"data-slot": "scroll-area-scrollbar",
 		"data-orientation": t,
 		orientation: t,
 		className: J("flex touch-none p-px transition-colors select-none data-horizontal:h-2.5 data-horizontal:flex-col data-horizontal:border-t data-horizontal:border-t-transparent data-vertical:h-full data-vertical:w-2.5 data-vertical:border-l data-vertical:border-l-transparent", e),
 		...n,
-		children: /* @__PURE__ */ (0, Y.jsx)(Dw, {
+		children: /* @__PURE__ */ (0, Y.jsx)(Iw, {
 			"data-slot": "scroll-area-thumb",
 			className: "relative flex-1 rounded-full bg-border"
 		})
@@ -26967,7 +27118,7 @@ function Aw({ className: e, orientation: t = "vertical", ...n }) {
 }
 //#endregion
 //#region src/components/streamlit/scroll-area.tsx
-function jw({ envelope: e }) {
+function Bw({ envelope: e }) {
 	return /* @__PURE__ */ (0, Y.jsxs)("div", {
 		className: "min-w-0",
 		"data-ssui-component": "scroll_area",
@@ -26975,7 +27126,7 @@ function jw({ envelope: e }) {
 		children: [e.props.title === null ? null : /* @__PURE__ */ (0, Y.jsx)("div", {
 			className: "mb-2 text-sm font-medium",
 			children: e.props.title
-		}), /* @__PURE__ */ (0, Y.jsx)(kw, {
+		}), /* @__PURE__ */ (0, Y.jsx)(Rw, {
 			className: "rounded-lg border",
 			style: { height: e.props.height },
 			children: /* @__PURE__ */ (0, Y.jsx)("div", {
@@ -26990,7 +27141,7 @@ function jw({ envelope: e }) {
 }
 //#endregion
 //#region src/components/ui/skeleton.tsx
-function Mw({ className: e, ...t }) {
+function Vw({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		"data-slot": "skeleton",
 		className: J("animate-pulse rounded-md bg-muted", e),
@@ -26999,8 +27150,8 @@ function Mw({ className: e, ...t }) {
 }
 //#endregion
 //#region src/components/streamlit/skeleton.tsx
-function Nw({ envelope: e }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Mw, {
+function Hw({ envelope: e }) {
+	return /* @__PURE__ */ (0, Y.jsx)(Vw, {
 		"aria-hidden": "true",
 		className: e.props.shape === "circle" ? "rounded-full" : void 0,
 		"data-ssui-component": "skeleton",
@@ -27013,7 +27164,7 @@ function Nw({ envelope: e }) {
 }
 //#endregion
 //#region src/components/ui/table.tsx
-function Pw({ className: e, ...t }) {
+function Uw({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		"data-slot": "table-container",
 		className: "relative w-full overflow-x-auto",
@@ -27024,42 +27175,42 @@ function Pw({ className: e, ...t }) {
 		})
 	});
 }
-function Fw({ className: e, ...t }) {
+function Ww({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("thead", {
 		"data-slot": "table-header",
 		className: J("[&_tr]:border-b", e),
 		...t
 	});
 }
-function Iw({ className: e, ...t }) {
+function Gw({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("tbody", {
 		"data-slot": "table-body",
 		className: J("[&_tr:last-child]:border-0", e),
 		...t
 	});
 }
-function Lw({ className: e, ...t }) {
+function Kw({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("tr", {
 		"data-slot": "table-row",
 		className: J("border-b transition-colors hover:bg-muted/50 has-aria-expanded:bg-muted/50 data-[state=selected]:bg-muted", e),
 		...t
 	});
 }
-function Rw({ className: e, ...t }) {
+function qw({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("th", {
 		"data-slot": "table-head",
 		className: J("h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0", e),
 		...t
 	});
 }
-function zw({ className: e, ...t }) {
+function Jw({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("td", {
 		"data-slot": "table-cell",
 		className: J("p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0", e),
 		...t
 	});
 }
-function Bw({ className: e, ...t }) {
+function Yw({ className: e, ...t }) {
 	return /* @__PURE__ */ (0, Y.jsx)("caption", {
 		"data-slot": "table-caption",
 		className: J("mt-4 text-sm text-muted-foreground", e),
@@ -27068,26 +27219,26 @@ function Bw({ className: e, ...t }) {
 }
 //#endregion
 //#region src/components/streamlit/table.tsx
-var Vw = {
+var Xw = {
 	left: "text-left",
 	center: "text-center",
 	right: "text-right"
 };
-function Hw({ envelope: e }) {
+function Zw({ envelope: e }) {
 	return /* @__PURE__ */ (0, Y.jsx)("div", {
 		className: "overflow-auto rounded-lg border",
 		"data-ssui-component": "table",
 		"data-testid": "ssui-v2-table",
 		style: { maxHeight: e.props.maxHeight === null ? void 0 : e.props.maxHeight },
-		children: /* @__PURE__ */ (0, Y.jsxs)(Pw, { children: [
-			e.props.caption === null ? null : /* @__PURE__ */ (0, Y.jsx)(Bw, { children: e.props.caption }),
-			/* @__PURE__ */ (0, Y.jsx)(Fw, { children: /* @__PURE__ */ (0, Y.jsx)(Lw, { children: e.props.columns.map((e) => /* @__PURE__ */ (0, Y.jsx)(Rw, {
-				className: Vw[e.align],
+		children: /* @__PURE__ */ (0, Y.jsxs)(Uw, { children: [
+			e.props.caption === null ? null : /* @__PURE__ */ (0, Y.jsx)(Yw, { children: e.props.caption }),
+			/* @__PURE__ */ (0, Y.jsx)(Ww, { children: /* @__PURE__ */ (0, Y.jsx)(Kw, { children: e.props.columns.map((e) => /* @__PURE__ */ (0, Y.jsx)(qw, {
+				className: Xw[e.align],
 				scope: "col",
 				children: e.label
 			}, e.key)) }) }),
-			/* @__PURE__ */ (0, Y.jsx)(Iw, { children: e.props.rows.map((t, n) => /* @__PURE__ */ (0, Y.jsx)(Lw, { children: e.props.columns.map((e, r) => /* @__PURE__ */ (0, Y.jsx)(zw, {
-				className: Vw[e.align],
+			/* @__PURE__ */ (0, Y.jsx)(Gw, { children: e.props.rows.map((t, n) => /* @__PURE__ */ (0, Y.jsx)(Kw, { children: e.props.columns.map((e, r) => /* @__PURE__ */ (0, Y.jsx)(Jw, {
+				className: Xw[e.align],
 				children: t[r] === null ? "" : String(t[r])
 			}, `${n}-${e.key}`)) }, n)) })
 		] })
@@ -27095,17 +27246,17 @@ function Hw({ envelope: e }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/tabs/root/TabsRootContext.mjs
-var Uw = /*#__PURE__*/ C.createContext(void 0);
-function Ww() {
-	let e = C.useContext(Uw);
+var Qw = /*#__PURE__*/ C.createContext(void 0);
+function $w() {
+	let e = C.useContext(Qw);
 	if (e === void 0) throw Error(la(64));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/tabs/root/TabsRootDataAttributes.mjs
-var Gw = /*#__PURE__*/ function(e) {
+var eT = /*#__PURE__*/ function(e) {
 	return e.activationDirection = "data-activation-direction", e.orientation = "data-orientation", e;
-}({}), Kw = { tabActivationDirection: (e) => ({ [Gw.activationDirection]: e }) }, qw = /*#__PURE__*/ C.forwardRef(function(e, t) {
+}({}), tT = { tabActivationDirection: (e) => ({ [eT.activationDirection]: e }) }, nT = /*#__PURE__*/ C.forwardRef(function(e, t) {
 	let { className: n, defaultValue: r = 0, onValueChange: i, orientation: a = "horizontal", render: o, value: s, style: c, ...l } = e, u = e.defaultValue !== void 0, d = C.useRef([]), [f, p] = C.useState(() => /* @__PURE__ */ new Map()), [m, h] = id({
 		controlled: s,
 		default: r,
@@ -27119,7 +27270,7 @@ var Gw = /*#__PURE__*/ function(e) {
 		previousValue: m,
 		tabActivationDirection: "none"
 	})), { previousValue: w, tabActivationDirection: T } = x, E = T, D = !1;
-	w !== m && (E = Jw(w, m, a, _), D = w != null && m != null && b(m) == null);
+	w !== m && (E = rT(w, m, a, _), D = w != null && m != null && b(m) == null);
 	let O = D ? w : m, k = w !== O || T !== E;
 	X(() => {
 		k && S({
@@ -27132,7 +27283,7 @@ var Gw = /*#__PURE__*/ function(e) {
 		E
 	]);
 	let A = Z((e, t) => {
-		t.activationDirection = Jw(m, e, a, _), i?.(e, t), !t.isCanceled && h(e);
+		t.activationDirection = rT(m, e, a, _), i?.(e, t), !t.isCanceled && h(e);
 	}), j = Z((e, t) => {
 		i?.(e, hr(t, void 0, void 0, { activationDirection: "none" }));
 	}), M = Z((e, t) => {
@@ -27219,9 +27370,9 @@ var Gw = /*#__PURE__*/ function(e) {
 		},
 		ref: t,
 		props: l,
-		stateAttributesMapping: Kw
+		stateAttributesMapping: tT
 	});
-	return /*#__PURE__*/ (0, Y.jsx)(Uw.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(Qw.Provider, {
 		value: I,
 		children: /*#__PURE__*/ (0, Y.jsx)(sd, {
 			elementsRef: d,
@@ -27229,7 +27380,7 @@ var Gw = /*#__PURE__*/ function(e) {
 		})
 	});
 });
-function Jw(e, t, n, r) {
+function rT(e, t, n, r) {
 	if (e == null || t == null) return "none";
 	let i = null, a = null;
 	for (let [n, o] of r.entries()) {
@@ -27250,16 +27401,16 @@ function Jw(e, t, n, r) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/tabs/list/TabsListContext.mjs
-var Yw = /*#__PURE__*/ C.createContext(void 0);
-function Xw() {
-	let e = C.useContext(Yw);
+var iT = /*#__PURE__*/ C.createContext(void 0);
+function aT() {
+	let e = C.useContext(iT);
 	if (e === void 0) throw Error(la(65));
 	return e;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/tabs/tab/TabsTab.mjs
-var Zw = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { className: n, disabled: r = !1, render: i, value: a, id: o, nativeButton: s = !0, style: c, ...l } = e, { value: u, getTabPanelIdByValue: d, orientation: f, tabActivationDirection: p } = Ww(), { activateOnFocus: m, highlightedTabIndex: h, onTabActivation: g, registerTabResizeObserverElement: _, setHighlightedTabIndex: v, tabsListElement: y } = Xw(), b = zl(o), { compositeProps: x, compositeRef: S, index: w } = Mm({ metadata: C.useMemo(() => ({
+var oT = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { className: n, disabled: r = !1, render: i, value: a, id: o, nativeButton: s = !0, style: c, ...l } = e, { value: u, getTabPanelIdByValue: d, orientation: f, tabActivationDirection: p } = $w(), { activateOnFocus: m, highlightedTabIndex: h, onTabActivation: g, registerTabResizeObserverElement: _, setHighlightedTabIndex: v, tabsListElement: y } = aT(), b = zl(o), { compositeProps: x, compositeRef: S, index: w } = Pm({ metadata: C.useMemo(() => ({
 		disabled: r,
 		id: b,
 		value: a
@@ -27333,7 +27484,7 @@ var Zw = /*#__PURE__*/ C.forwardRef(function(e, t) {
 				onClick: N,
 				onFocus: P,
 				onPointerDown: F,
-				[yb]: T ? "" : void 0,
+				[Ob]: T ? "" : void 0,
 				onKeyDownCapture() {
 					E.current = !0;
 				}
@@ -27341,10 +27492,10 @@ var Zw = /*#__PURE__*/ C.forwardRef(function(e, t) {
 			l,
 			O
 		],
-		stateAttributesMapping: Kw
+		stateAttributesMapping: tT
 	});
-}), Qw = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { activateOnFocus: n = !1, className: r, loopFocus: i = !0, render: a, style: o, ...s } = e, { onValueChange: c, orientation: l, value: u, setTabMap: d, tabActivationDirection: f } = Ww(), [p, m] = C.useState(0), [h, g] = C.useState(null), _ = C.useRef(/* @__PURE__ */ new Set()), v = C.useRef(/* @__PURE__ */ new Set()), y = C.useRef(null);
+}), sT = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { activateOnFocus: n = !1, className: r, loopFocus: i = !0, render: a, style: o, ...s } = e, { onValueChange: c, orientation: l, value: u, setTabMap: d, tabActivationDirection: f } = $w(), [p, m] = C.useState(0), [h, g] = C.useState(null), _ = C.useRef(/* @__PURE__ */ new Set()), v = C.useRef(/* @__PURE__ */ new Set()), y = C.useRef(null);
 	X(() => {
 		if (typeof ResizeObserver > "u") return;
 		let e = new ResizeObserver(() => {
@@ -27387,16 +27538,16 @@ var Zw = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		m,
 		h
 	]);
-	return /*#__PURE__*/ (0, Y.jsx)(Yw.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(iT.Provider, {
 		value: E,
-		children: /*#__PURE__*/ (0, Y.jsx)(Ab, {
+		children: /*#__PURE__*/ (0, Y.jsx)(zb, {
 			render: a,
 			className: r,
 			style: o,
 			state: w,
 			refs: [t, g],
 			props: [T, s],
-			stateAttributesMapping: Kw,
+			stateAttributesMapping: tT,
 			highlightedIndex: p,
 			enableHomeAndEndKeys: !0,
 			loopFocus: i,
@@ -27409,31 +27560,31 @@ var Zw = /*#__PURE__*/ C.forwardRef(function(e, t) {
 });
 //#endregion
 //#region src/components/ui/tabs.tsx
-function $w({ className: e, orientation: t = "horizontal", ...n }) {
-	return /* @__PURE__ */ (0, Y.jsx)(qw, {
+function cT({ className: e, orientation: t = "horizontal", ...n }) {
+	return /* @__PURE__ */ (0, Y.jsx)(nT, {
 		"data-slot": "tabs",
 		"data-orientation": t,
 		className: J("group/tabs flex gap-2 data-horizontal:flex-col", e),
 		...n
 	});
 }
-var eT = S("group/tabs-list inline-flex w-fit items-center justify-center rounded-lg p-[3px] text-muted-foreground group-data-horizontal/tabs:h-8 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col data-[variant=line]:rounded-none", {
+var lT = S("group/tabs-list inline-flex w-fit items-center justify-center rounded-lg p-[3px] text-muted-foreground group-data-horizontal/tabs:h-8 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col data-[variant=line]:rounded-none", {
 	variants: { variant: {
 		default: "bg-muted",
 		line: "gap-1 bg-transparent"
 	} },
 	defaultVariants: { variant: "default" }
 });
-function tT({ className: e, variant: t = "default", ...n }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Qw, {
+function uT({ className: e, variant: t = "default", ...n }) {
+	return /* @__PURE__ */ (0, Y.jsx)(sT, {
 		"data-slot": "tabs-list",
 		"data-variant": t,
-		className: J(eT({ variant: t }), e),
+		className: J(lT({ variant: t }), e),
 		...n
 	});
 }
-function nT({ className: e, ...t }) {
-	return /* @__PURE__ */ (0, Y.jsx)(Zw, {
+function dT({ className: e, ...t }) {
+	return /* @__PURE__ */ (0, Y.jsx)(oT, {
 		"data-slot": "tabs-trigger",
 		className: J("relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium whitespace-nowrap text-foreground/60 transition-all group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 aria-disabled:pointer-events-none aria-disabled:opacity-50 dark:text-muted-foreground dark:hover:text-foreground group-data-[variant=default]/tabs-list:data-active:shadow-sm group-data-[variant=line]/tabs-list:data-active:shadow-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4", "group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent dark:group-data-[variant=line]/tabs-list:data-active:border-transparent dark:group-data-[variant=line]/tabs-list:data-active:bg-transparent", "data-active:bg-background data-active:text-foreground dark:data-active:border-input dark:data-active:bg-input/30 dark:data-active:text-foreground", "after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-horizontal/tabs:after:inset-x-0 group-data-horizontal/tabs:after:bottom-[-5px] group-data-horizontal/tabs:after:h-0.5 group-data-vertical/tabs:after:inset-y-0 group-data-vertical/tabs:after:-right-1 group-data-vertical/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-100", e),
 		...t
@@ -27441,8 +27592,8 @@ function nT({ className: e, ...t }) {
 }
 //#endregion
 //#region src/components/streamlit/tabs.tsx
-function rT({ envelope: e, setStateValue: t }) {
-	let n = (0, C.useId)(), { commit: r, state: i } = _f(e.state, t);
+function fT({ envelope: e, setStateValue: t }) {
+	let n = (0, C.useId)(), { commit: r, state: i } = yf(e.state, t);
 	return /* @__PURE__ */ (0, Y.jsxs)("div", {
 		className: "grid min-w-0 gap-1.5 p-px",
 		"data-ssui-component": "tabs",
@@ -27451,17 +27602,17 @@ function rT({ envelope: e, setStateValue: t }) {
 			className: "sr-only",
 			id: n,
 			children: e.props.label
-		}), /* @__PURE__ */ (0, Y.jsx)($w, {
+		}), /* @__PURE__ */ (0, Y.jsx)(cT, {
 			"aria-labelledby": n,
 			onValueChange: (e) => {
 				typeof e == "string" && r(e);
 			},
 			orientation: e.props.orientation,
 			value: i.value,
-			children: /* @__PURE__ */ (0, Y.jsx)(tT, {
+			children: /* @__PURE__ */ (0, Y.jsx)(uT, {
 				"aria-label": e.props.label,
 				variant: e.props.variant,
-				children: e.props.options.map((t) => /* @__PURE__ */ (0, Y.jsx)(nT, {
+				children: e.props.options.map((t) => /* @__PURE__ */ (0, Y.jsx)(dT, {
 					disabled: e.props.disabled || t.disabled,
 					value: t.value,
 					children: t.label
@@ -27472,16 +27623,16 @@ function rT({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/toggle-group/ToggleGroupContext.mjs
-var iT = /*#__PURE__*/ C.createContext(void 0);
-function aT(e = !0) {
-	let t = C.useContext(iT);
+var pT = /*#__PURE__*/ C.createContext(void 0);
+function mT(e = !0) {
+	let t = C.useContext(pT);
 	if (t === void 0 && !e) throw Error(la(7));
 	return t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/toggle/Toggle.mjs
-var oT = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { className: n, defaultPressed: r = !1, disabled: i = !1, form: a, onPressedChange: o, pressed: s, render: c, type: l, value: u, nativeButton: d = !0, style: f, ...p } = e, m = zl(u || void 0), h = aT(), g = h?.value ?? [], _ = h ? void 0 : r, v = (i || h?.disabled) ?? !1, [y, b] = id({
+var hT = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { className: n, defaultPressed: r = !1, disabled: i = !1, form: a, onPressedChange: o, pressed: s, render: c, type: l, value: u, nativeButton: d = !0, style: f, ...p } = e, m = zl(u || void 0), h = mT(), g = h?.value ?? [], _ = h ? void 0 : r, v = (i || h?.disabled) ?? !1, [y, b] = id({
 		controlled: h ? m !== void 0 && g.indexOf(m) > -1 : s,
 		default: _,
 		name: "Toggle",
@@ -27511,7 +27662,7 @@ var oT = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		disabled: v,
 		focusableWhenDisabled: !1
 	}), [v]);
-	return h ? /*#__PURE__*/ (0, Y.jsx)(Nm, {
+	return h ? /*#__PURE__*/ (0, Y.jsx)(Fm, {
 		tag: "button",
 		render: c,
 		className: n,
@@ -27521,20 +27672,20 @@ var oT = /*#__PURE__*/ C.forwardRef(function(e, t) {
 		refs: T,
 		props: E
 	}) : D;
-}), sT = /*#__PURE__*/ C.createContext(void 0);
-function cT(e) {
-	let t = C.useContext(sT);
+}), gT = /*#__PURE__*/ C.createContext(void 0);
+function _T(e) {
+	let t = C.useContext(gT);
 	if (t === void 0 && !e) throw Error(la(68));
 	return t;
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/toggle-group/ToggleGroupDataAttributes.mjs
-var lT = /*#__PURE__*/ function(e) {
+var vT = /*#__PURE__*/ function(e) {
 	return e.disabled = "data-disabled", e.orientation = "data-orientation", e.multiple = "data-multiple", e;
-}({}), uT = { multiple(e) {
-	return e ? { [lT.multiple]: "" } : null;
-} }, dT = /*#__PURE__*/ C.forwardRef(function(e, t) {
-	let { defaultValue: n, disabled: r = !1, loopFocus: i = !0, onValueChange: a, orientation: o = "horizontal", multiple: s = !1, value: c, className: l, render: u, style: d, ...f } = e, p = nm(!0), m = cT(!0), h = C.useMemo(() => c !== void 0 || n !== void 0, [c, n]), g = (p?.disabled ?? !1) || (m?.disabled ?? !1) || r, [_, v] = id({
+}({}), yT = { multiple(e) {
+	return e ? { [vT.multiple]: "" } : null;
+} }, bT = /*#__PURE__*/ C.forwardRef(function(e, t) {
+	let { defaultValue: n, disabled: r = !1, loopFocus: i = !0, onValueChange: a, orientation: o = "horizontal", multiple: s = !1, value: c, className: l, render: u, style: d, ...f } = e, p = im(!0), m = _T(!0), h = C.useMemo(() => c !== void 0 || n !== void 0, [c, n]), g = (p?.disabled ?? !1) || (m?.disabled ?? !1) || r, [_, v] = id({
 		controlled: c,
 		default: c === void 0 ? n ?? dn : void 0,
 		name: "ToggleGroup",
@@ -27563,24 +27714,24 @@ var lT = /*#__PURE__*/ function(e) {
 		state: b,
 		ref: t,
 		props: [S, f],
-		stateAttributesMapping: uT
+		stateAttributesMapping: yT
 	});
-	return /*#__PURE__*/ (0, Y.jsx)(iT.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(pT.Provider, {
 		value: x,
-		children: p ? w : /*#__PURE__*/ (0, Y.jsx)(Ab, {
+		children: p ? w : /*#__PURE__*/ (0, Y.jsx)(zb, {
 			render: u,
 			className: l,
 			style: d,
 			state: b,
 			refs: [t],
 			props: [S, f],
-			stateAttributesMapping: uT,
+			stateAttributesMapping: yT,
 			loopFocus: i,
 			enableHomeAndEndKeys: !0,
 			orientation: o
 		})
 	});
-}), fT = S("group/toggle inline-flex items-center justify-center gap-1 rounded-lg text-sm font-medium whitespace-nowrap transition-all outline-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 aria-pressed:bg-muted data-[state=on]:bg-muted dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4", {
+}), xT = S("group/toggle inline-flex items-center justify-center gap-1 rounded-lg text-sm font-medium whitespace-nowrap transition-all outline-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 aria-pressed:bg-muted data-[state=on]:bg-muted dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4", {
 	variants: {
 		variant: {
 			default: "bg-transparent",
@@ -27597,10 +27748,10 @@ var lT = /*#__PURE__*/ function(e) {
 		size: "default"
 	}
 });
-function pT({ className: e, variant: t = "default", size: n = "default", ...r }) {
-	return /* @__PURE__ */ (0, Y.jsx)(oT, {
+function ST({ className: e, variant: t = "default", size: n = "default", ...r }) {
+	return /* @__PURE__ */ (0, Y.jsx)(hT, {
 		"data-slot": "toggle",
-		className: J(fT({
+		className: J(xT({
 			variant: t,
 			size: n,
 			className: e
@@ -27610,14 +27761,14 @@ function pT({ className: e, variant: t = "default", size: n = "default", ...r })
 }
 //#endregion
 //#region src/components/ui/toggle-group.tsx
-var mT = C.createContext({
+var CT = C.createContext({
 	size: "default",
 	variant: "default",
 	spacing: 2,
 	orientation: "horizontal"
 });
-function hT({ className: e, variant: t, size: n, spacing: r = 2, orientation: i = "horizontal", children: a, ...o }) {
-	return /* @__PURE__ */ (0, Y.jsx)(dT, {
+function wT({ className: e, variant: t, size: n, spacing: r = 2, orientation: i = "horizontal", children: a, ...o }) {
+	return /* @__PURE__ */ (0, Y.jsx)(bT, {
 		"data-slot": "toggle-group",
 		"data-variant": t,
 		"data-size": n,
@@ -27626,7 +27777,7 @@ function hT({ className: e, variant: t, size: n, spacing: r = 2, orientation: i 
 		style: { "--gap": r },
 		className: J("group/toggle-group flex w-fit flex-row items-center gap-[--spacing(var(--gap))] rounded-lg data-[size=sm]:rounded-[min(var(--radius-md),10px)] data-vertical:flex-col data-vertical:items-stretch", e),
 		...o,
-		children: /* @__PURE__ */ (0, Y.jsx)(mT.Provider, {
+		children: /* @__PURE__ */ (0, Y.jsx)(CT.Provider, {
 			value: {
 				variant: t,
 				size: n,
@@ -27637,14 +27788,14 @@ function hT({ className: e, variant: t, size: n, spacing: r = 2, orientation: i 
 		})
 	});
 }
-function gT({ className: e, children: t, variant: n = "default", size: r = "default", ...i }) {
-	let a = C.useContext(mT);
-	return /* @__PURE__ */ (0, Y.jsx)(oT, {
+function TT({ className: e, children: t, variant: n = "default", size: r = "default", ...i }) {
+	let a = C.useContext(CT);
+	return /* @__PURE__ */ (0, Y.jsx)(hT, {
 		"data-slot": "toggle-group-item",
 		"data-variant": a.variant || n,
 		"data-size": a.size || r,
 		"data-spacing": a.spacing,
-		className: J("shrink-0 group-data-[spacing=0]/toggle-group:rounded-none group-data-[spacing=0]/toggle-group:px-2 focus:z-10 focus-visible:z-10 group-data-[spacing=0]/toggle-group:has-data-[icon=inline-end]:pr-1.5 group-data-[spacing=0]/toggle-group:has-data-[icon=inline-start]:pl-1.5 group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-l-lg group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-lg group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-r-lg group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-lg group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:border-l-0 group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:border-t-0 group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-l group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-t", fT({
+		className: J("shrink-0 group-data-[spacing=0]/toggle-group:rounded-none group-data-[spacing=0]/toggle-group:px-2 focus:z-10 focus-visible:z-10 group-data-[spacing=0]/toggle-group:has-data-[icon=inline-end]:pr-1.5 group-data-[spacing=0]/toggle-group:has-data-[icon=inline-start]:pl-1.5 group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-l-lg group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-lg group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-r-lg group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-lg group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:border-l-0 group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:border-t-0 group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-l group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-t", xT({
 			variant: a.variant || n,
 			size: a.size || r
 		}), e),
@@ -27654,9 +27805,9 @@ function gT({ className: e, children: t, variant: n = "default", size: r = "defa
 }
 //#endregion
 //#region src/components/streamlit/toggle-group.tsx
-function _T({ envelope: e, setStateValue: t }) {
-	let { commit: n, state: r } = _f(e.state, t);
-	return /* @__PURE__ */ (0, Y.jsx)(hT, {
+function ET({ envelope: e, setStateValue: t }) {
+	let { commit: n, state: r } = yf(e.state, t);
+	return /* @__PURE__ */ (0, Y.jsx)(wT, {
 		"aria-label": e.props.label,
 		"data-ssui-component": "toggle_group",
 		"data-testid": "ssui-v2-toggle-group",
@@ -27667,7 +27818,7 @@ function _T({ envelope: e, setStateValue: t }) {
 		size: e.props.size,
 		value: r.value,
 		variant: e.props.variant,
-		children: e.props.options.map((e) => /* @__PURE__ */ (0, Y.jsx)(gT, {
+		children: e.props.options.map((e) => /* @__PURE__ */ (0, Y.jsx)(TT, {
 			"aria-label": e.label,
 			disabled: e.disabled,
 			value: e.value,
@@ -27677,14 +27828,14 @@ function _T({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region src/components/streamlit/toggle.tsx
-var vT = {
+var DT = {
 	bold: ef,
 	italic: lf,
-	underline: uf
+	underline: ff
 };
-function yT({ envelope: e, setStateValue: t }) {
-	let { commit: n, state: r } = _f(e.state, t), i = e.props.icon === null ? null : vT[e.props.icon];
-	return /* @__PURE__ */ (0, Y.jsxs)(pT, {
+function OT({ envelope: e, setStateValue: t }) {
+	let { commit: n, state: r } = yf(e.state, t), i = e.props.icon === null ? null : DT[e.props.icon];
+	return /* @__PURE__ */ (0, Y.jsxs)(ST, {
 		"aria-label": e.props.label,
 		"data-ssui-component": "toggle",
 		"data-testid": "ssui-v2-toggle",
@@ -27698,26 +27849,26 @@ function yT({ envelope: e, setStateValue: t }) {
 }
 //#endregion
 //#region src/app.tsx
-function bT({ envelope: e, setStateValue: t, setTriggerValue: n }) {
+function kT({ envelope: e, setStateValue: t, setTriggerValue: n }) {
 	switch (e.kind) {
-		case "elements": return /* @__PURE__ */ (0, Y.jsx)(eC, {
+		case "elements": return /* @__PURE__ */ (0, Y.jsx)(lC, {
 			envelope: e,
 			setStateValue: t,
 			setTriggerValue: n
 		});
-		case "select": return /* @__PURE__ */ (0, Y.jsx)(Qx, {
+		case "select": return /* @__PURE__ */ (0, Y.jsx)(sS, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "dropdown_menu": return /* @__PURE__ */ (0, Y.jsx)(Xm, {
+		case "dropdown_menu": return /* @__PURE__ */ (0, Y.jsx)(Qm, {
 			envelope: e,
 			setTriggerValue: n
 		});
-		case "checkbox": return /* @__PURE__ */ (0, Y.jsx)(Ap, {
+		case "checkbox": return /* @__PURE__ */ (0, Y.jsx)(Mp, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "button": return /* @__PURE__ */ (0, Y.jsx)(Gf, {
+		case "button": return /* @__PURE__ */ (0, Y.jsx)(qf, {
 			envelope: e,
 			setTriggerValue: n
 		});
@@ -27726,76 +27877,80 @@ function bT({ envelope: e, setStateValue: t, setTriggerValue: n }) {
 			envelope: e,
 			setTriggerValue: n
 		});
-		case "avatar": return /* @__PURE__ */ (0, Y.jsx)(Nf, { envelope: e });
-		case "badge": return /* @__PURE__ */ (0, Y.jsx)(Lf, { envelope: e });
-		case "breadcrumb": return /* @__PURE__ */ (0, Y.jsx)(Wf, {
+		case "avatar": return /* @__PURE__ */ (0, Y.jsx)(Ff, { envelope: e });
+		case "badge": return /* @__PURE__ */ (0, Y.jsx)(zf, { envelope: e });
+		case "breadcrumb": return /* @__PURE__ */ (0, Y.jsx)(Kf, {
 			envelope: e,
 			setTriggerValue: n
 		});
-		case "card": return /* @__PURE__ */ (0, Y.jsx)($f, { envelope: e });
-		case "metric_card": return /* @__PURE__ */ (0, Y.jsx)(ep, { envelope: e });
-		case "aspect_ratio": return /* @__PURE__ */ (0, Y.jsx)(xf, { envelope: e });
-		case "progress": return /* @__PURE__ */ (0, Y.jsx)(gb, { envelope: e });
-		case "separator": return /* @__PURE__ */ (0, Y.jsx)(eS, { envelope: e });
-		case "skeleton": return /* @__PURE__ */ (0, Y.jsx)(Nw, { envelope: e });
-		case "table": return /* @__PURE__ */ (0, Y.jsx)(Hw, { envelope: e });
-		case "link_button": return /* @__PURE__ */ (0, Y.jsx)(Jy, { envelope: e });
-		case "input": return /* @__PURE__ */ (0, Y.jsx)(qy, {
+		case "card": return /* @__PURE__ */ (0, Y.jsx)(tp, { envelope: e });
+		case "metric_card": return /* @__PURE__ */ (0, Y.jsx)(np, { envelope: e });
+		case "aspect_ratio": return /* @__PURE__ */ (0, Y.jsx)(Cf, { envelope: e });
+		case "progress": return /* @__PURE__ */ (0, Y.jsx)(Tb, { envelope: e });
+		case "separator": return /* @__PURE__ */ (0, Y.jsx)(lS, { envelope: e });
+		case "skeleton": return /* @__PURE__ */ (0, Y.jsx)(Hw, { envelope: e });
+		case "table": return /* @__PURE__ */ (0, Y.jsx)(Zw, { envelope: e });
+		case "link_button": return /* @__PURE__ */ (0, Y.jsx)(rb, { envelope: e });
+		case "input": return /* @__PURE__ */ (0, Y.jsx)(Yy, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "textarea": return /* @__PURE__ */ (0, Y.jsx)(GS, {
+		case "number_input": return /* @__PURE__ */ (0, Y.jsx)(nb, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "accordion": return /* @__PURE__ */ (0, Y.jsx)(yf, {
+		case "textarea": return /* @__PURE__ */ (0, Y.jsx)(eC, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "collapsible": return /* @__PURE__ */ (0, Y.jsx)(Bp, {
+		case "accordion": return /* @__PURE__ */ (0, Y.jsx)(xf, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "input_otp": return /* @__PURE__ */ (0, Y.jsx)(JC, {
+		case "collapsible": return /* @__PURE__ */ (0, Y.jsx)(Hp, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "pagination": return /* @__PURE__ */ (0, Y.jsx)(tw, {
+		case "input_otp": return /* @__PURE__ */ (0, Y.jsx)(rw, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "radio_group": return /* @__PURE__ */ (0, Y.jsx)(Fb, {
+		case "pagination": return /* @__PURE__ */ (0, Y.jsx)(uw, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "scroll_area": return /* @__PURE__ */ (0, Y.jsx)(jw, { envelope: e });
-		case "slider": return /* @__PURE__ */ (0, Y.jsx)(FS, {
+		case "radio_group": return /* @__PURE__ */ (0, Y.jsx)(Wb, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "switch": return /* @__PURE__ */ (0, Y.jsx)(US, {
+		case "scroll_area": return /* @__PURE__ */ (0, Y.jsx)(Bw, { envelope: e });
+		case "slider": return /* @__PURE__ */ (0, Y.jsx)(WS, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "tabs": return /* @__PURE__ */ (0, Y.jsx)(rT, {
+		case "switch": return /* @__PURE__ */ (0, Y.jsx)(QS, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "toggle": return /* @__PURE__ */ (0, Y.jsx)(yT, {
+		case "tabs": return /* @__PURE__ */ (0, Y.jsx)(fT, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "toggle_group": return /* @__PURE__ */ (0, Y.jsx)(_T, {
+		case "toggle": return /* @__PURE__ */ (0, Y.jsx)(OT, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "calendar": return /* @__PURE__ */ (0, Y.jsx)(CC, {
+		case "toggle_group": return /* @__PURE__ */ (0, Y.jsx)(ET, {
 			envelope: e,
 			setStateValue: t
 		});
-		case "popover": return /* @__PURE__ */ (0, Y.jsx)(nw, { envelope: e });
-		case "hover_card": return /* @__PURE__ */ (0, Y.jsx)(SC, { envelope: e });
-		case "date_picker": return /* @__PURE__ */ (0, Y.jsx)(zy, {
+		case "calendar": return /* @__PURE__ */ (0, Y.jsx)(MC, {
+			envelope: e,
+			setStateValue: t
+		});
+		case "popover": return /* @__PURE__ */ (0, Y.jsx)(dw, { envelope: e });
+		case "hover_card": return /* @__PURE__ */ (0, Y.jsx)(jC, { envelope: e });
+		case "date_picker": return /* @__PURE__ */ (0, Y.jsx)(Vy, {
 			envelope: e,
 			setStateValue: t
 		});
@@ -27803,33 +27958,33 @@ function bT({ envelope: e, setStateValue: t, setTriggerValue: n }) {
 }
 //#endregion
 //#region node_modules/.pnpm/@base-ui+react@1.6.0_@date-fns+tz@1.5.0_@types+react@19.2.17_date-fns@4.4.0_react-dom@19.2.8_react@19.2.8__react@19.2.8/node_modules/@base-ui/react/csp-provider/CSPProvider.mjs
-function xT(e) {
+function AT(e) {
 	let { children: t, nonce: n, disableStyleElements: r } = e, i = C.useMemo(() => ({
 		nonce: n,
 		disableStyleElements: r
 	}), [n, r]);
-	return /*#__PURE__*/ (0, Y.jsx)(Sx.Provider, {
+	return /*#__PURE__*/ (0, Y.jsx)(jx.Provider, {
 		value: i,
 		children: t
 	});
 }
 //#endregion
 //#region src/platform/error-boundary.tsx
-var ST = 3, CT = /* @__PURE__ */ new Map();
-function wT(e, t) {
-	let n = e.message.split(":")[0]?.slice(0, 64), r = n && /^SSUI_V2_[A-Z0-9_]+$/.test(n) ? n : "SSUI_V2_RENDER_ERROR", i = CT.get(r) ?? 0;
-	i >= ST || (CT.set(r, i + 1), console.error("SSUI_V2_RENDER_ERROR", {
+var jT = 3, MT = /* @__PURE__ */ new Map();
+function NT(e, t) {
+	let n = e.message.split(":")[0]?.slice(0, 64), r = n && /^SSUI_V2_[A-Z0-9_]+$/.test(n) ? n : "SSUI_V2_RENDER_ERROR", i = MT.get(r) ?? 0;
+	i >= jT || (MT.set(r, i + 1), console.error("SSUI_V2_RENDER_ERROR", {
 		code: r,
 		componentStack: t.componentStack?.slice(0, 2048)
 	}));
 }
-var TT = class extends C.Component {
+var PT = class extends C.Component {
 	state = { error: null };
 	static getDerivedStateFromError(e) {
 		return { error: e };
 	}
 	componentDidCatch(e, t) {
-		wT(e, t);
+		NT(e, t);
 	}
 	componentDidUpdate(e) {
 		e.resetKey !== this.props.resetKey && this.state.error && this.setState({ error: null });
@@ -27844,10 +27999,10 @@ var TT = class extends C.Component {
 };
 //#endregion
 //#region src/platform/component-shell.tsx
-function ET({ children: e, overlayRoot: t, parentElement: n, resetKey: r }) {
-	return /* @__PURE__ */ (0, Y.jsx)(TT, {
+function FT({ children: e, overlayRoot: t, parentElement: n, resetKey: r }) {
+	return /* @__PURE__ */ (0, Y.jsx)(PT, {
 		resetKey: r,
-		children: /* @__PURE__ */ (0, Y.jsx)(xT, {
+		children: /* @__PURE__ */ (0, Y.jsx)(AT, {
 			disableStyleElements: !0,
 			children: /* @__PURE__ */ (0, Y.jsx)(ku, {
 				container: t,
@@ -27859,16 +28014,16 @@ function ET({ children: e, overlayRoot: t, parentElement: n, resetKey: r }) {
 }
 //#endregion
 //#region src/platform/theme.ts
-function DT(e) {
+function IT(e) {
 	let t = Number.parseFloat(e);
 	return Number.isFinite(t) ? e.includes("%") ? t / 100 * 255 : t : null;
 }
-function OT(e) {
+function LT(e) {
 	let t = e.match(/rgba?\(\s*([0-9.]+%?)\s*[, ]\s*([0-9.]+%?)\s*[, ]\s*([0-9.]+%?)/), n = e.trim().match(/^#([\da-f]{3,4}|[\da-f]{6}|[\da-f]{8})$/i), r = null;
 	if (t) r = [
-		DT(t[1] ?? ""),
-		DT(t[2] ?? ""),
-		DT(t[3] ?? "")
+		IT(t[1] ?? ""),
+		IT(t[2] ?? ""),
+		IT(t[3] ?? "")
 	];
 	else if (n) {
 		let e = n[1] ?? "", t = e.length === 3 || e.length === 4 ? [...e].map((e) => e + e).join("") : e;
@@ -27887,49 +28042,49 @@ function OT(e) {
 	};
 	return .2126 * s(i) + .7152 * s(a) + .0722 * s(o);
 }
-function kT(e) {
+function RT(e) {
 	return e instanceof ShadowRoot ? e.host : e;
 }
-var AT = /* @__PURE__ */ new WeakMap(), jT = /* @__PURE__ */ new WeakMap();
-function MT(e, t, n) {
+var zT = /* @__PURE__ */ new WeakMap(), BT = /* @__PURE__ */ new WeakMap();
+function VT(e, t, n) {
 	n === null ? e.removeAttribute(t) : e.setAttribute(t, n);
 }
-function NT(e) {
-	let t = getComputedStyle(e), n = OT(t.getPropertyValue("--st-background-color").trim() || t.backgroundColor), r = n === null ? "light" : n < .18 ? "dark" : "light";
+function HT(e) {
+	let t = getComputedStyle(e), n = LT(t.getPropertyValue("--st-background-color").trim() || t.backgroundColor), r = n === null ? "light" : n < .18 ? "dark" : "light";
 	e.dataset.ssuiV2Host = "", e.dataset.theme = r, e.style.colorScheme = r, e.dir = document.documentElement.dir || "ltr", e.lang = document.documentElement.lang || "en";
 }
-function PT(e) {
-	let t = kT(e);
-	AT.has(t) || AT.set(t, {
+function UT(e) {
+	let t = RT(e);
+	zT.has(t) || zT.set(t, {
 		colorScheme: t.style.getPropertyValue("color-scheme"),
 		colorSchemePriority: t.style.getPropertyPriority("color-scheme"),
 		dataSsuiV2Host: t.getAttribute("data-ssui-v2-host"),
 		dataTheme: t.getAttribute("data-theme"),
 		dir: t.getAttribute("dir"),
 		lang: t.getAttribute("lang")
-	}), NT(t);
-	let n = jT.get(t);
-	n !== void 0 && cancelAnimationFrame(n), jT.set(t, requestAnimationFrame(() => {
-		jT.delete(t), AT.has(t) && t.isConnected && NT(t);
+	}), HT(t);
+	let n = BT.get(t);
+	n !== void 0 && cancelAnimationFrame(n), BT.set(t, requestAnimationFrame(() => {
+		BT.delete(t), zT.has(t) && t.isConnected && HT(t);
 	}));
 }
-function FT(e) {
-	let t = kT(e), n = jT.get(t);
-	n !== void 0 && (cancelAnimationFrame(n), jT.delete(t));
-	let r = AT.get(t);
-	r && (MT(t, "data-ssui-v2-host", r.dataSsuiV2Host), MT(t, "data-theme", r.dataTheme), MT(t, "dir", r.dir), MT(t, "lang", r.lang), r.colorScheme ? t.style.setProperty("color-scheme", r.colorScheme, r.colorSchemePriority) : t.style.removeProperty("color-scheme"), AT.delete(t));
+function WT(e) {
+	let t = RT(e), n = BT.get(t);
+	n !== void 0 && (cancelAnimationFrame(n), BT.delete(t));
+	let r = zT.get(t);
+	r && (VT(t, "data-ssui-v2-host", r.dataSsuiV2Host), VT(t, "data-theme", r.dataTheme), VT(t, "dir", r.dir), VT(t, "lang", r.lang), r.colorScheme ? t.style.setProperty("color-scheme", r.colorScheme, r.colorSchemePriority) : t.style.removeProperty("color-scheme"), zT.delete(t));
 }
-function IT(e) {
+function GT(e) {
 	return typeof e == "object" && !!e && !Array.isArray(e);
 }
-function LT(e) {
+function KT(e) {
 	return typeof e == "string" && new TextEncoder().encode(e).byteLength <= 16384;
 }
-function RT(e) {
-	return e === null || LT(e);
+function qT(e) {
+	return e === null || KT(e);
 }
-function zT(e) {
-	if (!LT(e)) return !1;
+function JT(e) {
+	if (!KT(e)) return !1;
 	if (e.startsWith("/") || e.startsWith("#") || e.startsWith("?")) return !0;
 	try {
 		let t = new URL(e);
@@ -27938,8 +28093,8 @@ function zT(e) {
 		return !1;
 	}
 }
-function BT(e) {
-	if (!LT(e)) return !1;
+function YT(e) {
+	if (!KT(e)) return !1;
 	if (e.startsWith("data:image/") || e.startsWith("/")) return !0;
 	try {
 		let t = new URL(e);
@@ -27948,35 +28103,35 @@ function BT(e) {
 		return !1;
 	}
 }
-function VT(e) {
-	return e === null || BT(e);
+function XT(e) {
+	return e === null || YT(e);
 }
-function HT(e) {
+function ZT(e) {
 	return typeof e == "number" && Number.isFinite(e);
 }
-function UT(e) {
+function QT(e) {
 	return typeof e == "number" && Number.isFinite(e) && e >= 0 && e <= 1e4 || typeof e == "string" && /^(?:0|\d+(?:\.\d+)?(?:px|rem|em|%|vw|vh))$/.test(e);
 }
-function WT(e) {
+function $T(e) {
 	return typeof e == "number" && Number.isSafeInteger(e) && e >= 0;
 }
-function GT(e, t) {
-	return IT(e) && e.kind === t && WT(e.clientRevision) && WT(e.serverRevision);
+function eE(e, t) {
+	return GT(e) && e.kind === t && $T(e.clientRevision) && $T(e.serverRevision);
 }
-function KT(e, t, n) {
-	return !GT(e, t) || !n(e.value) ? null : {
+function tE(e, t, n) {
+	return !eE(e, t) || !n(e.value) ? null : {
 		kind: t,
 		value: e.value,
 		clientRevision: e.clientRevision,
 		serverRevision: e.serverRevision
 	};
 }
-function qT(e) {
+function nE(e) {
 	let t = e.props, n = e.state;
-	if (!IT(t) || !GT(n, "select") || !(n.value === null || LT(n.value)) || !LT(t.label) || !LT(t.placeholder) || typeof t.disabled != "boolean" || !Array.isArray(t.options) || t.options.length > 1e4) return null;
+	if (!GT(t) || !eE(n, "select") || !(n.value === null || KT(n.value)) || !KT(t.label) || !KT(t.placeholder) || typeof t.disabled != "boolean" || !Array.isArray(t.options) || t.options.length > 1e4) return null;
 	let r = [], i = /* @__PURE__ */ new Set();
 	for (let e of t.options) {
-		if (!IT(e) || !LT(e.label) || !LT(e.value) || e.disabled !== void 0 && typeof e.disabled != "boolean" || i.has(e.value)) return null;
+		if (!GT(e) || !KT(e.label) || !KT(e.value) || e.disabled !== void 0 && typeof e.disabled != "boolean" || i.has(e.value)) return null;
 		i.add(e.value), r.push({
 			label: e.label,
 			value: e.value,
@@ -28000,12 +28155,12 @@ function qT(e) {
 		}
 	};
 }
-function JT(e) {
+function rE(e) {
 	let t = e.props;
-	if (!IT(t) || !LT(t.label) || !(t.menuLabel === null || LT(t.menuLabel)) || typeof t.disabled != "boolean" || !Array.isArray(t.items) || t.items.length > 1e4) return null;
+	if (!GT(t) || !KT(t.label) || !(t.menuLabel === null || KT(t.menuLabel)) || typeof t.disabled != "boolean" || !Array.isArray(t.items) || t.items.length > 1e4) return null;
 	let n = [], r = /* @__PURE__ */ new Set();
 	for (let e of t.items) {
-		if (!IT(e) || !LT(e.label) || !LT(e.value) || e.disabled !== void 0 && typeof e.disabled != "boolean" || e.variant !== void 0 && e.variant !== "default" && e.variant !== "destructive" || r.has(e.value)) return null;
+		if (!GT(e) || !KT(e.label) || !KT(e.value) || e.disabled !== void 0 && typeof e.disabled != "boolean" || e.variant !== void 0 && e.variant !== "default" && e.variant !== "destructive" || r.has(e.value)) return null;
 		r.add(e.value), n.push({
 			label: e.label,
 			value: e.value,
@@ -28024,9 +28179,9 @@ function JT(e) {
 		}
 	};
 }
-function YT(e) {
+function iE(e) {
 	let t = e.props, n = e.state;
-	return !IT(t) || !GT(n, "checkbox") || typeof n.value != "boolean" || !LT(t.label) || typeof t.disabled != "boolean" ? null : {
+	return !GT(t) || !eE(n, "checkbox") || typeof n.value != "boolean" || !KT(t.label) || typeof t.disabled != "boolean" ? null : {
 		protocolVersion: 1,
 		kind: "checkbox",
 		state: {
@@ -28041,14 +28196,14 @@ function YT(e) {
 		}
 	};
 }
-var XT = /* @__PURE__ */ new Set([
+var aE = /* @__PURE__ */ new Set([
 	"default",
 	"destructive",
 	"outline",
 	"secondary",
 	"ghost",
 	"link"
-]), ZT = /* @__PURE__ */ new Set([
+]), oE = /* @__PURE__ */ new Set([
 	"default",
 	"xs",
 	"sm",
@@ -28058,9 +28213,9 @@ var XT = /* @__PURE__ */ new Set([
 	"icon-sm",
 	"icon-lg"
 ]);
-function QT(e) {
+function sE(e) {
 	let t = e.props;
-	return !IT(t) || !LT(t.text) || typeof t.disabled != "boolean" || typeof t.variant != "string" || !XT.has(t.variant) || typeof t.size != "string" || !ZT.has(t.size) || t.stretch !== void 0 && typeof t.stretch != "boolean" ? null : {
+	return !GT(t) || !KT(t.text) || typeof t.disabled != "boolean" || typeof t.variant != "string" || !aE.has(t.variant) || typeof t.size != "string" || !oE.has(t.size) || t.stretch !== void 0 && typeof t.stretch != "boolean" ? null : {
 		protocolVersion: 1,
 		kind: "button",
 		props: {
@@ -28072,11 +28227,11 @@ function QT(e) {
 		}
 	};
 }
-var $T = /* @__PURE__ */ new Set(["default", "destructive"]), eE = /* @__PURE__ */ new Set([
+var cE = /* @__PURE__ */ new Set(["default", "destructive"]), lE = /* @__PURE__ */ new Set([
 	"sm",
 	"default",
 	"lg"
-]), tE = /* @__PURE__ */ new Set([
+]), uE = /* @__PURE__ */ new Set([
 	"default",
 	"secondary",
 	"destructive",
@@ -28084,9 +28239,9 @@ var $T = /* @__PURE__ */ new Set(["default", "destructive"]), eE = /* @__PURE__ 
 	"ghost",
 	"link"
 ]);
-function nE(e) {
+function dE(e) {
 	let t = e.props;
-	return !IT(t) || !LT(t.title) || !RT(t.description) || typeof t.variant != "string" || !$T.has(t.variant) ? null : {
+	return !GT(t) || !KT(t.title) || !qT(t.description) || typeof t.variant != "string" || !cE.has(t.variant) ? null : {
 		protocolVersion: 1,
 		kind: "alert",
 		props: {
@@ -28096,9 +28251,9 @@ function nE(e) {
 		}
 	};
 }
-function rE(e) {
+function fE(e) {
 	let t = e.props;
-	return !IT(t) || !VT(t.src) || !LT(t.fallback) || !LT(t.alt) || typeof t.size != "string" || !eE.has(t.size) ? null : {
+	return !GT(t) || !XT(t.src) || !KT(t.fallback) || !KT(t.alt) || typeof t.size != "string" || !lE.has(t.size) ? null : {
 		protocolVersion: 1,
 		kind: "avatar",
 		props: {
@@ -28109,12 +28264,12 @@ function rE(e) {
 		}
 	};
 }
-function iE(e) {
+function pE(e) {
 	let t = e.props;
-	if (!IT(t) || !Array.isArray(t.badges) || t.badges.length > 1e4) return null;
+	if (!GT(t) || !Array.isArray(t.badges) || t.badges.length > 1e4) return null;
 	let n = [];
 	for (let e of t.badges) {
-		if (!IT(e) || !LT(e.text) || typeof e.variant != "string" || !tE.has(e.variant)) return null;
+		if (!GT(e) || !KT(e.text) || typeof e.variant != "string" || !uE.has(e.variant)) return null;
 		n.push({
 			text: e.text,
 			variant: e.variant
@@ -28126,12 +28281,12 @@ function iE(e) {
 		props: { badges: n }
 	};
 }
-function aE(e) {
+function mE(e) {
 	let t = e.props;
-	if (!IT(t) || !LT(t.label) || !Array.isArray(t.items) || t.items.length > 1e4) return null;
+	if (!GT(t) || !KT(t.label) || !Array.isArray(t.items) || t.items.length > 1e4) return null;
 	let n = [], r = 0;
 	for (let e of t.items) {
-		if (!IT(e) || !LT(e.text) || !RT(e.href) || typeof e.current != "boolean") return null;
+		if (!GT(e) || !KT(e.text) || !qT(e.href) || typeof e.current != "boolean") return null;
 		r += +!!e.current, n.push({
 			text: e.text,
 			href: e.href,
@@ -28147,8 +28302,8 @@ function aE(e) {
 		}
 	};
 }
-function oE(e) {
-	return !IT(e) || !RT(e.title) || !RT(e.content) || !RT(e.description) || !RT(e.footer) || e.size !== "default" && e.size !== "sm" ? null : {
+function hE(e) {
+	return !GT(e) || !qT(e.title) || !qT(e.content) || !qT(e.description) || !qT(e.footer) || e.size !== "default" && e.size !== "sm" ? null : {
 		title: e.title,
 		content: e.content,
 		description: e.description,
@@ -28156,17 +28311,17 @@ function oE(e) {
 		size: e.size
 	};
 }
-function sE(e) {
-	let t = oE(e.props);
+function gE(e) {
+	let t = hE(e.props);
 	return t ? {
 		protocolVersion: 1,
 		kind: "card",
 		props: t
 	} : null;
 }
-function cE(e) {
-	let t = e.props, n = IT(t) && t.variant === void 0 ? "default" : IT(t) ? t.variant : void 0;
-	return !IT(t) || !LT(t.label) || !LT(t.value) || !RT(t.description) || !RT(t.delta) || n !== "default" && n !== "dashboard" || t.size !== "default" && t.size !== "sm" ? null : {
+function _E(e) {
+	let t = e.props, n = GT(t) && t.variant === void 0 ? "default" : GT(t) ? t.variant : void 0;
+	return !GT(t) || !KT(t.label) || !KT(t.value) || !qT(t.description) || !qT(t.delta) || n !== "default" && n !== "dashboard" || t.size !== "default" && t.size !== "sm" ? null : {
 		protocolVersion: 1,
 		kind: "metric_card",
 		props: {
@@ -28179,9 +28334,9 @@ function cE(e) {
 		}
 	};
 }
-function lE(e) {
+function vE(e) {
 	let t = e.props;
-	return !IT(t) || !BT(t.src) || !LT(t.alt) || !HT(t.ratio) || t.ratio <= 0 || t.ratio > 100 ? null : {
+	return !GT(t) || !YT(t.src) || !KT(t.alt) || !ZT(t.ratio) || t.ratio <= 0 || t.ratio > 100 ? null : {
 		protocolVersion: 1,
 		kind: "aspect_ratio",
 		props: {
@@ -28191,9 +28346,9 @@ function lE(e) {
 		}
 	};
 }
-function uE(e) {
+function yE(e) {
 	let t = e.props;
-	return !IT(t) || !HT(t.value) || t.value < 0 || t.value > 100 || !RT(t.label) || typeof t.showValue != "boolean" ? null : {
+	return !GT(t) || !ZT(t.value) || t.value < 0 || t.value > 100 || !qT(t.label) || typeof t.showValue != "boolean" ? null : {
 		protocolVersion: 1,
 		kind: "progress",
 		props: {
@@ -28203,17 +28358,17 @@ function uE(e) {
 		}
 	};
 }
-function dE(e) {
+function bE(e) {
 	let t = e.props;
-	return !IT(t) || t.orientation !== "horizontal" && t.orientation !== "vertical" ? null : {
+	return !GT(t) || t.orientation !== "horizontal" && t.orientation !== "vertical" ? null : {
 		protocolVersion: 1,
 		kind: "separator",
 		props: { orientation: t.orientation }
 	};
 }
-function fE(e) {
+function xE(e) {
 	let t = e.props;
-	return !IT(t) || t.shape !== "rectangle" && t.shape !== "circle" || !UT(t.width) || !UT(t.height) ? null : {
+	return !GT(t) || t.shape !== "rectangle" && t.shape !== "circle" || !QT(t.width) || !QT(t.height) ? null : {
 		protocolVersion: 1,
 		kind: "skeleton",
 		props: {
@@ -28223,15 +28378,15 @@ function fE(e) {
 		}
 	};
 }
-function pE(e) {
-	return e === null || typeof e == "string" || typeof e == "boolean" || HT(e);
+function SE(e) {
+	return e === null || typeof e == "string" || typeof e == "boolean" || ZT(e);
 }
-function mE(e) {
+function CE(e) {
 	let t = e.props;
-	if (!IT(t) || !Array.isArray(t.columns) || !Array.isArray(t.rows) || t.columns.length > 1e4 || t.rows.length > 1e4 || !RT(t.caption) || !(t.maxHeight === null || Number.isSafeInteger(t.maxHeight) && t.maxHeight >= 80 && t.maxHeight <= 1e4)) return null;
+	if (!GT(t) || !Array.isArray(t.columns) || !Array.isArray(t.rows) || t.columns.length > 1e4 || t.rows.length > 1e4 || !qT(t.caption) || !(t.maxHeight === null || Number.isSafeInteger(t.maxHeight) && t.maxHeight >= 80 && t.maxHeight <= 1e4)) return null;
 	let n = [], r = /* @__PURE__ */ new Set();
 	for (let e of t.columns) {
-		if (!IT(e) || !LT(e.key) || !LT(e.label) || e.align !== "left" && e.align !== "center" && e.align !== "right" || r.has(e.key)) return null;
+		if (!GT(e) || !KT(e.key) || !KT(e.label) || e.align !== "left" && e.align !== "center" && e.align !== "right" || r.has(e.key)) return null;
 		r.add(e.key), n.push({
 			key: e.key,
 			label: e.label,
@@ -28240,7 +28395,7 @@ function mE(e) {
 	}
 	let i = [];
 	for (let e of t.rows) {
-		if (!Array.isArray(e) || e.length !== n.length || e.some((e) => !pE(e))) return null;
+		if (!Array.isArray(e) || e.length !== n.length || e.some((e) => !SE(e))) return null;
 		i.push([...e]);
 	}
 	return {
@@ -28254,9 +28409,9 @@ function mE(e) {
 		}
 	};
 }
-function hE(e) {
+function wE(e) {
 	let t = e.props;
-	return !IT(t) || !LT(t.text) || !zT(t.url) || typeof t.variant != "string" || !XT.has(t.variant) || typeof t.size != "string" || !ZT.has(t.size) || typeof t.disabled != "boolean" || t.target !== "_blank" && t.target !== "_self" || t.stretch !== void 0 && typeof t.stretch != "boolean" ? null : {
+	return !GT(t) || !KT(t.text) || !JT(t.url) || typeof t.variant != "string" || !aE.has(t.variant) || typeof t.size != "string" || !oE.has(t.size) || typeof t.disabled != "boolean" || t.target !== "_blank" && t.target !== "_self" || t.stretch !== void 0 && typeof t.stretch != "boolean" ? null : {
 		protocolVersion: 1,
 		kind: "link_button",
 		props: {
@@ -28270,7 +28425,7 @@ function hE(e) {
 		}
 	};
 }
-var gE = /* @__PURE__ */ new Set([
+var TE = /* @__PURE__ */ new Set([
 	"text",
 	"email",
 	"password",
@@ -28278,14 +28433,14 @@ var gE = /* @__PURE__ */ new Set([
 	"tel",
 	"url"
 ]);
-function _E(e) {
+function EE(e) {
 	return e === null || Number.isSafeInteger(e) && e >= 1 && e <= 16384;
 }
-function vE(e) {
+function DE(e) {
 	if (!Array.isArray(e) || e.length > 1e4) return null;
 	let t = [], n = /* @__PURE__ */ new Set();
 	for (let r of e) {
-		if (!IT(r) || !LT(r.label) || !LT(r.value) || typeof r.disabled != "boolean" || n.has(r.value)) return null;
+		if (!GT(r) || !KT(r.label) || !KT(r.value) || typeof r.disabled != "boolean" || n.has(r.value)) return null;
 		n.add(r.value), t.push({
 			label: r.label,
 			value: r.value,
@@ -28294,23 +28449,23 @@ function vE(e) {
 	}
 	return t;
 }
-function yE(e) {
-	return Array.isArray(e) && e.length <= 1e4 && e.every((e) => LT(e));
+function OE(e) {
+	return Array.isArray(e) && e.length <= 1e4 && e.every((e) => KT(e));
 }
-function bE(e) {
+function kE(e) {
 	return new Set(e).size === e.length;
 }
-function xE(e) {
+function AE(e) {
 	if (typeof e != "string" || !/^\d{4}-\d{2}-\d{2}$/.test(e)) return !1;
 	let t = Number(e.slice(0, 4)), n = Number(e.slice(5, 7)), r = Number(e.slice(8, 10)), i = /* @__PURE__ */ new Date(0);
 	return i.setUTCHours(0, 0, 0, 0), i.setUTCFullYear(t, n - 1, r), i.getUTCFullYear() === t && i.getUTCMonth() === n - 1 && i.getUTCDate() === r;
 }
-function SE(e) {
-	return e === null || xE(e);
+function jE(e) {
+	return e === null || AE(e);
 }
-function CE(e) {
-	let t = e.props, n = KT(e.state, "input", LT);
-	return !n || !IT(t) || !LT(t.label) || !LT(t.placeholder) || typeof t.type != "string" || !gE.has(t.type) || typeof t.disabled != "boolean" || !_E(t.maxLength) || t.maxLength !== null && n.value.length > t.maxLength ? null : {
+function ME(e) {
+	let t = e.props, n = tE(e.state, "input", KT);
+	return !n || !GT(t) || !KT(t.label) || !KT(t.placeholder) || typeof t.type != "string" || !TE.has(t.type) || typeof t.disabled != "boolean" || !EE(t.maxLength) || t.maxLength !== null && n.value.length > t.maxLength ? null : {
 		protocolVersion: 1,
 		kind: "input",
 		state: n,
@@ -28323,9 +28478,31 @@ function CE(e) {
 		}
 	};
 }
-function wE(e) {
-	let t = e.props, n = KT(e.state, "textarea", LT);
-	return !n || !IT(t) || !LT(t.label) || !LT(t.placeholder) || typeof t.disabled != "boolean" || !Number.isSafeInteger(t.rows) || t.rows < 2 || t.rows > 20 || !_E(t.maxLength) || t.maxLength !== null && n.value.length > t.maxLength ? null : {
+function NE(e) {
+	let t = e.props, n = tE(e.state, "number_input", Xy);
+	if (!n || !GT(t) || !KT(t.label) || typeof t.disabled != "boolean" || typeof t.integer != "boolean" || !(t.min === null || Xy(t.min)) || !(t.max === null || Xy(t.max)) || !Xy(t.step) || t.step <= 0 || t.min !== null && t.max !== null && t.min > t.max || t.integer && [
+		t.min,
+		t.max,
+		t.step
+	].some((e) => e !== null && !Number.isSafeInteger(e))) return null;
+	let r = {
+		label: t.label,
+		disabled: t.disabled,
+		integer: t.integer,
+		min: t.min,
+		max: t.max,
+		step: t.step
+	};
+	return Zy(n.value, r) ? {
+		protocolVersion: 1,
+		kind: "number_input",
+		state: n,
+		props: r
+	} : null;
+}
+function PE(e) {
+	let t = e.props, n = tE(e.state, "textarea", KT);
+	return !n || !GT(t) || !KT(t.label) || !KT(t.placeholder) || typeof t.disabled != "boolean" || !Number.isSafeInteger(t.rows) || t.rows < 2 || t.rows > 20 || !EE(t.maxLength) || t.maxLength !== null && n.value.length > t.maxLength ? null : {
 		protocolVersion: 1,
 		kind: "textarea",
 		state: n,
@@ -28338,12 +28515,12 @@ function wE(e) {
 		}
 	};
 }
-function TE(e) {
-	let t = e.props, n = KT(e.state, "accordion", yE);
-	if (!n || !IT(t) || !LT(t.label) || typeof t.disabled != "boolean" || typeof t.multiple != "boolean" || !Array.isArray(t.items) || t.items.length > 1e4 || !bE(n.value) || !t.multiple && n.value.length > 1) return null;
+function FE(e) {
+	let t = e.props, n = tE(e.state, "accordion", OE);
+	if (!n || !GT(t) || !KT(t.label) || typeof t.disabled != "boolean" || typeof t.multiple != "boolean" || !Array.isArray(t.items) || t.items.length > 1e4 || !kE(n.value) || !t.multiple && n.value.length > 1) return null;
 	let r = [], i = /* @__PURE__ */ new Set();
 	for (let e of t.items) {
-		if (!IT(e) || !LT(e.label) || !LT(e.content) || !LT(e.value) || typeof e.disabled != "boolean" || i.has(e.value)) return null;
+		if (!GT(e) || !KT(e.label) || !KT(e.content) || !KT(e.value) || typeof e.disabled != "boolean" || i.has(e.value)) return null;
 		i.add(e.value), r.push({
 			label: e.label,
 			content: e.content,
@@ -28363,9 +28540,9 @@ function TE(e) {
 		}
 	};
 }
-function EE(e) {
-	let t = e.props, n = KT(e.state, "collapsible", (e) => typeof e == "boolean");
-	return !n || !IT(t) || !LT(t.title) || !RT(t.firstItem) || !yE(t.items) || typeof t.disabled != "boolean" ? null : {
+function IE(e) {
+	let t = e.props, n = tE(e.state, "collapsible", (e) => typeof e == "boolean");
+	return !n || !GT(t) || !KT(t.title) || !qT(t.firstItem) || !OE(t.items) || typeof t.disabled != "boolean" ? null : {
 		protocolVersion: 1,
 		kind: "collapsible",
 		state: n,
@@ -28377,9 +28554,9 @@ function EE(e) {
 		}
 	};
 }
-function DE(e) {
-	let t = e.props, n = KT(e.state, "input_otp", LT);
-	return !n || !IT(t) || !LT(t.label) || !Number.isSafeInteger(t.maxLength) || t.maxLength < 1 || t.maxLength > 12 || t.pattern !== "digits" && t.pattern !== "alphanumeric" || typeof t.disabled != "boolean" || n.value.length > t.maxLength || (t.pattern === "digits" ? !/^\d*$/.test(n.value) : !/^[a-z0-9]*$/i.test(n.value)) ? null : {
+function LE(e) {
+	let t = e.props, n = tE(e.state, "input_otp", KT);
+	return !n || !GT(t) || !KT(t.label) || !Number.isSafeInteger(t.maxLength) || t.maxLength < 1 || t.maxLength > 12 || t.pattern !== "digits" && t.pattern !== "alphanumeric" || typeof t.disabled != "boolean" || n.value.length > t.maxLength || (t.pattern === "digits" ? !/^\d*$/.test(n.value) : !/^[a-z0-9]*$/i.test(n.value)) ? null : {
 		protocolVersion: 1,
 		kind: "input_otp",
 		state: n,
@@ -28391,9 +28568,9 @@ function DE(e) {
 		}
 	};
 }
-function OE(e) {
-	let t = e.props, n = KT(e.state, "pagination", (e) => Number.isSafeInteger(e));
-	return !n || !IT(t) || !LT(t.label) || !Number.isSafeInteger(t.totalPages) || t.totalPages < 1 || t.totalPages > 1e4 || !Number.isSafeInteger(t.siblingCount) || t.siblingCount < 0 || t.siblingCount > 10 || typeof t.disabled != "boolean" || n.value < 1 || n.value > t.totalPages ? null : {
+function RE(e) {
+	let t = e.props, n = tE(e.state, "pagination", (e) => Number.isSafeInteger(e));
+	return !n || !GT(t) || !KT(t.label) || !Number.isSafeInteger(t.totalPages) || t.totalPages < 1 || t.totalPages > 1e4 || !Number.isSafeInteger(t.siblingCount) || t.siblingCount < 0 || t.siblingCount > 10 || typeof t.disabled != "boolean" || n.value < 1 || n.value > t.totalPages ? null : {
 		protocolVersion: 1,
 		kind: "pagination",
 		state: n,
@@ -28405,10 +28582,10 @@ function OE(e) {
 		}
 	};
 }
-function kE(e) {
-	let t = e.props, n = KT(e.state, "radio_group", RT);
-	if (!n || !IT(t) || !LT(t.label) || typeof t.disabled != "boolean") return null;
-	let r = vE(t.options);
+function zE(e) {
+	let t = e.props, n = tE(e.state, "radio_group", qT);
+	if (!n || !GT(t) || !KT(t.label) || typeof t.disabled != "boolean") return null;
+	let r = DE(t.options);
 	return !r || n.value !== null && !r.some((e) => e.value === n.value) ? null : {
 		protocolVersion: 1,
 		kind: "radio_group",
@@ -28420,9 +28597,9 @@ function kE(e) {
 		}
 	};
 }
-function AE(e) {
+function BE(e) {
 	let t = e.props;
-	return !IT(t) || !RT(t.title) || !yE(t.items) || !Number.isSafeInteger(t.height) || t.height < 80 || t.height > 1e4 ? null : {
+	return !GT(t) || !qT(t.title) || !OE(t.items) || !Number.isSafeInteger(t.height) || t.height < 80 || t.height > 1e4 ? null : {
 		protocolVersion: 1,
 		kind: "scroll_area",
 		props: {
@@ -28432,9 +28609,9 @@ function AE(e) {
 		}
 	};
 }
-function jE(e) {
-	let t = e.props, n = KT(e.state, "slider", (e) => Array.isArray(e) && e.every((e) => HT(e)));
-	if (!n || !IT(t) || !LT(t.label) || !HT(t.min) || !HT(t.max) || t.max <= t.min || !HT(t.step) || t.step <= 0 || t.step > t.max - t.min || typeof t.disabled != "boolean" || n.value.length !== 1 && n.value.length !== 2) return null;
+function VE(e) {
+	let t = e.props, n = tE(e.state, "slider", (e) => Array.isArray(e) && e.every((e) => ZT(e)));
+	if (!n || !GT(t) || !KT(t.label) || !ZT(t.min) || !ZT(t.max) || t.max <= t.min || !ZT(t.step) || t.step <= 0 || t.step > t.max - t.min || typeof t.disabled != "boolean" || n.value.length !== 1 && n.value.length !== 2) return null;
 	let r = t.min, i = t.max;
 	return n.value.some((e) => e < r || e > i) || n.value.length === 2 && n.value[0] > n.value[1] ? null : {
 		protocolVersion: 1,
@@ -28449,9 +28626,9 @@ function jE(e) {
 		}
 	};
 }
-function ME(e) {
-	let t = e.props, n = KT(e.state, "switch", (e) => typeof e == "boolean");
-	return !n || !IT(t) || !LT(t.label) || typeof t.disabled != "boolean" ? null : {
+function HE(e) {
+	let t = e.props, n = tE(e.state, "switch", (e) => typeof e == "boolean");
+	return !n || !GT(t) || !KT(t.label) || typeof t.disabled != "boolean" ? null : {
 		protocolVersion: 1,
 		kind: "switch",
 		state: n,
@@ -28461,10 +28638,10 @@ function ME(e) {
 		}
 	};
 }
-function NE(e) {
-	let t = e.props, n = KT(e.state, "tabs", LT);
-	if (!n || !IT(t) || !LT(t.label) || t.orientation !== "horizontal" && t.orientation !== "vertical" || t.variant !== "default" && t.variant !== "line" || typeof t.disabled != "boolean") return null;
-	let r = vE(t.options);
+function UE(e) {
+	let t = e.props, n = tE(e.state, "tabs", KT);
+	if (!n || !GT(t) || !KT(t.label) || t.orientation !== "horizontal" && t.orientation !== "vertical" || t.variant !== "default" && t.variant !== "line" || typeof t.disabled != "boolean") return null;
+	let r = DE(t.options);
 	return !r || r.length === 0 || !r.some((e) => e.value === n.value) ? null : {
 		protocolVersion: 1,
 		kind: "tabs",
@@ -28478,9 +28655,9 @@ function NE(e) {
 		}
 	};
 }
-function PE(e) {
-	let t = e.props, n = KT(e.state, "toggle", (e) => typeof e == "boolean");
-	return !n || !IT(t) || !LT(t.label) || t.icon !== null && t.icon !== "bold" && t.icon !== "italic" && t.icon !== "underline" || t.variant !== "default" && t.variant !== "outline" || t.size !== "default" && t.size !== "sm" && t.size !== "lg" || typeof t.disabled != "boolean" ? null : {
+function WE(e) {
+	let t = e.props, n = tE(e.state, "toggle", (e) => typeof e == "boolean");
+	return !n || !GT(t) || !KT(t.label) || t.icon !== null && t.icon !== "bold" && t.icon !== "italic" && t.icon !== "underline" || t.variant !== "default" && t.variant !== "outline" || t.size !== "default" && t.size !== "sm" && t.size !== "lg" || typeof t.disabled != "boolean" ? null : {
 		protocolVersion: 1,
 		kind: "toggle",
 		state: n,
@@ -28493,10 +28670,10 @@ function PE(e) {
 		}
 	};
 }
-function FE(e) {
-	let t = e.props, n = KT(e.state, "toggle_group", yE);
-	if (!n || !IT(t) || !LT(t.label) || typeof t.multiple != "boolean" || t.orientation !== "horizontal" && t.orientation !== "vertical" || t.variant !== "default" && t.variant !== "outline" || t.size !== "default" && t.size !== "sm" && t.size !== "lg" || typeof t.disabled != "boolean" || !bE(n.value) || !t.multiple && n.value.length > 1) return null;
-	let r = vE(t.options);
+function GE(e) {
+	let t = e.props, n = tE(e.state, "toggle_group", OE);
+	if (!n || !GT(t) || !KT(t.label) || typeof t.multiple != "boolean" || t.orientation !== "horizontal" && t.orientation !== "vertical" || t.variant !== "default" && t.variant !== "outline" || t.size !== "default" && t.size !== "sm" && t.size !== "lg" || typeof t.disabled != "boolean" || !kE(n.value) || !t.multiple && n.value.length > 1) return null;
+	let r = DE(t.options);
 	return !r || r.length === 0 || n.value.some((e) => !r.some((t) => t.value === e)) ? null : {
 		protocolVersion: 1,
 		kind: "toggle_group",
@@ -28512,9 +28689,9 @@ function FE(e) {
 		}
 	};
 }
-function IE(e) {
-	let t = e.props, n = KT(e.state, "calendar", SE);
-	return !n || !IT(t) || !LT(t.label) || !SE(t.minDate) || !SE(t.maxDate) || typeof t.disabled != "boolean" || t.minDate !== null && t.maxDate !== null && t.minDate > t.maxDate || n.value !== null && (t.minDate !== null && n.value < t.minDate || t.maxDate !== null && n.value > t.maxDate) ? null : {
+function KE(e) {
+	let t = e.props, n = tE(e.state, "calendar", jE);
+	return !n || !GT(t) || !KT(t.label) || !jE(t.minDate) || !jE(t.maxDate) || typeof t.disabled != "boolean" || t.minDate !== null && t.maxDate !== null && t.minDate > t.maxDate || n.value !== null && (t.minDate !== null && n.value < t.minDate || t.maxDate !== null && n.value > t.maxDate) ? null : {
 		protocolVersion: 1,
 		kind: "calendar",
 		state: n,
@@ -28526,9 +28703,9 @@ function IE(e) {
 		}
 	};
 }
-function LE(e) {
+function qE(e) {
 	let t = e.props;
-	return !IT(t) || !LT(t.label) || !RT(t.content) || typeof t.disabled != "boolean" ? null : {
+	return !GT(t) || !KT(t.label) || !qT(t.content) || typeof t.disabled != "boolean" ? null : {
 		protocolVersion: 1,
 		kind: "popover",
 		props: {
@@ -28538,9 +28715,9 @@ function LE(e) {
 		}
 	};
 }
-function RE(e) {
+function JE(e) {
 	let t = e.props;
-	return !IT(t) || !LT(t.label) || !LT(t.content) || typeof t.disabled != "boolean" ? null : {
+	return !GT(t) || !KT(t.label) || !KT(t.content) || typeof t.disabled != "boolean" ? null : {
 		protocolVersion: 1,
 		kind: "hover_card",
 		props: {
@@ -28550,9 +28727,9 @@ function RE(e) {
 		}
 	};
 }
-function zE(e) {
+function YE(e) {
 	let t = e.props;
-	return !IT(t) || typeof t.show != "boolean" || !WT(t.openRequestId) || !WT(t.resolvedRequestId) || t.resolvedRequestId > t.openRequestId || !LT(t.title) || !LT(t.description) || !LT(t.confirmLabel) || !LT(t.cancelLabel) ? null : {
+	return !GT(t) || typeof t.show != "boolean" || !$T(t.openRequestId) || !$T(t.resolvedRequestId) || t.resolvedRequestId > t.openRequestId || !KT(t.title) || !KT(t.description) || !KT(t.confirmLabel) || !KT(t.cancelLabel) ? null : {
 		protocolVersion: 1,
 		kind: "alert_dialog",
 		props: {
@@ -28566,17 +28743,17 @@ function zE(e) {
 		}
 	};
 }
-function BE(e) {
-	return e === null || xE(e) || Array.isArray(e) && e.length === 2 && xE(e[0]) && xE(e[1]);
+function XE(e) {
+	return e === null || AE(e) || Array.isArray(e) && e.length === 2 && AE(e[0]) && AE(e[1]);
 }
-function VE(e, t, n) {
+function ZE(e, t, n) {
 	return (t === null || e >= t) && (n === null || e <= n);
 }
-function HE(e) {
-	let t = e.props, n = KT(e.state, "date_picker", BE);
-	if (!n || !IT(t) || !RT(t.label) || t.mode !== "single" && t.mode !== "range" || !LT(t.placeholder) || !SE(t.minDate) || !SE(t.maxDate) || typeof t.disabled != "boolean" || t.minDate !== null && t.maxDate !== null && t.minDate > t.maxDate || t.mode === "single" && Array.isArray(n.value) || t.mode === "range" && n.value !== null && !Array.isArray(n.value)) return null;
+function QE(e) {
+	let t = e.props, n = tE(e.state, "date_picker", XE);
+	if (!n || !GT(t) || !qT(t.label) || t.mode !== "single" && t.mode !== "range" || !KT(t.placeholder) || !jE(t.minDate) || !jE(t.maxDate) || typeof t.disabled != "boolean" || t.minDate !== null && t.maxDate !== null && t.minDate > t.maxDate || t.mode === "single" && Array.isArray(n.value) || t.mode === "range" && n.value !== null && !Array.isArray(n.value)) return null;
 	let r = t.minDate, i = t.maxDate, a = n.value === null ? [] : typeof n.value == "string" ? [n.value] : [...n.value];
-	return a.some((e) => !VE(e, r, i)) || a.length === 2 && a[0] > a[1] ? null : {
+	return a.some((e) => !ZE(e, r, i)) || a.length === 2 && a[0] > a[1] ? null : {
 		protocolVersion: 1,
 		kind: "date_picker",
 		state: n,
@@ -28590,23 +28767,24 @@ function HE(e) {
 		}
 	};
 }
-var UE = /* @__PURE__ */ new Set([
+var $E = /* @__PURE__ */ new Set([
 	"none",
 	"xs",
 	"sm",
 	"md",
 	"lg",
 	"xl"
-]), WE = /* @__PURE__ */ new Set([
+]), eD = /* @__PURE__ */ new Set([
 	"select",
 	"checkbox",
 	"input",
+	"number_input",
 	"textarea",
 	"radio_group",
 	"slider",
 	"switch"
-]), GE = /* @__PURE__ */ new Set([
-	...WE,
+]), tD = /* @__PURE__ */ new Set([
+	...eD,
 	"button",
 	"badge",
 	"progress",
@@ -28614,17 +28792,18 @@ var UE = /* @__PURE__ */ new Set([
 	"aspect_ratio",
 	"link_button"
 ]);
-function KE(e) {
+function nD(e) {
 	return typeof e == "string" && /^[A-Za-z0-9][A-Za-z0-9_.\/-]{0,511}$/.test(e);
 }
-function qE(e) {
-	return GE.has(e.kind);
+function rD(e) {
+	return tD.has(e.kind);
 }
-function JE(e) {
+function iD(e) {
 	switch (e.kind) {
 		case "select":
 		case "checkbox":
 		case "input":
+		case "number_input":
 		case "textarea":
 		case "radio_group":
 		case "slider":
@@ -28632,11 +28811,11 @@ function JE(e) {
 		default: return null;
 	}
 }
-function YE(e, t, n, r) {
-	if (n > 32 || t.count >= 1e3 || !IT(e) || !KE(e.id) || t.seenIds.has(e.id) || typeof e.type != "string" || !IT(e.props) || !Array.isArray(e.children) || e.children.length > 1e3) return null;
+function aD(e, t, n, r) {
+	if (n > 32 || t.count >= 1e3 || !GT(e) || !nD(e.id) || t.seenIds.has(e.id) || typeof e.type != "string" || !GT(e.props) || !Array.isArray(e.children) || e.children.length > 1e3) return null;
 	t.count += 1, t.seenIds.add(e.id);
 	let i = e.id, a = e.type, o = e.props;
-	if (a === "text") return e.children.length !== 0 || !LT(o.text) || o.variant !== "body" && o.variant !== "muted" && o.variant !== "label" && o.variant !== "caption" ? null : {
+	if (a === "text") return e.children.length !== 0 || !KT(o.text) || o.variant !== "body" && o.variant !== "muted" && o.variant !== "label" && o.variant !== "caption" ? null : {
 		id: i,
 		type: a,
 		props: {
@@ -28646,7 +28825,7 @@ function YE(e, t, n, r) {
 		children: [],
 		envelope: null
 	};
-	if (a === "heading") return e.children.length !== 0 || !LT(o.text) || o.level !== 2 && o.level !== 3 && o.level !== 4 ? null : {
+	if (a === "heading") return e.children.length !== 0 || !KT(o.text) || o.level !== 2 && o.level !== 3 && o.level !== 4 ? null : {
 		id: i,
 		type: a,
 		props: {
@@ -28656,7 +28835,7 @@ function YE(e, t, n, r) {
 		children: [],
 		envelope: null
 	};
-	if (a === "code") return e.children.length !== 0 || !LT(o.text) || !LT(o.language) ? null : {
+	if (a === "code") return e.children.length !== 0 || !KT(o.text) || !KT(o.language) ? null : {
 		id: i,
 		type: a,
 		props: {
@@ -28666,16 +28845,16 @@ function YE(e, t, n, r) {
 		children: [],
 		envelope: null
 	};
-	if (GE.has(a)) {
+	if (tD.has(a)) {
 		if (e.children.length !== 0) return null;
 		let n = {
 			protocolVersion: 1,
 			kind: a,
 			props: o
 		}, r = null;
-		if (WE.has(a)) {
+		if (eD.has(a)) {
 			let e = t.rawStates[i];
-			if (!IT(e) || e.kind !== a || !WT(e.clientRevision) || !WT(e.serverRevision) || !WT(e.changeSequence)) return null;
+			if (!GT(e) || e.kind !== a || !$T(e.clientRevision) || !$T(e.serverRevision) || !$T(e.changeSequence)) return null;
 			r = e.changeSequence, n.state = {
 				kind: e.kind,
 				value: e.value,
@@ -28683,9 +28862,9 @@ function YE(e, t, n, r) {
 				serverRevision: e.serverRevision
 			};
 		}
-		let s = ZE(n);
-		if (!s || s.kind === "elements" || !qE(s)) return null;
-		let c = JE(s);
+		let s = sD(n);
+		if (!s || s.kind === "elements" || !rD(s)) return null;
+		let c = iD(s);
 		return c !== null && (t.normalizedStates[i] = {
 			kind: c.kind,
 			value: c.value,
@@ -28702,11 +28881,11 @@ function YE(e, t, n, r) {
 	}
 	let s = [];
 	for (let r of e.children) {
-		let e = YE(r, t, n + 1, a);
+		let e = aD(r, t, n + 1, a);
 		if (!e) return null;
 		s.push(e);
 	}
-	if (a === "stack") return o.direction !== "vertical" && o.direction !== "horizontal" || typeof o.gap != "string" || !UE.has(o.gap) || o.align !== "start" && o.align !== "center" && o.align !== "end" && o.align !== "stretch" || o.justify !== "start" && o.justify !== "center" && o.justify !== "end" && o.justify !== "between" || typeof o.wrap != "boolean" ? null : {
+	if (a === "stack") return o.direction !== "vertical" && o.direction !== "horizontal" || typeof o.gap != "string" || !$E.has(o.gap) || o.align !== "start" && o.align !== "center" && o.align !== "end" && o.align !== "stretch" || o.justify !== "start" && o.justify !== "center" && o.justify !== "end" && o.justify !== "between" || typeof o.wrap != "boolean" ? null : {
 		id: i,
 		type: a,
 		props: {
@@ -28719,7 +28898,7 @@ function YE(e, t, n, r) {
 		children: s,
 		envelope: null
 	};
-	if (a === "grid") return !Number.isSafeInteger(o.columns) || o.columns < 1 || o.columns > 6 || typeof o.gap != "string" || !UE.has(o.gap) || !(o.minColumnWidth === null || Number.isSafeInteger(o.minColumnWidth) && o.minColumnWidth >= 160 && o.minColumnWidth <= 1200) ? null : {
+	if (a === "grid") return !Number.isSafeInteger(o.columns) || o.columns < 1 || o.columns > 6 || typeof o.gap != "string" || !$E.has(o.gap) || !(o.minColumnWidth === null || Number.isSafeInteger(o.minColumnWidth) && o.minColumnWidth >= 160 && o.minColumnWidth <= 1200) ? null : {
 		id: i,
 		type: a,
 		props: {
@@ -28748,9 +28927,9 @@ function YE(e, t, n, r) {
 		envelope: null
 	} : null;
 }
-function XE(e) {
+function oD(e) {
 	let t = e.props, n = e.state;
-	if (!IT(t) || !Array.isArray(t.nodes) || t.nodes.length > 1e3 || !GT(n, "elements") || !IT(n.value) || !IT(n.value.nodes) || !WT(n.value.sequence)) return null;
+	if (!GT(t) || !Array.isArray(t.nodes) || t.nodes.length > 1e3 || !eE(n, "elements") || !GT(n.value) || !GT(n.value.nodes) || !$T(n.value.sequence)) return null;
 	let r = n.value, i = {
 		count: 0,
 		normalizedStates: {},
@@ -28758,7 +28937,7 @@ function XE(e) {
 		seenIds: /* @__PURE__ */ new Set()
 	}, a = [];
 	for (let e of t.nodes) {
-		let t = YE(e, i, 1, null);
+		let t = aD(e, i, 1, null);
 		if (!t) return null;
 		a.push(t);
 	}
@@ -28777,52 +28956,53 @@ function XE(e) {
 		props: { nodes: a }
 	};
 }
-function ZE(e) {
+function sD(e) {
 	switch (e.kind) {
-		case "elements": return XE(e);
-		case "select": return qT(e);
-		case "dropdown_menu": return JT(e);
-		case "checkbox": return YT(e);
-		case "button": return QT(e);
-		case "alert": return nE(e);
-		case "alert_dialog": return zE(e);
-		case "avatar": return rE(e);
-		case "badge": return iE(e);
-		case "breadcrumb": return aE(e);
-		case "card": return sE(e);
-		case "metric_card": return cE(e);
-		case "aspect_ratio": return lE(e);
-		case "progress": return uE(e);
-		case "separator": return dE(e);
-		case "skeleton": return fE(e);
-		case "table": return mE(e);
-		case "link_button": return hE(e);
-		case "input": return CE(e);
-		case "textarea": return wE(e);
-		case "accordion": return TE(e);
-		case "collapsible": return EE(e);
-		case "input_otp": return DE(e);
-		case "pagination": return OE(e);
-		case "radio_group": return kE(e);
-		case "scroll_area": return AE(e);
-		case "slider": return jE(e);
-		case "switch": return ME(e);
-		case "tabs": return NE(e);
-		case "toggle": return PE(e);
-		case "toggle_group": return FE(e);
-		case "calendar": return IE(e);
-		case "popover": return LE(e);
-		case "hover_card": return RE(e);
-		case "date_picker": return HE(e);
+		case "elements": return oD(e);
+		case "select": return nE(e);
+		case "dropdown_menu": return rE(e);
+		case "checkbox": return iE(e);
+		case "button": return sE(e);
+		case "alert": return dE(e);
+		case "alert_dialog": return YE(e);
+		case "avatar": return fE(e);
+		case "badge": return pE(e);
+		case "breadcrumb": return mE(e);
+		case "card": return gE(e);
+		case "metric_card": return _E(e);
+		case "aspect_ratio": return vE(e);
+		case "progress": return yE(e);
+		case "separator": return bE(e);
+		case "skeleton": return xE(e);
+		case "table": return CE(e);
+		case "link_button": return wE(e);
+		case "input": return ME(e);
+		case "number_input": return NE(e);
+		case "textarea": return PE(e);
+		case "accordion": return FE(e);
+		case "collapsible": return IE(e);
+		case "input_otp": return LE(e);
+		case "pagination": return RE(e);
+		case "radio_group": return zE(e);
+		case "scroll_area": return BE(e);
+		case "slider": return VE(e);
+		case "switch": return HE(e);
+		case "tabs": return UE(e);
+		case "toggle": return WE(e);
+		case "toggle_group": return GE(e);
+		case "calendar": return KE(e);
+		case "popover": return qE(e);
+		case "hover_card": return JE(e);
+		case "date_picker": return QE(e);
 		default: return null;
 	}
 }
-function QE(e) {
-	let t = IT(e) && typeof e.kind == "string" ? e.kind : "unknown", n = IT(e) && (typeof e.protocolVersion == "string" || typeof e.protocolVersion == "number") ? String(e.protocolVersion) : "unknown", r = Infinity;
+function cD(e) {
+	let t = GT(e) && typeof e.kind == "string" ? e.kind : "unknown", n = GT(e) && (typeof e.protocolVersion == "string" || typeof e.protocolVersion == "number") ? String(e.protocolVersion) : "unknown", r = Infinity;
 	try {
 		r = new TextEncoder().encode(JSON.stringify(e)).byteLength;
 	} catch {}
-	if (r > 2097152 || !IT(e) || e.protocolVersion !== 1) return {
+	if (r > 2097152 || !GT(e) || e.protocolVersion !== 1) return {
 		ok: !1,
 		failure: {
 			code: r > 2097152 ? "SSUI_V2_ENVELOPE_TOO_LARGE" : "SSUI_V2_PROTOCOL_VERSION",
@@ -28830,7 +29010,7 @@ function QE(e) {
 			protocolVersion: n
 		}
 	};
-	let i = ZE(e);
+	let i = sD(e);
 	return i ? {
 		ok: !0,
 		envelope: i
@@ -28845,14 +29025,14 @@ function QE(e) {
 }
 //#endregion
 //#region src/entry.tsx
-var $E = /* @__PURE__ */ new WeakMap();
-function eD(e, t, n) {
+var lD = /* @__PURE__ */ new WeakMap();
+function uD(e, t, n) {
 	let r = e.querySelector(t);
 	if (!(r instanceof HTMLElement)) throw Error(`${n}: required component root is missing.`);
 	return r;
 }
-function tD(e, t) {
-	let n = eD(e, "[data-ssui-v2-app-root]", "SSUI_V2_APP_ROOT_MISSING"), r = eD(e, "[data-ssui-v2-overlay-root]", "SSUI_V2_OVERLAY_ROOT_MISSING");
+function dD(e, t) {
+	let n = uD(e, "[data-ssui-v2-app-root]", "SSUI_V2_APP_ROOT_MISSING"), r = uD(e, "[data-ssui-v2-overlay-root]", "SSUI_V2_OVERLAY_ROOT_MISSING");
 	if (n.getRootNode() !== e || r.getRootNode() !== e) throw Error("SSUI_V2_ROOT_OWNERSHIP: component roots escaped parentElement.");
 	let i = `ssui-${t.replace(/[^a-zA-Z0-9_-]/g, "-")}-`;
 	return {
@@ -28861,7 +29041,7 @@ function tD(e, t) {
 		reactRoot: (0, _.createRoot)(n, { identifierPrefix: i })
 	};
 }
-function nD({ failure: e }) {
+function fD({ failure: e }) {
 	return /* @__PURE__ */ (0, Y.jsxs)("div", {
 		"data-ssui-v2-error": !0,
 		role: "alert",
@@ -28876,23 +29056,23 @@ function nD({ failure: e }) {
 		]
 	});
 }
-var rD = (e) => {
-	let { parentElement: t } = e, n = $E.get(t);
-	n || (n = tD(t, e.key), $E.set(t, n)), PT(t);
-	let r = QE(e.data), i = r.ok ? `${r.envelope.kind}:${r.envelope.protocolVersion}` : `${r.failure.code}:${r.failure.kind}:${r.failure.protocolVersion}`;
-	return n.reactRoot.render(/* @__PURE__ */ (0, Y.jsx)(ET, {
+var pD = (e) => {
+	let { parentElement: t } = e, n = lD.get(t);
+	n || (n = dD(t, e.key), lD.set(t, n)), UT(t);
+	let r = cD(e.data), i = r.ok ? `${r.envelope.kind}:${r.envelope.protocolVersion}` : `${r.failure.code}:${r.failure.kind}:${r.failure.protocolVersion}`;
+	return n.reactRoot.render(/* @__PURE__ */ (0, Y.jsx)(FT, {
 		overlayRoot: n.overlayRoot,
 		parentElement: t,
 		resetKey: i,
-		children: r.ok ? /* @__PURE__ */ (0, Y.jsx)(bT, {
+		children: r.ok ? /* @__PURE__ */ (0, Y.jsx)(kT, {
 			envelope: r.envelope,
 			setStateValue: e.setStateValue,
 			setTriggerValue: e.setTriggerValue
-		}) : /* @__PURE__ */ (0, Y.jsx)(nD, { failure: r.failure })
+		}) : /* @__PURE__ */ (0, Y.jsx)(fD, { failure: r.failure })
 	})), () => {
-		let e = $E.get(t);
-		e && (e.reactRoot.unmount(), e.overlayRoot.replaceChildren(), FT(t), $E.delete(t));
+		let e = lD.get(t);
+		e && (e.reactRoot.unmount(), e.overlayRoot.replaceChildren(), WT(t), lD.delete(t));
 	};
 };
 //#endregion
-export { rD as default };
+export { pD as default };

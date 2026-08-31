@@ -148,6 +148,7 @@
     "TableColumn": "typed table column descriptor",
     "badge": "single-item convenience API",
     "elements": "single-root nested V2 composition API",
+    "number_input": "V2 numeric input with increment/decrement controls, added in 1.2.0",
     "separator": "V2-only public display primitive",
     "skeleton": "V2-only public display primitive"
   },

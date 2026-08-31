@@ -56,7 +56,7 @@ without changing the returned value.
 
 - Choice and action: `select`, `dropdown_menu`, `radio_group`, `button`,
   `link_button`, `breadcrumb`, `pagination`
-- Inputs: `checkbox`, `input`, `textarea`, `input_otp`, `slider`, `switch`,
+- Inputs: `checkbox`, `input`, `number_input`, `textarea`, `input_otp`, `slider`, `switch`,
   `toggle`, `toggle_group`
 - Date and navigation: `calendar`, `date_picker`, `tabs`, `accordion`,
   `collapsible`
@@ -83,8 +83,10 @@ st.write(email.value, save.clicked)
 See the [Elements documentation](docs/components/elements.md), the
 [V2 technical assessment](docs/elements-v2-technical-assessment.md), and the
 [independent shadcn homepage-card use case](pages/Elements.py).
-Release changes are recorded in the [changelog](CHANGELOG.md); the complete
-Elements release notes are in [docs/releases/1.1.0.md](docs/releases/1.1.0.md).
+Version 1.2.0 adds [Number Input](docs/components/number_input.md) with
+increment/decrement controls, integer and float values, and an Elements node.
+Release changes are recorded in the [changelog](CHANGELOG.md) and the
+[1.2.0 release notes](docs/releases/1.2.0.md).
 
 The documentation app uses [Home.py](Home.py) as its explicit router. Its
 [product homepage](site_pages/Homepage.py), interactive

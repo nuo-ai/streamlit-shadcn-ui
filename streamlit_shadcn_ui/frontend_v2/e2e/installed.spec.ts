@@ -86,20 +86,21 @@ test("installed distribution renders the complete V2 catalog", async ({
       async () => (await installedCatalogState(page)).hostCount,
       { timeout: 60_000 }
     )
-    .toBe(35)
+    .toBe(36)
   await expect
     .poll(
       async () => (await installedCatalogState(page)).kinds.length,
       { timeout: 60_000 }
     )
-    .toBe(35)
+    .toBe(36)
 
   const state = await installedCatalogState(page)
   expect(state.invalidRoots).toBe(0)
-  expect(state.kinds).toHaveLength(35)
+  expect(state.kinds).toHaveLength(36)
   expect(state.kinds).toContain("alert-dialog")
   expect(state.kinds).toContain("date-picker")
   expect(state.kinds).toContain("elements")
+  expect(state.kinds).toContain("number-input")
   expect(state.kinds).toContain("select")
   await expect(
     page.getByRole("heading", { name: "Installed Elements" })
@@ -124,8 +125,27 @@ test("installed distribution renders the complete V2 catalog", async ({
     radius: ".625rem",
     streamlitPrimary: "#ff4b4b",
   })
-  expect(selectTheme.fontFamily).toContain('"Geist Variable"')
+  const primaryFont = selectTheme.fontFamily
+    .split(",")[0]
+    .trim()
+    .replace(/^["']|["']$/g, "")
+  expect(primaryFont).toBe("Geist Variable")
   expect(selectTheme.fontFamily).not.toContain("Source Sans")
+
+  const number = page.getByRole("spinbutton", {
+    name: "Installed Number Input", exact: true,
+  })
+  await number.fill("5")
+  await number.press("Enter")
+  await expect(page.getByTestId("stJson")).toContainText(/"number_input":\s*5/)
+  await page.getByRole("button", { name: "Increase Installed Number Input", exact: true }).click()
+  await expect(page.getByTestId("stJson")).toContainText(/"number_input":\s*6/)
+
+  await page.getByRole("button", { name: "Increase Installed Elements Number Input" }).click()
+  await expect(page.getByTestId("stJson")).toContainText(/"elements_number_input":\s*0\.3/)
+  await page.getByRole("button", { name: "Installed Button", exact: true }).click()
+  await expect(number).toHaveValue("6")
+  await expect(page.getByRole("spinbutton", { name: "Installed Elements Number Input" })).toHaveValue("0.3")
   expect(diagnostics).toEqual({
     consoleMessages: [],
     pageErrors: [],

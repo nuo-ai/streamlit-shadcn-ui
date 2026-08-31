@@ -8,7 +8,10 @@ This document covers every name exported by the released 0.1.x package root
 and every name exported by the V2-only 1.0 package root. The machine-readable
 coverage source is
 [v2-compatibility-matrix.json](./v2-compatibility-matrix.json), and a test
-prevents the 1.0 namespace from drifting away from it.
+prevents the public namespace from drifting away from it. The matrix also
+tracks additive 1.x APIs: `ui.elements` in 1.1.0 and `ui.number_input` in 1.2.0.
+Number Input is also available as `el.number_input` inside Elements trees;
+see the [numeric input contract](components/number_input.md).
 
 V2 is a conceptual catalog migration, not a source-compatible namespace swap.
 Ordinary V2 helper keys are optional and keyword-only. The library derives a

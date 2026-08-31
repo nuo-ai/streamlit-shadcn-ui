@@ -21,6 +21,7 @@ import { HoverCardView } from "@/components/streamlit/hover-card"
 import { CalendarView } from "@/components/streamlit/calendar"
 import { InputOtpView } from "@/components/streamlit/input-otp"
 import { InputView } from "@/components/streamlit/input"
+import { NumberInputView } from "@/components/streamlit/number-input"
 import { LinkButtonView } from "@/components/streamlit/link-button"
 import { PaginationView } from "@/components/streamlit/pagination"
 import { PopoverView } from "@/components/streamlit/popover"
@@ -132,6 +133,13 @@ export function V2App({
     case "input":
       return (
         <InputView
+          envelope={envelope}
+          setStateValue={setStateValue}
+        />
+      )
+    case "number_input":
+      return (
+        <NumberInputView
           envelope={envelope}
           setStateValue={setStateValue}
         />

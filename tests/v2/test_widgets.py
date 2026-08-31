@@ -81,6 +81,7 @@ class PublicApiContractTests(unittest.TestCase):
                 "input_otp",
                 "link_button",
                 "metric_card",
+                "number_input",
                 "pagination",
                 "popover",
                 "progress",

@@ -1,3 +1,6 @@
+import { isNumberInputValue, isSafeNumber } from "@/lib/number-input"
+import type { NumberInputConstraints } from "@/lib/number-input"
+
 export const PROTOCOL_VERSION = 1 as const
 export const MAX_OPTIONS = 10_000
 export const MAX_TEXT_BYTES = 16 * 1024
@@ -23,6 +26,7 @@ export type ComponentKind =
   | "table"
   | "link_button"
   | "input"
+  | "number_input"
   | "textarea"
   | "accordion"
   | "collapsible"
@@ -313,6 +317,16 @@ export type InputEnvelope = {
   }
 }
 
+export type NumberInputEnvelope = {
+  protocolVersion: typeof PROTOCOL_VERSION
+  kind: "number_input"
+  state: StateCell<number, "number_input">
+  props: NumberInputConstraints & {
+    label: string
+    disabled: boolean
+  }
+}
+
 export type TextareaEnvelope = {
   protocolVersion: typeof PROTOCOL_VERSION
   kind: "textarea"
@@ -537,6 +551,7 @@ export type StandaloneEnvelope =
   | TableEnvelope
   | LinkButtonEnvelope
   | InputEnvelope
+  | NumberInputEnvelope
   | TextareaEnvelope
   | AccordionEnvelope
   | CollapsibleEnvelope
@@ -564,6 +579,7 @@ export type ElementsLeafEnvelope =
   | AspectRatioEnvelope
   | LinkButtonEnvelope
   | InputEnvelope
+  | NumberInputEnvelope
   | TextareaEnvelope
   | RadioGroupEnvelope
   | SliderEnvelope
@@ -586,6 +602,7 @@ export type ElementsStatefulKind =
   | "select"
   | "checkbox"
   | "input"
+  | "number_input"
   | "textarea"
   | "radio_group"
   | "slider"
@@ -1499,6 +1516,46 @@ function parseInput(value: Record<string, unknown>): InputEnvelope | null {
   }
 }
 
+function parseNumberInput(
+  value: Record<string, unknown>
+): NumberInputEnvelope | null {
+  const props = value.props
+  const state = parseStateCell(value.state, "number_input", isSafeNumber)
+  if (
+    !state ||
+    !isRecord(props) ||
+    !isBoundedText(props.label) ||
+    typeof props.disabled !== "boolean" ||
+    typeof props.integer !== "boolean" ||
+    !(props.min === null || isSafeNumber(props.min)) ||
+    !(props.max === null || isSafeNumber(props.max)) ||
+    !isSafeNumber(props.step) ||
+    props.step <= 0 ||
+    (props.min !== null && props.max !== null && props.min > props.max) ||
+    (props.integer &&
+      [props.min, props.max, props.step].some(
+        (number) => number !== null && !Number.isSafeInteger(number)
+      ))
+  ) {
+    return null
+  }
+  const normalized = {
+    label: props.label,
+    disabled: props.disabled,
+    integer: props.integer,
+    min: props.min,
+    max: props.max,
+    step: props.step,
+  }
+  if (!isNumberInputValue(state.value, normalized)) return null
+  return {
+    protocolVersion: PROTOCOL_VERSION,
+    kind: "number_input",
+    state,
+    props: normalized,
+  }
+}
+
 function parseTextarea(
   value: Record<string, unknown>
 ): TextareaEnvelope | null {
@@ -2196,6 +2253,7 @@ const ELEMENTS_STATEFUL_KINDS = new Set<ElementsStatefulKind>([
   "select",
   "checkbox",
   "input",
+  "number_input",
   "textarea",
   "radio_group",
   "slider",
@@ -2240,6 +2298,7 @@ function stateFromElementsLeaf(
     case "select":
     case "checkbox":
     case "input":
+    case "number_input":
     case "textarea":
     case "radio_group":
     case "slider":
@@ -2591,6 +2650,8 @@ function parseKnownEnvelope(
       return parseLinkButton(value)
     case "input":
       return parseInput(value)
+    case "number_input":
+      return parseNumberInput(value)
     case "textarea":
       return parseTextarea(value)
     case "accordion":

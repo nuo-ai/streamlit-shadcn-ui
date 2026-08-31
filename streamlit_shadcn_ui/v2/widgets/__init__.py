@@ -16,6 +16,7 @@ from .hover_card import hover_card
 from .input import input
 from .input_otp import input_otp
 from .link_button import link_button
+from .number_input import number_input
 from .pagination import pagination
 from .popover import popover
 from .progress import progress
@@ -53,6 +54,7 @@ __all__ = [
     "input_otp",
     "link_button",
     "metric_card",
+    "number_input",
     "pagination",
     "popover",
     "progress",
