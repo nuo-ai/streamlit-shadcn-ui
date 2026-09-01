@@ -9,9 +9,9 @@ shadcn components for Streamlit, implemented on Streamlit Components V2.
 Version 1.0 is a V2-only release: it uses checked-in shadcn source backed by
 Base UI, React 19, Tailwind CSS 4, and Streamlit's isolated Shadow DOM runtime.
 Components render without an iframe. Anchored and modal overlays stay in their
-own component ShadowRoot and use the browser top layer, so Select, Dropdown
-Menu, Popover, Hover Card, Date Picker, and Alert Dialog are not clipped by the
-Streamlit layout.
+own component ShadowRoot and use the browser top layer, so Select, Combobox,
+Dropdown Menu, Popover, Hover Card, Date Picker, Alert Dialog, and Elements
+Dialog or Tooltip are not clipped by the Streamlit layout.
 
 ## Installation
 
@@ -54,17 +54,19 @@ without changing the returned value.
 
 ## Components
 
-- Choice and action: `select`, `dropdown_menu`, `radio_group`, `button`,
-  `link_button`, `breadcrumb`, `pagination`
-- Inputs: `checkbox`, `input`, `number_input`, `textarea`, `input_otp`, `slider`, `switch`,
-  `toggle`, `toggle_group`
+- Choice and action: `select`, `combobox`, `dropdown_menu`, `radio_group`,
+  `button`, `link_button`, `breadcrumb`, `pagination`
+- Inputs: `checkbox`, `input`, `input_group`, `number_input`, `textarea`,
+  `input_otp`, `slider`, `switch`, `toggle`, `toggle_group`
 - Date and navigation: `calendar`, `date_picker`, `tabs`, `accordion`,
   `collapsible`
-- Overlays: `popover`, `hover_card`, `alert_dialog`
+- Overlays: `popover`, `hover_card`, `alert_dialog`; Elements also provides
+  Dialog and Tooltip composition
 - Display: `alert`, `avatar`, `badge`, `badges`, `card`, `metric_card`,
   `aspect_ratio`, `progress`, `scroll_area`, `separator`, `skeleton`, `table`
 - Composition: `elements` creates one nested, stateful React tree from typed
-  Card, layout, content, input, choice, and action nodes
+  Card, Button Group, Dialog, Empty, Field, Tooltip, Spinner, layout, content,
+  input, choice, and action nodes
 
 ```python
 with ui.elements(key="settings") as el:
@@ -83,10 +85,11 @@ st.write(email.value, save.clicked)
 See the [Elements documentation](docs/components/elements.md), the
 [V2 technical assessment](docs/elements-v2-technical-assessment.md), and the
 [independent shadcn homepage-card use case](pages/Elements.py).
-Version 1.2.0 adds [Number Input](docs/components/number_input.md) with
-increment/decrement controls, integer and float values, and an Elements node.
-Release changes are recorded in the [changelog](CHANGELOG.md) and the
-[1.2.2 release notes](docs/releases/1.2.2.md).
+Version 1.3.0 adds standalone [Combobox](docs/components/combobox.md) and
+[Input Group](docs/components/input_group.md) controls, six new Elements
+compositions, and loading or help states for Button. Release changes are
+recorded in the [changelog](CHANGELOG.md) and the
+[1.3.0 release notes](docs/releases/1.3.0.md).
 
 The documentation app uses [Home.py](Home.py) as its explicit router. Its
 [product homepage](site_pages/Homepage.py), interactive

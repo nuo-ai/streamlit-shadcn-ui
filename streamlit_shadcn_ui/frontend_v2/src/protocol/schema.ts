@@ -9,6 +9,7 @@ export const MAX_ENVELOPE_BYTES = 2 * 1024 * 1024
 export type ComponentKind =
   | "elements"
   | "select"
+  | "combobox"
   | "dropdown_menu"
   | "checkbox"
   | "button"
@@ -26,6 +27,7 @@ export type ComponentKind =
   | "table"
   | "link_button"
   | "input"
+  | "input_group"
   | "number_input"
   | "textarea"
   | "accordion"
@@ -76,6 +78,21 @@ export type SelectEnvelope = {
   }
 }
 
+export type ComboboxEnvelope = {
+  protocolVersion: typeof PROTOCOL_VERSION
+  kind: "combobox"
+  state: StateCell<string | string[] | null, "combobox">
+  props: {
+    clearable: boolean
+    disabled: boolean
+    emptyMessage: string
+    label: string
+    options: SelectOption[]
+    placeholder: string
+    selectionMode: "single" | "multiple"
+  }
+}
+
 export type DropdownMenuEnvelope = {
   protocolVersion: typeof PROTOCOL_VERSION
   kind: "dropdown_menu"
@@ -120,6 +137,8 @@ export type ButtonEnvelope = {
   kind: "button"
   props: {
     disabled: boolean
+    help: string | null
+    loading: boolean
     text: string
     variant: ButtonVariant
     size: ButtonSize
@@ -314,6 +333,31 @@ export type InputEnvelope = {
     type: InputType
     disabled: boolean
     maxLength: number | null
+  }
+}
+
+export type InputGroupIcon =
+  | "at-sign"
+  | "dollar-sign"
+  | "link"
+  | "mail"
+  | "search"
+
+export type InputGroupEnvelope = {
+  protocolVersion: typeof PROTOCOL_VERSION
+  kind: "input_group"
+  state: StateCell<string, "input_group">
+  props: {
+    clearable: boolean
+    copyable: boolean
+    disabled: boolean
+    label: string
+    maxLength: number | null
+    placeholder: string
+    prefix: string | null
+    startIcon: InputGroupIcon | null
+    suffix: string | null
+    type: InputType
   }
 }
 
@@ -534,6 +578,7 @@ export type DatePickerEnvelope = {
 
 export type StandaloneEnvelope =
   | SelectEnvelope
+  | ComboboxEnvelope
   | DropdownMenuEnvelope
   | CheckboxEnvelope
   | ButtonEnvelope
@@ -551,6 +596,7 @@ export type StandaloneEnvelope =
   | TableEnvelope
   | LinkButtonEnvelope
   | InputEnvelope
+  | InputGroupEnvelope
   | NumberInputEnvelope
   | TextareaEnvelope
   | AccordionEnvelope
@@ -571,6 +617,7 @@ export type StandaloneEnvelope =
 
 export type ElementsLeafEnvelope =
   | SelectEnvelope
+  | ComboboxEnvelope
   | CheckboxEnvelope
   | ButtonEnvelope
   | BadgeEnvelope
@@ -579,6 +626,7 @@ export type ElementsLeafEnvelope =
   | AspectRatioEnvelope
   | LinkButtonEnvelope
   | InputEnvelope
+  | InputGroupEnvelope
   | NumberInputEnvelope
   | TextareaEnvelope
   | RadioGroupEnvelope
@@ -600,8 +648,10 @@ export type ElementsStateValue = {
 
 export type ElementsStatefulKind =
   | "select"
+  | "combobox"
   | "checkbox"
   | "input"
+  | "input_group"
   | "number_input"
   | "textarea"
   | "radio_group"
@@ -639,6 +689,65 @@ type ElementsContainerNode = {
       type: "card_header" | "card_content" | "card_footer"
       props: Record<string, never>
     }
+  | {
+      type: "button_group"
+      props: {
+        label: string
+        orientation: "horizontal" | "vertical"
+      }
+    }
+  | {
+      type: "dialog"
+      props: {
+        description: string | null
+        disabled: boolean
+        showCloseButton: boolean
+        title: string
+        triggerLabel: string
+        triggerSize: ButtonSize
+        triggerVariant: ButtonVariant
+      }
+    }
+  | {
+      type: "dialog_footer"
+      props: Record<string, never>
+    }
+  | {
+      type:
+        | "empty"
+        | "empty_header"
+        | "empty_content"
+        | "field_group"
+      props: Record<string, never>
+    }
+  | {
+      type: "empty_media"
+      props: { variant: "default" | "icon" }
+    }
+  | {
+      type: "field_set"
+      props: {
+        description: string | null
+        legend: string
+        legendVariant: "legend" | "label"
+      }
+    }
+  | {
+      type: "field"
+      props: {
+        description: string | null
+        error: string | null
+        label: string
+        orientation: "vertical" | "horizontal" | "responsive"
+      }
+    }
+  | {
+      type: "tooltip"
+      props: {
+        content: string
+        side: "top" | "right" | "bottom" | "left"
+      }
+    }
 )
 
 export type ElementsGap = "none" | "xs" | "sm" | "md" | "lg" | "xl"
@@ -662,6 +771,32 @@ type ElementsContentNode = {
   | {
       type: "code"
       props: { text: string; language: string }
+    }
+  | {
+      type: "button_group_separator"
+      props: { orientation: "horizontal" | "vertical" }
+    }
+  | {
+      type: "button_group_text" | "empty_title" | "empty_description"
+      props: { text: string }
+    }
+  | {
+      type: "dialog_close_button"
+      props: {
+        disabled: boolean
+        loading: boolean
+        size: ButtonSize
+        text: string
+        variant: ButtonVariant
+      }
+    }
+  | {
+      type: "field_separator"
+      props: { text: string | null }
+    }
+  | {
+      type: "spinner"
+      props: { label: string }
     }
 )
 
@@ -867,6 +1002,93 @@ function parseSelect(value: Record<string, unknown>): SelectEnvelope | null {
   }
 }
 
+function parseCombobox(
+  value: Record<string, unknown>
+): ComboboxEnvelope | null {
+  const props = value.props
+  const state = value.state
+  if (
+    !isRecord(props) ||
+    !isStateCell(state, "combobox") ||
+    !isBoundedText(props.label) ||
+    !isBoundedText(props.placeholder) ||
+    !isBoundedText(props.emptyMessage) ||
+    typeof props.clearable !== "boolean" ||
+    typeof props.disabled !== "boolean" ||
+    (props.selectionMode !== "single" &&
+      props.selectionMode !== "multiple") ||
+    !Array.isArray(props.options) ||
+    props.options.length > MAX_OPTIONS
+  ) {
+    return null
+  }
+
+  const options: SelectOption[] = []
+  const values = new Set<string>()
+  for (const option of props.options) {
+    if (
+      !isRecord(option) ||
+      !isBoundedText(option.label) ||
+      !isBoundedText(option.value) ||
+      (option.disabled !== undefined &&
+        typeof option.disabled !== "boolean") ||
+      values.has(option.value)
+    ) {
+      return null
+    }
+    values.add(option.value)
+    options.push({
+      label: option.label,
+      value: option.value,
+      ...(option.disabled === undefined
+        ? {}
+        : { disabled: option.disabled }),
+    })
+  }
+
+  let selected: string | string[] | null
+  if (props.selectionMode === "single") {
+    if (
+      !(state.value === null || isBoundedText(state.value)) ||
+      (typeof state.value === "string" && !values.has(state.value))
+    ) {
+      return null
+    }
+    selected = state.value
+  } else {
+    if (
+      !Array.isArray(state.value) ||
+      state.value.some(
+        (item) => !isBoundedText(item) || !values.has(item)
+      ) ||
+      new Set(state.value).size !== state.value.length
+    ) {
+      return null
+    }
+    selected = [...state.value]
+  }
+
+  return {
+    protocolVersion: PROTOCOL_VERSION,
+    kind: "combobox",
+    state: {
+      kind: "combobox",
+      value: selected,
+      clientRevision: state.clientRevision,
+      serverRevision: state.serverRevision,
+    },
+    props: {
+      clearable: props.clearable,
+      disabled: props.disabled,
+      emptyMessage: props.emptyMessage,
+      label: props.label,
+      options,
+      placeholder: props.placeholder,
+      selectionMode: props.selectionMode,
+    },
+  }
+}
+
 function parseDropdownMenu(
   value: Record<string, unknown>
 ): DropdownMenuEnvelope | null {
@@ -978,6 +1200,12 @@ function parseButton(value: Record<string, unknown>): ButtonEnvelope | null {
     !isRecord(props) ||
     !isBoundedText(props.text) ||
     typeof props.disabled !== "boolean" ||
+    !(
+      props.help === undefined ||
+      props.help === null ||
+      isBoundedText(props.help)
+    ) ||
+    (props.loading !== undefined && typeof props.loading !== "boolean") ||
     typeof props.variant !== "string" ||
     !BUTTON_VARIANTS.has(props.variant as ButtonVariant) ||
     typeof props.size !== "string" ||
@@ -991,6 +1219,8 @@ function parseButton(value: Record<string, unknown>): ButtonEnvelope | null {
     kind: "button",
     props: {
       disabled: props.disabled,
+      help: typeof props.help === "string" ? props.help : null,
+      loading: props.loading === true,
       text: props.text,
       variant: props.variant as ButtonVariant,
       size: props.size as ButtonSize,
@@ -1512,6 +1742,74 @@ function parseInput(value: Record<string, unknown>): InputEnvelope | null {
       type: props.type as InputType,
       disabled: props.disabled,
       maxLength: props.maxLength,
+    },
+  }
+}
+
+const INPUT_GROUP_ICONS = new Set<InputGroupIcon>([
+  "at-sign",
+  "dollar-sign",
+  "link",
+  "mail",
+  "search",
+])
+
+function parseInputGroup(
+  value: Record<string, unknown>
+): InputGroupEnvelope | null {
+  const props = value.props
+  const state = parseStateCell(
+    value.state,
+    "input_group",
+    isBoundedText
+  )
+  if (
+    !state ||
+    !isRecord(props) ||
+    typeof props.clearable !== "boolean" ||
+    typeof props.copyable !== "boolean" ||
+    typeof props.disabled !== "boolean" ||
+    !isBoundedText(props.label) ||
+    !isBoundedText(props.placeholder) ||
+    !isNullableBoundedText(props.prefix) ||
+    !isNullableBoundedText(props.suffix) ||
+    !(
+      props.startIcon === null ||
+      (typeof props.startIcon === "string" &&
+        INPUT_GROUP_ICONS.has(props.startIcon as InputGroupIcon))
+    ) ||
+    (props.type !== "text" &&
+      props.type !== "email" &&
+      props.type !== "password" &&
+      props.type !== "search" &&
+      props.type !== "tel" &&
+      props.type !== "url") ||
+    !(
+      props.maxLength === null ||
+      (Number.isSafeInteger(props.maxLength) &&
+        (props.maxLength as number) >= 1 &&
+        (props.maxLength as number) <= 16 * 1024)
+    ) ||
+    (typeof props.maxLength === "number" &&
+      state.value.length > props.maxLength)
+  ) {
+    return null
+  }
+  return {
+    protocolVersion: PROTOCOL_VERSION,
+    kind: "input_group",
+    state,
+    props: {
+      clearable: props.clearable,
+      copyable: props.copyable,
+      disabled: props.disabled,
+      label: props.label,
+      maxLength: props.maxLength as number | null,
+      placeholder: props.placeholder,
+      prefix: props.prefix,
+      startIcon: props.startIcon as InputGroupIcon | null,
+      suffix: props.suffix,
+      type: props.type,
     },
   }
 }
@@ -2251,8 +2549,10 @@ const ELEMENTS_GAPS = new Set<ElementsGap>([
 ])
 const ELEMENTS_STATEFUL_KINDS = new Set<ElementsStatefulKind>([
   "select",
+  "combobox",
   "checkbox",
   "input",
+  "input_group",
   "number_input",
   "textarea",
   "radio_group",
@@ -2296,8 +2596,10 @@ function stateFromElementsLeaf(
 ): StateCell<unknown, ElementsStatefulKind> | null {
   switch (envelope.kind) {
     case "select":
+    case "combobox":
     case "checkbox":
     case "input":
+    case "input_group":
     case "number_input":
     case "textarea":
     case "radio_group":
@@ -2382,6 +2684,104 @@ function parseElementsNode(
       id,
       type,
       props: { text: props.text, language: props.language },
+      children: [],
+      envelope: null,
+    }
+  }
+  if (type === "button_group_separator") {
+    if (
+      parentType !== "button_group" ||
+      value.children.length !== 0 ||
+      (props.orientation !== "horizontal" &&
+        props.orientation !== "vertical")
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: { orientation: props.orientation },
+      children: [],
+      envelope: null,
+    }
+  }
+  if (
+    type === "button_group_text" ||
+    type === "empty_title" ||
+    type === "empty_description"
+  ) {
+    const expectedParent =
+      type === "button_group_text" ? "button_group" : "empty_header"
+    if (
+      parentType !== expectedParent ||
+      value.children.length !== 0 ||
+      !isBoundedText(props.text)
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: { text: props.text },
+      children: [],
+      envelope: null,
+    }
+  }
+  if (type === "dialog_close_button") {
+    if (
+      parentType !== "dialog_footer" ||
+      value.children.length !== 0 ||
+      !isBoundedText(props.text) ||
+      typeof props.disabled !== "boolean" ||
+      typeof props.loading !== "boolean" ||
+      typeof props.size !== "string" ||
+      !BUTTON_SIZES.has(props.size as ButtonSize) ||
+      typeof props.variant !== "string" ||
+      !BUTTON_VARIANTS.has(props.variant as ButtonVariant)
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: {
+        disabled: props.disabled,
+        loading: props.loading,
+        size: props.size as ButtonSize,
+        text: props.text,
+        variant: props.variant as ButtonVariant,
+      },
+      children: [],
+      envelope: null,
+    }
+  }
+  if (type === "field_separator") {
+    if (
+      (parentType !== "field_group" && parentType !== "field_set") ||
+      value.children.length !== 0 ||
+      !isNullableBoundedText(props.text)
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: { text: props.text },
+      children: [],
+      envelope: null,
+    }
+  }
+  if (type === "spinner") {
+    if (
+      value.children.length !== 0 ||
+      !isBoundedText(props.label)
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: { label: props.label },
       children: [],
       envelope: null,
     }
@@ -2550,6 +2950,259 @@ function parseElementsNode(
       envelope: null,
     }
   }
+  const childKind = (child: ElementsNode) =>
+    child.type === "leaf" ? child.envelope.kind : child.type
+  const childKinds = parsedChildren.map(childKind)
+  if (type === "button_group") {
+    if (
+      !isBoundedText(props.label) ||
+      (props.orientation !== "horizontal" &&
+        props.orientation !== "vertical") ||
+      childKinds.some(
+        (kind) =>
+          kind !== "button" &&
+          kind !== "button_group" &&
+          kind !== "button_group_separator" &&
+          kind !== "button_group_text"
+      )
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: {
+        label: props.label,
+        orientation: props.orientation,
+      },
+      children: parsedChildren,
+      envelope: null,
+    }
+  }
+  if (type === "dialog") {
+    if (
+      !isBoundedText(props.title) ||
+      !isNullableBoundedText(props.description) ||
+      !isBoundedText(props.triggerLabel) ||
+      typeof props.disabled !== "boolean" ||
+      typeof props.showCloseButton !== "boolean" ||
+      typeof props.triggerSize !== "string" ||
+      !BUTTON_SIZES.has(props.triggerSize as ButtonSize) ||
+      typeof props.triggerVariant !== "string" ||
+      !BUTTON_VARIANTS.has(props.triggerVariant as ButtonVariant) ||
+      childKinds.filter((kind) => kind === "dialog_footer").length > 1
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: {
+        description: props.description,
+        disabled: props.disabled,
+        showCloseButton: props.showCloseButton,
+        title: props.title,
+        triggerLabel: props.triggerLabel,
+        triggerSize: props.triggerSize as ButtonSize,
+        triggerVariant: props.triggerVariant as ButtonVariant,
+      },
+      children: parsedChildren,
+      envelope: null,
+    }
+  }
+  if (type === "dialog_footer") {
+    if (
+      parentType !== "dialog" ||
+      Object.keys(props).length !== 0 ||
+      childKinds.some(
+        (kind) =>
+          kind !== "button" &&
+          kind !== "dialog_close_button" &&
+          kind !== "link_button"
+      )
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: {},
+      children: parsedChildren,
+      envelope: null,
+    }
+  }
+  if (type === "empty") {
+    if (
+      Object.keys(props).length !== 0 ||
+      childKinds.some(
+        (kind) => kind !== "empty_header" && kind !== "empty_content"
+      ) ||
+      new Set(childKinds).size !== childKinds.length
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: {},
+      children: parsedChildren,
+      envelope: null,
+    }
+  }
+  if (type === "empty_header") {
+    if (
+      parentType !== "empty" ||
+      Object.keys(props).length !== 0 ||
+      childKinds.some(
+        (kind) =>
+          kind !== "empty_media" &&
+          kind !== "empty_title" &&
+          kind !== "empty_description"
+      ) ||
+      new Set(childKinds).size !== childKinds.length
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: {},
+      children: parsedChildren,
+      envelope: null,
+    }
+  }
+  if (type === "empty_media") {
+    if (
+      parentType !== "empty_header" ||
+      (props.variant !== "default" && props.variant !== "icon")
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: { variant: props.variant },
+      children: parsedChildren,
+      envelope: null,
+    }
+  }
+  if (type === "empty_content") {
+    if (parentType !== "empty" || Object.keys(props).length !== 0) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: {},
+      children: parsedChildren,
+      envelope: null,
+    }
+  }
+  if (type === "field_set") {
+    if (
+      !isBoundedText(props.legend) ||
+      !isNullableBoundedText(props.description) ||
+      (props.legendVariant !== "legend" &&
+        props.legendVariant !== "label") ||
+      childKinds.some(
+        (kind) =>
+          kind !== "field" &&
+          kind !== "field_group" &&
+          kind !== "field_separator"
+      )
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: {
+        description: props.description,
+        legend: props.legend,
+        legendVariant: props.legendVariant,
+      },
+      children: parsedChildren,
+      envelope: null,
+    }
+  }
+  if (type === "field_group") {
+    if (
+      Object.keys(props).length !== 0 ||
+      childKinds.some(
+        (kind) =>
+          kind !== "field" &&
+          kind !== "field_group" &&
+          kind !== "field_separator"
+      )
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: {},
+      children: parsedChildren,
+      envelope: null,
+    }
+  }
+  if (type === "field") {
+    const supportedControls = new Set([
+      "checkbox",
+      "combobox",
+      "input",
+      "input_group",
+      "select",
+      "switch",
+      "textarea",
+    ])
+    if (
+      !isBoundedText(props.label) ||
+      !isNullableBoundedText(props.description) ||
+      !isNullableBoundedText(props.error) ||
+      (props.orientation !== "vertical" &&
+        props.orientation !== "horizontal" &&
+        props.orientation !== "responsive") ||
+      parsedChildren.length !== 1 ||
+      !supportedControls.has(childKinds[0]!)
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: {
+        description: props.description,
+        error: props.error,
+        label: props.label,
+        orientation: props.orientation,
+      },
+      children: parsedChildren,
+      envelope: null,
+    }
+  }
+  if (type === "tooltip") {
+    if (
+      !isBoundedText(props.content) ||
+      (props.side !== "top" &&
+        props.side !== "right" &&
+        props.side !== "bottom" &&
+        props.side !== "left") ||
+      parsedChildren.length !== 1 ||
+      (childKinds[0] !== "button" && childKinds[0] !== "link_button")
+    ) {
+      return null
+    }
+    return {
+      id,
+      type,
+      props: {
+        content: props.content,
+        side: props.side,
+      },
+      children: parsedChildren,
+      envelope: null,
+    }
+  }
   return null
 }
 
@@ -2616,6 +3269,8 @@ function parseKnownEnvelope(
       return parseElements(value)
     case "select":
       return parseSelect(value)
+    case "combobox":
+      return parseCombobox(value)
     case "dropdown_menu":
       return parseDropdownMenu(value)
     case "checkbox":
@@ -2650,6 +3305,8 @@ function parseKnownEnvelope(
       return parseLinkButton(value)
     case "input":
       return parseInput(value)
+    case "input_group":
+      return parseInputGroup(value)
     case "number_input":
       return parseNumberInput(value)
     case "textarea":

@@ -7,7 +7,7 @@ from .._protocol import (
     validate_text,
 )
 from .._streamlit_compat import fail_if_trigger_in_form
-from ._common import boolean, enum_value, mount_trigger
+from ._common import boolean, enum_value, mount_trigger, optional_text
 
 _BUTTON_VARIANTS = {
     "default",
@@ -36,6 +36,8 @@ def button(
     variant: str = "default",
     size: str = "default",
     disabled: bool = False,
+    loading: bool = False,
+    help: Optional[str] = None,
     on_click: Optional[Callable[[], None]] = None,
     width: Union[str, int] = "content",
 ) -> bool:
@@ -50,6 +52,8 @@ def button(
         kind="button",
         props={
             "disabled": boolean(disabled, "disabled"),
+            "help": optional_text(help, "help"),
+            "loading": boolean(loading, "loading"),
             "text": label,
             "variant": variant,
             "size": size,

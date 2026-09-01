@@ -73,11 +73,13 @@ class PublicApiContractTests(unittest.TestCase):
                 "card",
                 "checkbox",
                 "collapsible",
+                "combobox",
                 "date_picker",
                 "dropdown_menu",
                 "elements",
                 "hover_card",
                 "input",
+                "input_group",
                 "input_otp",
                 "link_button",
                 "metric_card",
@@ -108,8 +110,40 @@ class PublicApiContractTests(unittest.TestCase):
                 ("variant", "default"),
                 ("size", "default"),
                 ("disabled", False),
+                ("loading", False),
+                ("help", None),
                 ("on_click", None),
                 ("width", "content"),
+            ],
+            "combobox": [
+                ("label", inspect.Parameter.empty),
+                ("options", inspect.Parameter.empty),
+                ("value", None),
+                ("format_func", str),
+                ("key", None),
+                ("placeholder", "Select an option"),
+                ("empty_message", "No options found."),
+                ("selection_mode", "single"),
+                ("clearable", True),
+                ("disabled", False),
+                ("on_change", None),
+                ("width", "stretch"),
+            ],
+            "input_group": [
+                ("label", inspect.Parameter.empty),
+                ("value", ""),
+                ("key", None),
+                ("type", "text"),
+                ("placeholder", None),
+                ("prefix", None),
+                ("suffix", None),
+                ("start_icon", None),
+                ("clearable", False),
+                ("copyable", False),
+                ("disabled", False),
+                ("max_length", None),
+                ("on_change", None),
+                ("width", "stretch"),
             ],
             "checkbox": [
                 ("label", inspect.Parameter.empty),
@@ -265,14 +299,138 @@ class PublicApiContractTests(unittest.TestCase):
                 captured.update(kwargs) or {"click": True}
             ),
         ):
-            clicked = public_api.button("Run", key="run")
+            clicked = public_api.button(
+                "Run",
+                key="run",
+                loading=True,
+                help="Starts the job",
+            )
 
         self.assertIs(clicked, True)
         self.assertEqual(
             captured["default"],
             {"meta": {"protocolVersion": 1, "kind": "button"}},
         )
+        self.assertTrue(captured["data"]["props"]["loading"])
+        self.assertEqual(captured["data"]["props"]["help"], "Starts the job")
         self.assertEqual(set(captured["callbacks"]), {"on_click_change"})
+
+    def test_combobox_preserves_python_values_in_both_selection_modes(
+        self,
+    ) -> None:
+        alpha = {"id": 1, "name": "Alpha"}
+        beta = {"id": 2, "name": "Beta"}
+        captured = []
+
+        with patch.object(
+            common_module,
+            "mount",
+            side_effect=lambda **kwargs: captured.append(kwargs),
+        ):
+            single = public_api.combobox(
+                "Release",
+                [alpha, beta],
+                value=beta,
+                format_func=lambda item: item["name"],
+                key="single-release",
+            )
+            multiple = public_api.combobox(
+                "Releases",
+                [alpha, beta],
+                value=[beta, alpha],
+                format_func=lambda item: item["name"],
+                key="multiple-releases",
+                selection_mode="multiple",
+            )
+
+        self.assertIs(single, beta)
+        self.assertEqual(multiple, [beta, alpha])
+        self.assertEqual(
+            [call["data"]["kind"] for call in captured],
+            ["combobox", "combobox"],
+        )
+        self.assertEqual(
+            captured[1]["data"]["props"]["selectionMode"],
+            "multiple",
+        )
+        self.assertEqual(
+            captured[1]["default"]["state"]["value"],
+            [
+                captured[1]["data"]["props"]["options"][1]["value"],
+                captured[1]["data"]["props"]["options"][0]["value"],
+            ],
+        )
+
+    def test_combobox_rejects_ambiguous_defaults_and_malformed_state(
+        self,
+    ) -> None:
+        with self.assertRaisesRegex(TypeError, "sequence"):
+            public_api.combobox(
+                "Tags",
+                ["one"],
+                value="one",
+                selection_mode="multiple",
+            )
+        with self.assertRaisesRegex(ValueError, "unique"):
+            public_api.combobox(
+                "Tags",
+                ["one"],
+                value=["one", "one"],
+                selection_mode="multiple",
+            )
+
+        _, _, _, validator = importlib.import_module(
+            "streamlit_shadcn_ui.v2.widgets.combobox"
+        )._combobox_config(["one"], None, str, "multiple")
+        self.assertFalse(validator([{"forged": True}]))
+        self.assertFalse(validator(["forged"]))
+
+    def test_input_group_serializes_supported_addons_and_state(self) -> None:
+        captured = {}
+        with patch.object(
+            common_module,
+            "mount",
+            side_effect=lambda **kwargs: captured.update(kwargs),
+        ):
+            value = public_api.input_group(
+                "Website",
+                "example.com",
+                key="website",
+                type="url",
+                prefix="https://",
+                suffix="verified",
+                start_icon="link",
+                clearable=True,
+                copyable=True,
+                max_length=64,
+            )
+
+        self.assertEqual(value, "example.com")
+        self.assertEqual(captured["data"]["kind"], "input_group")
+        self.assertEqual(
+            captured["data"]["props"],
+            {
+                "clearable": True,
+                "copyable": True,
+                "disabled": False,
+                "label": "Website",
+                "maxLength": 64,
+                "placeholder": "",
+                "prefix": "https://",
+                "startIcon": "link",
+                "suffix": "verified",
+                "type": "url",
+            },
+        )
+        self.assertEqual(captured["default"]["state"]["value"], "example.com")
+
+    def test_input_group_rejects_unknown_addons_and_utf16_overflow(
+        self,
+    ) -> None:
+        with self.assertRaisesRegex(ValueError, "start_icon"):
+            public_api.input_group("Search", start_icon="sparkles")
+        with self.assertRaisesRegex(ValueError, "max_length"):
+            public_api.input_group("Emoji", "😀", max_length=1)
 
     def test_dropdown_returns_only_a_valid_transient_action(self) -> None:
         with patch.object(

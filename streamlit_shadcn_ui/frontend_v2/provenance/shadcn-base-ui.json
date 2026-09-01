@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-07-31T07:12:23.013Z",
+  "capturedAt": "2026-09-01T08:33:39.306Z",
   "generator": {
     "name": "shadcn",
     "version": "4.16.0",
@@ -64,6 +64,11 @@
       "sha256": "434eb70c9158f687770752468a88fd9e164417620ab7047da10d06fe923a04bc",
       "primitive": "base-ui"
     },
+    "button-group": {
+      "url": "https://ui.shadcn.com/r/styles/base-nova/button-group.json",
+      "sha256": "eac578d3cd7973016e0600c7605555a8fa70b2f2acf470b472867b567e6648ae",
+      "primitive": "base-ui"
+    },
     "calendar": {
       "url": "https://ui.shadcn.com/r/styles/base-nova/calendar.json",
       "sha256": "c54f51b2d6fbe894200a424107eba58b5e37ff380adb9fed6dde7111487c96aa",
@@ -84,10 +89,30 @@
       "sha256": "74f78cd88a30185243847968977cf1de9ffbf576547f2ec1f14b5ef55505b90d",
       "primitive": "base-ui"
     },
+    "combobox": {
+      "url": "https://ui.shadcn.com/r/styles/base-nova/combobox.json",
+      "sha256": "aa9233050ea97499948cfbd50fddcc3215710607f0f36924c651931440e6e209",
+      "primitive": "base-ui"
+    },
+    "dialog": {
+      "url": "https://ui.shadcn.com/r/styles/base-nova/dialog.json",
+      "sha256": "99e9d7851f7d00fa85cd66157dd6ee3d6759f149a0a2b850d837407fba61648f",
+      "primitive": "base-ui"
+    },
     "dropdown-menu": {
       "url": "https://ui.shadcn.com/r/styles/base-nova/dropdown-menu.json",
       "sha256": "0a7909c9c8ce8dcbcfb4b355071daad0aae56cf31dfde808253309346e5fdd64",
       "primitive": "base-ui"
+    },
+    "empty": {
+      "url": "https://ui.shadcn.com/r/styles/base-nova/empty.json",
+      "sha256": "110bd02e9f757f2d876c7209376faa05c7645c5f41275d516576ae782142542f",
+      "primitive": "react"
+    },
+    "field": {
+      "url": "https://ui.shadcn.com/r/styles/base-nova/field.json",
+      "sha256": "6f095d4fe9f81a42149a6982e54b6e550d9b9dc890e5d17688471f9cd8497f43",
+      "primitive": "react"
     },
     "hover-card": {
       "url": "https://ui.shadcn.com/r/styles/base-nova/hover-card.json",
@@ -99,9 +124,19 @@
       "sha256": "00e3d8e2bbf597b632bafde6cc1b6006d2f759b9083b32bfd024f0b2edeb2fc1",
       "primitive": "base-ui"
     },
+    "input-group": {
+      "url": "https://ui.shadcn.com/r/styles/base-nova/input-group.json",
+      "sha256": "2dd738138ad08fd8ac7e44d10a1db0078142c6354ef41ebe0880fb40936559c1",
+      "primitive": "react"
+    },
     "input-otp": {
       "url": "https://ui.shadcn.com/r/styles/base-nova/input-otp.json",
       "sha256": "06014de9816bc5e6836bdb180a4f75763281fa62d560a587f69d64ff9d540ef7",
+      "primitive": "react"
+    },
+    "label": {
+      "url": "https://ui.shadcn.com/r/styles/base-nova/label.json",
+      "sha256": "5fb122b9665fa5c68e900b07d88d167a43eb1af5d751654dc8d8ba2313073af9",
       "primitive": "react"
     },
     "pagination": {
@@ -149,6 +184,11 @@
       "sha256": "d334fd798f85e866228f74550a7c315071f8346db1fe442aca2a9ec4d12b63bd",
       "primitive": "base-ui"
     },
+    "spinner": {
+      "url": "https://ui.shadcn.com/r/styles/base-nova/spinner.json",
+      "sha256": "f969d7c19667752d1696767ea2e823766825e705351b93d8ad018cd556b1d17f",
+      "primitive": "react"
+    },
     "switch": {
       "url": "https://ui.shadcn.com/r/styles/base-nova/switch.json",
       "sha256": "954741233ca5c0eac9eb42e3928c4e8087846e71d2b0b781e65ca072767456fb",
@@ -178,7 +218,12 @@
       "url": "https://ui.shadcn.com/r/styles/base-nova/toggle-group.json",
       "sha256": "de923fb386aefd1829ae22586413fa35436181acc65af9a06c1608935c69b5a4",
       "primitive": "base-ui"
+    },
+    "tooltip": {
+      "url": "https://ui.shadcn.com/r/styles/base-nova/tooltip.json",
+      "sha256": "8a3be42a6400f31a8631a03b76c5221b1f4ce3d667b1e7a6ad51cdf6a89e00b6",
+      "primitive": "base-ui"
     }
   },
-  "snapshotRevision": 5
+  "snapshotRevision": 7
 }

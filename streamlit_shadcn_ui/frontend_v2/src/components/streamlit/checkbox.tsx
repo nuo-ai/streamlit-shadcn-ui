@@ -1,6 +1,7 @@
 import { useId } from "react"
 
 import { Checkbox } from "@/components/ui/checkbox"
+import { Field, FieldLabel } from "@/components/ui/field"
 import { useRevisionedState } from "@/protocol/reconciliation"
 import type { CheckboxEnvelope } from "@/protocol/schema"
 import type { V2RendererArgs } from "@/app"
@@ -10,36 +11,53 @@ type CheckboxViewProps = {
   setStateValue: V2RendererArgs["setStateValue"]
 }
 
+export type CheckboxControlProps = CheckboxViewProps & {
+  controlId: string
+  describedBy?: string
+  invalid?: boolean
+}
+
+export function CheckboxControl({
+  controlId,
+  describedBy,
+  envelope,
+  invalid = false,
+  setStateValue,
+}: CheckboxControlProps) {
+  const { commit, state } = useRevisionedState(
+    envelope.state,
+    setStateValue
+  )
+  return (
+    <Checkbox
+      aria-describedby={describedBy}
+      aria-invalid={invalid || undefined}
+      checked={state.value}
+      disabled={envelope.props.disabled}
+      id={controlId}
+      onCheckedChange={(checked) => commit(checked)}
+    />
+  )
+}
+
 export function CheckboxView({
   envelope,
   setStateValue,
 }: CheckboxViewProps) {
   const checkboxId = useId()
-  const { commit, state } = useRevisionedState(
-    envelope.state,
-    setStateValue
-  )
-
   return (
-    <div
-      className="flex min-h-8 items-center gap-2.5 p-px"
+    <Field
+      data-disabled={envelope.props.disabled || undefined}
       data-ssui-component="checkbox"
       data-testid="ssui-v2-checkbox"
+      orientation="horizontal"
     >
-      <Checkbox
-        checked={state.value}
-        disabled={envelope.props.disabled}
-        id={checkboxId}
-        onCheckedChange={(checked) => {
-          commit(checked)
-        }}
+      <CheckboxControl
+        controlId={checkboxId}
+        envelope={envelope}
+        setStateValue={setStateValue}
       />
-      <label
-        className="cursor-default text-sm font-medium leading-none"
-        htmlFor={checkboxId}
-      >
-        {envelope.props.label}
-      </label>
-    </div>
+      <FieldLabel htmlFor={checkboxId}>{envelope.props.label}</FieldLabel>
+    </Field>
   )
 }

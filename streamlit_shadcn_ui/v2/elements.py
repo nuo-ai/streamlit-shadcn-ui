@@ -43,6 +43,8 @@ from .widgets._common import (
     utf16_length,
 )
 from .widgets.number_input import _number_input_config
+from .widgets.combobox import _combobox_config
+from .widgets.input_group import _input_group_props
 
 
 T = TypeVar("T")
@@ -85,6 +87,15 @@ _MAX_NODES = 1_000
 _MAX_DEPTH = 32
 _MAX_NODE_ID_LENGTH = 512
 _CARD_SLOTS = {"card_header", "card_content", "card_footer"}
+_FIELD_CONTROLS = {
+    "checkbox",
+    "combobox",
+    "input",
+    "input_group",
+    "select",
+    "switch",
+    "textarea",
+}
 
 
 @dataclass(frozen=True)
@@ -282,6 +293,287 @@ class ElementsBuilder:
         self._require_parent("card", "card_footer")
         return self._container("card_footer", key, {})
 
+    def button_group(
+        self,
+        label: str,
+        *,
+        key: Optional[str] = None,
+        orientation: str = "horizontal",
+    ) -> _ContainerContext:
+        return self._container(
+            "button_group",
+            key,
+            {
+                "label": validate_text(label, "label"),
+                "orientation": enum_value(
+                    orientation,
+                    {"horizontal", "vertical"},
+                    "orientation",
+                ),
+            },
+        )
+
+    def button_group_separator(
+        self,
+        *,
+        key: Optional[str] = None,
+        orientation: str = "vertical",
+    ) -> None:
+        self._require_parent("button_group", "button_group_separator")
+        self._leaf(
+            "button_group_separator",
+            key,
+            {
+                "orientation": enum_value(
+                    orientation,
+                    {"horizontal", "vertical"},
+                    "orientation",
+                )
+            },
+        )
+
+    def button_group_text(
+        self,
+        value: str,
+        *,
+        key: Optional[str] = None,
+    ) -> None:
+        self._require_parent("button_group", "button_group_text")
+        self._leaf(
+            "button_group_text",
+            key,
+            {"text": validate_text(value, "value")},
+        )
+
+    def dialog(
+        self,
+        title: str,
+        *,
+        key: Optional[str] = None,
+        description: Optional[str] = None,
+        trigger_label: str = "Open dialog",
+        trigger_variant: str = "outline",
+        trigger_size: str = "default",
+        disabled: bool = False,
+        show_close_button: bool = True,
+    ) -> _ContainerContext:
+        return self._container(
+            "dialog",
+            key,
+            {
+                "description": (
+                    None
+                    if description is None
+                    else validate_text(description, "description")
+                ),
+                "disabled": boolean(disabled, "disabled"),
+                "showCloseButton": boolean(
+                    show_close_button,
+                    "show_close_button",
+                ),
+                "title": validate_text(title, "title"),
+                "triggerLabel": validate_text(
+                    trigger_label,
+                    "trigger_label",
+                ),
+                "triggerSize": enum_value(
+                    trigger_size,
+                    _BUTTON_SIZES,
+                    "trigger_size",
+                ),
+                "triggerVariant": enum_value(
+                    trigger_variant,
+                    _BUTTON_VARIANTS,
+                    "trigger_variant",
+                ),
+            },
+        )
+
+    def dialog_footer(self, *, key: Optional[str] = None) -> _ContainerContext:
+        self._require_parent("dialog", "dialog_footer")
+        return self._container("dialog_footer", key, {})
+
+    def dialog_close_button(
+        self,
+        label: str,
+        *,
+        key: str,
+        variant: str = "outline",
+        size: str = "default",
+        disabled: bool = False,
+        loading: bool = False,
+        on_click: Optional[ElementCallback] = None,
+    ) -> ElementHandle[None]:
+        self._require_parent("dialog_footer", "dialog_close_button")
+        node = self._leaf(
+            "dialog_close_button",
+            key,
+            {
+                "disabled": boolean(disabled, "disabled"),
+                "loading": boolean(loading, "loading"),
+                "size": enum_value(size, _BUTTON_SIZES, "size"),
+                "text": validate_text(label, "label"),
+                "variant": enum_value(
+                    variant,
+                    _BUTTON_VARIANTS,
+                    "variant",
+                ),
+            },
+            require_key=True,
+        )
+        return self._register_action(node, key, on_click)
+
+    def empty(self, *, key: Optional[str] = None) -> _ContainerContext:
+        return self._container("empty", key, {})
+
+    def empty_header(self, *, key: Optional[str] = None) -> _ContainerContext:
+        self._require_parent("empty", "empty_header")
+        return self._container("empty_header", key, {})
+
+    def empty_media(
+        self,
+        *,
+        key: Optional[str] = None,
+        variant: str = "default",
+    ) -> _ContainerContext:
+        self._require_parent("empty_header", "empty_media")
+        return self._container(
+            "empty_media",
+            key,
+            {"variant": enum_value(variant, {"default", "icon"}, "variant")},
+        )
+
+    def empty_title(
+        self,
+        value: str,
+        *,
+        key: Optional[str] = None,
+    ) -> None:
+        self._require_parent("empty_header", "empty_title")
+        self._leaf(
+            "empty_title",
+            key,
+            {"text": validate_text(value, "value")},
+        )
+
+    def empty_description(
+        self,
+        value: str,
+        *,
+        key: Optional[str] = None,
+    ) -> None:
+        self._require_parent("empty_header", "empty_description")
+        self._leaf(
+            "empty_description",
+            key,
+            {"text": validate_text(value, "value")},
+        )
+
+    def empty_content(self, *, key: Optional[str] = None) -> _ContainerContext:
+        self._require_parent("empty", "empty_content")
+        return self._container("empty_content", key, {})
+
+    def field_set(
+        self,
+        legend: str,
+        *,
+        key: Optional[str] = None,
+        description: Optional[str] = None,
+        legend_variant: str = "legend",
+    ) -> _ContainerContext:
+        return self._container(
+            "field_set",
+            key,
+            {
+                "description": (
+                    None
+                    if description is None
+                    else validate_text(description, "description")
+                ),
+                "legend": validate_text(legend, "legend"),
+                "legendVariant": enum_value(
+                    legend_variant,
+                    {"legend", "label"},
+                    "legend_variant",
+                ),
+            },
+        )
+
+    def field_group(self, *, key: Optional[str] = None) -> _ContainerContext:
+        return self._container("field_group", key, {})
+
+    def field(
+        self,
+        label: str,
+        *,
+        key: Optional[str] = None,
+        description: Optional[str] = None,
+        error: Optional[str] = None,
+        orientation: str = "vertical",
+    ) -> _ContainerContext:
+        return self._container(
+            "field",
+            key,
+            {
+                "description": (
+                    None
+                    if description is None
+                    else validate_text(description, "description")
+                ),
+                "error": (
+                    None if error is None else validate_text(error, "error")
+                ),
+                "label": validate_text(label, "label"),
+                "orientation": enum_value(
+                    orientation,
+                    {"vertical", "horizontal", "responsive"},
+                    "orientation",
+                ),
+            },
+        )
+
+    def field_separator(
+        self,
+        value: Optional[str] = None,
+        *,
+        key: Optional[str] = None,
+    ) -> None:
+        parent = self._frames[-1].node
+        if parent is None or parent.node_type not in {"field_group", "field_set"}:
+            raise RuntimeError(
+                "field_separator must be an immediate child of field_group "
+                "or field_set."
+            )
+        self._leaf(
+            "field_separator",
+            key,
+            {
+                "text": (
+                    None if value is None else validate_text(value, "value")
+                )
+            },
+        )
+
+    def tooltip(
+        self,
+        content: str,
+        *,
+        key: Optional[str] = None,
+        side: str = "top",
+    ) -> _ContainerContext:
+        return self._container(
+            "tooltip",
+            key,
+            {
+                "content": validate_text(content, "content"),
+                "side": enum_value(
+                    side,
+                    {"top", "right", "bottom", "left"},
+                    "side",
+                ),
+            },
+        )
+
     def text(
         self,
         value: str,
@@ -400,6 +692,18 @@ class ElementsBuilder:
                 ),
                 "showValue": boolean(show_value, "show_value"),
             },
+        )
+
+    def spinner(
+        self,
+        *,
+        key: Optional[str] = None,
+        label: str = "Loading",
+    ) -> None:
+        self._leaf(
+            "spinner",
+            key,
+            {"label": validate_text(label, "label")},
         )
 
     def image(
@@ -811,6 +1115,115 @@ class ElementsBuilder:
             on_change,
         )
 
+    def combobox(
+        self,
+        label: str,
+        options: Sequence[T],
+        *,
+        key: str,
+        value: Any = None,
+        format_func: Callable[[T], str] = str,
+        placeholder: str = "Select an option",
+        empty_message: str = "No options found.",
+        selection_mode: str = "single",
+        clearable: bool = True,
+        disabled: bool = False,
+        on_change: Optional[ElementCallback] = None,
+    ) -> ElementHandle[Any]:
+        mode = enum_value(
+            selection_mode,
+            {"single", "multiple"},
+            "selection_mode",
+        )
+        choices, values_by_token, initial, validator = _combobox_config(
+            options,
+            value,
+            format_func,
+            mode,
+        )
+
+        def decode(candidate: Any) -> Any:
+            if mode == "single":
+                return (
+                    None
+                    if candidate is None
+                    else values_by_token[candidate]
+                )
+            return [values_by_token[token] for token in candidate]
+
+        return self._stateful_leaf(
+            "combobox",
+            key,
+            initial,
+            validator,
+            decode,
+            {
+                "clearable": boolean(clearable, "clearable"),
+                "disabled": boolean(disabled, "disabled"),
+                "emptyMessage": validate_text(
+                    empty_message,
+                    "empty_message",
+                ),
+                "label": validate_text(label, "label"),
+                "options": choices,
+                "placeholder": validate_text(
+                    placeholder,
+                    "placeholder",
+                ),
+                "selectionMode": mode,
+            },
+            on_change,
+        )
+
+    def input_group(
+        self,
+        label: str,
+        value: str = "",
+        *,
+        key: str,
+        type: str = "text",
+        placeholder: Optional[str] = None,
+        prefix: Optional[str] = None,
+        suffix: Optional[str] = None,
+        start_icon: Optional[str] = None,
+        clearable: bool = False,
+        copyable: bool = False,
+        disabled: bool = False,
+        max_length: Optional[int] = None,
+        on_change: Optional[ElementCallback] = None,
+    ) -> ElementHandle[str]:
+        value = validate_text(value, "value")
+        props = _input_group_props(
+            label,
+            type=type,
+            placeholder=placeholder,
+            prefix=prefix,
+            suffix=suffix,
+            start_icon=start_icon,
+            clearable=clearable,
+            copyable=copyable,
+            disabled=disabled,
+            max_length=max_length,
+        )
+        if max_length is not None and utf16_length(value) > max_length:
+            raise ValueError("value exceeds max_length.")
+        return self._stateful_leaf(
+            "input_group",
+            key,
+            value,
+            lambda candidate: (
+                isinstance(candidate, str)
+                and len(candidate.encode("utf-8")) <= 16 * 1024
+                and (
+                    max_length is None
+                    or utf16_length(candidate) <= max_length
+                )
+            ),
+            str,
+            props,
+            on_change,
+        )
+
     def button(
         self,
         label: str,
@@ -820,6 +1233,8 @@ class ElementsBuilder:
         size: str = "default",
         disabled: bool = False,
         stretch: bool = False,
+        loading: bool = False,
+        help: Optional[str] = None,
         on_click: Optional[ElementCallback] = None,
     ) -> ElementHandle[None]:
         node = self._leaf(
@@ -827,6 +1242,10 @@ class ElementsBuilder:
             key,
             {
                 "disabled": boolean(disabled, "disabled"),
+                "help": (
+                    None if help is None else validate_text(help, "help")
+                ),
+                "loading": boolean(loading, "loading"),
                 "text": validate_text(label, "label"),
                 "variant": enum_value(
                     variant,
@@ -838,6 +1257,14 @@ class ElementsBuilder:
             },
             require_key=True,
         )
+        return self._register_action(node, key, on_click)
+
+    def _register_action(
+        self,
+        node: _Node,
+        key: str,
+        on_click: Optional[ElementCallback],
+    ) -> ElementHandle[None]:
         handle: ElementHandle[None] = ElementHandle(
             key=key,
             node_id=node.node_id,
@@ -1013,7 +1440,113 @@ class ElementsBuilder:
         if not callable(callback):
             raise TypeError("%s must be callable or None." % field)
 
+    def _validate_tree_composition(self) -> None:
+        def validate(node: _Node, parent: Optional[_Node]) -> None:
+            child_types = [child.node_type for child in node.children]
+            if node.node_type == "button_group" and any(
+                child_type
+                not in {
+                    "button",
+                    "button_group",
+                    "button_group_separator",
+                    "button_group_text",
+                }
+                for child_type in child_types
+            ):
+                raise RuntimeError(
+                    "button_group children must be buttons, nested button "
+                    "groups, separators, or text."
+                )
+            if node.node_type == "tooltip" and (
+                len(node.children) != 1
+                or child_types[0] not in {"button", "link_button"}
+            ):
+                raise RuntimeError(
+                    "tooltip must contain exactly one button or link_button."
+                )
+            if node.node_type == "field" and (
+                len(node.children) != 1
+                or child_types[0] not in _FIELD_CONTROLS
+            ):
+                raise RuntimeError(
+                    "field must contain exactly one supported input control."
+                )
+            if node.node_type == "dialog":
+                if child_types.count("dialog_footer") > 1:
+                    raise RuntimeError("dialog cannot contain two footers.")
+            if node.node_type == "dialog_footer" and any(
+                child_type
+                not in {"button", "dialog_close_button", "link_button"}
+                for child_type in child_types
+            ):
+                raise RuntimeError(
+                    "dialog_footer children must be buttons or link buttons."
+                )
+            if node.node_type == "empty" and (
+                any(
+                    child_type not in {"empty_header", "empty_content"}
+                    for child_type in child_types
+                )
+                or child_types.count("empty_header") > 1
+                or child_types.count("empty_content") > 1
+            ):
+                raise RuntimeError(
+                    "empty children must use one header and one content slot."
+                )
+            if node.node_type == "empty_header" and (
+                any(
+                    child_type
+                    not in {
+                        "empty_media",
+                        "empty_title",
+                        "empty_description",
+                    }
+                    for child_type in child_types
+                )
+                or len(child_types) != len(set(child_types))
+            ):
+                raise RuntimeError(
+                    "empty_header accepts one media, title, and description."
+                )
+            if node.node_type == "field_set" and any(
+                child_type
+                not in {"field", "field_group", "field_separator"}
+                for child_type in child_types
+            ):
+                raise RuntimeError(
+                    "field_set children must be fields, field groups, or "
+                    "field separators."
+                )
+            if node.node_type == "field_group" and any(
+                child_type not in {"field", "field_group", "field_separator"}
+                for child_type in child_types
+            ):
+                raise RuntimeError(
+                    "field_group children must be fields, nested field groups, "
+                    "or field separators."
+                )
+            if node.node_type in {
+                "button_group_separator",
+                "button_group_text",
+                "dialog_close_button",
+                "empty_description",
+                "empty_title",
+                "field_separator",
+                "spinner",
+            } and node.children:
+                raise RuntimeError("%s cannot contain children." % node.node_type)
+            if node.node_type == "dialog_footer" and (
+                parent is None or parent.node_type != "dialog"
+            ):
+                raise RuntimeError("dialog_footer must belong to dialog.")
+            for child in node.children:
+                validate(child, node)
+
+        for root in self._roots:
+            validate(root, None)
+
     def _render(self) -> None:
+        self._validate_tree_composition()
         mount_key = private_component_key(
             key=self.key,
             kind="elements",

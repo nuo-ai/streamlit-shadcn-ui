@@ -3,7 +3,10 @@ import {
   memo,
   useCallback,
   useEffect,
+  useId,
+  useLayoutEffect,
   useRef,
+  useState,
   type CSSProperties,
   type ReactNode,
 } from "react"
@@ -12,24 +15,84 @@ import type { V2RendererArgs } from "@/app"
 import { AspectRatioView } from "@/components/streamlit/aspect-ratio"
 import { BadgeView } from "@/components/streamlit/badge"
 import { ButtonView } from "@/components/streamlit/button"
+import { ButtonControl } from "@/components/streamlit/button"
 import { CheckboxView } from "@/components/streamlit/checkbox"
+import { CheckboxControl } from "@/components/streamlit/checkbox"
+import {
+  ComboboxControl,
+  ComboboxView,
+} from "@/components/streamlit/combobox"
 import { InputView } from "@/components/streamlit/input"
+import { InputControl } from "@/components/streamlit/input"
+import {
+  InputGroupControl,
+  InputGroupView,
+} from "@/components/streamlit/input-group"
 import { NumberInputView } from "@/components/streamlit/number-input"
 import { LinkButtonView } from "@/components/streamlit/link-button"
+import { LinkButtonControl } from "@/components/streamlit/link-button"
 import { ProgressView } from "@/components/streamlit/progress"
 import { RadioGroupView } from "@/components/streamlit/radio-group"
 import { SelectView } from "@/components/streamlit/select"
+import { SelectControl } from "@/components/streamlit/select"
 import { SeparatorView } from "@/components/streamlit/separator"
 import { SliderView } from "@/components/streamlit/slider"
 import { SwitchView } from "@/components/streamlit/switch"
+import { SwitchControl } from "@/components/streamlit/switch"
 import { TextareaView } from "@/components/streamlit/textarea"
+import { TextareaControl } from "@/components/streamlit/textarea"
+import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+} from "@/components/ui/button-group"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
 } from "@/components/ui/card"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty"
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSeparator,
+  FieldSet,
+} from "@/components/ui/field"
+import { Spinner } from "@/components/ui/spinner"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
+import {
+  preferredReturnFocusElement,
+  useExclusiveModalLayer,
+} from "@/platform/modal-layer"
 import { useRevisionedState } from "@/protocol/reconciliation"
 import type {
   ElementsEnvelope,
@@ -95,18 +158,30 @@ function renderHeading(node: Extract<ElementsNode, { type: "heading" }>) {
   }
 }
 
+type SetNodeState = (
+  nodeId: string,
+  name: string,
+  value: unknown
+) => void
+
+type EnqueueEvent = (
+  nodeId: string,
+  type: string,
+  payload: unknown
+) => void
+
+type FieldBinding = {
+  controlId: string
+  describedBy?: string
+  invalid: boolean
+}
+
 function renderLeaf(
   node: ElementsLeafNode,
-  setNodeState: (
-    nodeId: string,
-    name: string,
-    value: unknown
-  ) => void,
-  enqueueEvent: (
-    nodeId: string,
-    type: string,
-    payload: unknown
-  ) => void
+  setNodeState: SetNodeState,
+  enqueueEvent: EnqueueEvent,
+  mode: "default" | "raw" = "default",
+  fieldBinding?: FieldBinding
 ) {
   const setStateValue = ((name: string, value: unknown) => {
     setNodeState(node.id, name, value)
@@ -115,7 +190,61 @@ function renderLeaf(
     enqueueEvent(node.id, name, value)
   }) as V2RendererArgs["setTriggerValue"]
 
+  if (fieldBinding) {
+    const controlProps = {
+      controlId: fieldBinding.controlId,
+      describedBy: fieldBinding.describedBy,
+      envelope: node.envelope,
+      invalid: fieldBinding.invalid,
+      setStateValue,
+    }
+    switch (node.envelope.kind) {
+      case "input":
+        return <InputControl {...controlProps} envelope={node.envelope} />
+      case "input_group":
+        return <InputGroupControl {...controlProps} envelope={node.envelope} />
+      case "textarea":
+        return <TextareaControl {...controlProps} envelope={node.envelope} />
+      case "select":
+        return <SelectControl {...controlProps} envelope={node.envelope} />
+      case "combobox":
+        return <ComboboxControl {...controlProps} envelope={node.envelope} />
+      case "checkbox":
+        return <CheckboxControl {...controlProps} envelope={node.envelope} />
+      case "switch":
+        return <SwitchControl {...controlProps} envelope={node.envelope} />
+    }
+  }
+
+  if (mode === "raw") {
+    switch (node.envelope.kind) {
+      case "button":
+        return (
+          <ButtonControl
+            envelope={node.envelope}
+            onClick={() => setTriggerValue("click", true)}
+          />
+        )
+      case "link_button":
+        return <LinkButtonControl envelope={node.envelope} />
+    }
+  }
+
   switch (node.envelope.kind) {
+    case "combobox":
+      return (
+        <ComboboxView
+          envelope={node.envelope}
+          setStateValue={setStateValue}
+        />
+      )
+    case "input_group":
+      return (
+        <InputGroupView
+          envelope={node.envelope}
+          setStateValue={setStateValue}
+        />
+      )
     case "select":
       return (
         <SelectView
@@ -192,28 +321,295 @@ function renderLeaf(
   }
 }
 
+function nodeDisabled(node: ElementsLeafNode): boolean {
+  const disabled = (node.envelope.props as { disabled?: unknown }).disabled
+  return disabled === true
+}
+
+function FieldNodeView({
+  enqueueEvent,
+  node,
+  setNodeState,
+}: {
+  enqueueEvent: EnqueueEvent
+  node: Extract<ElementsNode, { type: "field" }>
+  setNodeState: SetNodeState
+}) {
+  const controlId = useId()
+  const descriptionId = `${controlId}-description`
+  const errorId = `${controlId}-error`
+  const child = node.children[0]
+  if (!child || child.type !== "leaf") return null
+
+  const invalid = node.props.error !== null
+  const describedBy = [
+    node.props.description !== null ? descriptionId : null,
+    invalid ? errorId : null,
+  ]
+    .filter((value): value is string => value !== null)
+    .join(" ")
+  const control = renderLeaf(
+    child,
+    setNodeState,
+    enqueueEvent,
+    "raw",
+    {
+      controlId,
+      describedBy: describedBy || undefined,
+      invalid,
+    }
+  )
+  const details = (
+    <>
+      {node.props.description !== null && (
+        <FieldDescription id={descriptionId}>
+          {node.props.description}
+        </FieldDescription>
+      )}
+      {node.props.error !== null && (
+        <FieldError id={errorId}>{node.props.error}</FieldError>
+      )}
+    </>
+  )
+  const choiceControl =
+    child.envelope.kind === "checkbox" || child.envelope.kind === "switch"
+
+  return (
+    <Field
+      data-disabled={nodeDisabled(child) || undefined}
+      data-invalid={invalid || undefined}
+      data-ssui-component="field"
+      data-testid="ssui-v2-field"
+      orientation={node.props.orientation}
+    >
+      {choiceControl ? (
+        <>
+          {control}
+          <FieldContent>
+            <FieldLabel htmlFor={controlId}>{node.props.label}</FieldLabel>
+            {details}
+          </FieldContent>
+        </>
+      ) : (
+        <>
+          <FieldLabel htmlFor={controlId}>{node.props.label}</FieldLabel>
+          {control}
+          {details}
+        </>
+      )}
+    </Field>
+  )
+}
+
+function DialogNodeView({
+  enqueueEvent,
+  node,
+  setNodeState,
+}: {
+  enqueueEvent: EnqueueEvent
+  node: Extract<ElementsNode, { type: "dialog" }>
+  setNodeState: SetNodeState
+}) {
+  const [requested, setRequested] = useState(false)
+  const modalBoundary = useRef<HTMLDivElement>(null)
+  const returnFocus = useRef<HTMLElement | null>(null)
+
+  useLayoutEffect(() => {
+    if (requested) returnFocus.current = preferredReturnFocusElement()
+  }, [requested])
+
+  const active = useExclusiveModalLayer(requested, modalBoundary)
+  const footer = node.children.find((child) => child.type === "dialog_footer")
+  const body = node.children.filter((child) => child.type !== "dialog_footer")
+
+  return (
+    <div
+      data-modal-active={active ? "true" : "false"}
+      data-ssui-component="dialog"
+      data-testid="ssui-v2-dialog"
+      ref={modalBoundary}
+    >
+      <Dialog
+        onOpenChange={(open) => setRequested(open)}
+        open={active}
+      >
+        <DialogTrigger
+          render={
+            <Button
+              disabled={node.props.disabled}
+              size={node.props.triggerSize}
+              variant={node.props.triggerVariant}
+            />
+          }
+        >
+          {node.props.triggerLabel}
+        </DialogTrigger>
+        <DialogContent
+          finalFocus={() =>
+            returnFocus.current?.isConnected ? returnFocus.current : true
+          }
+          showCloseButton={node.props.showCloseButton}
+        >
+          <DialogHeader>
+            <DialogTitle>{node.props.title}</DialogTitle>
+            {node.props.description !== null && (
+              <DialogDescription>{node.props.description}</DialogDescription>
+            )}
+          </DialogHeader>
+          {body.map((child) => (
+            <Fragment key={child.id}>
+              {renderNode(child, setNodeState, enqueueEvent)}
+            </Fragment>
+          ))}
+          {footer && renderNode(footer, setNodeState, enqueueEvent)}
+        </DialogContent>
+      </Dialog>
+    </div>
+  )
+}
+
+function TooltipNodeView({
+  enqueueEvent,
+  node,
+}: {
+  enqueueEvent: EnqueueEvent
+  node: Extract<ElementsNode, { type: "tooltip" }>
+}) {
+  const child = node.children[0]
+  if (!child || child.type !== "leaf") return null
+
+  let trigger: ReactNode
+  if (child.envelope.kind === "button") {
+    const envelope = child.envelope
+    const disabled = envelope.props.disabled || envelope.props.loading
+    const content = (
+      <>
+        {envelope.props.loading && <Spinner />}
+        {envelope.props.text}
+      </>
+    )
+    const button = (
+      <Button
+        aria-busy={envelope.props.loading || undefined}
+        className={envelope.props.stretch ? "w-full" : undefined}
+        disabled={disabled}
+        onClick={() => enqueueEvent(child.id, "click", true)}
+        size={envelope.props.size}
+        variant={envelope.props.variant}
+      >
+        {content}
+      </Button>
+    )
+    trigger = disabled ? (
+      <TooltipTrigger render={<span tabIndex={0} />}>{button}</TooltipTrigger>
+    ) : (
+      <TooltipTrigger
+        render={
+          <Button
+            aria-busy={envelope.props.loading || undefined}
+            className={envelope.props.stretch ? "w-full" : undefined}
+            onClick={() => enqueueEvent(child.id, "click", true)}
+            size={envelope.props.size}
+            variant={envelope.props.variant}
+          />
+        }
+      >
+        {content}
+      </TooltipTrigger>
+    )
+  } else if (child.envelope.kind === "link_button") {
+    const envelope = child.envelope
+    if (envelope.props.disabled) {
+      trigger = (
+        <TooltipTrigger render={<span tabIndex={0} />}>
+          <LinkButtonControl envelope={envelope} />
+        </TooltipTrigger>
+      )
+    } else {
+      trigger = (
+        <TooltipTrigger
+          render={
+            <a
+              className={cn(
+                buttonVariants({
+                  size: envelope.props.size,
+                  variant: envelope.props.variant,
+                }),
+                envelope.props.stretch && "w-full"
+              )}
+              href={envelope.props.url}
+              rel={
+                envelope.props.target === "_blank"
+                  ? "noopener noreferrer"
+                  : undefined
+              }
+              target={envelope.props.target}
+            />
+          }
+        >
+          {envelope.props.text}
+        </TooltipTrigger>
+      )
+    }
+  } else {
+    return null
+  }
+
+  return (
+    <Tooltip>
+      {trigger}
+      <TooltipContent side={node.props.side}>{node.props.content}</TooltipContent>
+    </Tooltip>
+  )
+}
+
 function renderNode(
   node: ElementsNode,
-  setNodeState: (
-    nodeId: string,
-    name: string,
-    value: unknown
-  ) => void,
-  enqueueEvent: (
-    nodeId: string,
-    type: string,
-    payload: unknown
-  ) => void
+  setNodeState: SetNodeState,
+  enqueueEvent: EnqueueEvent,
+  mode: "default" | "raw" = "default"
 ): ReactNode {
+  if (node.type === "dialog") {
+    return (
+      <DialogNodeView
+        enqueueEvent={enqueueEvent}
+        node={node}
+        setNodeState={setNodeState}
+      />
+    )
+  }
+  if (node.type === "field") {
+    return (
+      <FieldNodeView
+        enqueueEvent={enqueueEvent}
+        node={node}
+        setNodeState={setNodeState}
+      />
+    )
+  }
+  if (node.type === "tooltip") {
+    return <TooltipNodeView enqueueEvent={enqueueEvent} node={node} />
+  }
+
+  const rawChildren =
+    mode === "raw" ||
+    node.type === "button_group" ||
+    node.type === "dialog_footer" ||
+    node.type === "empty_content"
   const children = node.children.map((child) => (
     <Fragment key={child.id}>
-      {renderNode(child, setNodeState, enqueueEvent)}
+      {renderNode(
+        child,
+        setNodeState,
+        enqueueEvent,
+        rawChildren ? "raw" : "default"
+      )}
     </Fragment>
   ))
 
   switch (node.type) {
     case "leaf":
-      return renderLeaf(node, setNodeState, enqueueEvent)
+      return renderLeaf(node, setNodeState, enqueueEvent, mode)
     case "text":
       return (
         <p className={TEXT_CLASSES[node.props.variant]}>{node.props.text}</p>
@@ -265,6 +661,72 @@ function renderNode(
       return <CardContent>{children}</CardContent>
     case "card_footer":
       return <CardFooter>{children}</CardFooter>
+    case "button_group":
+      return (
+        <ButtonGroup
+          aria-label={node.props.label}
+          orientation={node.props.orientation}
+        >
+          {children}
+        </ButtonGroup>
+      )
+    case "button_group_separator":
+      return <ButtonGroupSeparator orientation={node.props.orientation} />
+    case "button_group_text":
+      return <ButtonGroupText>{node.props.text}</ButtonGroupText>
+    case "dialog_footer":
+      return <DialogFooter>{children}</DialogFooter>
+    case "dialog_close_button":
+      return (
+        <DialogClose
+          render={
+            <Button
+              aria-busy={node.props.loading || undefined}
+              disabled={node.props.disabled || node.props.loading}
+              onClick={() => enqueueEvent(node.id, "click", true)}
+              size={node.props.size}
+              variant={node.props.variant}
+            />
+          }
+        >
+          {node.props.loading && <Spinner />}
+          {node.props.text}
+        </DialogClose>
+      )
+    case "empty":
+      return <Empty>{children}</Empty>
+    case "empty_header":
+      return <EmptyHeader>{children}</EmptyHeader>
+    case "empty_media":
+      return <EmptyMedia variant={node.props.variant}>{children}</EmptyMedia>
+    case "empty_title":
+      return <EmptyTitle>{node.props.text}</EmptyTitle>
+    case "empty_description":
+      return <EmptyDescription>{node.props.text}</EmptyDescription>
+    case "empty_content":
+      return <EmptyContent>{children}</EmptyContent>
+    case "field_set":
+      return (
+        <FieldSet>
+          <FieldLegend variant={node.props.legendVariant}>
+            {node.props.legend}
+          </FieldLegend>
+          {node.props.description !== null && (
+            <FieldDescription>{node.props.description}</FieldDescription>
+          )}
+          {children}
+        </FieldSet>
+      )
+    case "field_group":
+      return <FieldGroup>{children}</FieldGroup>
+    case "field_separator":
+      return <FieldSeparator>{node.props.text}</FieldSeparator>
+    case "spinner":
+      return (
+        <span aria-label={node.props.label} role="status">
+          <Spinner />
+        </span>
+      )
   }
 }
 

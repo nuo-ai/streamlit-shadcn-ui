@@ -9,6 +9,44 @@ type LinkButtonViewProps = {
   envelope: LinkButtonEnvelope
 }
 
+export function LinkButtonControl({
+  envelope,
+}: LinkButtonViewProps) {
+  if (envelope.props.disabled) {
+    return (
+      <Button
+        className={envelope.props.stretch ? "w-full" : undefined}
+        disabled
+        size={envelope.props.size}
+        variant={envelope.props.variant}
+      >
+        {envelope.props.text}
+      </Button>
+    )
+  }
+
+  return (
+    <a
+      className={cn(
+        buttonVariants({
+          size: envelope.props.size,
+          variant: envelope.props.variant,
+        }),
+        envelope.props.stretch && "w-full"
+      )}
+      href={envelope.props.url}
+      rel={
+        envelope.props.target === "_blank"
+          ? "noopener noreferrer"
+          : undefined
+      }
+      target={envelope.props.target}
+    >
+      {envelope.props.text}
+    </a>
+  )
+}
+
 export function LinkButtonView({
   envelope,
 }: LinkButtonViewProps) {
@@ -20,41 +58,9 @@ export function LinkButtonView({
     ? "flex w-full p-px"
     : "inline-flex p-px"
 
-  if (envelope.props.disabled) {
-    return (
-      <div className={wrapperClassName} {...commonProps}>
-        <Button
-          disabled
-          size={envelope.props.size}
-          variant={envelope.props.variant}
-          className={envelope.props.stretch ? "w-full" : undefined}
-        >
-          {envelope.props.text}
-        </Button>
-      </div>
-    )
-  }
-
   return (
     <div className={wrapperClassName} {...commonProps}>
-      <a
-        className={cn(
-          buttonVariants({
-            size: envelope.props.size,
-            variant: envelope.props.variant,
-          }),
-          envelope.props.stretch && "w-full"
-        )}
-        href={envelope.props.url}
-        rel={
-          envelope.props.target === "_blank"
-            ? "noopener noreferrer"
-            : undefined
-        }
-        target={envelope.props.target}
-      >
-        {envelope.props.text}
-      </a>
+      <LinkButtonControl envelope={envelope} />
     </div>
   )
 }

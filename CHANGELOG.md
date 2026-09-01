@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.3.0 - 2026-09-01
+
+### Added
+
+- Added searchable single and multiple `ui.combobox` controls that return the
+  original Python option values. Filtering stays in the browser until a
+  selection, removal, or clear action commits state.
+- Added `ui.input_group` with validated text, icon, clear, and copy addons.
+  Typing stays local until Enter or blur, and copying does not rerun Python.
+- Added Button Group, Dialog, Empty, Field, Spinner, and Tooltip composition to
+  Elements. Combobox and Input Group are also available as Elements nodes.
+- Added `loading` and `help` to Button, backed by the generated Spinner and
+  Tooltip components.
+- Added eight documentation pages and a combined P0 acceptance app covering
+  standalone, nested, overlay, sidebar, tab, and bounded-container cases.
+
+### Behavior
+
+- Dialog preserves focus trapping and return focus while ordinary footer
+  actions can rerun Python without closing the modal.
+- Field connects labels, descriptions, and errors to its supported controls.
+- Combobox clear, trigger, and chip removal actions have accessible names.
+- The adapters preserve the pinned shadcn defaults. They add no cosmetic
+  control overrides.
+
+Full details: [P0 component foundations](docs/releases/1.3.0.md).
+
 ## 1.2.2 - 2026-08-31
 
 ### Fixed

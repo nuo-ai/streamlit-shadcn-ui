@@ -14,6 +14,7 @@ import {
 } from "@/components/streamlit/card"
 import { CheckboxView } from "@/components/streamlit/checkbox"
 import { CollapsibleView } from "@/components/streamlit/collapsible"
+import { ComboboxView } from "@/components/streamlit/combobox"
 import { DropdownMenuView } from "@/components/streamlit/dropdown-menu"
 import { DatePickerView } from "@/components/streamlit/date-picker"
 import { ElementsView } from "@/components/streamlit/elements"
@@ -21,6 +22,7 @@ import { HoverCardView } from "@/components/streamlit/hover-card"
 import { CalendarView } from "@/components/streamlit/calendar"
 import { InputOtpView } from "@/components/streamlit/input-otp"
 import { InputView } from "@/components/streamlit/input"
+import { InputGroupView } from "@/components/streamlit/input-group"
 import { NumberInputView } from "@/components/streamlit/number-input"
 import { LinkButtonView } from "@/components/streamlit/link-button"
 import { PaginationView } from "@/components/streamlit/pagination"
@@ -69,6 +71,13 @@ export function V2App({
     case "select":
       return (
         <SelectView
+          envelope={envelope}
+          setStateValue={setStateValue}
+        />
+      )
+    case "combobox":
+      return (
+        <ComboboxView
           envelope={envelope}
           setStateValue={setStateValue}
         />
@@ -133,6 +142,13 @@ export function V2App({
     case "input":
       return (
         <InputView
+          envelope={envelope}
+          setStateValue={setStateValue}
+        />
+      )
+    case "input_group":
+      return (
+        <InputGroupView
           envelope={envelope}
           setStateValue={setStateValue}
         />

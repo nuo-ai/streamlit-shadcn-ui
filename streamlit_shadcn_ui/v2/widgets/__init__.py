@@ -10,10 +10,12 @@ from .calendar import calendar
 from .card import card, metric_card
 from .checkbox import checkbox
 from .collapsible import collapsible
+from .combobox import combobox
 from .dropdown_menu import dropdown_menu
 from .date_picker import date_picker
 from .hover_card import hover_card
 from .input import input
+from .input_group import input_group
 from .input_otp import input_otp
 from .link_button import link_button
 from .number_input import number_input
@@ -47,10 +49,12 @@ __all__ = [
     "card",
     "checkbox",
     "collapsible",
+    "combobox",
     "date_picker",
     "dropdown_menu",
     "hover_card",
     "input",
+    "input_group",
     "input_otp",
     "link_button",
     "metric_card",

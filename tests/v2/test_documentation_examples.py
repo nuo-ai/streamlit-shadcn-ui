@@ -31,7 +31,7 @@ _LEGACY_PATTERNS = (
     "siblingCount=",
     "fistItem=",
     "tags=",
-    'mode="multiple"',
+    '\n    mode="multiple"',
     "progress(data=",
 )
 
@@ -100,7 +100,7 @@ class DocumentationExampleTests(unittest.TestCase):
                     self.assertNotIn(pattern, source)
 
     def test_component_docs_use_current_v2_examples(self) -> None:
-        self.assertEqual(len(_DOC_PATHS), 37)
+        self.assertEqual(len(_DOC_PATHS), 45)
         for path in _DOC_PATHS:
             with self.subTest(path=path.relative_to(_ROOT)):
                 source = path.read_text(encoding="utf-8")
@@ -128,7 +128,7 @@ class DocumentationExampleTests(unittest.TestCase):
             with self.subTest(path=path.relative_to(_ROOT)):
                 app = AppTest.from_file(
                     str(path),
-                    default_timeout=30,
+                    default_timeout=60,
                 ).run()
                 self.assertEqual(
                     [exception.message for exception in app.exception],

@@ -380,7 +380,8 @@ export function preferredReturnFocusElement(): HTMLElement | null {
   const activeIsModal =
     activeRoot instanceof ShadowRoot &&
     activeRoot.querySelector(
-      "[data-ssui-component='alert-dialog'][data-modal-active='true']"
+      "[data-ssui-component='alert-dialog'][data-modal-active='true'], " +
+        "[data-ssui-component='dialog'][data-modal-active='true']"
     ) !== null
   if (active && activeIsModal) {
     return active

@@ -1,5 +1,6 @@
 import { useId } from "react"
 
+import { Field, FieldLabel } from "@/components/ui/field"
 import {
   Select,
   SelectContent,
@@ -16,11 +17,19 @@ type SelectViewProps = {
   setStateValue: V2RendererArgs["setStateValue"]
 }
 
-export function SelectView({
+export type SelectControlProps = SelectViewProps & {
+  controlId: string
+  describedBy?: string
+  invalid?: boolean
+}
+
+export function SelectControl({
+  controlId,
+  describedBy,
   envelope,
+  invalid = false,
   setStateValue,
-}: SelectViewProps) {
-  const labelId = useId()
+}: SelectControlProps) {
   const { commit, state } = useRevisionedState(
     envelope.state,
     setStateValue
@@ -29,55 +38,66 @@ export function SelectView({
     envelope.props.disabled || envelope.props.options.length === 0
 
   return (
-    <div
-      className="grid min-w-0 gap-1.5 p-px"
+    <Select
+      disabled={isDisabled}
+      items={envelope.props.options}
+      modal={false}
+      onValueChange={(value) => {
+        commit(typeof value === "string" ? value : null)
+      }}
+      value={state.value}
+    >
+      <SelectTrigger
+        aria-describedby={describedBy}
+        aria-invalid={invalid || undefined}
+        className="w-full"
+        id={controlId}
+        data-testid="ssui-v2-select-trigger"
+      >
+        <SelectValue
+          placeholder={
+            envelope.props.options.length === 0
+              ? "No options"
+              : envelope.props.placeholder
+          }
+        />
+      </SelectTrigger>
+      <SelectContent
+        align="start"
+        alignItemWithTrigger={false}
+        data-testid="ssui-v2-select-content"
+      >
+        {envelope.props.options.map((option) => (
+          <SelectItem
+            disabled={option.disabled}
+            key={option.value}
+            value={option.value}
+          >
+            {option.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  )
+}
+
+export function SelectView({
+  envelope,
+  setStateValue,
+}: SelectViewProps) {
+  const controlId = useId()
+
+  return (
+    <Field
       data-ssui-component="select"
       data-testid="ssui-v2-select"
     >
-      <span
-        className="text-sm font-medium leading-none"
-        id={labelId}
-      >
-        {envelope.props.label}
-      </span>
-      <Select
-        disabled={isDisabled}
-        items={envelope.props.options}
-        modal={false}
-        onValueChange={(value) => {
-          commit(typeof value === "string" ? value : null)
-        }}
-        value={state.value}
-      >
-        <SelectTrigger
-          aria-labelledby={labelId}
-          className="w-full"
-          data-testid="ssui-v2-select-trigger"
-        >
-          <SelectValue
-            placeholder={
-              envelope.props.options.length === 0
-                ? "No options"
-                : envelope.props.placeholder
-            }
-          />
-        </SelectTrigger>
-        <SelectContent
-          align="start"
-          alignItemWithTrigger={false}
-          data-testid="ssui-v2-select-content"
-        >
-          {envelope.props.options.map((option) => (
-            <SelectItem
-              disabled={option.disabled}
-              key={option.value}
-              value={option.value}
-            >
-              {option.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
+      <FieldLabel htmlFor={controlId}>{envelope.props.label}</FieldLabel>
+      <SelectControl
+        controlId={controlId}
+        envelope={envelope}
+        setStateValue={setStateValue}
+      />
+    </Field>
   )
 }

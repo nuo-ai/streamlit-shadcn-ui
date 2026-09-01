@@ -62,16 +62,34 @@ class ElementsBuilderTests(unittest.TestCase):
             {
                 "badge",
                 "button",
+                "button_group",
+                "button_group_separator",
+                "button_group_text",
                 "card",
                 "card_content",
                 "card_footer",
                 "card_header",
                 "checkbox",
                 "code",
+                "combobox",
+                "dialog",
+                "dialog_close_button",
+                "dialog_footer",
+                "empty",
+                "empty_content",
+                "empty_description",
+                "empty_header",
+                "empty_media",
+                "empty_title",
+                "field",
+                "field_group",
+                "field_separator",
+                "field_set",
                 "grid",
                 "heading",
                 "image",
                 "input",
+                "input_group",
                 "link_button",
                 "number_input",
                 "progress",
@@ -79,10 +97,12 @@ class ElementsBuilderTests(unittest.TestCase):
                 "select",
                 "separator",
                 "slider",
+                "spinner",
                 "stack",
                 "switch",
                 "text",
                 "textarea",
+                "tooltip",
             },
         )
 
@@ -194,6 +214,116 @@ class ElementsBuilderTests(unittest.TestCase):
             captured["data"]["props"]["nodes"][0]["type"],
             "select",
         )
+
+    def test_p0_components_serialize_one_composed_tree(self) -> None:
+        captured = {}
+
+        with patch.object(
+            elements_module,
+            "prepare_elements_state",
+            side_effect=lambda **kwargs: prepared_state(
+                kwargs["node_defaults"]
+            ),
+        ), patch.object(
+            elements_module,
+            "fail_if_trigger_in_form",
+        ), patch.object(
+            elements_module,
+            "mount",
+            side_effect=lambda **kwargs: captured.update(kwargs) or {},
+        ):
+            with ui.elements(key="p0-tree") as el:
+                with el.button_group("Editor actions", key="actions"):
+                    run = el.button("Run", key="run", help="Run now")
+                    el.button_group_separator()
+                    el.button_group_text("or")
+                    with el.button_group("More", key="more"):
+                        el.button("Queue", key="queue", loading=True)
+                with el.tooltip("Open documentation"):
+                    el.link_button(
+                        "Docs",
+                        "https://example.com/docs",
+                        key="docs",
+                    )
+                with el.dialog(
+                    "Confirm run",
+                    key="confirm",
+                    description="Review the pending action.",
+                ):
+                    el.text("This action is safe to retry.")
+                    with el.dialog_footer():
+                        el.button("Keep open", key="keep-open")
+                        close = el.dialog_close_button(
+                            "Close",
+                            key="close",
+                        )
+                with el.empty(key="empty"):
+                    with el.empty_header():
+                        with el.empty_media(variant="icon"):
+                            el.spinner(label="Checking")
+                        el.empty_title("No results")
+                        el.empty_description("Try another query.")
+                    with el.empty_content():
+                        el.button("Reset", key="reset")
+                with el.field_set(
+                    "Profile",
+                    description="Public account details.",
+                ):
+                    with el.field_group():
+                        with el.field(
+                            "Website",
+                            description="Your public URL.",
+                        ):
+                            website = el.input_group(
+                                "Website",
+                                "example.com",
+                                key="website",
+                                prefix="https://",
+                                clearable=True,
+                            )
+                        el.field_separator("Choices")
+                        with el.field("Release"):
+                            release = el.combobox(
+                                "Release",
+                                ["Stable", "Canary"],
+                                key="release",
+                                value="Stable",
+                            )
+
+        self.assertFalse(run.clicked)
+        self.assertFalse(close.clicked)
+        self.assertEqual(website.value, "example.com")
+        self.assertEqual(release.value, "Stable")
+        roots = captured["data"]["props"]["nodes"]
+        self.assertEqual(
+            [node["type"] for node in roots],
+            ["button_group", "tooltip", "dialog", "empty", "field_set"],
+        )
+        self.assertEqual(
+            [child["type"] for child in roots[0]["children"]],
+            [
+                "button",
+                "button_group_separator",
+                "button_group_text",
+                "button_group",
+            ],
+        )
+
+    def test_p0_composition_rules_fail_before_mount(self) -> None:
+        with self.assertRaisesRegex(RuntimeError, "tooltip"):
+            with ui.elements(key="invalid-tooltip") as el:
+                with el.tooltip("Invalid"):
+                    el.text("Not interactive")
+
+        with self.assertRaisesRegex(RuntimeError, "field"):
+            with ui.elements(key="invalid-field") as el:
+                with el.field("Missing control"):
+                    el.text("Not a control")
+
+        with self.assertRaisesRegex(RuntimeError, "button_group"):
+            with ui.elements(key="invalid-button-group") as el:
+                with el.button_group("Invalid"):
+                    el.text("Not group text")
 
 
 class ElementsCallbackTests(unittest.TestCase):

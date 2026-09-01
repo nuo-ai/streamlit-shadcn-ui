@@ -855,6 +855,109 @@ describe("parseEnvelope", () => {
     expect(parseEnvelope(envelope).ok).toBe(false)
   })
 
+  function p0StandaloneEnvelopes() {
+    const options = [
+      { label: "Alpha", value: "alpha", disabled: false },
+      { label: "Beta", value: "beta", disabled: true },
+    ]
+    return [
+      {
+        protocolVersion: 1,
+        kind: "combobox",
+        state: stateCell("combobox", "alpha"),
+        props: {
+          clearable: true,
+          disabled: false,
+          emptyMessage: "No options found.",
+          label: "Release",
+          options,
+          placeholder: "Select a release",
+          selectionMode: "single",
+        },
+      },
+      {
+        protocolVersion: 1,
+        kind: "combobox",
+        state: stateCell("combobox", ["alpha"]),
+        props: {
+          clearable: true,
+          disabled: false,
+          emptyMessage: "No options found.",
+          label: "Releases",
+          options,
+          placeholder: "Select releases",
+          selectionMode: "multiple",
+        },
+      },
+      {
+        protocolVersion: 1,
+        kind: "input_group",
+        state: stateCell("input_group", "example.com"),
+        props: {
+          clearable: true,
+          copyable: true,
+          disabled: false,
+          label: "Website",
+          maxLength: 64,
+          placeholder: "example.com",
+          prefix: "https://",
+          startIcon: "link",
+          suffix: "verified",
+          type: "url",
+        },
+      },
+    ]
+  }
+
+  it("accepts Combobox and Input Group state contracts", () => {
+    for (const envelope of p0StandaloneEnvelopes()) {
+      expect(parseEnvelope(envelope)).toEqual({
+        ok: true,
+        envelope,
+      })
+    }
+  })
+
+  it.each([
+    [
+      "single Combobox array value",
+      {
+        ...p0StandaloneEnvelopes()[0],
+        state: stateCell("combobox", ["alpha"]),
+      },
+    ],
+    [
+      "multiple Combobox duplicate value",
+      {
+        ...p0StandaloneEnvelopes()[1],
+        state: stateCell("combobox", ["alpha", "alpha"]),
+      },
+    ],
+    [
+      "Input Group unknown icon",
+      {
+        ...p0StandaloneEnvelopes()[2],
+        props: {
+          ...p0StandaloneEnvelopes()[2]!.props,
+          startIcon: "sparkles",
+        },
+      },
+    ],
+    [
+      "Input Group value above max length",
+      {
+        ...p0StandaloneEnvelopes()[2],
+        state: stateCell("input_group", "too long"),
+        props: {
+          ...p0StandaloneEnvelopes()[2]!.props,
+          maxLength: 2,
+        },
+      },
+    ],
+  ])("rejects malformed P0 input: %s", (_name, envelope) => {
+    expect(parseEnvelope(envelope).ok).toBe(false)
+  })
+
   function elementsEnvelope() {
     return {
       protocolVersion: 1,
@@ -953,5 +1056,58 @@ describe("parseEnvelope", () => {
       changeSequence: 0,
     }
     expect(parseEnvelope(extraState).ok).toBe(false)
+  })
+
+  it("rejects invalid Field and Tooltip child composition", () => {
+    const base = elementsEnvelope()
+    const invalidField = {
+      ...base,
+      state: {
+        ...base.state,
+        value: { ...base.state.value, nodes: {} },
+      },
+      props: {
+        nodes: [
+          {
+            id: "field",
+            type: "field",
+            props: {
+              description: null,
+              error: null,
+              label: "Name",
+              orientation: "vertical",
+            },
+            children: [
+              {
+                id: "field/text",
+                type: "text",
+                props: { text: "Not an input", variant: "body" },
+                children: [],
+              },
+            ],
+          },
+        ],
+      },
+    }
+    expect(parseEnvelope(invalidField).ok).toBe(false)
+
+    const invalidTooltip = {
+      ...base,
+      state: {
+        ...base.state,
+        value: { ...base.state.value, nodes: {} },
+      },
+      props: {
+        nodes: [
+          {
+            id: "tooltip",
+            type: "tooltip",
+            props: { content: "Details", side: "top" },
+            children: [],
+          },
+        ],
+      },
+    }
+    expect(parseEnvelope(invalidTooltip).ok).toBe(false)
   })
 })

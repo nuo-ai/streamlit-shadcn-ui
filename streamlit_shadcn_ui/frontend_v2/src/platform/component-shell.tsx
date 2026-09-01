@@ -1,6 +1,7 @@
 import { CSPProvider } from "@base-ui/react/csp-provider"
 import type { ReactNode } from "react"
 
+import { TooltipProvider } from "@/components/ui/tooltip"
 import { ComponentErrorBoundary } from "@/platform/error-boundary"
 import { OverlayContainerProvider } from "@/platform/overlay-container"
 
@@ -24,7 +25,7 @@ export function ComponentShell({
           container={overlayRoot}
           expectedRoot={parentElement}
         >
-          {children}
+          <TooltipProvider>{children}</TooltipProvider>
         </OverlayContainerProvider>
       </CSPProvider>
     </ComponentErrorBoundary>
